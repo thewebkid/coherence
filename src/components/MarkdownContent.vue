@@ -29,7 +29,7 @@ const rendered = computed(() => {
 <style lang="scss" scoped>
 .markdown-body {
   // Prose typography for rendered markdown
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1rem;
   line-height: var(--line-height-body);
   color: var(--text);
@@ -107,12 +107,13 @@ const rendered = computed(() => {
     font-style: italic;
   }
 
-  // Blockquotes - contemplative, refined
+  // Blockquotes - contemplative, refined (serif for artistic accent)
   :deep(blockquote) {
     margin: var(--spacing-lg) 0;
     padding: var(--spacing-md) var(--spacing-lg);
     border-left: 3px solid var(--accent);
     background: var(--bg-secondary);
+    font-family: var(--font-serif);
     font-style: italic;
     color: var(--text-muted);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;

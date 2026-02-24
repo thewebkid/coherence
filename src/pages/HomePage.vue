@@ -207,7 +207,7 @@ const siteLinks = [
 }
 
 .home-nav__desc {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 0.9375rem;
   color: var(--text-muted);
   margin-bottom: 0;

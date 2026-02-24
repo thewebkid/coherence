@@ -244,9 +244,9 @@ watch(() => props.activeIndex, () => {
 }
 
 .sidebar-link-subtitle {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 0.8125rem;
-  font-style: italic;
+  font-weight: 400;
   color: var(--text-muted);
   margin-top: 2px;
 }

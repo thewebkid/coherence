@@ -1,7 +1,7 @@
 // Typography
-// Elegant serif body text with clean sans-serif headers
+// Clean sans-serif body text with serif reserved for artistic accents
 
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap');
 
 html {
   font-size: 16px;
@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--font-size-base);
   line-height: var(--line-height-body);
   color: var(--text);
@@ -90,12 +90,13 @@ em, i {
   font-style: italic;
 }
 
-// Blockquotes - refined, contemplative
+// Blockquotes - refined, contemplative (serif for artistic accent)
 blockquote {
   margin: var(--spacing-lg) 0;
   padding: var(--spacing-md) var(--spacing-lg);
   border-left: 3px solid var(--accent);
   background: var(--bg-secondary);
+  font-family: var(--font-serif);
   font-style: italic;
   color: var(--text-muted);
 
