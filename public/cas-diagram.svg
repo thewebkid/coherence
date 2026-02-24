@@ -1,0 +1,98 @@
+<svg viewBox="0 0 2239 2313" width="800" height="826" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" overflow="hidden"><defs><linearGradient x1="2038.91" y1="465.439" x2="2757.57" y2="754.461" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill0"><stop offset="0" stop-color="#454545"/><stop
+        offset="0.2" stop-color="#454545"/><stop offset="0.5" stop-color="#505050"/><stop offset="1"
+                                                                                          stop-color="#464646"/></linearGradient><linearGradient
+        x1="1402.37" y1="912.575" x2="1881.63" y2="341.425" gradientUnits="userSpaceOnUse" spreadMethod="reflect"
+        id="fill1"><stop offset="0" stop-color="#535353"/>
+    <stop offset="0.28" stop-color="#535353"/>
+    <stop offset="0.5" stop-color="#8A8A8A"/>
+    <stop offset="1" stop-color="#818181"/></linearGradient><linearGradient x1="1679.44" y1="350.565" x2="2326.56"
+                                                                            y2="349.435" gradientUnits="userSpaceOnUse"
+                                                                            spreadMethod="reflect" id="fill2"><stop offset="0" stop-color="#9C9C9C"/>
+    <stop offset="0.5" stop-color="#8B8B8B"/>
+    <stop offset="1" stop-color="#767676"/></linearGradient><linearGradient x1="2428.42" y1="1553.87" x2="2735.02"
+                                                                            y2="1022.92" gradientUnits="userSpaceOnUse"
+                                                                            spreadMethod="reflect" id="fill3"><stop offset="0" stop-color="#9C9C9C"/>
+    <stop offset="0.47" stop-color="#939393"/>
+    <stop offset="0.66" stop-color="#5A5A5A"/>
+    <stop offset="1" stop-color="#5A5A5A"/></linearGradient><linearGradient x1="2396.44" y1="876.569" x2="3048.56"
+                                                                            y2="875.431" gradientUnits="userSpaceOnUse"
+                                                                            spreadMethod="reflect" id="fill4"><stop offset="0" stop-color="#626262"/>
+    <stop offset="0.5" stop-color="#505050"/>
+    <stop offset="1" stop-color="#414141"/></linearGradient><linearGradient x1="1469.97" y1="1559.88" x2="1353.52"
+                                                                            y2="1001.43" gradientUnits="userSpaceOnUse"
+                                                                            spreadMethod="reflect" id="fill5"><stop offset="0" stop-color="#545454"/>
+    <stop offset="0.26" stop-color="#545454"/>
+    <stop offset="0.5" stop-color="#8B8B8B"/>
+    <stop offset="1" stop-color="#8F8F8F"/></linearGradient><linearGradient x1="1870.02" y1="1634.82" x2="2158.62"
+                                                                            y2="1777.22" gradientUnits="userSpaceOnUse"
+                                                                            spreadMethod="reflect" id="fill6"><stop offset="0" stop-color="#444444"/>
+    <stop offset="0.09" stop-color="#444444"/>
+    <stop offset="0.41" stop-color="#4B4B4B"/>
+    <stop offset="0.66" stop-color="#303030"/>
+    <stop offset="1" stop-color="#303030"/></linearGradient><linearGradient x1="2117.44" y1="1709.57" x2="2769.56"
+                                                                            y2="1708.43" gradientUnits="userSpaceOnUse"
+                                                                            spreadMethod="reflect" id="fill7"><stop offset="0" stop-color="#9F9F9F"/>
+    <stop offset="0.5" stop-color="#929292"/>
+    <stop offset="1" stop-color="#878787"/></linearGradient><linearGradient x1="1888" y1="1709" x2="1237" y2="1709"
+                                                                            gradientUnits="userSpaceOnUse"
+                                                                            spreadMethod="reflect" id="fill8"><stop offset="0" stop-color="#555555"/>
+    <stop offset="0.5" stop-color="#4E4E4E"/>
+    <stop offset="1" stop-color="#414141"/></linearGradient></defs>
+    <g transform="translate(-884 -27)"><path d="M2832.31 568.146C2634.96 486.051 2401.06 521.873 2245.71 559.484L1971.47 674.076C2142.27 720.014 2352.28 684.361 2541.61 642.898 2641.96 606.715 2731.95 604.329 2832.31 568.146Z" fill="url(#fill0)" fill-rule="evenodd"/>
+        <path d="M1716.47 210C1616.81 334.279 1570.01 575.995 1559.02 728.778 1564.32 827.973 1555.46 944.805 1560.77 1044 1651.72 918.391 1707.95 701.604 1725 516.706L1716.47 210Z"
+              fill="url(#fill1)" fill-rule="evenodd"/>
+        <path d="M1680 350C1680 171.612 1824.61 27.0002 2003 27.0002 2181.39 27.0002 2326 171.612 2326 350 2326 528.388 2181.39 673 2003 673 1824.61 673 1680 528.388 1680 350Z"
+              fill="url(#fill2)" fill-rule="evenodd"/>
+        <path d="M1751 350C1751 210.824 1863.6 98 2002.5 98 2141.4 98 2254 210.824 2254 350 2254 489.176 2141.4 602 2002.5 602 1863.6 602 1751 489.176 1751 350Z"
+              fill="#FFFFFF" fill-rule="evenodd"/>
+        <path d="M2765.25 1742.34C2788.75 1471.5 2630.67 1225.68 2547.88 1082.42 2490.94 995.83 2454.48 921.406 2397.53 834.817 2386.95 1073.15 2472.29 1245.57 2573.82 1422.78L2765.25 1742.34Z"
+              fill="url(#fill3)" fill-rule="evenodd"/>
+        <path d="M2397 876C2397 697.612 2542.73 553 2722.5 553 2902.27 553 3048 697.612 3048 876 3048 1054.39 2902.27 1199 2722.5 1199 2542.73 1199 2397 1054.39 2397 876Z"
+              fill="url(#fill4)" fill-rule="evenodd"/>
+        <path d="M2466 870C2466 730.824 2578.82 618 2718 618 2857.18 618 2970 730.824 2970 870 2970 1009.18 2857.18 1122 2718 1122 2578.82 1122 2466 1009.18 2466 870Z"
+              fill="#FFFFFF" fill-rule="evenodd"/>
+        <path d="M1040.11 1067.2C1138.22 1216.75 1327.75 1335.5 1499.39 1401.12L1789.14 1476.6C1677.72 1340.82 1511.96 1246.27 1341.6 1172.18 1243.56 1142.9 1138.16 1096.47 1040.11 1067.2Z"
+              fill="url(#fill5)" fill-rule="evenodd"/>
+        <path d="M2340.55 1407.72C2167.97 1454.69 1996.36 1598.13 1880.81 1741.01L1690.88 2006.38C1900.08 1922.39 2030.53 1794.06 2149.82 1651.1 2208.01 1566.94 2282.35 1491.88 2340.55 1407.72Z"
+              fill="url(#fill6)" fill-rule="evenodd"/>
+        <path d="M2118 1709C2118 1530.61 2263.73 1386 2443.5 1386 2623.27 1386 2769 1530.61 2769 1709 2769 1887.39 2623.27 2032 2443.5 2032 2263.73 2032 2118 1887.39 2118 1709Z"
+              fill="url(#fill7)" fill-rule="evenodd"/>
+        <path d="M2193 1709C2193 1569.82 2305.82 1457 2445 1457 2584.18 1457 2697 1569.82 2697 1709 2697 1848.18 2584.18 1961 2445 1961 2305.82 1961 2193 1848.18 2193 1709Z"
+              fill="#FFFFFF" fill-rule="evenodd"/>
+        <path d="M1237 1709C1237 1530.61 1382.73 1386 1562.5 1386 1742.27 1386 1888 1530.61 1888 1709 1888 1887.39 1742.27 2032 1562.5 2032 1382.73 2032 1237 1887.39 1237 1709Z"
+              fill="url(#fill8)" fill-rule="evenodd"/>
+        <path d="M1311 1717C1311 1577.82 1423.82 1465 1563 1465 1702.18 1465 1815 1577.82 1815 1717 1815 1856.18 1702.18 1969 1563 1969 1423.82 1969 1311 1856.18 1311 1717Z"
+              fill="#FFFFFF" fill-rule="evenodd"/>
+        <path d="M968 866.5C968 687.836 1112.84 543 1291.5 543 1470.16 543 1615 687.836 1615 866.5 1615 1045.16 1470.16 1190 1291.5 1190 1112.84 1190 968 1045.16 968 866.5Z"
+              fill="#9C9C9C" fill-rule="evenodd"/>
+        <path d="M1039 865C1039 725.824 1151.82 613 1291 613 1430.18 613 1543 725.824 1543 865 1543 1004.18 1430.18 1117 1291 1117 1151.82 1117 1039 1004.18 1039 865Z"
+              fill="#FFFFFF" fill-rule="evenodd"/>
+        <text fill="#404040" font-family="Inter,sans-serif" font-weight="700" font-size="88"
+              transform="matrix(1 0 0 1 1803.28 380)">Alignment</text>
+        <text fill="#404040" font-family="Inter,sans-serif" font-weight="700" font-size="88"
+              transform="matrix(1 0 0 1 2593.36 899)">Return</text>
+        <text fill="#404040" font-family="Inter,sans-serif" font-weight="700" font-size="80"
+              transform="matrix(1 0 0 1 2216.86 1693)">Harmonized </text>
+        <text fill="#404040" font-family="Inter,sans-serif" font-weight="700" font-size="80"
+              transform="matrix(1 0 0 1 2223.26 1803)">Sovereignty</text>
+        <text fill="#404040" font-family="Inter,sans-serif" font-weight="700" font-size="80"
+              transform="matrix(1 0 0 1 1370.95 1685)">Relational</text>
+        <text fill="#404040" font-family="Inter,sans-serif" font-weight="700" font-size="80"
+              transform="matrix(1 0 0 1 1359.77 1795)">Coherence</text>
+        <text fill="#404040" font-family="Inter,sans-serif" font-weight="700" font-size="128"
+              transform="matrix(1 0 0 1 1700.86 963)">Coherence</text>
+        <text fill="#4F4F4F" font-family="Inter,sans-serif" font-weight="700" font-size="80"
+              transform="matrix(1 0 0 1 1733.91 1083)">Across Scales</text>
+        <text fill="#4F4F4F" font-family="Inter,sans-serif" font-weight="400" font-size="80"
+              transform="matrix(1 0 0 1 1716.08 1193)">(a</text>
+        <text fill="#4F4F4F" font-family="Inter,sans-serif" font-weight="400" font-size="80"
+              transform="matrix(1 0 0 1 1808.89 1193)">living</text>
+        <text fill="#4F4F4F" font-family="Inter,sans-serif" font-weight="400" font-size="80"
+              transform="matrix(1 0 0 1 2025.46 1193)">system)</text>
+        <text fill="#404040" font-family="Inter,sans-serif" font-weight="700" font-size="88"
+              transform="matrix(1 0 0 1 1150.71 833)">Shared</text>
+        <text fill="#404040" font-family="Inter,sans-serif" font-weight="700" font-size="80"
+              transform="matrix(1 0 0 1 1096.01 943)">Becoming</text>
+        <text font-family="Inter,sans-serif" font-weight="400" font-size="83" transform="matrix(1 0 0 1 1214.64 2169)">These five practices do not function separately.</text>
+        <text font-family="Inter,sans-serif" font-weight="400" font-size="83" transform="matrix(1 0 0 1 933.586 2268)">They form a living system that stabilizes coherence across scales</text></g></svg>

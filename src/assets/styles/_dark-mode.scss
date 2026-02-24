@@ -1,0 +1,29 @@
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #1a1a1e;
+    --bg-secondary: #242428;
+    --text: #e8e4df;
+    --text-muted: #9a9590;
+    --accent: #8da0b3;
+    --accent-hover: #a3b5c6;
+    --border: #333338;
+    --nav-bg: rgba(26, 26, 30, 0.92);
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color var(--transition-speed) ease,
+              color var(--transition-speed) ease;
+}
+
+[data-theme='dark'] img.diagram {
+  filter: invert(0.88) hue-rotate(180deg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) img.diagram {
+    filter: invert(0.88) hue-rotate(180deg);
+  }
+}
