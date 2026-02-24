@@ -86,6 +86,28 @@ button {
   }
 }
 
+// Integrative field diagram — invert black lines/text to white in dark mode
+[data-theme='dark'] img[src*='integrative-diagram'] {
+  filter: invert(1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) img[src*='integrative-diagram'] {
+    filter: invert(1);
+  }
+}
+
+// CAS diagram — soften the high-contrast white circles in dark mode
+[data-theme='dark'] img[src*='cas-diagram'] {
+  filter: brightness(0.88) contrast(0.95);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) img[src*='cas-diagram'] {
+    filter: brightness(0.88) contrast(0.95);
+  }
+}
+
 // Selection colors
 ::selection {
   background: var(--accent);
