@@ -57,8 +57,9 @@ defineProps({
 }
 
 .content-nav__title {
-  font-family: var(--font-serif);
-  font-size: 1.0625rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
   color: var(--accent);
   transition: color var(--transition-speed) ease;
 
