@@ -23,7 +23,7 @@
 
       <div class="footer-bottom">
         <p class="footer-attribution">
-          By James Mahu
+          
         </p>
         <p class="footer-copyright">
           &copy; {{ currentYear }} Coherence Across Scales
