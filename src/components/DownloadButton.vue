@@ -41,30 +41,31 @@ defineProps({
   gap: var(--spacing-xs);
   padding: var(--spacing-sm) var(--spacing-md);
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid #4a7db8;
   border-radius: var(--radius-md);
   font-family: var(--font-sans);
   font-size: 0.875rem;
-  color: var(--text);
+  color: #4a7db8;
   text-decoration: none;
   cursor: pointer;
   transition: background var(--transition-speed) ease,
-              border-color var(--transition-speed) ease;
+              border-color var(--transition-speed) ease,
+              color var(--transition-speed) ease;
 
   &:hover {
-    background: var(--bg-secondary);
-    border-color: var(--accent);
-    color: var(--text);
+    background: #4a7db8;
+    border-color: #4a7db8;
+    color: white;
     text-decoration: none;
 
     .download-icon {
-      color: var(--accent);
+      color: white;
     }
   }
 }
 
 .download-icon {
-  color: var(--text-muted);
+  color: #4a7db8;
   transition: color var(--transition-speed) ease;
 }
 

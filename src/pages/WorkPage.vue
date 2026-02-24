@@ -137,7 +137,7 @@ useHead({
 .work-card-subtitle {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   color: var(--text-muted);
   margin-bottom: var(--spacing-md);
 }

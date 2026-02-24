@@ -446,7 +446,7 @@ useHead({
 .glossary-toc {
   display: grid;
   gap: var(--spacing-md);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
   background: var(--bg-secondary);
   border-radius: var(--radius-md);
   margin-bottom: var(--spacing-xl);
@@ -464,10 +464,10 @@ useHead({
   h4 {
     font-family: var(--font-sans);
     font-size: 0.75rem;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--text-muted);
+    color: var(--text);
     margin-bottom: var(--spacing-xs);
   }
 

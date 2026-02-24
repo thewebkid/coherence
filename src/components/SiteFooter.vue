@@ -12,12 +12,9 @@
         </div>
 
         <nav class="footer-nav">
-          <RouterLink to="/orientation">Orientation</RouterLink>
-          <RouterLink to="/glossary">Glossary</RouterLink>
-          <RouterLink to="/engine">Engine</RouterLink>
-          <RouterLink to="/work">The Work</RouterLink>
-          <RouterLink to="/practice">Practice</RouterLink>
-          <RouterLink to="/contact">Stewardship</RouterLink>
+          <RouterLink to="/contact">Contact</RouterLink>
+          <RouterLink to="/stewardship">Stewardship</RouterLink>
+          <RouterLink to="/institutional">Institutional Inquiries</RouterLink>
         </nav>
       </div>
 
@@ -85,7 +82,7 @@ const currentYear = new Date().getFullYear();
 .footer-tagline {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   color: var(--text-muted);
   margin: 0;
 }
@@ -111,20 +108,16 @@ const currentYear = new Date().getFullYear();
 .footer-bottom {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
-  padding-top: var(--spacing-lg);
+  gap: 0;
+  padding-top: var(--spacing-sm);
   border-top: 1px solid var(--border);
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+  text-align: center;
 }
 
 .footer-attribution,
 .footer-copyright {
   font-family: var(--font-sans);
-  font-size: 0.8125rem;
+  font-size: 0.6875rem;
   color: var(--text-muted);
   margin: 0;
 }

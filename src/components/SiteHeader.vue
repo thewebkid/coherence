@@ -94,11 +94,11 @@ const isDark = computed(() => themeStore.resolvedIsDark());
 
 const navLinks = [
   { to: '/orientation', label: 'Orientation' },
-  { to: '/glossary', label: 'Glossary' },
-  { to: '/engine', label: 'Engine' },
   { to: '/work', label: 'The Work' },
+  { to: '/engine', label: 'The Engine' },
+  { to: '/glossary', label: 'Glossary' },
   { to: '/practice', label: 'Practice' },
-  { to: '/contact', label: 'Stewardship' },
+  { to: '/signal', label: 'Signal' },
 ];
 </script>
 

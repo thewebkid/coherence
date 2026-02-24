@@ -201,6 +201,7 @@ useHead({
 .page-subtitle {
   font-family: var(--font-serif);
   font-style: italic;
+  font-size: 1.0625rem;
   color: var(--text-muted);
   margin: 0;
 }
@@ -229,12 +230,13 @@ useHead({
   blockquote {
     margin: var(--spacing-xl) 0;
     padding: var(--spacing-lg);
-    border-left: 3px solid var(--accent);
+    border-left: 2px solid var(--accent);
     background: var(--bg-secondary);
     font-style: italic;
     color: var(--text-muted);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     text-align: center;
+    opacity: 0.95;
 
     p {
       font-size: 1.125rem;

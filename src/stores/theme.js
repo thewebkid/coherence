@@ -4,8 +4,8 @@ import { ref, watch } from 'vue';
 export const useThemeStore = defineStore('theme', () => {
   const preference = ref(
     typeof localStorage !== 'undefined'
-      ? localStorage.getItem('cas-theme') || 'system'
-      : 'system'
+      ? localStorage.getItem('cas-theme') || 'light'
+      : 'light'
   );
 
   function applyTheme(pref) {

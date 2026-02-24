@@ -94,13 +94,15 @@ em, i {
 blockquote {
   margin: var(--spacing-lg) 0;
   padding: var(--spacing-md) var(--spacing-lg);
-  border-left: 3px solid var(--accent);
+  border-left: 2px solid var(--accent);
   background: var(--bg-secondary);
   font-family: var(--font-serif);
   font-style: italic;
   color: var(--text-muted);
+  opacity: 0.95;
 
   p {
+    font-size: 1.0625rem;
     margin-bottom: var(--spacing-xs);
 
     &:last-child {

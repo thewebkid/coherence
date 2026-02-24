@@ -50,6 +50,21 @@ const routes = [
     component: () => import('@/pages/ContactPage.vue'),
   },
   {
+    path: '/signal',
+    name: 'signal',
+    component: () => import('@/pages/SignalPage.vue'),
+  },
+  {
+    path: '/stewardship',
+    name: 'stewardship',
+    component: () => import('@/pages/StewardshipPage.vue'),
+  },
+  {
+    path: '/institutional',
+    name: 'institutional',
+    component: () => import('@/pages/InstitutionalPage.vue'),
+  },
+  {
     path: '/civilizational-orientation',
     name: 'civilizational-orientation',
     component: () => import('@/pages/CivilizationalOrientationPage.vue'),

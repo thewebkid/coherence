@@ -4,12 +4,10 @@
       <div class="content-container">
         <header class="page-header">
           <h1>Local Practice</h1>
+          <p class="page-subtitle">How coherence becomes lived locally</p>
         </header>
 
         <div class="page-content">
-          <p class="lead">
-            How coherence becomes lived locally.
-          </p>
           <p>
             Coherence is not an idea to understand or a goal to achieve.
           </p>
@@ -80,18 +78,19 @@ useHead({
   margin-bottom: var(--spacing-xl);
 
   h1 {
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-xs);
   }
 }
 
-.page-content {
-  .lead {
-    font-size: 1.125rem;
-    font-style: italic;
-    color: var(--text-muted);
-    margin-bottom: var(--spacing-lg);
-  }
+.page-subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  margin: 0;
+}
 
+.page-content {
   p {
     margin-bottom: var(--spacing-sm);
   }
@@ -99,13 +98,15 @@ useHead({
   blockquote {
     margin: var(--spacing-lg) 0;
     padding: var(--spacing-md) var(--spacing-lg);
-    border-left: 3px solid var(--accent);
+    border-left: 2px solid var(--accent);
     background: var(--bg-secondary);
     font-style: italic;
     color: var(--text-muted);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    opacity: 0.95;
 
     p {
+      font-size: 1.0625rem;
       margin-bottom: 0;
     }
   }
