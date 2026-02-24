@@ -1,3 +1,7 @@
+// Dark mode styles
+// Supports both manual toggle (data-theme) and system preference
+
+// System preference dark mode (when no manual override)
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     --bg: #1a1a1e;
@@ -11,13 +15,67 @@
   }
 }
 
+// ============================================
+// BASE ELEMENT STYLES - use CSS variables
+// ============================================
+
+html,
 body {
   background-color: var(--bg);
   color: var(--text);
-  transition: background-color var(--transition-speed) ease,
-              color var(--transition-speed) ease;
 }
 
+body {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#app,
+.site-wrapper,
+.site-main {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+// Page wrappers should all have the main bg color
+.home-page,
+.orientation-page,
+.glossary-page,
+.engine-page,
+.work-page,
+.manuscript-page,
+.deck-page,
+.handbook-page,
+.practice-page,
+.contact-page,
+.civ-orientation-page {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+// These elements should be transparent
+main,
+article,
+section,
+aside,
+header,
+nav {
+  background-color: transparent;
+}
+
+// Form elements
+input,
+textarea,
+select {
+  background-color: var(--bg-secondary);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+button {
+  color: inherit;
+}
+
+// Invert diagrams in dark mode for visibility
 [data-theme='dark'] img.diagram {
   filter: invert(0.88) hue-rotate(180deg);
 }
@@ -25,5 +83,30 @@ body {
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) img.diagram {
     filter: invert(0.88) hue-rotate(180deg);
+  }
+}
+
+// Selection colors
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+// Scrollbar styling (subtle)
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--text-muted);
   }
 }

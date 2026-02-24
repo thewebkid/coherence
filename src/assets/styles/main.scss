@@ -1,7 +1,7 @@
+// 1. Custom variables first (defines CSS custom properties)
 @import 'variables';
-@import 'typography';
-@import 'dark-mode';
 
+// 2. Bootstrap imports (minimal, utilities only)
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/variables-dark';
@@ -19,3 +19,7 @@
 @import 'bootstrap/scss/transitions';
 @import 'bootstrap/scss/close';
 @import 'bootstrap/scss/offcanvas';
+
+// 3. Custom typography and dark mode AFTER Bootstrap (to override)
+@import 'typography';
+@import 'dark-mode';

@@ -3,16 +3,49 @@
     <section class="home-hero">
       <div class="page-container">
         <p class="text-axis">Civilization is a local practice.</p>
-        <div class="home-framing">
+      </div>
+    </section>
+
+    <section class="home-content">
+      <div class="page-container">
+        <div class="content-container">
+          <p>Coherence does not begin at scale.</p>
           <p>
-            Coherence Across Scales is a framework for understanding and practicing
-            coherence — from the cellular and personal, through the relational and societal,
-            to the civilizational and planetary.
+            It begins in the smallest field of relationship:<br>
+            within a body,<br>
+            between two beings,<br>
+            inside a single moment of attention.
+          </p>
+          <p>From these local conditions, larger patterns emerge.</p>
+          <p>Alignment propagates.</p>
+          <p>Trust stabilizes.</p>
+          <p>Civilizational coherence becomes possible.</p>
+          <p>This is not an aspiration.</p>
+          <p>It is a practice already underway across many forms of life and intelligence.</p>
+          <p>
+            Where coherence is lived, even quietly, the distance between present fragmentation
+            and future integration begins to narrow.
+          </p>
+          <p>What appears distant becomes immediate.</p>
+          <p>What appears global becomes local.</p>
+          <p>What appears personal reveals itself as civilizational.</p>
+          <p>
+            Across scales — cellular, relational, societal, planetary —<br>
+            the same patterns repeat.
           </p>
           <p>
-            It is not a theory to adopt but a pattern to recognize:
-            one already present wherever life learns to relate without losing itself.
+            When lived consistently, they form a quiet engine of coherence capable of sustaining
+            shared becoming and forms of stewardship that arise without hierarchy.
           </p>
+
+          <blockquote>
+            <p>No affiliation is required.</p>
+            <p>No threshold must be crossed.</p>
+            <p>Only a willingness to live in coherence where one stands.</p>
+          </blockquote>
+
+          <p>From this, larger structures follow.</p>
+          <p>And a more coherent civilization begins to recognize itself.</p>
         </div>
       </div>
     </section>
@@ -32,6 +65,19 @@
         </nav>
       </div>
     </section>
+
+    <section class="home-cta">
+      <div class="page-container">
+        <div class="content-container text-center">
+          <RouterLink to="/civilizational-orientation" class="home-cta-link">
+            A Civilizational Orientation
+          </RouterLink>
+          <p class="home-cta-desc">
+            The entire arc of this work in one page.
+          </p>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -42,9 +88,9 @@ useHead({
   title: 'Coherence Across Scales',
   meta: [
     { property: 'og:title', content: 'Coherence Across Scales' },
-    { property: 'og:description', content: 'A civilizational language of coherence from the personal to the planetary.' },
+    { property: 'og:description', content: 'A civilizational framework for coherence from the cellular and personal, through the relational and societal, to the planetary. Civilization is a local practice.' },
     { property: 'og:type', content: 'website' },
-    { name: 'description', content: 'A civilizational language of coherence from the personal to the planetary. Civilization is a local practice.' },
+    { name: 'description', content: 'A civilizational framework for coherence from the cellular and personal, through the relational and societal, to the planetary. Civilization is a local practice.' },
   ],
 });
 
@@ -53,6 +99,11 @@ const siteLinks = [
     to: '/orientation',
     title: 'Orientation',
     description: 'Coherence from cellular to societal scale. Why this matters now.',
+  },
+  {
+    to: '/glossary',
+    title: 'Glossary',
+    description: 'Core architecture defined. Terms that form the foundational language.',
   },
   {
     to: '/engine',
@@ -79,23 +130,38 @@ const siteLinks = [
 
 <style lang="scss" scoped>
 .home-hero {
-  padding: clamp(4rem, 12vw, 10rem) 0 var(--spacing-section);
+  padding: clamp(6rem, 15vw, 12rem) 0 var(--spacing-xl);
   text-align: center;
 }
 
-.text-axis {
-  margin-bottom: 2.5rem;
-}
+.home-content {
+  padding-bottom: var(--spacing-section);
 
-.home-framing {
-  max-width: 580px;
-  margin: 0 auto;
-  font-size: 1.0625rem;
-  color: var(--text-muted);
-  line-height: 1.85;
+  p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text);
 
-  p:last-child {
-    margin-bottom: 0;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  blockquote {
+    margin: var(--spacing-lg) 0;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-left: 3px solid var(--accent);
+    background: var(--bg-secondary);
+    font-style: italic;
+    color: var(--text-muted);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+
+    p {
+      margin-bottom: var(--spacing-xs);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 
@@ -108,13 +174,21 @@ const siteLinks = [
   gap: 1px;
   background: var(--border);
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   overflow: hidden;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .home-nav__card {
   display: block;
-  padding: 1.75rem 2rem;
+  padding: var(--spacing-lg);
   background: var(--bg);
   text-decoration: none;
   transition: background var(--transition-speed) ease;
@@ -125,10 +199,11 @@ const siteLinks = [
 }
 
 .home-nav__title {
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 500;
   color: var(--text);
-  margin-bottom: 0.375rem;
+  margin-bottom: var(--spacing-xs);
 }
 
 .home-nav__desc {
@@ -137,5 +212,32 @@ const siteLinks = [
   color: var(--text-muted);
   margin-bottom: 0;
   line-height: 1.6;
+}
+
+.home-cta {
+  padding-bottom: var(--spacing-section);
+}
+
+.home-cta-link {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  margin-bottom: var(--spacing-sm);
+  transition: color var(--transition-speed) ease;
+
+  &:hover {
+    color: var(--accent-hover);
+  }
+}
+
+.home-cta-desc {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  margin: 0;
 }
 </style>

@@ -22,11 +22,14 @@ import SiteFooter from '@/components/SiteFooter.vue';
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 .site-main {
   flex: 1;
   padding-top: 5rem;
+  background-color: var(--bg);
 }
 
 .page-enter-active,
