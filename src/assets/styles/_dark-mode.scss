@@ -62,6 +62,12 @@ nav {
   background-color: transparent;
 }
 
+// Mobile nav panel needs a solid background (uses aside, not nav)
+aside.nav-mobile,
+nav.nav-mobile {
+  background-color: var(--bg) !important;
+}
+
 // Form elements
 input,
 textarea,

@@ -59,7 +59,7 @@
 
     <!-- Mobile menu -->
     <Transition name="slide">
-      <nav v-if="menuOpen" class="nav-mobile">
+      <aside v-if="menuOpen" class="nav-mobile" aria-label="Mobile menu">
         <div class="nav-mobile-header">
           <span class="nav-mobile-title">Menu</span>
           <button class="menu-close" @click="menuOpen = false" aria-label="Close menu">
@@ -78,7 +78,7 @@
         >
           {{ link.label }}
         </RouterLink>
-      </nav>
+      </aside>
     </Transition>
   </header>
 </template>
@@ -211,10 +211,14 @@ const navLinks = [
   bottom: 0;
   width: min(320px, 85vw);
   background: var(--bg);
+  a, div{
+    background-color: var(--bg);
+  }
+  background-color: var(--bg) !important;
   z-index: 201;
   display: flex;
   flex-direction: column;
-  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
 }
 
 .nav-mobile-header {
