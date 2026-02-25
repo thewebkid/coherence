@@ -14,6 +14,13 @@ const deckModules = import.meta.glob('/src/content/deck/*.md', {
   eager: true,
 });
 
+// Practice slides content
+const practiceModules = import.meta.glob('/src/content/practice/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+
 // Handbook content
 const handbookModules = import.meta.glob('/src/content/handbook/*.md', {
   query: '?raw',
@@ -68,6 +75,19 @@ export function getPaperSections() {
 // Deck slides
 export function getDeckSlides() {
   const slides = Object.entries(deckModules)
+    .map(([path, content]) => {
+      const filename = path.split('/').pop().replace('.md', '');
+      return { path, content, filename };
+    })
+    .sort((a, b) => a.filename.localeCompare(b.filename))
+    .map(s => s.content);
+
+  return slides;
+}
+
+// Practice slides
+export function getPracticeSlides() {
+  const slides = Object.entries(practiceModules)
     .map(([path, content]) => {
       const filename = path.split('/').pop().replace('.md', '');
       return { path, content, filename };

@@ -362,7 +362,8 @@ It is the one language we all need to learn.
 
 ## Cross-Scale Expression
 
-<img src="../../integrative-diagram.svg" alt="Integrative Field Diagram — the relational triad of Shared Becoming, Relational Coherence, and Harmonized Sovereignty, connected through the Integrative Field (Alignment | Return)" width="900" />
+<img style="max-width:440px" src="/integrative-diagram.svg" alt="Integrative Field Diagram — the relational triad of Shared Becoming, Relational Coherence, and Harmonized Sovereignty, connected through the Integrative Field (Alignment | Return)" width="900" />
+
 
 **Note:** This architecture repeats at every level:
 
