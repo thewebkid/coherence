@@ -1,0 +1,20 @@
+// Shared blockquote styles for pages
+blockquote {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-left: 2px solid #9a9590;
+  background: var(--bg-secondary);
+  font-style: italic;
+  color: var(--text-muted);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  opacity: 0.95;
+
+  p {
+    font-size: 1.22rem; // ~15% larger than 1.0625rem
+    margin-bottom: var(--spacing-xs);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

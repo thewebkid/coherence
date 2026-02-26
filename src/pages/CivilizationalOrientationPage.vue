@@ -88,6 +88,8 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/blockquote';
+
 .civ-orientation-page {
   padding: var(--spacing-section) 0;
 }
@@ -107,13 +109,7 @@ useHead({
   }
 
   blockquote {
-    margin: var(--spacing-xl) 0;
-    padding: var(--spacing-lg);
-    border-left: 3px solid var(--accent);
-    background: var(--bg-secondary);
-    font-style: italic;
-    color: var(--text-muted);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    // Using shared blockquote styles from _blockquote.scss
     text-align: center;
 
     p {

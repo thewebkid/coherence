@@ -129,6 +129,8 @@ const siteLinks = [
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/blockquote';
+
 .home-hero {
   padding: clamp(3rem, 7.5vw, 6rem) 0 var(--spacing-xl);
   text-align: center;
@@ -147,23 +149,7 @@ const siteLinks = [
   }
 
   blockquote {
-    margin: var(--spacing-lg) 0;
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-left: 2px solid var(--accent);
-    background: var(--bg-secondary);
-    font-style: italic;
-    color: var(--text-muted);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    opacity: 0.95;
-
-    p {
-      font-size: 1.0625rem;
-      margin-bottom: var(--spacing-xs);
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
+    // Using shared blockquote styles from _blockquote.scss
   }
 }
 
