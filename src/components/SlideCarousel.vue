@@ -74,6 +74,7 @@ function prev() {
   if (currentIndex.value > 0) {
     transitionName.value = 'slide-prev';
     currentIndex.value--;
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 }
 
@@ -81,6 +82,7 @@ function next() {
   if (currentIndex.value < props.slides.length - 1) {
     transitionName.value = 'slide-next';
     currentIndex.value++;
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 }
 
@@ -88,6 +90,7 @@ function goTo(index) {
   if (index !== currentIndex.value) {
     transitionName.value = index > currentIndex.value ? 'slide-next' : 'slide-prev';
     currentIndex.value = index;
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 }
 
