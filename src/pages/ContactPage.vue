@@ -3,40 +3,29 @@
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
-          <h1>Stewardship</h1>
+          <h1>Contact</h1>
         </header>
 
         <div class="page-content">
-          <p class="lead">
-            A pathway for thoughtful engagement.
-          </p>
-          <p>
-            This work is offered in service to the emergence of a more coherent civilization.
-            It is not owned, promoted, or institutionally managed. It is shared freely for
-            those who find resonance with its orientation.
-          </p>
-          <p>
-            If you would like to engage with this work — whether through conversation, collaboration,
-            or simply to share how it has touched your life — you are welcome to reach out.
-          </p>
-          <p>
-            There are no expectations, requirements, or thresholds. Only a willingness to meet
-            in coherence.
-          </p>
+          <p>This work is offered openly and without affiliation.</p>
+          <p>General correspondence is welcome where it supports clarity, understanding, or thoughtful exchange.</p>
+          <p>While we cannot respond to every message, all communications are received and read with care.</p>
 
           <div class="contact-box">
-            <p class="contact-label">Contact</p>
-            <a href="mailto:stewardship@coherenceacrossscales.org" class="contact-email">
-              stewardship@coherenceacrossscales.org
+            <p class="contact-label">For general inquiries</p>
+            <a href="mailto:Contact@CoherenceAcrossScales.org" class="contact-email">
+              Contact@CoherenceAcrossScales.org
             </a>
           </div>
 
-          <blockquote>
-            <p>
-              Participation depends only on willingness.<br>
-              Wherever willingness appears, coherence finds an opening through which to move.
-            </p>
-          </blockquote>
+          <div class="contact-box">
+            <p class="contact-label">For technical or site-related questions</p>
+            <a href="mailto:Contact@CoherenceAcrossScales.org" class="contact-email">
+              Contact@CoherenceAcrossScales.org
+            </a>
+          </div>
+
+          <p class="closing">Thank you for your attention and presence.</p>
         </div>
       </div>
     </div>
@@ -47,19 +36,17 @@
 import { useHead } from '@unhead/vue';
 
 useHead({
-  title: 'Stewardship — Coherence Across Scales',
+  title: 'Contact — Coherence Across Scales',
   meta: [
-    { property: 'og:title', content: 'Stewardship — Coherence Across Scales' },
-    { property: 'og:description', content: 'A pathway for thoughtful engagement with this work. Reach out to share how coherence has touched your life or to explore collaboration.' },
+    { property: 'og:title', content: 'Contact — Coherence Across Scales' },
+    { property: 'og:description', content: 'This work is offered openly and without affiliation. General correspondence is welcome where it supports clarity, understanding, or thoughtful exchange.' },
     { property: 'og:type', content: 'website' },
-    { name: 'description', content: 'A pathway for thoughtful engagement with this work. Reach out to share how coherence has touched your life or to explore collaboration.' },
+    { name: 'description', content: 'This work is offered openly and without affiliation. General correspondence is welcome where it supports clarity, understanding, or thoughtful exchange.' },
   ],
 });
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/blockquote';
-
 .contact-page {
   padding: var(--spacing-section) 0;
 }
@@ -73,24 +60,12 @@ useHead({
 }
 
 .page-content {
-  .lead {
-    font-size: 1.125rem;
-    font-style: italic;
-    color: var(--text-muted);
-    margin-bottom: var(--spacing-lg);
-  }
-
   p {
     margin-bottom: var(--spacing-sm);
   }
 
-  blockquote {
-    // Using shared blockquote styles from _blockquote.scss
+  .closing {
     margin-top: var(--spacing-xl);
-
-    p {
-      margin-bottom: 0;
-    }
   }
 }
 
