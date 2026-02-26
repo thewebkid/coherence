@@ -129,6 +129,7 @@ const navLinks = [
   font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 500;
+  letter-spacing: -0.03em;
   color: var(--text);
   text-decoration: none;
   white-space: nowrap;
