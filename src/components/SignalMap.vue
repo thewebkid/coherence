@@ -7,8 +7,8 @@
 <script setup>
 import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useThemeStore } from '@/stores/theme';
-import maplibregl from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
+
+let maplibregl = null;
 
 const props = defineProps({
   clickMode: {
@@ -94,8 +94,14 @@ function addNewSignal(lng, lat) {
   source.setData(data);
 }
 
-function initMap() {
+async function initMap() {
   if (!mapContainer.value) return;
+
+  if (!maplibregl) {
+    const mod = await import('maplibre-gl');
+    await import('maplibre-gl/dist/maplibre-gl.css');
+    maplibregl = mod.default;
+  }
 
   map = new maplibregl.Map({
     container: mapContainer.value,
@@ -163,8 +169,8 @@ watch(
   }
 );
 
-onMounted(() => {
-  initMap();
+onMounted(async () => {
+  await initMap();
 });
 
 onUnmounted(() => {
