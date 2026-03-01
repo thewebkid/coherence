@@ -55,6 +55,11 @@ const routes = [
     component: () => import('@/pages/SignalPage.vue'),
   },
   {
+    path: '/signal/map',
+    name: 'signal-map',
+    component: () => import('@/pages/SignalMapPage.vue'),
+  },
+  {
     path: '/stewardship',
     name: 'stewardship',
     component: () => import('@/pages/StewardshipPage.vue'),
