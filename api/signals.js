@@ -1,9 +1,19 @@
-import { Redis } from '@upstash/redis';
+const UPSTASH_URL = process.env.UPSTASH_KV_REST_API_URL;
+const UPSTASH_TOKEN = process.env.UPSTASH_KV_REST_API_TOKEN;
 
-const redis = new Redis({
-  url: process.env.UPSTASH_KV_REST_API_URL,
-  token: process.env.UPSTASH_KV_REST_API_TOKEN,
-});
+async function redisCmd(...args) {
+  const res = await fetch(UPSTASH_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${UPSTASH_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(args),
+  });
+  const data = await res.json();
+  if (data.error) throw new Error(data.error);
+  return data.result;
+}
 
 function fuzzCoordinates(lat, lng) {
   const gridSize = 0.5;
@@ -17,21 +27,28 @@ function fuzzCoordinates(lat, lng) {
 
 async function handleGet(res) {
   try {
-    const results = await redis.geosearch(
-      'signals',
-      { type: 'FROMLONLAT', coordinate: { lon: 0, lat: 0 } },
-      { type: 'BYRADIUS', radius: 20038, radiusType: 'KM' },
-      'ASC',
-      { withCoord: true }
+    const result = await redisCmd(
+      'GEOSEARCH', 'signals',
+      'FROMLONLAT', '0', '0',
+      'BYRADIUS', '20038', 'KM',
+      'ASC', 'WITHCOORD'
     );
 
-    const signals = results.map((item) => ({
-      id: item.member,
-      lng: item.coord?.long ?? 0,
-      lat: item.coord?.lat ?? 0,
-    }));
+    const signals = [];
+    if (Array.isArray(result)) {
+      for (const item of result) {
+        if (Array.isArray(item) && item.length === 2) {
+          const [member, coord] = item;
+          if (Array.isArray(coord)) {
+            signals.push({ id: member, lng: parseFloat(coord[0]), lat: parseFloat(coord[1]) });
+          }
+        } else if (typeof item === 'string') {
+          signals.push({ id: item, lng: 0, lat: 0 });
+        }
+      }
+    }
 
-    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
+    res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
     return res.status(200).json(signals);
   } catch (err) {
     console.error('GET /api/signals error:', err);
@@ -53,11 +70,7 @@ async function handlePost(req, res) {
     const fuzzed = fuzzCoordinates(lat, lng);
     const id = crypto.randomUUID();
 
-    await redis.geoadd('signals', {
-      member: id,
-      longitude: fuzzed.lng,
-      latitude: fuzzed.lat,
-    });
+    await redisCmd('GEOADD', 'signals', String(fuzzed.lng), String(fuzzed.lat), id);
 
     return res.status(201).json({
       success: true,
@@ -77,14 +90,11 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
-
   if (req.method === 'GET') {
     return handleGet(res);
   }
-
   if (req.method === 'POST') {
     return handlePost(req, res);
   }
-
   return res.status(405).json({ error: 'Method not allowed' });
 }
