@@ -17,35 +17,25 @@ function fuzzCoordinates(lat, lng) {
 
 async function handleGet(res) {
   try {
-    const results = await redis.georadius('signals', 0, 0, 20038, 'km', 'WITHCOORD');
+    const results = await redis.geosearch(
+      'signals',
+      { type: 'FROMLONLAT', coordinate: { lon: 0, lat: 0 } },
+      { type: 'BYRADIUS', radius: 20038, radiusType: 'KM' },
+      'ASC',
+      { withCoord: true }
+    );
 
-    const signals = [];
-    for (let i = 0; i < results.length; i++) {
-      const item = results[i];
-      if (typeof item === 'string') {
-        const coord = results[i + 1];
-        if (Array.isArray(coord) && coord.length === 2) {
-          signals.push({
-            id: item,
-            lng: parseFloat(coord[0]),
-            lat: parseFloat(coord[1]),
-          });
-          i++;
-        }
-      } else if (typeof item === 'object' && item.member) {
-        signals.push({
-          id: item.member,
-          lng: parseFloat(item.coord?.[0] ?? item.longitude ?? 0),
-          lat: parseFloat(item.coord?.[1] ?? item.latitude ?? 0),
-        });
-      }
-    }
+    const signals = results.map((item) => ({
+      id: item.member,
+      lng: item.coord?.long ?? 0,
+      lat: item.coord?.lat ?? 0,
+    }));
 
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
     return res.status(200).json(signals);
   } catch (err) {
     console.error('GET /api/signals error:', err);
-    return res.status(500).json({ error: 'Failed to fetch signals' });
+    return res.status(500).json({ error: 'Failed to fetch signals', detail: err.message });
   }
 }
 
@@ -75,7 +65,7 @@ async function handlePost(req, res) {
     });
   } catch (err) {
     console.error('POST /api/signals error:', err);
-    return res.status(500).json({ error: 'Failed to place signal' });
+    return res.status(500).json({ error: 'Failed to place signal', detail: err.message });
   }
 }
 
