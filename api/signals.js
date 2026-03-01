@@ -27,24 +27,24 @@ function fuzzCoordinates(lat, lng) {
 
 async function handleGet(res) {
   try {
-    const result = await redisCmd(
-      'GEOSEARCH', 'signals',
-      'FROMLONLAT', '0', '0',
-      'BYRADIUS', '20038', 'KM',
-      'ASC', 'WITHCOORD'
-    );
+    const members = await redisCmd('ZRANGE', 'signals', '0', '-1');
+
+    if (!Array.isArray(members) || members.length === 0) {
+      res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
+      return res.status(200).json([]);
+    }
+
+    const positions = await redisCmd('GEOPOS', 'signals', ...members);
 
     const signals = [];
-    if (Array.isArray(result)) {
-      for (const item of result) {
-        if (Array.isArray(item) && item.length === 2) {
-          const [member, coord] = item;
-          if (Array.isArray(coord)) {
-            signals.push({ id: member, lng: parseFloat(coord[0]), lat: parseFloat(coord[1]) });
-          }
-        } else if (typeof item === 'string') {
-          signals.push({ id: item, lng: 0, lat: 0 });
-        }
+    for (let i = 0; i < members.length; i++) {
+      const coord = positions[i];
+      if (Array.isArray(coord) && coord[0] != null && coord[1] != null) {
+        signals.push({
+          id: members[i],
+          lng: parseFloat(coord[0]),
+          lat: parseFloat(coord[1]),
+        });
       }
     }
 
