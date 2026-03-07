@@ -41,8 +41,49 @@ const routes = [
   },
   {
     path: '/practice',
-    name: 'practice',
-    component: () => import('@/pages/PracticePage.vue'),
+    component: () => import('@/components/PracticeLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'practice',
+        component: () => import('@/pages/PracticePage.vue'),
+      },
+      {
+        path: 'the-loop',
+        name: 'the-loop',
+        component: () => import('@/pages/practice/TheLoopPage.vue'),
+      },
+      {
+        path: 'projects',
+        name: 'projects',
+        component: () => import('@/pages/practice/ProjectsIndexPage.vue'),
+      },
+      {
+        path: 'projects/observation',
+        name: 'observation-project',
+        component: () => import('@/pages/practice/ObservationProjectPage.vue'),
+      },
+      {
+        path: 'projects/behavioral-ecology',
+        name: 'behavioral-ecology-project',
+        component: () => import('@/pages/practice/BehavioralEcologyProjectPage.vue'),
+      },
+      {
+        path: 'projects/conversational-recursion',
+        name: 'conversational-recursion',
+        component: () => import('@/pages/practice/ConversationalRecursionPage.vue'),
+      },
+      {
+        path: 'embodied-transcendence',
+        name: 'embodied-transcendence',
+        component: () => import('@/pages/practice/EmbodiedTranscendencePage.vue'),
+      },
+      {
+        path: 'definitions',
+        name: 'definitions',
+        component: () => import('@/pages/practice/DefinitionsPage.vue'),
+      },
+    ],
   },
   {
     path: '/contact',

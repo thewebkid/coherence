@@ -26,6 +26,10 @@
           </div>
 
           <p class="closing">Thank you for your attention and presence.</p>
+          
+          <p class="tagline-variant">
+            This work is offered as a quiet laboratory of shared becoming.
+          </p>
         </div>
       </div>
     </div>
@@ -66,6 +70,16 @@ useHead({
 
   .closing {
     margin-top: var(--spacing-xl);
+  }
+  
+  .tagline-variant {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border);
+    font-style: italic;
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    text-align: center;
   }
 }
 

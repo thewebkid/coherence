@@ -25,6 +25,9 @@
         <p class="footer-copyright">
           &copy; {{ currentYear }} Coherence Across Scales
         </p>
+        <p class="footer-tagline-quiet">
+          A quiet laboratory of shared becoming.
+        </p>
       </div>
     </div>
   </footer>
@@ -115,10 +118,17 @@ const currentYear = new Date().getFullYear();
 }
 
 .footer-attribution,
-.footer-copyright {
+.footer-copyright,
+.footer-tagline-quiet {
   font-family: var(--font-sans);
   font-size: 0.6875rem;
   color: var(--text-muted);
   margin: 0;
+}
+
+.footer-tagline-quiet {
+  margin-top: var(--spacing-sm);
+  font-style: italic;
+  opacity: 0.7;
 }
 </style>
