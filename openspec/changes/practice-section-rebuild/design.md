@@ -13,7 +13,7 @@ The Practice section currently contains a single page using a SlideCarousel. Jam
 - Create a `PracticeLayout.vue` component with the horizontal sub-menu that wraps all Practice pages
 - Replace the current `PracticePage.vue` (landing) with the updated v1.3 orientation content
 - Implement `ObservationForm.vue` — a shared form component used across all three project pages
-- Create a Vercel API endpoint (`api/submit-observation.js`) that stores submissions to Upstash Redis
+- Create a Vercel API endpoint (`api/submit-observation.js`) that stores submissions to Neon Postgres
 - Add the global tagline "A quiet laboratory of shared becoming." to `SiteFooter.vue`
 - Add the tagline variant to `ContactPage.vue`
 
@@ -35,11 +35,17 @@ The Practice section currently contains a single page using a SlideCarousel. Jam
 
 ### 2. Observation form submission backend
 
-**Decision:** Use a Vercel serverless function (`api/submit-observation.js`) with Upstash Redis to store submissions as JSON objects in a Redis list (`observation:submissions`).
+**Decision:** Use a Vercel serverless function (`api/submit-observation.js`) with Neon Postgres (via `@neondatabase/serverless`) to store submissions as rows in an `observations` table. Connection uses the `POSTGRES_URL` (pooled via pgBouncer) environment variable injected by Vercel's Neon integration.
 
-**Rationale:** The existing `@upstash/redis` dependency confirms Redis is already the storage layer. Vercel serverless functions are the deployment-native API approach (a `api/` directory already exists). Storing as a Redis list allows easy append-only accumulation for future pattern visualization. Submissions include a `project` field (auto-filled from the entry page) enabling cross-project pattern analysis as described in James's v2+ notes.
+**Rationale:** Observation submissions are irreplaceable qualitative reflections from real people. Redis — while already in the stack for signals — is optimized for speed, not durability: it is not ACID-compliant, has no write-ahead log, and offers only a 6-hour point-in-time restore window on the free tier. Postgres is the appropriate tool for data that must not be lost.
 
-**Alternative considered:** Storing to a flat file or external form service. Rejected — Redis is already in the stack, and a unified structured store is explicitly required for future analysis.
+Critically, the v2+ pattern visualization James described ("where coherence stabilizes most", cross-project correlations, phrase clustering) requires queryable, structured storage. Redis has no GROUP BY, no WHERE clause, no full-text search — all of that work would have to happen in the serverless function against a full data dump on every page view. Postgres handles these queries natively, at any scale the site is likely to reach.
+
+`@neondatabase/serverless` is installed (`npm install @neondatabase/serverless`). It communicates over HTTP rather than a persistent TCP connection, making it well-suited for Vercel's stateless serverless functions with no connection pool warm-up required.
+
+**Alternative considered:** Storing to Redis (RPUSH to `observation:submissions`). Rejected — not ACID-compliant, no point-in-time recovery, no native query capability, and migration to a queryable store before v2 visualization work would add unnecessary overhead.
+
+**Note on signals vs. observations:** Redis remains correct for the signal map feature. Signals are spatial, numeric, and replaceable — Redis's native GEOADD/GEOPOS commands are purpose-built for that use case. The two features intentionally use different storage layers.
 
 ### 3. Form component integration across three project pages
 
@@ -62,7 +68,7 @@ The Practice section currently contains a single page using a SlideCarousel. Jam
 ## Risks / Trade-offs
 
 - **Risk:** vite-ssg static generation may require the observation form to degrade gracefully when the API is not available during build. → **Mitigation:** The form component should handle its async submission state client-side; the API endpoint is never called during SSG build.
-- **Risk:** Upstash Redis environment variables (`UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`) may not be set in all environments. → **Mitigation:** The API function should return a clear 500 with a developer message if env vars are missing.
+- **Risk:** `POSTGRES_URL` environment variable may not be set in all environments. → **Mitigation:** The API function checks for its presence on startup and returns a clear 500 with a developer-facing message if missing. Vercel's Neon integration injects it automatically for Development and Production environments; local dev uses `.env.local`.
 - **Risk:** The Practice section now has nine routes — adding them all as nested children means the router file grows. → **Mitigation:** This is acceptable for this project scale; no route lazy-loading complications since they're already lazy-loaded via dynamic imports.
 
 ## Migration Plan
@@ -72,10 +78,11 @@ The Practice section currently contains a single page using a SlideCarousel. Jam
 3. Refactor `PracticePage.vue` into the landing page content
 4. Create eight new Vue page components for the sub-pages
 5. Create `ObservationForm.vue` shared component
-6. Create `api/submit-observation.js` Vercel endpoint
-7. Update `SiteFooter.vue` with global tagline
-8. Update `ContactPage.vue` with tagline variant
-9. Test all routes and form submission locally before deploy
+6. Run database migration script to create the `observations` table in Neon Postgres
+7. Create `api/submit-observation.js` Vercel endpoint
+8. Update `SiteFooter.vue` with global tagline
+9. Update `ContactPage.vue` with tagline variant
+10. Test all routes and form submission locally before deploy
 
 Rollback: the original `PracticePage.vue` and router entry are preserved in git; reverting is a single commit undo.
 

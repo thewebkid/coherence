@@ -25,7 +25,7 @@ The Practice section is the behavioral core of the site — its most important e
 - `conversational-recursion`: Conversational Recursion detail page — identity-level amplification hypothesis, suggested exploration, observational form
 - `embodied-transcendence`: Embodied Transcendence page — integrative principle linking presence and propagation across scales
 - `definitions`: Definitions page — operational language glossary for all terms used throughout the Practice section
-- `unified-observation-form`: Single submission form component shared across all three project pages; auto-populates project context (Observation / Behavioral Ecology / Conversational Recursion); seven core fields; stores to one database; anonymous submission
+- `unified-observation-form`: Single submission form component shared across all three project pages; auto-populates project context (Observation / Behavioral Ecology / Conversational Recursion); seven core fields; stores to a Neon Postgres `observations` table via `@neondatabase/serverless`; anonymous submission; designed to support future pattern visualization (v2+)
 - `global-footer-tagline`: "A quiet laboratory of shared becoming." added in small text globally to the site footer, and a variant placed on the Contact page
 
 ### Modified Capabilities
@@ -35,6 +35,6 @@ The Practice section is the behavioral core of the site — its most important e
 - All Practice section routes and page components (existing Practice page replaced, new sub-pages added)
 - Site-wide layout/footer component (global tagline addition)
 - Contact page template (tagline variant placement)
-- Database: new table/collection for unified observational submissions
+- Database: new `observations` table in Neon Postgres (via Vercel integration); `@neondatabase/serverless` added as dependency
 - Navigation: Practice sub-menu component injected into Practice section layout
 - No breaking API changes; submission form is new infrastructure

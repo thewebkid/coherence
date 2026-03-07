@@ -48,13 +48,15 @@
 - [ ] 8.4 Implement form submission: POST to `/api/submit-observation` with all field values and project context as JSON; handle loading, success, and error states
 - [ ] 8.5 On success, display a quiet confirmation message ("Your observation has been received.") in place of or below the form; on error, show a gentle error state and preserve form content
 
-## 9. Observation Submission API Endpoint
+## 9. Database Schema and Observation Submission API
 
-- [ ] 9.1 Create `api/submit-observation.js` Vercel serverless function
-- [ ] 9.2 Validate request method (POST only) and required fields (`project`, `context`, `whatShifted`); return 400 with descriptive error for invalid requests
-- [ ] 9.3 Check for `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` env vars; return 500 with developer message if missing
-- [ ] 9.4 Use `@upstash/redis` to RPUSH the full submission JSON (including server-generated UTC timestamp) to the `observation:submissions` Redis list
-- [ ] 9.5 Return HTTP 200 `{ success: true }` on successful storage
+- [ ] 9.1 Create `scripts/migrate-observations.js` — a one-time migration script using `@neondatabase/serverless` with `DATABASE_URL_UNPOOLED` (direct connection required for DDL) to run `CREATE TABLE IF NOT EXISTS observations (id SERIAL PRIMARY KEY, project TEXT NOT NULL, context TEXT NOT NULL, what_shifted TEXT NOT NULL, what_did_not_shift TEXT, where_coherent TEXT, where_resistant TEXT, notes TEXT, geography TEXT, created_at TIMESTAMPTZ NOT NULL DEFAULT NOW())`
+- [ ] 9.2 Run the migration script once: `node scripts/migrate-observations.js` — verify the `observations` table exists in the Neon dashboard before proceeding
+- [ ] 9.3 Create `api/submit-observation.js` Vercel serverless function using `@neondatabase/serverless` with `POSTGRES_URL` (pooled connection)
+- [ ] 9.4 Validate request method (POST only) and required fields (`project`, `context`, `whatShifted`); return 400 with descriptive error for invalid requests
+- [ ] 9.5 Check for `POSTGRES_URL` env var; return 500 with developer-facing message if missing
+- [ ] 9.6 INSERT the submission into the `observations` table using a parameterized query (never string-interpolate user input); `created_at` is set by Postgres `DEFAULT NOW()`
+- [ ] 9.7 Return HTTP 200 `{ success: true }` on successful storage
 
 ## 10. Global Footer Tagline
 

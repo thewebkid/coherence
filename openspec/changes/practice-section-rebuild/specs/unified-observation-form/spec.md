@@ -38,17 +38,33 @@ On submit, the form SHALL POST to `/api/submit-observation` with all field value
 - **WHEN** the API returns a non-200 response
 - **THEN** the form displays an error message and does not clear the entered content
 
-### Requirement: Observation API endpoint stores submissions to Redis
-The `api/submit-observation` Vercel serverless function SHALL validate the request body, require `project` and `context` and `whatShifted` fields, and append the full submission as a JSON object to a Redis list key `observation:submissions` using RPUSH. Each stored object SHALL include a server-generated UTC timestamp.
+### Requirement: Observation API endpoint stores submissions to Postgres
+The `api/submit-observation` Vercel serverless function SHALL validate the request body, require `project`, `context`, and `whatShifted` fields, and INSERT the submission as a row into the `observations` Neon Postgres table using `@neondatabase/serverless` with a parameterized query. Each row SHALL include a server-generated UTC timestamp via `DEFAULT NOW()`.
 
-#### Scenario: Valid submission is stored in Redis
+The `observations` table schema SHALL be:
+```sql
+CREATE TABLE IF NOT EXISTS observations (
+  id            SERIAL PRIMARY KEY,
+  project       TEXT        NOT NULL,
+  context       TEXT        NOT NULL,
+  what_shifted  TEXT        NOT NULL,
+  what_did_not_shift  TEXT,
+  where_coherent      TEXT,
+  where_resistant     TEXT,
+  notes               TEXT,
+  geography           TEXT,
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+```
+
+#### Scenario: Valid submission is stored in Postgres
 - **WHEN** the API receives a POST with valid required fields
-- **THEN** the submission JSON is appended to the `observation:submissions` Redis list and the API returns HTTP 200
+- **THEN** a row is inserted into the `observations` table and the API returns HTTP 200 `{ success: true }`
 
 #### Scenario: Invalid submission is rejected
 - **WHEN** the API receives a POST missing required fields
-- **THEN** the API returns HTTP 400 with a descriptive error message and nothing is written to Redis
+- **THEN** the API returns HTTP 400 with a descriptive error message and nothing is written to the database
 
-#### Scenario: Missing Redis credentials return 500
-- **WHEN** the API function runs without `UPSTASH_REDIS_REST_URL` or `UPSTASH_REDIS_REST_TOKEN` env vars
+#### Scenario: Missing database credentials return 500
+- **WHEN** the API function runs without the `POSTGRES_URL` environment variable
 - **THEN** the API returns HTTP 500 with a clear developer-facing error message
