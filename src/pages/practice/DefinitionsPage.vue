@@ -268,6 +268,10 @@
           <p class="closing-line">
             <em>Precise language allows subtle phenomena to become visible and shareable.</em>
           </p>
+
+          <div class="page-footer">
+            <BackToTop />
+          </div>
         </div>
       </div>
     </div>
@@ -276,6 +280,7 @@
 
 <script setup>
 import { useHead } from '@unhead/vue';
+import BackToTop from '@/components/BackToTop.vue';
 
 useHead({
   title: 'Definitions — Practice — Coherence Across Scales',
@@ -345,5 +350,12 @@ useHead({
   text-align: center;
   font-size: 1rem;
   color: var(--text-muted);
+}
+
+.page-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
 }
 </style>

@@ -98,46 +98,38 @@
             </p>
 
             <div class="practice-entries">
-              <div class="practice-entry">
-                <h3>
-                  <RouterLink to="/practice/projects/observation">The Observation Project</RouterLink>
-                </h3>
+              <RouterLink to="/practice/projects/observation" class="practice-entry">
+                <h3>The Observation Project</h3>
                 <p>
                   Refining the formative observer.<br>
                   Learning to slow interpretation and judgment before reacting.<br>
                   Developing clear seeing as behavioral substrate.
                 </p>
-              </div>
+              </RouterLink>
 
-              <div class="practice-entry">
-                <h3>
-                  <RouterLink to="/practice/projects/behavioral-ecology">The Behavioral Ecology Project</RouterLink>
-                </h3>
+              <RouterLink to="/practice/projects/behavioral-ecology" class="practice-entry">
+                <h3>The Behavioral Ecology Project</h3>
                 <p>
                   Exploring how coherence spreads across interactions and environments over time.
                 </p>
-              </div>
+              </RouterLink>
 
-              <div class="practice-entry">
-                <h3>
-                  <RouterLink to="/practice/projects/conversational-recursion">Conversational Recursion</RouterLink>
-                </h3>
+              <RouterLink to="/practice/projects/conversational-recursion" class="practice-entry">
+                <h3>Conversational Recursion</h3>
                 <p>
                   Exploring whether recognition and reflective amplification deepen relational coherence and propagation.
                 </p>
-              </div>
+              </RouterLink>
 
-              <div class="practice-entry">
-                <h3>
-                  <RouterLink to="/practice/embodied-transcendence">Embodied Transcendence</RouterLink>
-                </h3>
+              <RouterLink to="/practice/embodied-transcendence" class="practice-entry">
+                <h3>Embodied Transcendence</h3>
                 <p>
                   The integrative principle linking presence and propagation across scales.
                 </p>
-              </div>
+              </RouterLink>
             </div>
             
-            <p>
+            <p class="post-entries-text">
               Each practice is a lived experiment.<br>
               Not a program.<br>
               Not a course.<br>
@@ -263,23 +255,29 @@ useHead({
 }
 
 .practice-entry {
-  padding: var(--spacing-md);
+  display: block;
+  padding: var(--spacing-lg) var(--spacing-md);
   background: var(--bg-secondary);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease, 
+              border-color var(--transition-speed) ease;
+  
+  &:hover {
+    background: var(--bg);
+    border-color: var(--accent);
+  }
   
   h3 {
     margin-bottom: var(--spacing-sm);
-    
-    a {
-      color: var(--text);
-      text-decoration: none;
-      transition: color var(--transition-speed) ease;
-      
-      &:hover {
-        color: var(--accent);
-      }
-    }
+    color: var(--text);
+    transition: color var(--transition-speed) ease;
+  }
+  
+  &:hover h3 {
+    color: var(--accent);
   }
   
   p {
@@ -287,6 +285,10 @@ useHead({
     font-size: 0.9375rem;
     color: var(--text-muted);
   }
+}
+
+.post-entries-text {
+  margin-top: var(--spacing-xl);
 }
 
 .closing-line {

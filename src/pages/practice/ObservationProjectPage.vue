@@ -198,6 +198,10 @@
             
             <ObservationForm project="Observation" />
           </section>
+
+          <div class="page-footer">
+            <BackToTop />
+          </div>
         </div>
       </div>
     </div>
@@ -207,6 +211,7 @@
 <script setup>
 import { useHead } from '@unhead/vue';
 import ObservationForm from '@/components/ObservationForm.vue';
+import BackToTop from '@/components/BackToTop.vue';
 
 useHead({
   title: 'The Observation Project — Practice — Coherence Across Scales',
@@ -287,5 +292,12 @@ useHead({
   margin-top: var(--spacing-section);
   padding-top: var(--spacing-xl);
   border-top: 1px solid var(--border);
+}
+
+.page-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
 }
 </style>

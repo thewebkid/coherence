@@ -193,6 +193,10 @@
           <p class="closing-line">
             <em>To be seen clearly is often to become more fully oneself.</em>
           </p>
+
+          <div class="page-footer">
+            <BackToTop />
+          </div>
         </div>
       </div>
     </div>
@@ -202,6 +206,7 @@
 <script setup>
 import { useHead } from '@unhead/vue';
 import ObservationForm from '@/components/ObservationForm.vue';
+import BackToTop from '@/components/BackToTop.vue';
 
 useHead({
   title: 'Conversational Recursion — Practice — Coherence Across Scales',
@@ -290,5 +295,12 @@ useHead({
   text-align: center;
   font-size: 1rem;
   color: var(--text-muted);
+}
+
+.page-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
 }
 </style>

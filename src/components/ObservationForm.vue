@@ -3,6 +3,7 @@
     <div v-if="!submitted" class="form-container">
       <div class="form-header">
         <p class="project-context">Project context: {{ project }}</p>
+        <p class="optional-note">Most fields are optional. Share what feels relevant.</p>
       </div>
 
       <form @submit.prevent="handleSubmit">
@@ -110,6 +111,7 @@
     </div>
 
     <div v-else class="confirmation">
+      <div class="confirmation-icon">✓</div>
       <p>Your observation has been received.</p>
       <p class="confirmation-note">Thank you for contributing to the shared field of practice.</p>
     </div>
@@ -227,6 +229,14 @@ const handleSubmit = async () => {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-muted);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.optional-note {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.875rem;
+  color: var(--text-muted);
   margin: 0;
 }
 
@@ -339,18 +349,35 @@ textarea {
   padding: var(--spacing-xl);
   text-align: center;
   background: var(--bg-secondary);
-  border: 1px solid var(--border);
+  border: 2px solid var(--accent);
   border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   
   p {
     margin-bottom: var(--spacing-sm);
     font-size: 1.0625rem;
     line-height: 1.7;
+    color: var(--text);
     
     &:last-child {
       margin-bottom: 0;
     }
   }
+}
+
+.confirmation-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: var(--spacing-md);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--bg);
+  background: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
 }
 
 .confirmation-note {
