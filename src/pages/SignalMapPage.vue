@@ -129,7 +129,7 @@ const alreadyPlaced = ref(false);
 
 onMounted(() => {
   if (typeof localStorage !== 'undefined') {
-    alreadyPlaced.value = localStorage.getItem('signal-placed') === 'true';
+    alreadyPlaced.value = localStorage.getItem('mysignal')?.length > 10;
   }
 });
 
@@ -171,6 +171,8 @@ function cancelClickMode() {
 function onSignalPlaced(signal) {
   alreadyPlaced.value = true;
   if (signal) {
+    localStorage.removeItem('mysignal');
+    //localStorage.setItem('mysignal', JSON.stringify([signal.lng,signal.lat]));
     signalMap.value?.addNewSignal(signal.lng, signal.lat);
   }
   signalMap.value?.clearTempMarker();

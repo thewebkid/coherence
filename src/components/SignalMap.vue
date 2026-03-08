@@ -31,75 +31,57 @@ function getStyle() {
   return themeStore.resolvedIsDark() ? DARK_STYLE : LIGHT_STYLE;
 }
 
+let signalMarkers = [];
+
 async function loadSignals() {
   try {
     const res = await fetch('/api/signals');
     if (!res.ok) return;
     const signals = await res.json();
-
+    //console.log({signals});
     if (!map) return;
 
-    const geojson = {
-      type: 'FeatureCollection',
-      features: signals.map((s) => ({
-        type: 'Feature',
-        geometry: {type: 'Point', coordinates: [s.lng, s.lat]},
-        properties: {id: s.id}
-      }))
-    };
+    // Optional: clear old markers if reloading
+    signalMarkers.forEach(m => m.remove());
+    signalMarkers = [];
 
-    if (map.getSource('signals')) {
-      map.getSource('signals').setData(geojson);
-    } else {
-      map.addSource('signals', {type: 'geojson', data: geojson});
+    signals.forEach(signal => {
+      addNewSignal(signal.lng, signal.lat);
+    });
 
-      map.addLayer({
-        id: 'signals-glow',
-        type: 'circle',
-        source: 'signals',
-        paint: {
-          'circle-radius': 12,
-          'circle-color': '#c4a96a',
-          'circle-opacity': 0.15,
-          'circle-blur': 1
-        }
-      });
-
-      map.addLayer({
-        id: 'signals-core',
-        type: 'circle',
-        source: 'signals',
-        paint: {
-          'circle-radius': 4,
-          'circle-color': '#d4b97a',
-          'circle-opacity': 0.7,
-          'circle-blur': 0.3
-        }
-      });
-    }
   } catch (e) {
     console.error('Failed to load signals:', e);
   }
 }
 
 function addNewSignal(lng, lat) {
-  if (!map || !map.getSource('signals')) return;
-  const source = map.getSource('signals');
-  const data = source._data || {type: 'FeatureCollection', features: []};
-  data.features.push({
-    type: 'Feature',
-    geometry: {type: 'Point', coordinates: [lng, lat]},
-    properties: {id: 'new'}
+  //console.log(JSON.stringify([lng,lat]),mySignal)
+  const marker = new maplibregl.Marker({
+    element: createPulsingPin(JSON.stringify([lng,lat])===localStorage.getItem('mysignal')),
+    anchor: 'center',     // perfect for circles
+    offset: [0,0],
+  })
+      .setLngLat([lng,lat])
+      .addTo(map);
+  signalMarkers.push(marker);
+  marker.getElement().addEventListener('click', () => {
+    // emit event, open popup, etc.
+    console.log('Clicked signal:', {lat, lng});
+    // emit('signal-click', signal); or similar
   });
-  source.setData(data);
+  return marker;
 }
 
-function createPulsingPin(color = '#FF4C4C') {
+function createPulsingPin(mine = false) {
   const el = document.createElement('div');
-  el.className = 'pulsing-pin';
-
+  el.className = `pulsing-pin`;
+  if (mine){
+    el.style.backgroundColor = 'blue';
+  }
   el.innerHTML = `<div class="pulse-ring"></div>`;
-
+  // Random cycle: 2.0 – 3.0 seconds
+  let duration = (6 + Math.random()) / 2;
+  el.style.setProperty('--duration', `${duration.toFixed(2)}s`);
   return el;
 }
 
@@ -116,7 +98,7 @@ async function initMap() {
   map = new maplibregl.Map({
     container: mapContainer.value,
     style: getStyle(),
-    center: [0, 20],
+    center: [0, 0],
     zoom: 1.5,
     attributionControl: false,
     dragRotate: false,
@@ -136,19 +118,14 @@ async function initMap() {
     if (tempMarker) {
       tempMarker.remove();
     }
-
-    tempMarker = new maplibregl.Marker({
-      element: createPulsingPin('#FF4C4C'),   // ← pass brighter color for Day mode
-      anchor: 'center',                       // pin tip points exactly at the coordinate
-      offset: [0, -4]
-    })
-        .setLngLat(e.lngLat)
-        .addTo(map);
+    mySignal = JSON.stringify([e.lngLat.lng, e.lngLat.lat]);
+    localStorage.setItem('mysignal', mySignal);
+    tempMarker = addNewSignal(e.lngLat.lng, e.lngLat.lat);
 
     emit('map-click', {lat: e.lngLat.lat, lng: e.lngLat.lng});
   });
 }
-
+let mySignal = localStorage.getItem('mysignal');
 function clearTempMarker() {
   if (tempMarker) {
     tempMarker.remove();
@@ -211,7 +188,7 @@ html[data-theme='dark'] .map-container{
   width: 100%;
   height: 60vh;
   min-height: 400px;
-  --markerBg:#ccc;
+  --markerBg:#fff;
   --markerShadowOut:#000;
   --markerShadowIn:#fff;
   .maplibregl-marker.pulsing-pin {
@@ -233,7 +210,7 @@ html[data-theme='dark'] .map-container{
       border-radius: 50%;
       opacity: 0.75;
       box-shadow: inset 0 0 6px var(--markerBg);
-      animation: soft-pulse 3.5s ease-out infinite;
+      animation: soft-pulse var(--duration, 2.5s) ease-out infinite;
       z-index: 1;
       pointer-events: none;
     }

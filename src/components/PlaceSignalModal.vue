@@ -104,8 +104,10 @@ function useManual() {
   emit('enter-click-mode');
 }
 
-function setManualCoords(lat, lng) {
+function setManualCoords() {
+  let [lng,lat] = JSON.parse(localStorage.getItem('mysignal'))
   coords.value = { lat, lng };
+  //localStorage.setItem('mysignal', JSON.stringify([lng,lat]));
   state.value = 'confirm';
 }
 
@@ -125,7 +127,7 @@ async function placeSignal() {
     }
 
     const data = await res.json();
-    localStorage.setItem('signal-placed', 'true');
+    //localStorage.setItem('signal-placed', 'true');
     state.value = 'placed';
     emit('signal-placed', data.signal);
   } catch (e) {
