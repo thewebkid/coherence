@@ -107,7 +107,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useHead } from '@unhead/vue';
-import SignalMap from '@/components/SignalMap.vue';
+import SignalMap from '@/components/SignalGlobe.vue';
 import PlaceSignalModal from '@/components/PlaceSignalModal.vue';
 
 useHead({
@@ -171,9 +171,9 @@ function cancelClickMode() {
 function onSignalPlaced(signal) {
   alreadyPlaced.value = true;
   if (signal) {
+    if (signal.id) localStorage.setItem('mysignal-id', signal.id);
     localStorage.removeItem('mysignal');
-    //localStorage.setItem('mysignal', JSON.stringify([signal.lng,signal.lat]));
-    signalMap.value?.addNewSignal(signal.lng, signal.lat);
+    signalMap.value?.addNewSignal(signal.lng, signal.lat, true);
   }
   signalMap.value?.clearTempMarker();
 }
