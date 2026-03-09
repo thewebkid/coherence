@@ -1,6 +1,6 @@
 <template>
   <div class="signal-globe-wrapper">
-    <div ref="globeContainer" class="globe-container"></div>
+    <div ref="globeContainer" class="globe-container" :class="{ 'click-mode': clickMode }"></div>
   </div>
 </template>
 
@@ -22,8 +22,8 @@ const globeContainer = ref(null);
 let globe = null;
 let resizeObserver = null;
 
-const DARK_TEXTURE = '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg';
-const LIGHT_TEXTURE = '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-day.jpg';
+const DARK_TEXTURE = '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg';
+const LIGHT_TEXTURE = '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg';
 
 function getTexture() {
   return themeStore.resolvedIsDark() ? DARK_TEXTURE : LIGHT_TEXTURE;
@@ -176,6 +176,11 @@ html[data-theme='dark'] .globe-container {
   position: relative;
   width: 100%;
   height: 60vh;
+
+  &.click-mode,
+  &.click-mode canvas {
+    cursor: crosshair !important;
+  }
   min-height: 400px;
   --markerBg: #fff;
   --markerShadowOut: #000;

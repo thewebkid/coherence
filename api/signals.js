@@ -15,15 +15,6 @@ async function redisCmd(...args) {
   return data.result;
 }
 
-function fuzzCoordinates(lat, lng) {
-  const gridSize = 0.5;
-  const fuzzedLat = Math.round(lat / gridSize) * gridSize + (Math.random() - 0.5) * 0.3;
-  const fuzzedLng = Math.round(lng / gridSize) * gridSize + (Math.random() - 0.5) * 0.3;
-  return {
-    lat: Math.max(-85, Math.min(85, fuzzedLat)),
-    lng: ((fuzzedLng + 180) % 360) - 180,
-  };
-}
 
 async function handleGet(res) {
   try {
@@ -67,14 +58,13 @@ async function handlePost(req, res) {
       return res.status(400).json({ error: 'lat/lng out of bounds' });
     }
 
-    const fuzzed = fuzzCoordinates(lat, lng);
     const id = crypto.randomUUID();
 
-    await redisCmd('GEOADD', 'signals', String(fuzzed.lng), String(fuzzed.lat), id);
+    await redisCmd('GEOADD', 'signals', String(lng), String(lat), id);
 
     return res.status(201).json({
       success: true,
-      signal: { id, lat: fuzzed.lat, lng: fuzzed.lng },
+      signal: { id, lat, lng },
     });
   } catch (err) {
     console.error('POST /api/signals error:', err);
