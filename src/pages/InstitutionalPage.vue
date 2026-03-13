@@ -25,6 +25,9 @@
           </div>
 
           <p class="note">Please include a brief description of context and intention.</p>
+          <p class="note">
+            <a href="/pdf/Executive Vision Brief v8.pdf" download>Download our Executive Vision Brief.</a>
+          </p>
         </div>
       </div>
     </div>
