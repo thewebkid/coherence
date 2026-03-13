@@ -117,6 +117,10 @@ async function loadExistingSignalForUpdate() {
       coords.value = { lat: mine.lat, lng: mine.lng };
       mapCenter.value = [mine.lat, mine.lng];
       mapZoom.value = 13;
+      // Ensure the map view updates; LMap may not react to prop changes after mount
+      await nextTick();
+      const map = mapRef.value?.leafletObject;
+      if (map) map.setView([mine.lat, mine.lng], 13);
     }
   } catch (e) {
     // ignore; modal opens with default view
