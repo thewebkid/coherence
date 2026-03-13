@@ -1,5 +1,6 @@
 <template>
   <div class="site-wrapper">
+    <Analytics mode="production" />
     <SiteHeader />
     <main class="site-main">
       <RouterView v-slot="{ Component }">
@@ -13,6 +14,7 @@
 </template>
 
 <script setup>
+import { Analytics } from '@vercel/analytics/vue';
 import SiteHeader from '@/components/SiteHeader.vue';
 import SiteFooter from '@/components/SiteFooter.vue';
 </script>
