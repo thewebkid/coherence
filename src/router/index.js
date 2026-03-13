@@ -74,6 +74,11 @@ const routes = [
         component: () => import('@/pages/practice/ConversationalRecursionPage.vue'),
       },
       {
+        path: 'projects/recursive-reflection',
+        name: 'recursive-reflection-project',
+        component: () => import('@/pages/practice/RecursiveReflectionProjectPage.vue'),
+      },
+      {
         path: 'embodied-transcendence',
         name: 'embodied-transcendence',
         component: () => import('@/pages/practice/EmbodiedTranscendencePage.vue'),

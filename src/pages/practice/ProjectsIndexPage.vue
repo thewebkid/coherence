@@ -106,12 +106,42 @@
                 </RouterLink>
               </div>
             </article>
+
+            <article class="project">
+              <h2>Project Four — Recursive Reflection Project</h2>
+              <p class="subtitle">L1: Recursive Reflection</p>
+              
+              <div class="project-content">
+                <div class="project-field">
+                  <h3>Question:</h3>
+                  <p>Can AI serve as a reflective mirror that deepens sovereign clarity and coherence?</p>
+                </div>
+                
+                <div class="project-field">
+                  <h3>Focus:</h3>
+                  <p>Using AI as a reflective partner. The human initiates inquiry; AI reflects and expands; the human refines. Sovereignty remains central—AI does not originate meaning but helps clarify what the sovereign brings forward.</p>
+                </div>
+                
+                <div class="project-field">
+                  <h3>Mechanism explored:</h3>
+                  <p>Recursive dialogue → reflection and articulation → clarified intention and perception → coherence.</p>
+                </div>
+                
+                <p>
+                  This project explores whether conscious, sovereign engagement with AI can cultivate clarity of thought, precision of language, and deeper self-reflection.
+                </p>
+                
+                <RouterLink to="/practice/projects/recursive-reflection" class="entry-link">
+                  [Enter The Recursive Reflection Project]
+                </RouterLink>
+              </div>
+            </article>
           </div>
 
           <section class="integrative-principle">
             <h2>The Integrative Principle</h2>
             <p>
-              All three projects operate within the same ecology:
+              All four projects operate within the same ecology:
             </p>
             <div class="loop-diagram-small">
               Observer → Coherence → Sovereign Presence → Propagation
@@ -140,9 +170,9 @@ useHead({
   title: 'Projects — Practice — Coherence Across Scales',
   meta: [
     { property: 'og:title', content: 'Projects — Practice — Coherence Across Scales' },
-    { property: 'og:description', content: 'Three experimental practices exploring how coherence stabilizes in behavior and propagates across scales.' },
+    { property: 'og:description', content: 'Four experimental practices exploring how coherence stabilizes in behavior and propagates across scales.' },
     { property: 'og:type', content: 'article' },
-    { name: 'description', content: 'Three experimental practices exploring how coherence stabilizes in behavior and propagates across scales.' },
+    { name: 'description', content: 'Four experimental practices exploring how coherence stabilizes in behavior and propagates across scales.' },
   ],
 });
 </script>

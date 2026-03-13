@@ -121,6 +121,13 @@
                 </p>
               </RouterLink>
 
+              <RouterLink to="/practice/projects/recursive-reflection" class="practice-entry">
+                <h3>The Recursive Reflection Project</h3>
+                <p>
+                  Using AI as a reflective mirror to deepen sovereign clarity and coherence.
+                </p>
+              </RouterLink>
+
               <RouterLink to="/practice/embodied-transcendence" class="practice-entry">
                 <h3>Embodied Transcendence</h3>
                 <p>
