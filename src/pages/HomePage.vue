@@ -2,7 +2,7 @@
   <div class="home-page fade-in">
     <section class="home-hero">
       <div class="page-container">
-        <p class="text-axis">Civilization is a local practice.</p>
+        <p class="text-axis">Civilization is a local practice.[staging site]</p>
       </div>
     </section>
 

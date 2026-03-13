@@ -9,6 +9,7 @@ dotenv.config({ path: '.env.local' });
 export default defineConfig({
   server: {
     port: 5777,
+    host: true
   },
   plugins: [
     vue(),
