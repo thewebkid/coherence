@@ -179,7 +179,7 @@ export default defineConfig({
                   }
 
                   const data = JSON.parse(body);
-                  const { lat, lng } = data || {};
+                  const { lat, lng, id: existingId } = data || {};
 
                   if (typeof lat !== 'number' || typeof lng !== 'number') {
                     res.statusCode = 400;
@@ -195,11 +195,23 @@ export default defineConfig({
                   }
 
                   const fuzzed = fuzzCoordinates(lat, lng);
-                  const id = crypto.randomUUID();
+                  let id;
+                  if (existingId && typeof existingId === 'string' && existingId.length > 0) {
+                    const pos = await redisCmd('GEOPOS', 'signals', existingId);
+                    if (!Array.isArray(pos) || pos[0] == null || pos[1] == null) {
+                      res.statusCode = 404;
+                      res.setHeader('Content-Type', 'application/json');
+                      res.end(JSON.stringify({ error: 'Signal not found', detail: 'Cannot update: signal id not found.' }));
+                      return;
+                    }
+                    id = existingId;
+                  } else {
+                    id = crypto.randomUUID();
+                  }
 
                   await redisCmd('GEOADD', 'signals', String(fuzzed.lng), String(fuzzed.lat), id);
 
-                  res.statusCode = 201;
+                  res.statusCode = existingId ? 200 : 201;
                   res.setHeader('Content-Type', 'application/json');
                   res.end(JSON.stringify({
                     success: true,

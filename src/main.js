@@ -3,6 +3,7 @@ import { createPinia } from 'pinia';
 import App from './App.vue';
 import { routes } from './router';
 import { useThemeStore } from './stores/theme';
+import 'leaflet/dist/leaflet.css';
 import './assets/styles/main.scss';
 
 export const createApp = ViteSSG(

@@ -49,7 +49,7 @@ async function handleGet(res) {
 
 async function handlePost(req, res) {
   try {
-    const { lat, lng } = req.body || {};
+    const { lat, lng, id: existingId } = req.body || {};
 
     if (typeof lat !== 'number' || typeof lng !== 'number') {
       return res.status(400).json({ error: 'lat and lng are required numbers' });
@@ -58,11 +58,20 @@ async function handlePost(req, res) {
       return res.status(400).json({ error: 'lat/lng out of bounds' });
     }
 
-    const id = crypto.randomUUID();
+    let id;
+    if (existingId && typeof existingId === 'string' && existingId.length > 0) {
+      const pos = await redisCmd('GEOPOS', 'signals', existingId);
+      if (!Array.isArray(pos) || pos[0] == null || pos[1] == null) {
+        return res.status(404).json({ error: 'Signal not found', detail: 'Cannot update: signal id not found.' });
+      }
+      id = existingId;
+    } else {
+      id = crypto.randomUUID();
+    }
 
     await redisCmd('GEOADD', 'signals', String(lng), String(lat), id);
 
-    return res.status(201).json({
+    return res.status(existingId ? 200 : 201).json({
       success: true,
       signal: { id, lat, lng },
     });

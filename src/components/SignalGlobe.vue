@@ -1,6 +1,6 @@
 <template>
   <div class="signal-globe-wrapper">
-    <div ref="globeContainer" class="globe-container" :class="{ 'click-mode': clickMode }"></div>
+    <div ref="globeContainer" class="globe-container"></div>
   </div>
 </template>
 
@@ -8,14 +8,7 @@
 import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useThemeStore } from '@/stores/theme';
 
-const props = defineProps({
-  clickMode: {
-    type: Boolean,
-    default: false
-  }
-});
-
-const emit = defineEmits(['map-click', 'ready']);
+const emit = defineEmits(['ready']);
 
 const themeStore = useThemeStore();
 const globeContainer = ref(null);
@@ -31,13 +24,10 @@ function getTexture() {
 
 // Permanent signal data points (from API + confirmed user signals)
 let signalData = [];
-// Single temporary preview marker while user is picking location
-let tempMarkerData = null;
 
 function refreshMarkers() {
   if (!globe) return;
-  const all = tempMarkerData ? [...signalData, tempMarkerData] : [...signalData];
-  globe.htmlElementsData(all);
+  globe.htmlElementsData(signalData);
 }
 
 function createPulsingPin(mine = false) {
@@ -60,8 +50,7 @@ function addNewSignal(lng, lat, isMine = false) {
 }
 
 function clearTempMarker() {
-  tempMarkerData = null;
-  refreshMarkers();
+  // No-op: placement is done in PlaceSignalModal; kept for API compatibility
 }
 
 async function loadSignals() {
@@ -98,14 +87,6 @@ async function initGlobe() {
     .htmlElementVisibilityModifier((el, isVisible) => {
       el.style.opacity = isVisible ? 1 : 0;
       el.style.pointerEvents = isVisible ? 'auto' : 'none';
-    })
-    .onGlobeClick(({ lat, lng }) => {
-      if (!props.clickMode) return;
-      clearTempMarker();
-      tempMarkerData = { lat, lng, isMine: true };
-      localStorage.setItem('mysignal', JSON.stringify([lng, lat]));
-      refreshMarkers();
-      emit('map-click', { lat, lng });
     });
 
   resizeObserver = new ResizeObserver(([entry]) => {
@@ -125,15 +106,6 @@ watch(
   () => {
     if (globe) {
       globe.globeImageUrl(getTexture());
-    }
-  }
-);
-
-watch(
-  () => props.clickMode,
-  (active) => {
-    if (!active) {
-      clearTempMarker();
     }
   }
 );
@@ -177,10 +149,6 @@ html[data-theme='dark'] .globe-container {
   width: 100%;
   height: 60vh;
 
-  &.click-mode,
-  &.click-mode canvas {
-    cursor: crosshair !important;
-  }
   min-height: 400px;
   --markerBg: #fff;
   --markerShadowOut: #000;

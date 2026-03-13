@@ -21,42 +21,24 @@
 
     <div class="map-section">
       <div class="map-container-outer">
-        <SignalMap
-          ref="signalMap"
-          :click-mode="clickMode"
-          @map-click="onMapClick"
-        />
+        <SignalMap ref="signalMap" />
       </div>
     </div>
 
     <div class="page-container">
       <div class="content-container">
         <div class="map-actions">
-          <template v-if="clickMode">
-            <p class="click-mode-hint">Click on the map to select your approximate location.</p>
-            <div class="click-mode-buttons">
-              <button class="action-btn primary" @click="confirmClickLocation" :disabled="!pendingClickCoords">
-                Confirm Location
-              </button>
-              <button class="action-btn secondary" @click="cancelClickMode">Cancel</button>
-            </div>
-          </template>
-          <template v-else>
-            <button
-              class="action-btn place-signal"
-              @click="openModal"
-              :disabled="alreadyPlaced"
-            >
-              {{ alreadyPlaced ? 'Signal Placed' : 'Place a Signal' }}
-            </button>
-          </template>
+          <button
+            class="action-btn place-signal"
+            @click="openModal"
+          >
+            {{ alreadyPlaced ? 'Update your signal' : 'Place a Signal' }}
+          </button>
         </div>
 
         <PlaceSignalModal
           :visible="showModal"
-          ref="modal"
           @close="closeModal"
-          @enter-click-mode="enterClickMode"
           @signal-placed="onSignalPlaced"
         />
 
@@ -121,15 +103,12 @@ useHead({
 });
 
 const signalMap = ref(null);
-const modal = ref(null);
 const showModal = ref(false);
-const clickMode = ref(false);
-const pendingClickCoords = ref(null);
 const alreadyPlaced = ref(false);
 
 onMounted(() => {
   if (typeof localStorage !== 'undefined') {
-    alreadyPlaced.value = localStorage.getItem('mysignal')?.length > 10;
+    alreadyPlaced.value = localStorage.getItem('mysignal-id') != null;
   }
 });
 
@@ -139,43 +118,14 @@ function openModal() {
 
 function closeModal() {
   showModal.value = false;
-  clickMode.value = false;
-  pendingClickCoords.value = null;
-  signalMap.value?.clearTempMarker();
-}
-
-function enterClickMode() {
-  showModal.value = false;
-  clickMode.value = true;
-  pendingClickCoords.value = null;
-}
-
-function onMapClick(coords) {
-  pendingClickCoords.value = coords;
-}
-
-function confirmClickLocation() {
-  if (!pendingClickCoords.value) return;
-  clickMode.value = false;
-  showModal.value = true;
-  modal.value?.setManualCoords(pendingClickCoords.value.lat, pendingClickCoords.value.lng);
-  pendingClickCoords.value = null;
-}
-
-function cancelClickMode() {
-  clickMode.value = false;
-  pendingClickCoords.value = null;
-  signalMap.value?.clearTempMarker();
 }
 
 function onSignalPlaced(signal) {
   alreadyPlaced.value = true;
   if (signal) {
     if (signal.id) localStorage.setItem('mysignal-id', signal.id);
-    localStorage.removeItem('mysignal');
     signalMap.value?.addNewSignal(signal.lng, signal.lat, true);
   }
-  signalMap.value?.clearTempMarker();
 }
 </script>
 
@@ -221,19 +171,6 @@ function onSignalPlaced(signal) {
 .map-actions {
   text-align: center;
   padding: var(--spacing-lg) 0;
-}
-
-.click-mode-hint {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-md);
-}
-
-.click-mode-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
 }
 
 .action-btn {
