@@ -9,43 +9,52 @@
     <section class="home-content">
       <div class="page-container">
         <div class="content-container">
-          <p>Coherence does not begin at scale.</p>
+          <p>Coherence rarely begins at scale.</p>
+          <p>The work begins with observation.</p>
           <p>
             It begins in the smallest field of relationship:<br>
             within a body,<br>
-            between two beings,<br>
+            between two people,<br>
             inside a single moment of attention.
           </p>
-          <p>From these local conditions, larger patterns emerge.</p>
+          <p>From these local conditions, larger patterns can emerge.</p>
           <p>Alignment propagates.</p>
           <p>Trust stabilizes.</p>
-          <p>Civilizational coherence becomes possible.</p>
-          <p>This is not an aspiration.</p>
-          <p>It is a practice already underway across many forms of life and intelligence.</p>
+          <p>More coherent forms of collaboration become possible.</p>
           <p>
-            Where coherence is lived, even quietly, the distance between present fragmentation
-            and future integration begins to narrow.
+            Across many domains of life—from biological systems to human
+            communities—stable patterns often arise when relationships organize around
+            mutual responsiveness rather than fragmentation.
+          </p>
+          <p>
+            The Coherence Across Scales initiative explores how these patterns may appear
+            in everyday human environments.
+          </p>
+          <p>
+            Where coherence is lived, even quietly, the distance between present
+            fragmentation and future integration begins to narrow.
           </p>
           <p>What appears distant becomes immediate.</p>
           <p>What appears global becomes local.</p>
-          <p>What appears personal reveals itself as civilizational.</p>
+          <p>What appears personal reveals itself as relational.</p>
           <p>
-            Across scales — cellular, relational, societal, planetary —<br>
-            the same patterns repeat.
+            Across scales—cellular, relational, societal, planetary—similar organizational
+            principles can often be observed.
           </p>
           <p>
-            When lived consistently, they form a quiet engine of coherence capable of sustaining
-            shared becoming and forms of stewardship that arise without hierarchy.
+            When lived consistently in human environments, these principles can form a
+            quiet engine of coherence capable of supporting new forms of collaboration and
+            distributed stewardship.
           </p>
 
           <blockquote>
             <p>No affiliation is required.</p>
             <p>No threshold must be crossed.</p>
-            <p>Only a willingness to live in coherence where one stands.</p>
+            <p>Only a willingness to practice coherence where one already stands.</p>
           </blockquote>
 
-          <p>From this, larger structures follow.</p>
-          <p>And a more coherent civilization begins to recognize itself.</p>
+          <p>From this, larger structures may follow.</p>
+          <p>And over time, a more coherent civilization may begin to recognize itself.</p>
         </div>
       </div>
     </section>
