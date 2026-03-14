@@ -168,7 +168,12 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
+
+const route = useRoute();
 
 useHead({
   title: 'Practice — Coherence Across Scales',
@@ -176,7 +181,13 @@ useHead({
     { property: 'og:title', content: 'Practice — Coherence Across Scales' },
     { property: 'og:description', content: 'Embodied participation in shared becoming. A quiet laboratory exploring how coherence stabilizes in lived behavior and propagates across scales.' },
     { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'Embodied participation in shared becoming. A quiet laboratory exploring how coherence stabilizes in lived behavior and propagates across scales.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Practice — Coherence Across Scales' },
+    { name: 'twitter:description', content: 'Embodied participation in shared becoming. A quiet laboratory exploring how coherence stabilizes in lived behavior and propagates across scales.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 </script>

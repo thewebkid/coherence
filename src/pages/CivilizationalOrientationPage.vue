@@ -74,7 +74,12 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
+
+const route = useRoute();
 
 useHead({
   title: 'A Civilizational Orientation — Coherence Across Scales',
@@ -82,7 +87,13 @@ useHead({
     { property: 'og:title', content: 'A Civilizational Orientation — Coherence Across Scales' },
     { property: 'og:description', content: 'A harmonic civilization begins with coherence as a lived condition. Through the coherence engine, willingness becomes sustained alignment that propagates across scales of life.' },
     { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'A harmonic civilization begins with coherence as a lived condition. Through the coherence engine, willingness becomes sustained alignment that propagates across scales of life.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'A Civilizational Orientation — Coherence Across Scales' },
+    { name: 'twitter:description', content: 'A harmonic civilization begins with coherence as a lived condition. Through the coherence engine, willingness becomes sustained alignment that propagates across scales of life.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 </script>

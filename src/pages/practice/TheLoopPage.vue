@@ -235,8 +235,13 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
 import BackToTop from '@/components/BackToTop.vue';
+
+const route = useRoute();
 
 useHead({
   title: 'The Loop — Practice — Coherence Across Scales',
@@ -244,7 +249,13 @@ useHead({
     { property: 'og:title', content: 'The Loop — Practice — Coherence Across Scales' },
     { property: 'og:description', content: 'The behavioral architecture of coherence across scales: Observer → Relational Coherence → Sovereign Presence → Propagation.' },
     { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'The behavioral architecture of coherence across scales: Observer → Relational Coherence → Sovereign Presence → Propagation.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'The Loop — Practice — Coherence Across Scales' },
+    { name: 'twitter:description', content: 'The behavioral architecture of coherence across scales: Observer → Relational Coherence → Sovereign Presence → Propagation.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 </script>

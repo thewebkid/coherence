@@ -92,7 +92,12 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
+
+const route = useRoute();
 
 useHead({
   title: 'Stewardship — Coherence Across Scales',
@@ -100,7 +105,13 @@ useHead({
     { property: 'og:title', content: 'Stewardship — Coherence Across Scales' },
     { property: 'og:description', content: 'Stewardship is the ongoing care for coherence without the need to possess, control, or define it. It is a way of standing in relation to what matters.' },
     { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'Stewardship is the ongoing care for coherence without the need to possess, control, or define it. It is a way of standing in relation to what matters.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Stewardship — Coherence Across Scales' },
+    { name: 'twitter:description', content: 'Stewardship is the ongoing care for coherence without the need to possess, control, or define it. It is a way of standing in relation to what matters.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 </script>

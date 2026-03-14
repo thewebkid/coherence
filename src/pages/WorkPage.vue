@@ -74,8 +74,13 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
 import DownloadButton from '@/components/DownloadButton.vue';
+
+const route = useRoute();
 
 useHead({
   title: 'The Work — Coherence Across Scales',
@@ -83,7 +88,13 @@ useHead({
     { property: 'og:title', content: 'The Work — Coherence Across Scales' },
     { property: 'og:description', content: 'Three interconnected documents exploring coherence: The Manuscript (foundational text), The Slide Deck (visual orientation), and The Handbook (practical guide). Readable online and downloadable.' },
     { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'Three interconnected documents exploring coherence: The Manuscript (foundational text), The Slide Deck (visual orientation), and The Handbook (practical guide). Readable online and downloadable.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'The Work — Coherence Across Scales' },
+    { name: 'twitter:description', content: 'Three interconnected documents exploring coherence: The Manuscript (foundational text), The Slide Deck (visual orientation), and The Handbook (practical guide). Readable online and downloadable.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 </script>

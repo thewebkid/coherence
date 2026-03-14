@@ -69,6 +69,7 @@
 import { ref, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
 import ContentSidebar from '@/components/ContentSidebar.vue';
 import MarkdownContent from '@/components/MarkdownContent.vue';
 import DownloadButton from '@/components/DownloadButton.vue';
@@ -132,7 +133,13 @@ useHead({
     { property: 'og:title', content: computed(() => `${currentSection.value?.title || 'Manuscript'} — Coherence Across Scales`) },
     { property: 'og:description', content: 'The foundational manuscript exploring coherence from the cellular and personal, through the relational and societal, to the civilizational and planetary.' },
     { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'The foundational manuscript exploring coherence from the cellular and personal, through the relational and societal, to the civilizational and planetary.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: computed(() => `${currentSection.value?.title || 'Manuscript'} — Coherence Across Scales`) },
+    { name: 'twitter:description', content: 'The foundational manuscript exploring coherence from the cellular and personal, through the relational and societal, to the civilizational and planetary.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 </script>

@@ -87,10 +87,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
 import SignalMap from '@/components/SignalGlobe.vue';
 import PlaceSignalModal from '@/components/PlaceSignalModal.vue';
+
+const route = useRoute();
 
 useHead({
   title: 'Signal Map — Coherence Across Scales',
@@ -98,7 +102,13 @@ useHead({
     { property: 'og:title', content: 'Signal Map — Coherence Across Scales' },
     { property: 'og:description', content: 'Anonymous markers of distributed presence. Each point of light represents a quiet signal.' },
     { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'Anonymous markers of distributed presence. Each point of light represents a quiet signal.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Signal Map — Coherence Across Scales' },
+    { name: 'twitter:description', content: 'Anonymous markers of distributed presence. Each point of light represents a quiet signal.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 

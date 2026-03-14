@@ -279,8 +279,13 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
 import BackToTop from '@/components/BackToTop.vue';
+
+const route = useRoute();
 
 useHead({
   title: 'Definitions — Practice — Coherence Across Scales',
@@ -288,7 +293,13 @@ useHead({
     { property: 'og:title', content: 'Definitions — Practice — Coherence Across Scales' },
     { property: 'og:description', content: 'Operational language glossary. Behavioral descriptions of coherence, presence, propagation, and the architecture of participation across scales.' },
     { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'Operational language glossary. Behavioral descriptions of coherence, presence, propagation, and the architecture of participation across scales.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Definitions — Practice — Coherence Across Scales' },
+    { name: 'twitter:description', content: 'Operational language glossary. Behavioral descriptions of coherence, presence, propagation, and the architecture of participation across scales.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 </script>

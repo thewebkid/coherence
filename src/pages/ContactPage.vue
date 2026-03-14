@@ -37,7 +37,12 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
+
+const route = useRoute();
 
 useHead({
   title: 'Contact — Coherence Across Scales',
@@ -45,7 +50,13 @@ useHead({
     { property: 'og:title', content: 'Contact — Coherence Across Scales' },
     { property: 'og:description', content: 'This work is offered openly and without affiliation. General correspondence is welcome where it supports clarity, understanding, or thoughtful exchange.' },
     { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'This work is offered openly and without affiliation. General correspondence is welcome where it supports clarity, understanding, or thoughtful exchange.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Contact — Coherence Across Scales' },
+    { name: 'twitter:description', content: 'This work is offered openly and without affiliation. General correspondence is welcome where it supports clarity, understanding, or thoughtful exchange.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 </script>
