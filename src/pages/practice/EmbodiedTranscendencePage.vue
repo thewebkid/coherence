@@ -198,8 +198,13 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
 import BackToTop from '@/components/BackToTop.vue';
+
+const route = useRoute();
 
 useHead({
   title: 'Embodied Transcendence — Practice — Coherence Across Scales',
@@ -207,7 +212,13 @@ useHead({
     { property: 'og:title', content: 'Embodied Transcendence — Practice — Coherence Across Scales' },
     { property: 'og:description', content: 'The integrative principle. Presence and propagation, held together across scales, as a working definition of what transcendence might mean behaviorally.' },
     { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'The integrative principle. Presence and propagation, held together across scales, as a working definition of what transcendence might mean behaviorally.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Embodied Transcendence — Practice — Coherence Across Scales' },
+    { name: 'twitter:description', content: 'The integrative principle. Presence and propagation, held together across scales, as a working definition of what transcendence might mean behaviorally.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 </script>

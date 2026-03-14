@@ -367,9 +367,14 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
 import ObservationForm from '@/components/ObservationForm.vue';
 import BackToTop from '@/components/BackToTop.vue';
+
+const route = useRoute();
 
 useHead({
   title: 'Recursive Reflection Project — Practice — Coherence Across Scales',
@@ -377,7 +382,13 @@ useHead({
     { property: 'og:title', content: 'Recursive Reflection Project — Practice — Coherence Across Scales' },
     { property: 'og:description', content: 'Using AI as a reflective mirror to deepen sovereign clarity and coherence.' },
     { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'Using AI as a reflective mirror to deepen sovereign clarity and coherence.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Recursive Reflection Project — Practice — Coherence Across Scales' },
+    { name: 'twitter:description', content: 'Using AI as a reflective mirror to deepen sovereign clarity and coherence.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 </script>

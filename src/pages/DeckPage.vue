@@ -25,11 +25,15 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
 import SlideCarousel from '@/components/SlideCarousel.vue';
 import DownloadButton from '@/components/DownloadButton.vue';
 import { getDeckSlides } from '@/utils/content';
 
+const route = useRoute();
 const slides = getDeckSlides();
 
 useHead({
@@ -38,7 +42,13 @@ useHead({
     { property: 'og:title', content: 'Slide Deck — Coherence Across Scales' },
     { property: 'og:description', content: 'A visual orientation to the core concepts of coherence. The relational triad, the coherence engine, and patterns enabling civilizational coherence through local practice.' },
     { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'A visual orientation to the core concepts of coherence. The relational triad, the coherence engine, and patterns enabling civilizational coherence through local practice.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Slide Deck — Coherence Across Scales' },
+    { name: 'twitter:description', content: 'A visual orientation to the core concepts of coherence. The relational triad, the coherence engine, and patterns enabling civilizational coherence through local practice.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 </script>

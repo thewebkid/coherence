@@ -91,7 +91,12 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
+
+const route = useRoute();
 
 useHead({
   title: 'Coherence Across Scales',
@@ -99,7 +104,13 @@ useHead({
     { property: 'og:title', content: 'Coherence Across Scales' },
     { property: 'og:description', content: 'A civilizational framework for coherence from the cellular and personal, through the relational and societal, to the planetary. Civilization is a local practice.' },
     { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'A civilizational framework for coherence from the cellular and personal, through the relational and societal, to the planetary. Civilization is a local practice.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Coherence Across Scales' },
+    { name: 'twitter:description', content: 'A civilizational framework for coherence from the cellular and personal, through the relational and societal, to the planetary. Civilization is a local practice.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 

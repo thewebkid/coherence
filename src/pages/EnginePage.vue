@@ -172,7 +172,12 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
+
+const route = useRoute();
 
 useHead({
   title: 'The Coherence Engine — Coherence Across Scales',
@@ -180,7 +185,13 @@ useHead({
     { property: 'og:title', content: 'The Coherence Engine — Coherence Across Scales' },
     { property: 'og:description', content: 'The fundamental mechanism through which coherence becomes lived, stabilized, and transmissible. Five interdependent movements: Alignment, Return, Relational Coherence, Harmonized Sovereignty, and Shared Becoming.' },
     { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
+    { property: 'og:image', content: OG_IMAGE_URL },
     { name: 'description', content: 'The fundamental mechanism through which coherence becomes lived, stabilized, and transmissible. Five interdependent movements: Alignment, Return, Relational Coherence, Harmonized Sovereignty, and Shared Becoming.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'The Coherence Engine — Coherence Across Scales' },
+    { name: 'twitter:description', content: 'The fundamental mechanism through which coherence becomes lived, stabilized, and transmissible. Five interdependent movements: Alignment, Return, Relational Coherence, Harmonized Sovereignty, and Shared Becoming.' },
+    { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
 </script>
