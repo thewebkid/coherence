@@ -39,6 +39,20 @@
   // Borders
   --radius-sm: 4px;
   --radius-md: 8px;
+
+  // Interpretive Works — slightly warmer tone than main bg
+  --iw-bg: #f9f7f3;
+  --iw-bg-secondary: #f1ede7;
+  --iw-accent: #9b8060;
+  --iw-accent-hover: #7d6549;
+  --iw-line-height-prose: 2;
+}
+
+[data-theme='dark'] {
+  --iw-bg: #1c1b17;
+  --iw-bg-secondary: #242219;
+  --iw-accent: #b89e7a;
+  --iw-accent-hover: #cbb48e;
 }
 
 // Dark mode via data attribute (manual toggle)

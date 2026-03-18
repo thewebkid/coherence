@@ -99,6 +99,7 @@ const navLinks = [
   { to: '/glossary', label: 'Glossary' },
   { to: '/practice', label: 'Practice' },
   { to: '/signal', label: 'Signal' },
+  { to: '/interpretive-works', label: 'Interpretive Works' },
 ];
 </script>
 

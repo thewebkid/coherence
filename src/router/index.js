@@ -120,6 +120,31 @@ const routes = [
     name: 'civilizational-orientation',
     component: () => import('@/pages/CivilizationalOrientationPage.vue'),
   },
+  {
+    path: '/interpretive-works',
+    name: 'interpretive-works',
+    component: () => import('@/pages/InterpretiveWorksPage.vue'),
+  },
+  {
+    path: '/interpretive-works/:slug',
+    name: 'interpretive-work',
+    component: () => import('@/pages/InterpretiveWorkPage.vue'),
+  },
+  {
+    path: '/submit-work',
+    name: 'submit-work',
+    component: () => import('@/pages/SubmitWorkPage.vue'),
+  },
+  {
+    path: '/admin/sign-in',
+    name: 'admin-sign-in',
+    component: () => import('@/pages/AdminSignInPage.vue'),
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('@/pages/AdminPage.vue'),
+  },
 ];
 
 export { routes };

@@ -232,6 +232,57 @@ export default defineConfig({
               res.setHeader('Content-Type', 'application/json');
               res.end(JSON.stringify({ error: 'Method not allowed' }));
             }
+          } else if (req.url === '/api/submit-work' && req.method === 'POST') {
+            let body = '';
+            req.on('data', chunk => body += chunk);
+            req.on('end', async () => {
+              try {
+                const data = JSON.parse(body);
+                const { submitterName, submitterEmail, workTitle, workType, workDescription, workUrl, displayNameConsent } = data;
+                const VALID_TYPES = ['Visual Art', 'Writing', 'Video', 'Music', 'Other'];
+
+                if (!submitterName || !submitterEmail || !workTitle || !workType || !workDescription) {
+                  res.statusCode = 400;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify({ error: 'Missing required fields: submitterName, submitterEmail, workTitle, workType, and workDescription are required' }));
+                  return;
+                }
+                if (!VALID_TYPES.includes(workType)) {
+                  res.statusCode = 400;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify({ error: `Invalid workType. Must be one of: ${VALID_TYPES.join(', ')}` }));
+                  return;
+                }
+
+                const POSTGRES_URL = process.env.POSTGRES_URL;
+                if (!POSTGRES_URL) {
+                  res.statusCode = 500;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify({ error: 'Database connection not configured.' }));
+                  return;
+                }
+
+                const sql = neon(POSTGRES_URL);
+                await sql`
+                  INSERT INTO interpretive_work_submissions (
+                    submitter_name, submitter_email, display_name_consent,
+                    work_title, work_type, work_description, work_url
+                  ) VALUES (
+                    ${submitterName}, ${submitterEmail}, ${displayNameConsent ?? false},
+                    ${workTitle}, ${workType}, ${workDescription}, ${workUrl || null}
+                  )
+                `;
+
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ success: true }));
+              } catch (error) {
+                console.error('POST /api/submit-work error:', error);
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: 'Failed to store submission. Please try again.' }));
+              }
+            });
           } else {
             next();
           }
@@ -254,5 +305,13 @@ export default defineConfig({
   ssgOptions: {
     script: 'async',
     formatting: 'minify',
+    includedRoutes: async (paths, routes) => {
+      const { works } = await import('./src/content/interpretive-works/index.js');
+      const workPaths = works.map((w) => `/interpretive-works/${w.slug}`);
+      return [
+        ...paths.filter((p) => !p.startsWith('/admin') && !p.includes(':slug')),
+        ...workPaths,
+      ];
+    },
   },
 });
