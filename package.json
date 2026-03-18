@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@clerk/backend": "^3.2.1",
+    "@clerk/vue": "^2.0.5",
     "@neondatabase/serverless": "^1.0.2",
     "@unhead/vue": "^2.0.0",
     "@upstash/redis": "^1.36.3",

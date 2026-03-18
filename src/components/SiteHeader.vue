@@ -11,7 +11,9 @@
           :key="link.to"
           :to="link.to"
           class="nav-link"
+          :class="{ 'nav-link--prefixed': false }"
         >
+          <!--span v-if="link.prefix" class="nav-prefix">{{ link.prefix }}</span-->
           {{ link.label }}
         </RouterLink>
       </nav>
@@ -76,7 +78,7 @@
           class="nav-mobile-link"
           @click="menuOpen = false"
         >
-          {{ link.label }}
+          {{ link.prefix ? `${link.prefix.charAt(0).toUpperCase() + link.prefix.slice(1)} ${link.label}` : link.label }}
         </RouterLink>
       </aside>
     </Transition>
@@ -94,8 +96,8 @@ const isDark = computed(() => themeStore.resolvedIsDark());
 
 const navLinks = [
   { to: '/orientation', label: 'Orientation' },
-  { to: '/work', label: 'The Work' },
-  { to: '/engine', label: 'The Engine' },
+  { to: '/work', label: 'Work', prefix: 'the' },
+  { to: '/engine', label: 'Engine', prefix: 'the' },
   { to: '/glossary', label: 'Glossary' },
   { to: '/practice', label: 'Practice' },
   { to: '/signal', label: 'Signal' },
@@ -154,10 +156,35 @@ const navLinks = [
   font-size: 0.875rem;
   color: var(--text-muted);
   text-decoration: none;
+  white-space: nowrap;
   transition: color var(--transition-speed) ease;
 
   &:hover,
   &.router-link-active {
+    color: var(--text);
+  }
+
+  &--prefixed {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    line-height: 1.1;
+  }
+}
+
+.nav-prefix {
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  opacity: 0.6;
+  line-height: 1;
+
+  .nav-link:hover &,
+  .router-link-active & {
+    opacity: 1;
     color: var(--text);
   }
 }
