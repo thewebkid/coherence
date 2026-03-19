@@ -1,10 +1,13 @@
 import { ViteSSG } from 'vite-ssg';
 import { createPinia } from 'pinia';
 import { clerkPlugin } from '@clerk/vue';
+import { vBTooltip } from 'bootstrap-vue-next';
 import App from './App.vue';
 import { routes } from './router';
 import { useThemeStore } from './stores/theme';
 import 'leaflet/dist/leaflet.css';
+import {createBootstrap} from 'bootstrap-vue-next';
+import 'bootstrap/dist/css/bootstrap.css';
 import './assets/styles/main.scss';
 
 export const createApp = ViteSSG(
@@ -20,6 +23,8 @@ export const createApp = ViteSSG(
   ({ app, isClient }) => {
     const pinia = createPinia();
     app.use(pinia);
+    app.use(createBootstrap());
+    app.directive('b-tooltip', vBTooltip);
 
     if (isClient) {
       app.use(clerkPlugin, {

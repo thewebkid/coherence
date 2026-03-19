@@ -8,6 +8,12 @@
           <RouterLink to="/interpretive-works">← Back to Interpretive Works</RouterLink>
         </div>
 
+        <!-- Image series: gallery component takes over the full content area -->
+        <template v-else-if="work.contentType === 'image-series'">
+          <RouterLink to="/interpretive-works" class="back-link">← Interpretive Works</RouterLink>
+          <ImageSeriesGallery :work="work" />
+        </template>
+
         <template v-else>
           <RouterLink to="/interpretive-works" class="back-link">← Interpretive Works</RouterLink>
 
@@ -85,6 +91,7 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
 import WorkContent from '@/components/WorkContent.vue';
+import ImageSeriesGallery from '@/components/ImageSeriesGallery.vue';
 import { works, getWorkBySlug } from '@/content/interpretive-works/index.js';
 import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
 
