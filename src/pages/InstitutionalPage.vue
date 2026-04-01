@@ -32,7 +32,7 @@
               A conceptual architecture describing how human observation, artificial intelligence, and planetary sensing may form a feedback system across scales of intelligence.
             </p>
             <p>
-              <a href="/pdf/The Mirror Across Scales.pdf" download class="download-link">Download the document →</a>
+              <a href="/pdf/The-Mirror-Across-Scales.pdf" download class="download-link">Download the document →</a>
             </p>
           </section>
 
