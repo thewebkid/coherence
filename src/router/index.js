@@ -5,19 +5,24 @@ const routes = [
     component: () => import('@/pages/HomePage.vue'),
   },
   {
-    path: '/orientation',
-    name: 'orientation',
-    component: () => import('@/pages/OrientationPage.vue'),
+    path: '/about',
+    name: 'about',
+    component: () => import('@/pages/AboutPage.vue'),
   },
   {
-    path: '/glossary',
-    name: 'glossary',
-    component: () => import('@/pages/GlossaryPage.vue'),
+    path: '/note-to-observers',
+    name: 'note-to-observers',
+    component: () => import('@/pages/NoteToObserversPage.vue'),
   },
   {
-    path: '/engine',
-    name: 'engine',
-    component: () => import('@/pages/EnginePage.vue'),
+    path: '/simple-terms',
+    name: 'simple-terms',
+    component: () => import('@/pages/SimpleTermsPage.vue'),
+  },
+  {
+    path: '/observatory',
+    name: 'observatory',
+    component: () => import('@/pages/ObservatoryPage.vue'),
   },
   {
     path: '/work',
@@ -40,6 +45,11 @@ const routes = [
     component: () => import('@/pages/HandbookPage.vue'),
   },
   {
+    path: '/work/civilizational-blindness',
+    name: 'civilizational-blindness',
+    component: () => import('@/pages/CivilizationalBlindnessPage.vue'),
+  },
+  {
     path: '/practice',
     component: () => import('@/components/PracticeLayout.vue'),
     children: [
@@ -49,44 +59,66 @@ const routes = [
         component: () => import('@/pages/PracticePage.vue'),
       },
       {
+        path: 'projects/ai-observation',
+        name: 'ai-observation',
+        component: () => import('@/pages/practice/AiObservationPage.vue'),
+      },
+      {
+        path: 'projects/observation',
+        name: 'observation-project',
+        component: () => import('@/pages/practice/ObservationPage.vue'),
+      },
+      {
+        path: 'projects/dialogue',
+        name: 'dialogue',
+        component: () => import('@/pages/practice/DialoguePage.vue'),
+      },
+      {
+        path: 'projects/relational-field',
+        name: 'relational-field',
+        component: () => import('@/pages/practice/RelationalFieldPage.vue'),
+      },
+      {
+        path: 'projects/reflection',
+        name: 'reflection',
+        component: () => import('@/pages/practice/ReflectionPage.vue'),
+      },
+      {
+        path: 'projects/presence',
+        name: 'presence',
+        component: () => import('@/pages/practice/PresencePage.vue'),
+      },
+      // Legacy redirects from old practice routes
+      {
         path: 'the-loop',
         name: 'the-loop',
         component: () => import('@/pages/practice/TheLoopPage.vue'),
       },
       {
-        path: 'projects',
-        name: 'projects',
-        component: () => import('@/pages/practice/ProjectsIndexPage.vue'),
-      },
-      {
-        path: 'projects/observation',
-        name: 'observation-project',
-        component: () => import('@/pages/practice/ObservationProjectPage.vue'),
-      },
-      {
-        path: 'projects/behavioral-ecology',
-        name: 'behavioral-ecology-project',
-        component: () => import('@/pages/practice/BehavioralEcologyProjectPage.vue'),
-      },
-      {
-        path: 'projects/conversational-recursion',
-        name: 'conversational-recursion',
-        component: () => import('@/pages/practice/ConversationalRecursionPage.vue'),
-      },
-      {
-        path: 'projects/recursive-reflection',
-        name: 'recursive-reflection-project',
-        component: () => import('@/pages/practice/RecursiveReflectionProjectPage.vue'),
-      },
-      {
-        path: 'embodied-transcendence',
-        name: 'embodied-transcendence',
-        component: () => import('@/pages/practice/EmbodiedTranscendencePage.vue'),
-      },
-      {
         path: 'definitions',
         name: 'definitions',
         component: () => import('@/pages/practice/DefinitionsPage.vue'),
+      },
+      // Old project paths redirect to new ones
+      {
+        path: 'projects/behavioral-ecology',
+        redirect: '/practice/projects/relational-field',
+      },
+      {
+        path: 'projects/conversational-recursion',
+        redirect: '/practice/projects/dialogue',
+      },
+      {
+        path: 'projects/recursive-reflection',
+        redirect: '/practice/projects/reflection',
+      },
+      {
+        path: 'projects',
+        redirect: '/practice',
+      },
+      {
+        path: 'embodied-transcendence',
+        redirect: '/practice/projects/presence',
       },
     ],
   },
@@ -94,31 +126,6 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: () => import('@/pages/ContactPage.vue'),
-  },
-  {
-    path: '/signal',
-    name: 'signal',
-    component: () => import('@/pages/SignalPage.vue'),
-  },
-  {
-    path: '/signal/map',
-    name: 'signal-map',
-    component: () => import('@/pages/SignalMapPage.vue'),
-  },
-  {
-    path: '/stewardship',
-    name: 'stewardship',
-    component: () => import('@/pages/StewardshipPage.vue'),
-  },
-  {
-    path: '/institutional',
-    name: 'institutional',
-    component: () => import('@/pages/InstitutionalPage.vue'),
-  },
-  {
-    path: '/civilizational-orientation',
-    name: 'civilizational-orientation',
-    component: () => import('@/pages/CivilizationalOrientationPage.vue'),
   },
   {
     path: '/interpretive-works',
@@ -134,6 +141,45 @@ const routes = [
     path: '/submit-work',
     name: 'submit-work',
     component: () => import('@/pages/SubmitWorkPage.vue'),
+  },
+  // Observer Network: serve from /observer-network, also keep /signal/map as redirect
+  {
+    path: '/signal',
+    redirect: '/observatory',
+  },
+  {
+    path: '/signal/map',
+    redirect: '/observatory#observer-network',
+  },
+  {
+    path: '/stewardship',
+    name: 'stewardship',
+    component: () => import('@/pages/StewardshipPage.vue'),
+  },
+  {
+    path: '/institutional',
+    name: 'institutional',
+    component: () => import('@/pages/InstitutionalPage.vue'),
+  },
+  // Legacy routes kept for backward compat
+  {
+    path: '/orientation',
+    redirect: '/about',
+  },
+  {
+    path: '/civilizational-orientation',
+    name: 'civilizational-orientation',
+    component: () => import('@/pages/CivilizationalOrientationPage.vue'),
+  },
+  {
+    path: '/engine',
+    name: 'engine',
+    component: () => import('@/pages/EnginePage.vue'),
+  },
+  {
+    path: '/glossary',
+    name: 'glossary',
+    component: () => import('@/pages/GlossaryPage.vue'),
   },
   {
     path: '/admin/sign-in',

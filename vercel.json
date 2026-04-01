@@ -1,7 +1,16 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/signal", "destination": "/observatory", "permanent": false },
+    { "source": "/signal/map", "destination": "/observatory", "permanent": false },
+    { "source": "/orientation", "destination": "/about", "permanent": false },
+    { "source": "/practice/projects/behavioral-ecology", "destination": "/practice/projects/relational-field", "permanent": false },
+    { "source": "/practice/projects/conversational-recursion", "destination": "/practice/projects/dialogue", "permanent": false },
+    { "source": "/practice/projects/recursive-reflection", "destination": "/practice/projects/reflection", "permanent": false },
+    { "source": "/practice/embodied-transcendence", "destination": "/practice/projects/presence", "permanent": false }
+  ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }

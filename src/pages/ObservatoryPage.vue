@@ -1,0 +1,379 @@
+<template>
+  <div class="observatory-page fade-in">
+    <div class="page-container">
+      <div class="content-container">
+
+        <!-- Block 1: Page Header -->
+        <header class="page-header">
+          <h1>Observatory</h1>
+          <p class="page-subtitle">A live view of how perception is forming across the network.</p>
+        </header>
+
+        <!-- Block 2: Weekly Signal -->
+        <section class="weekly-signal">
+          <div class="weekly-signal__inner">
+            <div class="weekly-signal__meta">
+              <span class="weekly-signal__label">Weekly Signal</span>
+              <span class="weekly-signal__date">{{ weeklySignal.date }}</span>
+            </div>
+            <div class="weekly-signal__body">
+              <p>{{ weeklySignal.opening }}</p>
+              <ul v-if="weeklySignal.bullets.length">
+                <li v-for="bullet in weeklySignal.bullets" :key="bullet">{{ bullet }}</li>
+              </ul>
+              <p v-if="weeklySignal.insight">{{ weeklySignal.insight }}</p>
+              <blockquote v-if="weeklySignal.quote" class="signal-quote">
+                "{{ weeklySignal.quote }}"
+              </blockquote>
+              <p v-if="weeklySignal.closing" class="signal-closing">{{ weeklySignal.closing }}</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Block 3: Short intro -->
+        <section class="observatory-intro">
+          <p>
+            The Observatory reveals patterns of observation as they emerge across the six practice areas.<br>
+            Explore the signals, or enter a project to contribute.
+          </p>
+        </section>
+
+        <!-- Block 4: Observational Units Grid -->
+        <section class="observatory-units">
+          <h2 class="section-label">Observational Units</h2>
+          <div class="units-grid">
+            <article
+              v-for="unit in units"
+              :key="unit.project"
+              class="obs-unit"
+            >
+              <div class="obs-unit__header">
+                <h3>{{ unit.project }}</h3>
+                <p class="obs-unit__copy">{{ unit.copy }}</p>
+              </div>
+
+              <div class="obs-unit__cloud">
+                <p class="obs-unit__sublabel">Signals</p>
+                <SignalWordCloud :project="unit.project" />
+              </div>
+
+              <div class="obs-unit__feed">
+                <p class="obs-unit__sublabel">Recent Signals</p>
+                <SignalFeed :project="unit.project" />
+              </div>
+
+              <RouterLink :to="unit.path" class="obs-unit__enter">
+                Enter Project →
+              </RouterLink>
+            </article>
+          </div>
+        </section>
+
+        <!-- Planetary Signals placeholder -->
+        <section class="planetary-placeholder">
+          <p class="coming-soon-label">Planetary Signals</p>
+          <p class="coming-soon-desc">Coming soon — large-scale patterns emerging across the observer network.</p>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Block 5: Observer Network -->
+    <section class="observer-network" id="observer-network">
+      <div class="page-container">
+        <div class="content-container">
+          <h2>Observer Network</h2>
+          <p class="network-copy">
+            A live view of participants across the globe, observing and contributing.
+          </p>
+        </div>
+      </div>
+
+      <div class="globe-wrapper">
+        <SignalGlobe ref="globeRef" @ready="onGlobeReady" />
+      </div>
+
+      <div class="page-container">
+        <div class="content-container">
+          <div class="place-signal-area">
+            <button class="place-signal-btn" @click="openModal">
+              {{ alreadyPlaced ? 'Update your signal' : 'Place a Signal' }}
+            </button>
+          </div>
+
+          <PlaceSignalModal
+            :visible="showModal"
+            @close="closeModal"
+            @signal-placed="onSignalPlaced"
+          />
+        </div>
+      </div>
+    </section>
+
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useHead } from '@unhead/vue';
+import SignalWordCloud from '@/components/SignalWordCloud.vue';
+import SignalFeed from '@/components/SignalFeed.vue';
+import SignalGlobe from '@/components/SignalGlobe.vue';
+import PlaceSignalModal from '@/components/PlaceSignalModal.vue';
+
+useHead({
+  title: 'Observatory — Coherence Across Scales',
+  meta: [{ name: 'description', content: 'A live view of how perception is forming across the observer network.' }],
+});
+
+// Weekly signal — edit this object to update the weekly signal
+const weeklySignal = {
+  date: 'Week of April 1, 2026',
+  opening: 'This week, multiple observations pointed toward a shift in how uncertainty is held in conversation.',
+  bullets: [
+    'More pauses before response',
+    'Shared language around "not needing resolution"',
+    'Similar dynamics across unrelated groups',
+  ],
+  insight: 'These signals appeared across Dialogue, Reflection, and Relational Field.',
+  quote: 'The conversation changed when no one tried to resolve it.',
+  closing: 'When uncertainty becomes shared, interaction begins to change.',
+};
+
+const units = [
+  { project: 'AI Observation', copy: 'Patterns detected through AI-assisted observation across language and behavior.', path: '/practice/projects/ai-observation' },
+  { project: 'Observation', copy: 'What changes within a single interaction when presence stabilizes.', path: '/practice/projects/observation' },
+  { project: 'Dialogue', copy: 'What happens when meaning is recognized and allowed to deepen.', path: '/practice/projects/dialogue' },
+  { project: 'Relational Field', copy: 'How coherence behaves across environments over time.', path: '/practice/projects/relational-field' },
+  { project: 'Reflection', copy: 'What becomes visible through recursive dialogue with intelligence.', path: '/practice/projects/reflection' },
+  { project: 'Presence', copy: 'How coherence can be lived through ordinary daily life.', path: '/practice/projects/presence' },
+];
+
+const globeRef = ref(null);
+const showModal = ref(false);
+const alreadyPlaced = ref(false);
+
+onMounted(() => {
+  alreadyPlaced.value = !!localStorage.getItem('mysignal-id');
+});
+
+function openModal() { showModal.value = true; }
+function closeModal() { showModal.value = false; }
+
+function onGlobeReady() {}
+
+function onSignalPlaced({ lat, lng, id }) {
+  alreadyPlaced.value = true;
+  showModal.value = false;
+  globeRef.value?.addNewSignal(lng, lat, true);
+}
+</script>
+
+<style lang="scss" scoped>
+@import '@/assets/styles/blockquote';
+
+// Weekly Signal
+.weekly-signal {
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-xl);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.weekly-signal__meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.weekly-signal__label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.weekly-signal__date {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.weekly-signal__body {
+  p { margin-bottom: var(--spacing-sm); line-height: 1.75; }
+  ul {
+    margin: var(--spacing-sm) 0;
+    padding-left: 1.5rem;
+    li { margin-bottom: var(--spacing-xs); line-height: 1.7; }
+  }
+}
+
+.signal-quote {
+  border-left: 2px solid var(--border);
+  padding-left: var(--spacing-md);
+  font-style: italic;
+  color: var(--text-muted);
+  margin: var(--spacing-md) 0;
+}
+
+.signal-closing {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+// Intro
+.observatory-intro {
+  margin-bottom: var(--spacing-xl);
+  p { line-height: 1.75; color: var(--text-muted); font-style: italic; }
+}
+
+// Section label
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-lg);
+}
+
+// Units grid
+.units-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.obs-unit {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-xl);
+  background: var(--bg);
+  gap: var(--spacing-md);
+}
+
+.obs-unit__header {
+  h3 {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: var(--spacing-xs);
+  }
+}
+
+.obs-unit__copy {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.65;
+}
+
+.obs-unit__sublabel {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-xs);
+}
+
+.obs-unit__enter {
+  display: inline-block;
+  margin-top: auto;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+
+  &:hover { color: var(--accent); }
+}
+
+// Planetary placeholder
+.planetary-placeholder {
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.coming-soon-label {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-xs);
+}
+
+.coming-soon-desc {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+// Observer Network
+.observer-network {
+  margin-top: var(--spacing-section);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--border);
+
+  h2 {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: var(--spacing-sm);
+  }
+}
+
+.network-copy {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.7;
+}
+
+.globe-wrapper {
+  margin: var(--spacing-lg) 0;
+}
+
+.place-signal-area {
+  margin-top: var(--spacing-lg);
+}
+
+.place-signal-btn {
+  padding: var(--spacing-sm) var(--spacing-xl);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: filter var(--transition-speed) ease;
+
+  &:hover { filter: brightness(1.1); }
+}
+</style>

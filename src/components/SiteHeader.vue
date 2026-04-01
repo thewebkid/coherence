@@ -95,13 +95,12 @@ const menuOpen = ref(false);
 const isDark = computed(() => themeStore.resolvedIsDark());
 
 const navLinks = [
-  { to: '/orientation', label: 'Orientation' },
-  { to: '/work', label: 'Work', prefix: 'the' },
-  { to: '/engine', label: 'Engine', prefix: 'the' },
-  { to: '/glossary', label: 'Glossary' },
+  { to: '/', label: 'Home' },
   { to: '/practice', label: 'Practice' },
-  { to: '/signal', label: 'Signal' },
-  { to: '/interpretive-works', label: 'Interpretive Works' },
+  { to: '/observatory', label: 'Observatory' },
+  { to: '/interpretive-works', label: 'Interpretive' },
+  { to: '/work', label: 'The Work' },
+  { to: '/about', label: 'About' },
 ];
 </script>
 

@@ -11,6 +11,34 @@
         </header>
 
         <div class="work-cards">
+          <!-- Essays -->
+          <div class="work-section-label">Essays</div>
+          <article class="work-card">
+            <div class="work-card-content">
+              <h2>Civilizational Blindness</h2>
+              <p class="work-card-desc">
+                An exploration of the three historical limitations preventing civilizations from
+                perceiving themselves clearly, and why this moment is different.
+              </p>
+              <div class="work-card-actions">
+                <RouterLink to="/work/civilizational-blindness" class="work-link">Read Essay</RouterLink>
+              </div>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="work-card-content">
+              <h2>Mirror Across Scales</h2>
+              <p class="work-card-desc">
+                How the same patterns of coherence appear at every scale of life—
+                from the cellular and relational to the civilizational and planetary.
+              </p>
+              <div class="work-card-actions">
+                <a href="/pdf/The-Mirror-Across-Scales.pdf" class="work-link" target="_blank" rel="noopener">Download PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <div class="work-section-label">Core Documents</div>
           <article class="work-card">
             <div class="work-card-content">
               <h2>The Manuscript</h2>
@@ -123,6 +151,18 @@ useHead({
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
+}
+
+.work-section-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding-top: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  border-top: 1px solid var(--border);
 }
 
 .work-card {

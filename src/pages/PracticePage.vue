@@ -3,164 +3,132 @@
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
-          <h1>Embodied participation in shared becoming</h1>
+          <h1>Practice</h1>
         </header>
 
         <div class="page-content">
-          <p class="opening-statement">
-            <strong>Perception of reality and participation across scales are not separate.</strong><br>
-            <strong>They arise and are embodied together.</strong>
-          </p>
-          
           <p>
-            Practice begins here.<br>
-            Not as improvement.<br>
-            Not as performance.<br>
-            Not as belief.<br>
-            But as lived experimentation<br>
-            with coherence in daily life.
-          </p>
-          
-          <p>
-            Most systems offer insight.<br>
-            Some offer inspiration.<br>
-            Few extend into behavior.
-          </p>
-          
-          <p>
-            This space exists for that extension.
+            Practice is where relational intelligence becomes lived observation.<br>
+            Relational intelligence is the posture through which coherence becomes visible.
           </p>
 
-          <section class="loop-orientation">
-            <h2>Orientation: The Loop</h2>
+          <section class="practice-intro">
+            <h2>Before You Begin</h2>
             <p>
-              There is a simple ecology underlying embodied coherence.<br>
-              It functions whether named or not.<br>
-              It becomes visible when practiced.
-            </p>
-            <div class="loop-diagram">
-              <span class="loop-node">Observer</span>
-              <span class="arrow">→</span>
-              <span class="loop-node">Relational Coherence</span>
-              <span class="arrow">→</span>
-              <span class="loop-node">Sovereign Presence</span>
-              <span class="arrow">→</span>
-              <span class="loop-node">Propagation</span>
-              <span class="arrow">→</span>
-              <span class="loop-node">Observer</span>
-            </div>
-            <p>
-              A living loop.<br>
-              When perception becomes clearer,<br>
-              participation changes.<br>
-              When participation changes,<br>
-              relational fields reorganize.<br>
-              When relational fields reorganize,<br>
-              new perception becomes possible.
+              The Practice section is not a set of instructions.<br>
+              It is a way of observing together.
             </p>
             <p>
-              This is the loop of behavioral physics.<br>
-              This is transcendent embodiment.<br>
-              Not an ideal.<br>
-              A lived recursion.
+              <RouterLink to="/note-to-observers" class="text-link">→ Read A Note to Observers</RouterLink>
             </p>
           </section>
 
-          <section class="why-section">
-            <h2>Why Practice Exists</h2>
+          <section>
+            <h2>Relational Intelligence in Action</h2>
             <p>
-              Insight alone does not reorganize the world.<br>
-              Behavior does.
-            </p>
-            <p>
-              Practice here is not about adopting beliefs or performing techniques.<br>
-              It is about noticing:
+              The Practice section explores relational intelligence as a lived posture.<br>
+              It shapes:
             </p>
             <ul>
-              <li>how perception forms</li>
-              <li>how reaction arises</li>
-              <li>how coherence can be embodied in real time</li>
-              <li>how small behavioral shifts propagate through relational fields</li>
+              <li>how we observe</li>
+              <li>how we interpret what we observe</li>
+              <li>how we learn from those interpretations</li>
+              <li>how that learning becomes meaningful across scales</li>
             </ul>
             <p>
-              Nothing is required.<br>
-              Nothing is performed.<br>
-              Only observed, embodied, and lived.
+              Practice is not something done alone.<br>
+              It is participation in shared observation.
             </p>
           </section>
 
-          <section class="enter-practice">
-            <h2>Enter a Practice</h2>
-            <p class="section-intro">
-              Each project below explores one aspect of the loop.<br>
-              They can be entered in any order.<br>
-              They are most revealing when lived gently and quietly.
+          <section>
+            <h2>How Practice Works</h2>
+            <p>Practice operates through a simple structure:</p>
+            <div class="practice-structure">
+              <div class="structure-item">Practice <span class="structure-domain">(domain)</span></div>
+              <div class="structure-arrow">↓</div>
+              <div class="structure-item">Relational Intelligence <span class="structure-domain">(posture)</span></div>
+              <div class="structure-arrow">↓</div>
+              <div class="structure-item">Projects <span class="structure-domain">(shared exploration)</span></div>
+              <div class="structure-arrow">↓</div>
+              <div class="structure-item">Observer Network <span class="structure-domain">(emergent system)</span></div>
+            </div>
+            <p>
+              Each project is a collaborative experiment.<br>
+              Participants contribute small observations that, over time, form a larger pattern.
             </p>
+          </section>
 
-            <div class="practice-entries">
-              <RouterLink to="/practice/projects/observation" class="practice-entry">
-                <h3>The Observation Project</h3>
-                <p>
-                  Refining the formative observer.<br>
-                  Learning to slow interpretation and judgment before reacting.<br>
-                  Developing clear seeing as behavioral substrate.
-                </p>
-              </RouterLink>
+          <section>
+            <h2>A Shared Structure</h2>
+            <p>Across all projects, contributions follow a simple form:</p>
+            <p>
+              <strong>Signal (one word)</strong> → pattern<br>
+              <strong>Reflection (one sentence)</strong> → meaning
+            </p>
+            <p>These contributions become:</p>
+            <ul>
+              <li>a <strong>word cloud</strong> (pattern surface)</li>
+              <li>a <strong>live feed</strong> (meaning surface)</li>
+            </ul>
+            <p>
+              One reveals structure<br>
+              One reveals experience<br>
+              Together, they form a living observatory of relational intelligence.
+            </p>
+          </section>
 
-              <RouterLink to="/practice/projects/behavioral-ecology" class="practice-entry">
-                <h3>The Behavioral Ecology Project</h3>
-                <p>
-                  Exploring how coherence spreads across interactions and environments over time.
-                </p>
-              </RouterLink>
+          <section>
+            <h2>The Invitation</h2>
+            <p>These projects invite participation from:</p>
+            <ul>
+              <li>individuals</li>
+              <li>communities</li>
+              <li>researchers</li>
+              <li>artists</li>
+              <li>human–AI collaborations</li>
+            </ul>
+            <p>Each contribution becomes part of a shared field of observation.</p>
+          </section>
 
-              <RouterLink to="/practice/projects/conversational-recursion" class="practice-entry">
-                <h3>Conversational Recursion</h3>
-                <p>
-                  Exploring whether recognition and reflective amplification deepen relational coherence and propagation.
-                </p>
-              </RouterLink>
+          <section>
+            <h2>A Guiding Question</h2>
+            <p class="guiding-question">What becomes visible when intelligence learns to observe together?</p>
+          </section>
 
-              <RouterLink to="/practice/projects/recursive-reflection" class="practice-entry">
-                <h3>The Recursive Reflection Project</h3>
-                <p>
-                  Using AI as a reflective mirror to deepen sovereign clarity and coherence.
-                </p>
-              </RouterLink>
-
-              <RouterLink to="/practice/embodied-transcendence" class="practice-entry">
-                <h3>Embodied Transcendence</h3>
-                <p>
-                  The integrative principle linking presence and propagation across scales.
-                </p>
+          <section>
+            <h2>Projects</h2>
+            <div class="project-list">
+              <RouterLink
+                v-for="project in projects"
+                :key="project.slug"
+                :to="project.path"
+                class="project-card"
+              >
+                <div class="project-card__header">
+                  <h3>{{ project.title }}</h3>
+                  <p class="project-card__subtitle"><em>{{ project.subtitle }}</em></p>
+                </div>
+                <p class="project-card__desc">{{ project.desc }}</p>
+                <span class="project-card__link">Enter Project →</span>
               </RouterLink>
             </div>
-            
-            <p class="post-entries-text">
-              Each practice is a lived experiment.<br>
-              Not a program.<br>
-              Not a course.<br>
-              A test drive of embodied coherence.
-            </p>
+
+            <div class="coming-soon">
+              <h3>Coming Soon</h3>
+              <ul>
+                <li><strong>Creative Response</strong> — Expression as a form of relational intelligence</li>
+                <li><strong>Planetary Signals</strong> — Large-scale patterns emerging across the observer network</li>
+              </ul>
+            </div>
           </section>
 
-          <section class="hypothesis">
-            <h2>Working Hypothesis</h2>
-            <p>
+          <section>
+            <p class="closing">
               Changing perception is not private.<br>
-              It changes participation everywhere.<br>
-              When participation changes,<br>
-              relational fields reorganize.<br>
-              When relational fields reorganize,<br>
-              new possibilities of coherence emerge.<br>
-              This is shared becoming<br>
-              as lived practice.
+              It changes participation everywhere.
             </p>
           </section>
-
-          <p class="closing-line">
-            <em>When metaphor completes its work, it disappears into behavior.</em>
-          </p>
         </div>
       </div>
     </div>
@@ -168,152 +136,165 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
-import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
-
-const route = useRoute();
 
 useHead({
   title: 'Practice — Coherence Across Scales',
-  meta: [
-    { property: 'og:title', content: 'Practice — Coherence Across Scales' },
-    { property: 'og:description', content: 'Embodied participation in shared becoming. A quiet laboratory exploring how coherence stabilizes in lived behavior and propagates across scales.' },
-    { property: 'og:type', content: 'article' },
-    { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
-    { property: 'og:image', content: OG_IMAGE_URL },
-    { name: 'description', content: 'Embodied participation in shared becoming. A quiet laboratory exploring how coherence stabilizes in lived behavior and propagates across scales.' },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'Practice — Coherence Across Scales' },
-    { name: 'twitter:description', content: 'Embodied participation in shared becoming. A quiet laboratory exploring how coherence stabilizes in lived behavior and propagates across scales.' },
-    { name: 'twitter:image', content: OG_IMAGE_URL },
-  ],
+  meta: [{ name: 'description', content: 'Practice is where relational intelligence becomes lived observation. Six collaborative experiments in shared observation.' }],
 });
+
+const projects = [
+  { title: 'AI Observation', subtitle: 'Human–AI Co-Perception', slug: 'ai-observation', path: '/practice/projects/ai-observation', desc: 'What becomes visible when humans and AI observe together?' },
+  { title: 'Observation', subtitle: 'Relational Perception in Interaction', slug: 'observation', path: '/practice/projects/observation', desc: 'What changes within a single interaction when presence stabilizes?' },
+  { title: 'Dialogue', subtitle: 'Conversational Recursion', slug: 'dialogue', path: '/practice/projects/dialogue', desc: 'What happens when meaning is recognized and allowed to deepen?' },
+  { title: 'Relational Field', subtitle: 'Ecological Spread of Coherence', slug: 'relational-field', path: '/practice/projects/relational-field', desc: 'Does stabilized presence influence the tone of environments over time?' },
+  { title: 'Reflection', subtitle: 'Recursive Dialogue with Intelligence', slug: 'reflection', path: '/practice/projects/reflection', desc: 'Can dialogue with AI deepen clarity without replacing human thinking?' },
+  { title: 'Presence', subtitle: 'Embodied Transcendence in Daily Life', slug: 'presence', path: '/practice/projects/presence', desc: 'Can a stabilized way of being allow coherence to appear and travel through daily life?' },
+];
 </script>
 
 <style lang="scss" scoped>
-.practice-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
-  
-  h1 {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-    margin-bottom: 0;
-  }
-}
-
 .page-content {
-  max-width: 720px;
-  margin: 0 auto;
-  
-  p {
-    margin-bottom: var(--spacing-md);
-    line-height: 1.7;
-  }
-  
   section {
-    margin-bottom: var(--spacing-xl);
-    
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: var(--spacing-md);
-    }
-    
-    h3 {
-      font-size: 1.125rem;
-      margin-bottom: var(--spacing-sm);
-    }
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border);
+  }
+
+  p { margin-bottom: var(--spacing-md); line-height: 1.75; }
+
+  ul {
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+    padding-left: 1.5rem;
+    li { margin-bottom: var(--spacing-xs); line-height: 1.7; }
   }
 }
 
-.opening-statement {
-  font-size: 1.0625rem;
-  color: var(--text);
-  margin-bottom: var(--spacing-xl);
+.text-link {
+  color: var(--accent);
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
 }
 
-.loop-diagram {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-xs) var(--spacing-sm);
-  padding: var(--spacing-lg);
+.practice-structure {
+  margin: var(--spacing-md) 0;
+  padding: var(--spacing-md);
   background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  margin: var(--spacing-lg) 0;
+  border-radius: var(--radius-sm);
+}
+
+.structure-item {
   font-family: var(--font-sans);
   font-size: 0.9375rem;
-}
-
-.loop-node {
   font-weight: 500;
-  color: var(--accent);
+  color: var(--text);
+  padding: var(--spacing-xs) 0;
 }
 
-.arrow {
+.structure-domain {
+  font-weight: 400;
   color: var(--text-muted);
 }
 
-.section-intro {
+.structure-arrow {
+  color: var(--text-muted);
+  padding: 2px var(--spacing-sm);
+}
+
+.guiding-question {
+  font-family: var(--font-serif);
   font-style: italic;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-lg);
+  font-size: 1.0625rem;
+  line-height: 1.7;
 }
 
-.practice-entries {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-lg);
-}
-
-.practice-entry {
-  display: block;
-  padding: var(--spacing-lg) var(--spacing-md);
-  background: var(--bg-secondary);
+.project-list {
+  display: grid;
+  gap: 1px;
+  background: var(--border);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: var(--spacing-lg);
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg);
+  background: var(--bg);
   text-decoration: none;
-  cursor: pointer;
-  transition: background-color var(--transition-speed) ease, 
-              border-color var(--transition-speed) ease;
-  
+  transition: background var(--transition-speed) ease;
+
   &:hover {
-    background: var(--bg);
-    border-color: var(--accent);
+    background: var(--bg-secondary);
+    .project-card__link { color: var(--accent); }
   }
-  
+}
+
+.project-card__header {
+  margin-bottom: var(--spacing-sm);
   h3 {
-    margin-bottom: var(--spacing-sm);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
     color: var(--text);
-    transition: color var(--transition-speed) ease;
+    margin-bottom: 2px;
   }
-  
-  &:hover h3 {
-    color: var(--accent);
-  }
-  
-  p {
-    margin: 0;
-    font-size: 0.9375rem;
+}
+
+.project-card__subtitle {
+  font-family: var(--font-serif);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.project-card__desc {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: var(--spacing-sm);
+}
+
+.project-card__link {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  transition: color var(--transition-speed) ease;
+  margin-top: auto;
+}
+
+.coming-soon {
+  margin-top: var(--spacing-xl);
+
+  h3 {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     color: var(--text-muted);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    li { color: var(--text-muted); font-size: 0.9375rem; }
   }
 }
 
-.post-entries-text {
-  margin-top: var(--spacing-xl);
-}
-
-.closing-line {
-  margin-top: var(--spacing-xl);
-  text-align: center;
+.closing {
+  font-family: var(--font-serif);
+  font-style: italic;
   font-size: 1rem;
   color: var(--text-muted);
+  text-align: center;
 }
 </style>
-

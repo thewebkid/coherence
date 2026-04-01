@@ -1,63 +1,63 @@
 import { neon } from '@neondatabase/serverless';
 
+const PROJECTS = [
+  'AI Observation',
+  'Observation',
+  'Dialogue',
+  'Relational Field',
+  'Reflection',
+  'Presence',
+];
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   const POSTGRES_URL = process.env.POSTGRES_URL;
-  
   if (!POSTGRES_URL) {
     console.error('POSTGRES_URL environment variable is not set');
-    return res.status(500).json({ 
-      error: 'Database connection not configured. Please contact the site administrator.' 
-    });
+    return res.status(500).json({ error: 'Database connection not configured.' });
   }
 
-  const { project, context, whatShifted, whatDidNotShift, whereCoherent, whereResistant, notes, geography } = req.body;
+  const { project, signal, reflection, context, geography } = req.body || {};
 
-  if (!project || !context || !whatShifted) {
-    return res.status(400).json({ 
-      error: 'Missing required fields: project, context, and whatShifted are required' 
-    });
+  if (!project || !signal || !reflection) {
+    return res.status(400).json({ error: 'Missing required fields: project, signal, and reflection are required.' });
   }
 
-  if (!['Observation', 'Behavioral Ecology', 'Conversational Recursion'].includes(project)) {
-    return res.status(400).json({ 
-      error: 'Invalid project value. Must be one of: Observation, Behavioral Ecology, Conversational Recursion' 
-    });
+  if (!PROJECTS.includes(project)) {
+    return res.status(400).json({ error: `Invalid project. Must be one of: ${PROJECTS.join(', ')}` });
+  }
+
+  const signalTrimmed = signal.trim();
+  if (!signalTrimmed) {
+    return res.status(400).json({ error: 'Signal must not be empty.' });
+  }
+
+  const reflectionTrimmed = reflection.trim();
+  if (reflectionTrimmed.length > 140) {
+    return res.status(400).json({ error: 'Reflection must be 140 characters or fewer.' });
+  }
+  if (!reflectionTrimmed) {
+    return res.status(400).json({ error: 'Reflection must not be empty.' });
   }
 
   try {
     const sql = neon(POSTGRES_URL);
-    
     await sql`
-      INSERT INTO observations (
-        project,
-        context,
-        what_shifted,
-        what_did_not_shift,
-        where_coherent,
-        where_resistant,
-        notes,
-        geography
-      ) VALUES (
+      INSERT INTO observations (project, signal, reflection, context, geography)
+      VALUES (
         ${project},
-        ${context},
-        ${whatShifted},
-        ${whatDidNotShift || null},
-        ${whereCoherent || null},
-        ${whereResistant || null},
-        ${notes || null},
-        ${geography || null}
+        ${signalTrimmed},
+        ${reflectionTrimmed},
+        ${context?.trim() || null},
+        ${geography?.trim() || null}
       )
     `;
-    
     return res.status(200).json({ success: true });
   } catch (error) {
     console.error('Database error:', error);
-    return res.status(500).json({ 
-      error: 'Failed to store observation. Please try again.' 
-    });
+    return res.status(500).json({ error: 'Failed to store observation. Please try again.' });
   }
 }
