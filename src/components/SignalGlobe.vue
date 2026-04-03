@@ -30,10 +30,15 @@ function refreshMarkers() {
   globe.htmlElementsData(signalData);
 }
 
-function createPulsingPin(mine = false) {
+function createPulsingPin(d) {
+  const { lat, lng, isMine, id } = d;
   const el = document.createElement('div');
+  //console.log({lat, lng, isMine, id});
   el.className = 'pulsing-pin';
-  if (mine) {
+  /*if (location.href.includes('xlocalhost')) {
+    el.title = id;
+  }*/
+  if (isMine) {
     el.style.backgroundColor = 'blue';
   }
   el.innerHTML = `<div class="pulse-ring"></div>`;
@@ -62,7 +67,8 @@ async function loadSignals() {
     signalData = signals.map(s => ({
       lat: s.lat,
       lng: s.lng,
-      isMine: !!myId && s.id === myId
+      isMine: !!myId && s.id === myId,
+      id: s.id
     }));
     refreshMarkers();
   } catch (e) {
@@ -83,7 +89,7 @@ async function initGlobe() {
     .height(el.clientHeight)
     .globeImageUrl(getTexture())
     .backgroundColor('rgba(0,0,0,0)')
-    .htmlElement(d => createPulsingPin(d.isMine))
+    .htmlElement(d => createPulsingPin(d))
     .htmlElementVisibilityModifier((el, isVisible) => {
       el.style.opacity = isVisible ? 1 : 0;
       el.style.pointerEvents = isVisible ? 'auto' : 'none';

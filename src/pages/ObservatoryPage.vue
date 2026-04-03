@@ -38,44 +38,48 @@
           </p>
         </section>
 
-        <!-- Block 4: Observational Units Grid -->
-        <section class="observatory-units">
-          <h2 class="section-label">Observational Units</h2>
-          <div class="units-grid">
-            <article
-              v-for="unit in units"
-              :key="unit.project"
-              class="obs-unit"
-            >
-              <div class="obs-unit__header">
-                <h3>{{ unit.project }}</h3>
-                <p class="obs-unit__copy">{{ unit.copy }}</p>
-              </div>
+      </div>
+    </div>
 
+    <!-- Block 4: Observational Units (full page width for wireframe layout) -->
+    <div class="page-container">
+      <section class="observatory-units">
+        <h2 class="section-label">Observational Units</h2>
+        <div class="units-grid">
+          <article
+            v-for="unit in units"
+            :key="unit.project"
+            class="obs-unit"
+          >
+            <div class="obs-unit__header">
+              <h3>{{ unit.project }}</h3>
+              <p class="obs-unit__copy">{{ unit.copy }}</p>
+            </div>
+
+            <div class="obs-unit__body">
               <div class="obs-unit__cloud">
                 <p class="obs-unit__sublabel">Signals</p>
-                <SignalWordCloud :project="unit.project" />
+                <WordField :project="unit.project" />
               </div>
 
               <div class="obs-unit__feed">
                 <p class="obs-unit__sublabel">Recent Signals</p>
                 <SignalFeed :project="unit.project" />
               </div>
+            </div>
 
-              <RouterLink :to="unit.path" class="obs-unit__enter">
-                Enter Project →
-              </RouterLink>
-            </article>
-          </div>
-        </section>
+            <RouterLink :to="unit.path" class="obs-unit__enter">
+              Enter Project →
+            </RouterLink>
+          </article>
+        </div>
+      </section>
 
-        <!-- Planetary Signals placeholder -->
-        <section class="planetary-placeholder">
-          <p class="coming-soon-label">Planetary Signals</p>
-          <p class="coming-soon-desc">Coming soon — large-scale patterns emerging across the observer network.</p>
-        </section>
-
-      </div>
+      <!-- Planetary Signals placeholder -->
+      <section class="planetary-placeholder">
+        <p class="coming-soon-label">Planetary Signals</p>
+        <p class="coming-soon-desc">Coming soon — large-scale patterns emerging across the observer network.</p>
+      </section>
     </div>
 
     <!-- Block 5: Observer Network -->
@@ -89,8 +93,10 @@
         </div>
       </div>
 
-      <div class="globe-wrapper">
-        <SignalGlobe ref="globeRef" @ready="onGlobeReady" />
+      <div class="page-container">
+        <div class="globe-wrapper">
+          <SignalGlobe ref="globeRef" @ready="onGlobeReady" />
+        </div>
       </div>
 
       <div class="page-container">
@@ -116,7 +122,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useHead } from '@unhead/vue';
-import SignalWordCloud from '@/components/SignalWordCloud.vue';
+import WordField from '@/components/WordField.vue';
 import SignalFeed from '@/components/SignalFeed.vue';
 import SignalGlobe from '@/components/SignalGlobe.vue';
 import PlaceSignalModal from '@/components/PlaceSignalModal.vue';
@@ -251,17 +257,27 @@ function onSignalPlaced({ lat, lng, id }) {
   border-radius: var(--radius-md);
   overflow: hidden;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1100px) {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 .obs-unit {
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   padding: var(--spacing-xl);
   background: var(--bg);
   gap: var(--spacing-md);
+}
+
+.obs-unit__body {
+  display: grid;
+  gap: var(--spacing-md);
+
+  @container (min-width: 500px) {
+    grid-template-columns: 3fr 2fr;
+  }
 }
 
 .obs-unit__header {

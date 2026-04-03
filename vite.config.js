@@ -17,72 +17,69 @@ export default defineConfig({
       configureServer(server) {
         server.middlewares.use(async (req, res, next) => {
           if (req.url === '/api/submit-observation' && req.method === 'POST') {
+            const PROJECTS = ['AI Observation', 'Observation', 'Dialogue', 'Relational Field', 'Reflection', 'Presence'];
             let body = '';
             req.on('data', chunk => body += chunk);
             req.on('end', async () => {
               try {
                 const data = JSON.parse(body);
-                const { project, context, whatShifted, whatDidNotShift, whereCoherent, whereResistant, notes, geography } = data;
+                const { project, signal, reflection, context, geography } = data;
 
-                if (!project || !context || !whatShifted) {
+                if (!project || !signal || !reflection) {
                   res.statusCode = 400;
                   res.setHeader('Content-Type', 'application/json');
-                  res.end(JSON.stringify({ 
-                    error: 'Missing required fields: project, context, and whatShifted are required' 
-                  }));
+                  res.end(JSON.stringify({ error: 'Missing required fields: project, signal, and reflection are required.' }));
                   return;
                 }
 
-                if (!['Observation', 'Behavioral Ecology', 'Conversational Recursion'].includes(project)) {
+                if (!PROJECTS.includes(project)) {
                   res.statusCode = 400;
                   res.setHeader('Content-Type', 'application/json');
-                  res.end(JSON.stringify({ 
-                    error: 'Invalid project value. Must be one of: Observation, Behavioral Ecology, Conversational Recursion' 
-                  }));
+                  res.end(JSON.stringify({ error: `Invalid project. Must be one of: ${PROJECTS.join(', ')}` }));
+                  return;
+                }
+
+                const signalTrimmed = signal.trim();
+                const reflectionTrimmed = reflection.trim();
+
+                if (!signalTrimmed) {
+                  res.statusCode = 400;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify({ error: 'Signal must not be empty.' }));
+                  return;
+                }
+                if (!reflectionTrimmed || reflectionTrimmed.length > 140) {
+                  res.statusCode = 400;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify({ error: 'Reflection must be 1–140 characters.' }));
                   return;
                 }
 
                 const POSTGRES_URL = process.env.POSTGRES_URL;
-                
                 if (!POSTGRES_URL) {
-                  console.error('POSTGRES_URL environment variable is not set');
                   res.statusCode = 500;
                   res.setHeader('Content-Type', 'application/json');
-                  res.end(JSON.stringify({ 
-                    error: 'Database connection not configured. Please contact the site administrator.' 
-                  }));
+                  res.end(JSON.stringify({ error: 'Database connection not configured.' }));
                   return;
                 }
 
                 const sql = neon(POSTGRES_URL);
-                
                 await sql`
-                  INSERT INTO observations (
-                    project,
-                    context,
-                    what_shifted,
-                    what_did_not_shift,
-                    where_coherent,
-                    where_resistant,
-                    notes,
-                    geography
-                  ) VALUES (
+                  INSERT INTO observations (project, signal, reflection, context, geography)
+                  VALUES (
                     ${project},
-                    ${context},
-                    ${whatShifted},
-                    ${whatDidNotShift || null},
-                    ${whereCoherent || null},
-                    ${whereResistant || null},
-                    ${notes || null},
-                    ${geography || null}
+                    ${signalTrimmed},
+                    ${reflectionTrimmed},
+                    ${context?.trim() || null},
+                    ${geography?.trim() || null}
                   )
                 `;
-                
+
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.end(JSON.stringify({ success: true }));
               } catch (error) {
-                console.error('API middleware error:', error);
+                console.error('POST /api/submit-observation dev error:', error);
                 res.statusCode = 500;
                 res.setHeader('Content-Type', 'application/json');
                 res.end(JSON.stringify({ error: 'Failed to store observation. Please try again.' }));
@@ -231,6 +228,85 @@ export default defineConfig({
               res.statusCode = 405;
               res.setHeader('Content-Type', 'application/json');
               res.end(JSON.stringify({ error: 'Method not allowed' }));
+            }
+          } else if (req.url.startsWith('/api/observations') && req.method === 'GET') {
+            try {
+              const url = new URL(req.url, 'http://localhost');
+              const project = url.searchParams.get('project');
+
+              if (!project) {
+                res.statusCode = 400;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: 'project query parameter is required.' }));
+                return;
+              }
+
+              const POSTGRES_URL = process.env.POSTGRES_URL;
+              if (!POSTGRES_URL) {
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: 'Database connection not configured.' }));
+                return;
+              }
+
+              const sql = neon(POSTGRES_URL);
+
+              const [recentRows, signalRows] = await Promise.all([
+                sql`SELECT reflection FROM observations WHERE project = ${project} ORDER BY created_at DESC LIMIT 5`,
+                sql`SELECT signal, count(*) AS count FROM observations WHERE project = ${project} GROUP BY signal ORDER BY count DESC LIMIT 30`,
+              ]);
+
+              res.statusCode = 200;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({
+                feed: recentRows.map(r => r.reflection),
+                signals: signalRows.map(r => ({ word: r.signal, count: Number(r.count) })),
+              }));
+            } catch (error) {
+              console.error('GET /api/observations dev error:', error);
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Failed to fetch observations.' }));
+            }
+          } else if (req.url.startsWith('/api/word-detail') && req.method === 'GET') {
+            try {
+              const url = new URL(req.url, 'http://localhost');
+              const project = url.searchParams.get('project');
+              const word = url.searchParams.get('word');
+
+              if (!project || !word) {
+                res.statusCode = 400;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: 'project and word query parameters are required.' }));
+                return;
+              }
+
+              const POSTGRES_URL = process.env.POSTGRES_URL;
+              if (!POSTGRES_URL) {
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: 'Database connection not configured.' }));
+                return;
+              }
+
+              const sql = neon(POSTGRES_URL);
+
+              const [fragmentRows, coRows] = await Promise.all([
+                sql`SELECT reflection FROM observations WHERE project = ${project} AND signal = ${word} ORDER BY created_at DESC LIMIT 7`,
+                sql`SELECT signal, count(*) AS count FROM observations WHERE project = ${project} AND signal != ${word} AND created_at >= now() - interval '30 days' GROUP BY signal ORDER BY count DESC LIMIT 5`,
+              ]);
+
+              res.statusCode = 200;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({
+                fragments: fragmentRows.map(r => r.reflection.length > 140 ? r.reflection.slice(0, 137) + '\u2026' : r.reflection),
+                coOccurring: coRows.map(r => ({ word: r.signal })),
+              }));
+            } catch (error) {
+              console.error('GET /api/word-detail dev error:', error);
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Failed to fetch word detail.' }));
             }
           } else if (req.url === '/api/submit-work' && req.method === 'POST') {
             let body = '';
