@@ -160,6 +160,12 @@
 
             <p>The observatory exists to explore that possibility—quietly, and together.</p>
           </section>
+
+          <p class="return-to-practice">
+            <RouterLink to="/practice" class="text-link">Return to Practice →</RouterLink>
+            <br>
+            <span class="return-to-practice__tagline">(Relational intelligence is key)</span>
+          </p>
         </div>
       </div>
     </div>
@@ -232,5 +238,23 @@ useHead({
   line-height: 1.7;
   text-align: center;
   margin: var(--spacing-lg) 0;
+}
+
+.return-to-practice {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border);
+  line-height: 1.75;
+}
+
+.text-link {
+  color: var(--accent);
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}
+
+.return-to-practice__tagline {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
 }
 </style>
