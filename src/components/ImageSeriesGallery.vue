@@ -78,8 +78,16 @@
     <header class="gallery-header">
       <h1 class="gallery-title">{{ work.title }}</h1>
       <p v-if="work.subtitle" class="gallery-subtitle">{{ work.subtitle }}</p>
-      <div v-if="work.intro" class="gallery-intro">
+      <div v-if="work.intro || introLink" class="gallery-intro">
         <p v-for="(line, i) in introLines" :key="i">{{ line }}</p>
+        <p v-if="introLink" class="gallery-intro-link">
+          <RouterLink
+            class="gallery-intro-link__a"
+            :to="{ path: route.path, query: { ...route.query, image: introLink.image } }"
+          >
+            {{ introLink.text }}
+          </RouterLink>
+        </p>
       </div>
     </header>
 
@@ -144,6 +152,8 @@ const descriptionLines = computed(() =>
 const introLines = computed(() =>
   props.work.intro ? props.work.intro.split('\n').filter((l) => l.trim()) : []
 );
+
+const introLink = computed(() => props.work.introLink ?? null);
 
 watch(selectedIndex, () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -333,6 +343,21 @@ function backToGallery() {
     line-height: var(--iw-line-height-prose, 2);
     margin-bottom: var(--spacing-sm);
     color: var(--text);
+  }
+}
+
+.gallery-intro-link {
+  margin-top: var(--spacing-md);
+  margin-bottom: 0 !important;
+}
+
+.gallery-intro-link__a {
+  color: var(--iw-accent);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  &:hover {
+    text-decoration: underline;
   }
 }
 

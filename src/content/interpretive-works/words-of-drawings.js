@@ -11,6 +11,7 @@ export default {
 In the context of Coherence Across Scales, the series invites attention to how awareness itself participates in the systems it observes.
 
 Together, the drawings and accompanying reflections offer small studies in how perception unfolds across inner and outer scales of experience.`,
+  introLink: { text: 'Enter Gallery →', image: 1 },
   contentType: 'image-series',
   thumbnail: '/img/practiceofseeing/Image1-thumb.jpg',
   reflection: '',
