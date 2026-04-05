@@ -178,7 +178,7 @@ useHead({
 .section-label {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--text-muted);
   margin-bottom: var(--spacing-sm);
 }

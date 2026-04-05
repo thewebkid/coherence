@@ -142,7 +142,7 @@ useHead({
   h3 { font-family: var(--font-sans); font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: var(--spacing-xs); }
 }
 
-.section-label { font-family: var(--font-serif); font-style: italic; font-size: 0.875rem; color: var(--text-muted); margin-bottom: var(--spacing-sm); }
+.section-label { font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--text-muted); margin-bottom: var(--spacing-sm); }
 
 .submission-section { background: var(--bg-secondary); border-radius: var(--radius-md); padding: var(--spacing-xl); margin-top: var(--spacing-xl); border-top: none !important; }
 </style>

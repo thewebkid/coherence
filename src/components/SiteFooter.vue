@@ -110,7 +110,7 @@ const currentYear = new Date().getFullYear();
 .system-desc {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--text-muted);
 }
 
@@ -118,7 +118,7 @@ const currentYear = new Date().getFullYear();
 .footer-quote {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--text-muted);
   line-height: 1.7;
   text-align: center;

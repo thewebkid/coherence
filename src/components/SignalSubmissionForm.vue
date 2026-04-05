@@ -194,7 +194,7 @@ label {
 .field-hint {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.8125rem;
+  font-size: 1rem;
   color: var(--text-muted);
   margin: 0 0 var(--spacing-xs);
 }
@@ -277,7 +277,7 @@ textarea { resize: vertical; line-height: 1.6; }
 .anon-note {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.8125rem;
+  font-size: 1rem;
   color: var(--text-muted);
   text-align: center;
   margin: 0;
