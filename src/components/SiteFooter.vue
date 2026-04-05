@@ -36,8 +36,8 @@
           <RouterLink to="/institutional">Institutional Inquiries</RouterLink>
           <RouterLink to="/stewardship">Stewardship</RouterLink>
           <RouterLink to="/simple-terms">Simple Terms</RouterLink>
-          <a href="/pdf/The-Mirror-Across-Scales.pdf" target="_blank" rel="noopener">Mirror Across Scales</a>
-          <a href="/pdf/TCP-Executive-Brief.pdf" target="_blank" rel="noopener">TCP Executive Brief</a>
+          <RouterLink to="/mirror-across-scales">Mirror Across Scales</RouterLink>
+          <RouterLink to="/tcp-executive-brief">TCP Executive Brief</RouterLink>
         </nav>
       </div>
 

@@ -32,7 +32,7 @@
               A conceptual architecture describing how human observation, artificial intelligence, and planetary sensing may form a feedback system across scales of intelligence.
             </p>
             <p>
-              <a href="/pdf/The-Mirror-Across-Scales.pdf" download class="download-link">Download the document →</a>
+              <RouterLink to="/mirror-across-scales" class="download-link">Read the document →</RouterLink>
             </p>
           </section>
 
@@ -42,7 +42,7 @@
               A proposed planetary observatory exploring how institutional signal streams may contribute to this cross-scale observational framework.
             </p>
             <p>
-              <a href="/pdf/Executive Vision Brief v8.pdf" download class="download-link">Download the executive brief →</a>
+              <RouterLink to="/tcp-executive-brief" class="download-link">Read the executive brief →</RouterLink>
             </p>
           </section>
         </div>

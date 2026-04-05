@@ -161,6 +161,16 @@ const routes = [
     name: 'institutional',
     component: () => import('@/pages/InstitutionalPage.vue'),
   },
+  {
+    path: '/mirror-across-scales',
+    name: 'mirror-across-scales',
+    component: () => import('@/pages/MirrorAcrossScalesPage.vue'),
+  },
+  {
+    path: '/tcp-executive-brief',
+    name: 'tcp-executive-brief',
+    component: () => import('@/pages/TcpExecutiveBriefPage.vue'),
+  },
   // Legacy routes kept for backward compat
   {
     path: '/orientation',
