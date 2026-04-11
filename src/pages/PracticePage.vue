@@ -19,7 +19,7 @@
               It is a way of observing together.
             </p>
             <p>
-              <RouterLink to="/note-to-observers" class="text-link">→ Read A Note to Observers</RouterLink>
+              <RouterLink to="/practice/orientation" class="text-link">→ Orientation</RouterLink>
             </p>
           </section>
 

@@ -161,6 +161,8 @@
             <p>The observatory exists to explore that possibility—quietly, and together.</p>
           </section>
 
+          <OrientationDocumentNav current="note-to-observers" />
+
           <p class="return-to-practice">
             <RouterLink to="/practice" class="text-link">Return to Practice →</RouterLink>
             <br>
@@ -174,6 +176,7 @@
 
 <script setup>
 import { useHead } from '@unhead/vue';
+import OrientationDocumentNav from '@/components/OrientationDocumentNav.vue';
 
 useHead({
   title: 'A Note to Observers — Coherence Across Scales',
@@ -241,9 +244,8 @@ useHead({
 }
 
 .return-to-practice {
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--border);
+  margin-top: var(--spacing-md);
+  padding-top: 0;
   line-height: 1.75;
 }
 

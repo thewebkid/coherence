@@ -59,6 +59,21 @@ const routes = [
         component: () => import('@/pages/PracticePage.vue'),
       },
       {
+        path: 'orientation',
+        name: 'practice-orientation',
+        component: () => import('@/pages/practice/OrientationPage.vue'),
+      },
+      {
+        path: 'stability-and-permeability',
+        name: 'stability-and-permeability',
+        component: () => import('@/pages/practice/StabilityPermeabilityPage.vue'),
+      },
+      {
+        path: 'first-act-of-observation',
+        name: 'first-act-of-observation',
+        component: () => import('@/pages/practice/FirstActOfObservationPage.vue'),
+      },
+      {
         path: 'projects/ai-observation',
         name: 'ai-observation',
         component: () => import('@/pages/practice/AiObservationPage.vue'),
