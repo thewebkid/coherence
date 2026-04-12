@@ -2,7 +2,7 @@
   <div class="admin-sign-in-page fade-in">
     <div class="sign-in-container">
       <p class="sign-in-label">Administrator Access</p>
-      <SignIn :after-sign-in-url="'/admin'" :routing="'hash'" />
+      <SignIn force-redirect-url="/admin" :routing="'hash'" />
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
-import { createClerkClient } from '@clerk/backend';
+import { createClerkClient, verifyToken } from '@clerk/backend';
 
-const ALLOWED_EMAILS = ['iamthewebkid@gmail.com', 'mahunahi@gmail.com'];
+const ALLOWED_EMAILS = ['iamthewebkid@gmail.com', 'mahunahi@gmail.com', 'kid@thewebkid.com'];
 
 export async function verifyAdminAuth(req, res) {
   const authHeader = req.headers.authorization;
@@ -19,9 +19,8 @@ export async function verifyAdminAuth(req, res) {
   }
 
   try {
+    const payload = await verifyToken(token, { secretKey: CLERK_SECRET_KEY });
     const clerk = createClerkClient({ secretKey: CLERK_SECRET_KEY });
-
-    const payload = await clerk.verifyToken(token);
     const user = await clerk.users.getUser(payload.sub);
 
     const email = user.emailAddresses.find(

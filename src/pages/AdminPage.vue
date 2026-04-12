@@ -198,7 +198,7 @@ const { isLoaded, isSignedIn, getToken } = useAuth();
 const { user } = useUser();
 const clerk = useClerk();
 
-const ALLOWED_EMAILS = ['iamthewebkid@gmail.com', 'mahunahi@gmail.com'];
+const ALLOWED_EMAILS = ['iamthewebkid@gmail.com', 'mahunahi@gmail.com', 'kid@thewebkid.com'];
 
 const userEmail = computed(() =>
   user.value?.emailAddresses?.find(

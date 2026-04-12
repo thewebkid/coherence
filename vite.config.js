@@ -3,8 +3,54 @@ import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
 import dotenv from 'dotenv';
 import { neon } from '@neondatabase/serverless';
+import { createClerkClient, verifyToken as clerkVerifyToken } from '@clerk/backend';
 
 dotenv.config({ path: '.env.local' });
+
+const ADMIN_ALLOWED_EMAILS = ['iamthewebkid@gmail.com', 'mahunahi@gmail.com', 'kid@thewebkid.com'];
+const VALID_SUBMISSION_STATUSES = ['unread', 'approved', 'declined', 'archived'];
+
+async function verifyAdminAuthDev(req, res) {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null;
+  if (!token) {
+    res.statusCode = 401;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ error: 'Unauthorized: missing token' }));
+    return null;
+  }
+  const CLERK_SECRET_KEY = process.env.CLERK_SECRET_KEY;
+  if (!CLERK_SECRET_KEY) {
+    res.statusCode = 500;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ error: 'Auth service not configured' }));
+    return null;
+  }
+  try {
+    const payload = await clerkVerifyToken(token, {
+      secretKey: CLERK_SECRET_KEY,
+      authorizedParties: ['http://localhost:5777'],
+    });
+    const clerk = createClerkClient({ secretKey: CLERK_SECRET_KEY });
+    const user = await clerk.users.getUser(payload.sub);
+    const email = user.emailAddresses.find(
+      (e) => e.id === user.primaryEmailAddressId
+    )?.emailAddress;
+    if (!ADMIN_ALLOWED_EMAILS.includes(email)) {
+      res.statusCode = 403;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ error: 'Forbidden: account not authorized for admin access' }));
+      return null;
+    }
+    return { userId: payload.sub, email };
+  } catch (err) {
+    console.error('Clerk token verification failed:', err.message);
+    res.statusCode = 401;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ error: 'Unauthorized: invalid or expired token' }));
+    return null;
+  }
+}
 
 export default defineConfig({
   server: {
@@ -359,6 +405,110 @@ export default defineConfig({
                 res.end(JSON.stringify({ error: 'Failed to store submission. Please try again.' }));
               }
             });
+          } else if (req.url.startsWith('/api/admin/submissions')) {
+            const admin = await verifyAdminAuthDev(req, res);
+            if (!admin) return;
+
+            const POSTGRES_URL = process.env.POSTGRES_URL;
+            if (!POSTGRES_URL) {
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Database connection not configured.' }));
+              return;
+            }
+            const sql = neon(POSTGRES_URL);
+
+            if (req.method === 'GET') {
+              try {
+                const url = new URL(req.url, 'http://localhost');
+                const status = url.searchParams.get('status');
+                let rows;
+                if (status && status !== 'all') {
+                  rows = await sql`
+                    SELECT * FROM interpretive_work_submissions
+                    WHERE status = ${status}
+                    ORDER BY created_at DESC
+                  `;
+                } else {
+                  rows = await sql`
+                    SELECT * FROM interpretive_work_submissions
+                    ORDER BY created_at DESC
+                  `;
+                }
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify(rows));
+              } catch (err) {
+                console.error('GET /api/admin/submissions dev error:', err);
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: 'Failed to fetch submissions.' }));
+              }
+            } else if (req.method === 'PATCH') {
+              let body = '';
+              req.on('data', chunk => body += chunk);
+              req.on('end', async () => {
+                try {
+                  const { id, status, adminNotes } = JSON.parse(body);
+                  if (!id) {
+                    res.statusCode = 400;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ error: 'Missing required field: id' }));
+                    return;
+                  }
+                  if (status !== undefined && !VALID_SUBMISSION_STATUSES.includes(status)) {
+                    res.statusCode = 400;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ error: `Invalid status. Must be one of: ${VALID_SUBMISSION_STATUSES.join(', ')}` }));
+                    return;
+                  }
+                  if (status === undefined && adminNotes === undefined) {
+                    res.statusCode = 400;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ error: 'No fields to update' }));
+                    return;
+                  }
+                  let updatedRows;
+                  if (status !== undefined && adminNotes !== undefined) {
+                    updatedRows = await sql`
+                      UPDATE interpretive_work_submissions
+                      SET status = ${status}, admin_notes = ${adminNotes}, updated_at = NOW()
+                      WHERE id = ${id} RETURNING *
+                    `;
+                  } else if (status !== undefined) {
+                    updatedRows = await sql`
+                      UPDATE interpretive_work_submissions
+                      SET status = ${status}, updated_at = NOW()
+                      WHERE id = ${id} RETURNING *
+                    `;
+                  } else {
+                    updatedRows = await sql`
+                      UPDATE interpretive_work_submissions
+                      SET admin_notes = ${adminNotes}, updated_at = NOW()
+                      WHERE id = ${id} RETURNING *
+                    `;
+                  }
+                  if (!updatedRows || updatedRows.length === 0) {
+                    res.statusCode = 404;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ error: 'Submission not found' }));
+                    return;
+                  }
+                  res.statusCode = 200;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify(updatedRows[0]));
+                } catch (err) {
+                  console.error('PATCH /api/admin/submissions dev error:', err);
+                  res.statusCode = 500;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify({ error: 'Failed to update submission.' }));
+                }
+              });
+            } else {
+              res.statusCode = 405;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Method not allowed' }));
+            }
           } else {
             next();
           }
