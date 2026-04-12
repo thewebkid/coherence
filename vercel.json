@@ -11,7 +11,6 @@
     { "source": "/practice/embodied-transcendence", "destination": "/practice/projects/presence", "permanent": false }
   ],
   "rewrites": [
-    { "source": "/__clerk/:path*", "destination": "https://clerk.coherenceacrossscales.org/:path*" },
     { "source": "/((?!api/|__clerk/).*)", "destination": "/index.html" }
   ]
 }
