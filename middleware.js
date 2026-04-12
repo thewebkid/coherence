@@ -11,11 +11,16 @@ export default function middleware(request) {
   const targetPath = url.pathname.slice(CLERK_PROXY_PATH.length) || '/';
   const targetUrl = new URL(targetPath + url.search, CLERK_FAPI_ORIGIN);
 
+  const proxyUrl = `${url.origin}${CLERK_PROXY_PATH}`;
+  const secretKey = process.env.CLERK_SECRET_KEY || '';
+  const forwardedFor = request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for') || '127.0.0.1';
+
   const headers = new Headers(request.headers);
-  headers.set('Clerk-Proxy-Url', `${url.origin}${CLERK_PROXY_PATH}`);
-  headers.set('Clerk-Secret-Key', process.env.CLERK_SECRET_KEY || '');
-  headers.set('X-Forwarded-For', request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for') || '');
-  headers.delete('host');
+  headers.set('Clerk-Proxy-Url', proxyUrl);
+  headers.set('Clerk-Secret-Key', secretKey);
+  headers.set('X-Forwarded-For', forwardedFor);
+  headers.set('Origin', url.origin);
+  headers.set('Host', new URL(CLERK_FAPI_ORIGIN).host);
 
   return fetch(targetUrl.toString(), {
     method: request.method,
