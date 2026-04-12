@@ -27,9 +27,13 @@ export const createApp = ViteSSG(
     app.directive('b-tooltip', vBTooltip);
 
     if (isClient) {
-      app.use(clerkPlugin, {
+      const clerkOptions = {
         publishableKey: import.meta.env.VITE_CLERK_PUBLISHABLE_KEY,
-      });
+      };
+      if (import.meta.env.VITE_CLERK_PROXY_URL) {
+        clerkOptions.proxyUrl = import.meta.env.VITE_CLERK_PROXY_URL;
+      }
+      app.use(clerkPlugin, clerkOptions);
       const theme = useThemeStore();
       theme.applyTheme(theme.preference);
     }
