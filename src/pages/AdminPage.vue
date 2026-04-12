@@ -20,27 +20,29 @@
     <div v-else class="admin-shell">
       <div class="admin-header">
         <h1 class="admin-title">Interpretive Works</h1>
+        <div class="filter-tabs">
+        <button
+            v-for="tab in tabs"
+            :key="tab.value"
+            class="filter-tab"
+            :class="{ active: activeFilter === tab.value }"
+            @click="setFilter(tab.value)"
+        >
+          {{ tab.label }}
+          <span v-if="countFor(tab.value)" class="tab-count">{{ countFor(tab.value) }}</span>
+        </button>
+      </div>
         <div class="admin-user">
           <span class="admin-user-email">{{ userEmail }}</span>
           <button @click="signOut" class="btn-ghost">Sign out</button>
+          <button class="btn-ghost" href="/">CAS</button>
         </div>
       </div>
 
       <div class="admin-body">
         <!-- Submission list pane -->
         <aside class="admin-sidebar">
-          <div class="filter-tabs">
-            <button
-              v-for="tab in tabs"
-              :key="tab.value"
-              class="filter-tab"
-              :class="{ active: activeFilter === tab.value }"
-              @click="setFilter(tab.value)"
-            >
-              {{ tab.label }}
-              <span v-if="countFor(tab.value)" class="tab-count">{{ countFor(tab.value) }}</span>
-            </button>
-          </div>
+
 
           <div v-if="loadingList" class="list-loading">Loading…</div>
 
@@ -349,11 +351,17 @@ function copyEmail(email) {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .admin-page {
   min-height: 100vh;
+
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: 111;
+  width: 100%;
   background: var(--bg-secondary);
-  padding-top: 4rem; // clear fixed nav
+  //padding-top: 4rem; // clear fixed nav
 }
 
 .admin-loading,
