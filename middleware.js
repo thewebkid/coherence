@@ -1,5 +1,5 @@
 const CLERK_PROXY_PATH = '/__clerk';
-const CLERK_FAPI_ORIGIN = 'https://frontend-api.clerk.dev';
+const CLERK_FAPI_ORIGIN = 'https://clerk.coherenceacrossscales.org';
 
 export default function middleware(request) {
   const url = new URL(request.url);
@@ -32,7 +32,6 @@ export default function middleware(request) {
     if (lower === 'host' || lower === 'origin' || lower === 'referer') continue;
     headers.set(key, value);
   }
-  headers.set('Host', 'clerk.coherenceacrossscales.org');
   headers.set('Clerk-Proxy-Url', proxyUrl);
   headers.set('Clerk-Secret-Key', secretKey);
   headers.set('X-Forwarded-For', forwardedFor);
