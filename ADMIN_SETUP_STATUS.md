@@ -36,33 +36,54 @@ Clerk's FAPI Worker routes by `Host` header. To proxy correctly, we need EITHER:
 1. **TLS to work on `clerk.coherenceacrossscales.org`** — so `fetch()` sends the correct Host automatically
 2. **A way to set the `Host` header** — which the Fetch API forbids
 
-### Next Steps (for new thread)
+### Diagnostic Results (Apr 2026 — Serverless Function approach)
 
-**Option A: Wait for cert propagation** (simplest)
-- Revert middleware to fetch from `clerk.coherenceacrossscales.org`
-- Monitor `https://coherence-drab.vercel.app/__clerk/v1/environment` — when it stops returning 500 and returns JSON, everything works
-- Could be minutes or hours; Cloudflare says up to 24h
+Replaced Edge Middleware with Node.js serverless function (`api/clerk-proxy.js`) + Vercel rewrite. Ran TLS diagnostics from multiple Vercel regions:
 
-**Option B: Use Vercel Serverless Function instead of Edge Middleware** (if Option A takes too long)
-- Node.js runtime (not Edge) can use `http`/`https` modules which DO allow setting `Host` header
-- Create `api/__clerk/[...path].js` serverless function
-- Can `fetch()` to `frontend-api.clerk.dev` while manually setting `Host: clerk.coherenceacrossscales.org` via Node's `http.request`
-- This completely bypasses both the cert propagation AND the forbidden header issues
+| Backend hostname | TLS | HTTP (with Host: clerk.coherenceacrossscales.org) | Region |
+|---|---|---|---|
+| `clerk.coherenceacrossscales.org` | FAIL (alert 40 handshake_failure) | N/A | iad1, lhr1 |
+| `frontend-api.clerk.services` | FAIL (alert 40 handshake_failure) | N/A | iad1, lhr1 |
+| `frontend-api.clerk.dev` | OK (cert: Google Trust Services) | 403 Cloudflare (wrong zone) | iad1, lhr1 |
+| `frontend-api.clerk.dev` | OK | 400 `host_invalid` (with Host: frontend-api.clerk.dev) | iad1 |
 
-**Option C: Contact Clerk support**
+**Key finding**: The TLS failure is **global**, not region-specific. Even `frontend-api.clerk.services` (Clerk's own CNAME target) fails TLS. This is a Clerk/Cloudflare infrastructure issue, not just cert propagation delay.
+
+**Approaches exhausted**:
+- Edge Middleware → can't set `Host` header (Fetch API forbids it)
+- Node.js serverless → TLS handshake fails to all Clerk FAPI domains
+- Raw `tls.connect` → confirms `frontend-api.clerk.dev` TLS works, but Cloudflare 403s when Host mismatches zone
+- Region switching (iad1 → lhr1) → same TLS failures everywhere
+- Setting `Clerk-Proxy-Url`/`Clerk-Secret-Key` headers → Clerk `host_invalid` (can't route by proxy header alone)
+
+### Immediate Fix — Use Development Clerk Instance on Staging
+
+Change Vercel env vars for Production to temporarily use the dev Clerk instance:
+
+| Variable | Current (broken) | Temporary fix |
+|---|---|---|
+| `VITE_CLERK_PUBLISHABLE_KEY` | `pk_live_Y2xlcmsu...` | `pk_test_Y2F1c2FsLWNhcmlib3UtOTcuY2xlcmsuYWNjb3VudHMuZGV2JA` |
+| `CLERK_SECRET_KEY` | `sk_live_tK...` | `sk_test_u57KKvDRTXmfBcZgZur4vx1fMDYzSajb63KcCn0VRX` |
+| `VITE_CLERK_PROXY_URL` | `https://coherence-drab.vercel.app/__clerk` | **Remove entirely** |
+
+This bypasses the broken SSL by using the dev instance FAPI (`causal-caribou-97.clerk.accounts.dev`) which has working TLS. Trade-off: staging uses a different user pool than eventual production.
+
+### Permanent Fix — Contact Clerk Support
+
 - Instance ID: `ins_3CEyFOp8hdF65IQqgC9EhTaVGpZ`
 - App ID: `app_3CCURqtnqgPjwplV84EqGzlU6mY`
-- Issue: SSL cert shows "issued" in dashboard but TLS handshake fails from multiple locations after 3+ hours
+- Issue: SSL cert shows "issued" in dashboard but `clerk.coherenceacrossscales.org` AND `frontend-api.clerk.services` fail TLS globally (alert 40) from Vercel serverless (Node v24, multiple regions). Failure persists for days, not hours.
+- Alternative: Remove and re-add the custom domain in Clerk Dashboard to force a fresh cert issuance
 
 ### Current State of Code
 
-**`middleware.js`** — Vercel Edge Middleware
-- Currently points to `clerk.coherenceacrossscales.org` (fails due to SSL)
-- Has a `/__clerk/_debug` endpoint that confirms `CLERK_SECRET_KEY` is available (`sk_live_tK...`)
-- Proxy URL: `https://coherence-drab.vercel.app/__clerk`
-- Strips `host`/`origin`/`referer` headers, adds `Clerk-Proxy-Url`, `Clerk-Secret-Key`, `X-Forwarded-For`
+**`api/clerk-proxy.js`** — Vercel Serverless Function (Node.js)
+- Proxies `/__clerk/*` to `clerk.coherenceacrossscales.org` using `https.request`
+- Can set `Host` header (unlike Edge Middleware's Fetch API)
+- Currently fails due to SSL cert not propagating on Clerk's Cloudflare infrastructure
+- Ready to work once cert issue is resolved
 
-**`vercel.json`** — No `/__clerk` rewrite (middleware handles it)
+**`vercel.json`** — Rewrites `/__clerk/:path*` to `api/clerk-proxy` serverless function
 
 **`src/main.js`** — Passes `proxyUrl` from `VITE_CLERK_PROXY_URL` env var to Clerk plugin
 
@@ -95,7 +116,7 @@ Clerk's FAPI Worker routes by `Host` header. To proxy correctly, we need EITHER:
 
 | File | Purpose |
 |---|---|
-| `middleware.js` | Vercel Edge Middleware — proxies `/__clerk/*` to Clerk FAPI |
+| `api/clerk-proxy.js` | Vercel Serverless Function — proxies `/__clerk/*` to Clerk FAPI |
 | `src/main.js` | Clerk Vue plugin init — conditionally passes `proxyUrl` |
 | `vercel.json` | Redirects + SPA catch-all (no `/__clerk` rewrite) |
 | `api/_clerk-auth.js` | Backend auth helper — `verifyToken` + email allowlist |
