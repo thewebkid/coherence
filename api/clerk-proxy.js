@@ -1,7 +1,10 @@
+import https from 'node:https';
 import tls from 'node:tls';
 
+export const config = { regions: ['lhr1'] };
+
 const CLERK_FAPI_HOST = 'clerk.coherenceacrossscales.org';
-const CLERK_FAPI_BACKEND = 'frontend-api.clerk.dev';
+const CLERK_FAPI_BACKEND = CLERK_FAPI_HOST;
 const SKIP_HEADERS = new Set([
   'host', 'origin', 'referer', 'connection', 'transfer-encoding',
   'accept-encoding',
@@ -72,20 +75,22 @@ export default async function handler(req, res) {
 
   if (clerkPath === '/_test') {
     const results = {};
-    const configs = [
-      { label: 'host-custom', headers: { 'Host': CLERK_FAPI_HOST, 'Clerk-Proxy-Url': proxyUrl, 'Clerk-Secret-Key': secretKey } },
-      { label: 'host-backend', headers: { 'Host': CLERK_FAPI_BACKEND, 'Clerk-Proxy-Url': proxyUrl, 'Clerk-Secret-Key': secretKey } },
-      { label: 'host-backend+origin', headers: { 'Host': CLERK_FAPI_BACKEND, 'Origin': `https://${req.headers.host}`, 'Clerk-Proxy-Url': proxyUrl, 'Clerk-Secret-Key': secretKey } },
+    const targets = [
+      { label: 'custom-host', hostname: 'clerk.coherenceacrossscales.org' },
+      { label: 'clerk-services', hostname: 'frontend-api.clerk.services' },
+      { label: 'clerk-dev', hostname: 'frontend-api.clerk.dev' },
     ];
-    for (const cfg of configs) {
+    for (const t of targets) {
       try {
         const t0 = Date.now();
-        const r = await rawHttpRequest(CLERK_FAPI_BACKEND, CLERK_FAPI_BACKEND, 'GET', '/v1/environment', cfg.headers, null);
-        results[cfg.label] = { ms: Date.now() - t0, status: r.statusCode, body: r.body.slice(0, 300) };
+        const r = await rawHttpRequest(t.hostname, t.hostname, 'GET', '/v1/environment',
+          { 'Host': CLERK_FAPI_HOST, 'Clerk-Proxy-Url': proxyUrl, 'Clerk-Secret-Key': secretKey }, null);
+        results[t.label] = { ms: Date.now() - t0, status: r.statusCode, body: r.body.slice(0, 300) };
       } catch (err) {
-        results[cfg.label] = { error: err.message };
+        results[t.label] = { error: err.message };
       }
     }
+    results.region = process.env.VERCEL_REGION || 'unknown';
     return res.json(results);
   }
 
@@ -114,7 +119,7 @@ export default async function handler(req, res) {
 
   try {
     const upstream = await rawHttpRequest(
-      CLERK_FAPI_BACKEND, CLERK_FAPI_BACKEND,
+      CLERK_FAPI_HOST, CLERK_FAPI_HOST,
       req.method, fullPath, headers, body,
     );
 
@@ -127,6 +132,6 @@ export default async function handler(req, res) {
     res.end(upstream.body);
   } catch (err) {
     console.error('Clerk proxy error:', err);
-    res.status(502).json({ error: 'Clerk proxy failed', details: err.message });
+    res.status(502).json({ error: 'Clerk proxy failed', details: err.message, region: process.env.VERCEL_REGION });
   }
 }
