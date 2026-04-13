@@ -8,6 +8,17 @@ export default function middleware(request) {
     return;
   }
 
+  // Temporary debug endpoint — remove after confirming proxy works
+  if (url.pathname === '/__clerk/_debug') {
+    const sk = process.env.CLERK_SECRET_KEY || '';
+    return new Response(JSON.stringify({
+      hasSecretKey: sk.length > 0,
+      secretKeyPrefix: sk.substring(0, 10),
+      proxyUrl: `${url.origin}${CLERK_PROXY_PATH}`,
+      origin: url.origin,
+    }), { headers: { 'Content-Type': 'application/json' } });
+  }
+
   const targetPath = url.pathname.slice(CLERK_PROXY_PATH.length) || '/';
   const targetUrl = new URL(targetPath + url.search, CLERK_FAPI_ORIGIN);
 
