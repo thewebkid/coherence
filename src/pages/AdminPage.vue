@@ -35,7 +35,7 @@
         <div class="admin-user">
           <span class="admin-user-email">{{ userEmail }}</span>
           <button @click="signOut" class="btn-ghost">Sign out</button>
-          <button class="btn-ghost" href="/">CAS</button>
+          <router-link to="/"><button class="btn-ghost">CAS</button></router-link>
         </div>
       </div>
 
@@ -151,6 +151,22 @@
                 :src="selected.work_url"
                 :alt="selected.work_title"
                 class="content-preview-img"
+              />
+              <!-- Video preview -->
+              <video
+                v-else-if="isVideoUrl(selected.work_url)"
+                :src="selected.work_url"
+                class="content-preview-video"
+                controls
+                preload="metadata"
+              />
+              <!-- Audio preview -->
+              <audio
+                v-else-if="isAudioUrl(selected.work_url)"
+                :src="selected.work_url"
+                class="content-preview-audio"
+                controls
+                preload="metadata"
               />
             </div>
 
@@ -346,6 +362,14 @@ function isImageUrl(url) {
   return /\.(jpg|jpeg|png|gif|webp|svg)(\?.*)?$/i.test(url);
 }
 
+function isVideoUrl(url) {
+  return /\.(mp4|mov|webm|ogv|avi|mkv)(\?.*)?$/i.test(url);
+}
+
+function isAudioUrl(url) {
+  return /\.(mp3|wav|ogg|flac|aac|m4a)(\?.*)?$/i.test(url);
+}
+
 function copyEmail(email) {
   navigator.clipboard?.writeText(email);
 }
@@ -353,11 +377,13 @@ function copyEmail(email) {
 
 <style lang="scss">
 .admin-page {
-  min-height: 100vh;
+  min-height: 100%;
+  height: 100%;
 
   position: absolute;
   top:0;
   left:0;
+  bottom:0;
   z-index: 111;
   width: 100%;
   background: var(--bg-secondary);
@@ -379,7 +405,7 @@ function copyEmail(email) {
 .admin-shell {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 4rem);
+  height: 100vh;
 }
 
 .admin-header {
@@ -688,6 +714,21 @@ function copyEmail(email) {
   max-height: 400px;
   object-fit: contain;
   border-radius: var(--radius-sm);
+  display: block;
+  margin-top: var(--spacing-sm);
+}
+
+.content-preview-video {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: var(--radius-sm);
+  display: block;
+  margin-top: var(--spacing-sm);
+  background: #000;
+}
+
+.content-preview-audio {
+  width: 100%;
   display: block;
   margin-top: var(--spacing-sm);
 }

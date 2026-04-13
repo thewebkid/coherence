@@ -218,6 +218,9 @@ async function handleSubmit() {
     if (!res.ok) throw new Error(data.error || 'Submission failed');
 
     submitted.value = true;
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   } catch (err) {
     submitError.value = err.message || 'An error occurred. Please try again.';
   } finally {
