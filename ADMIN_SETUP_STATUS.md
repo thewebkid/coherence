@@ -9,82 +9,107 @@ An admin panel at `/admin` (AdminPage.vue) for reviewing interpretive work submi
 - **Local dev (`localhost:5777`)** — fully functional. Clerk auth, submission list, status updates all work.
 - **Neon Postgres** — `interpretive_work_submissions` table exists, test submissions are visible.
 - **Vercel API routes** (`api/admin/submissions.js`) — production serverless handlers are correct.
-- **Vite dev middleware** (`vite.config.js`) — `/api/admin/submissions` GET and PATCH are handled inline, bypassing the raw JS file serving bug that caused the original `SyntaxError: Unexpected token 'i', "import { n"`.
+- **Vite dev middleware** (`vite.config.js`) — `/api/admin/submissions` GET and PATCH are handled inline.
 
-## Bugs Fixed Along the Way
+## Staging (`coherence-drab.vercel.app`) — Blocked 🔴
 
-| Bug | Fix |
-|---|---|
-| `SyntaxError: Unexpected token 'i', "import { n"` | Added `/api/admin/submissions` to Vite dev middleware — it was falling through to `next()` and Vite was serving the raw JS file |
-| 403 Forbidden | `kid@thewebkid.com` was in the frontend allowlist but missing from `api/_clerk-auth.js` and `vite.config.js` backend allowlists |
-| 401 Unauthorized | `verifyToken` is a **standalone export** from `@clerk/backend` v3, NOT a method on the `ClerkClient` object. `clerk.verifyToken()` was calling `undefined`. Fixed in both `vite.config.js` and `api/_clerk-auth.js` |
-| Dev server Clerk init | Added `authorizedParties: ['http://localhost:5777']` to `verifyToken` call in dev middleware |
-| Clerk SSL cert not propagating | `clerk.coherenceacrossscales.org` SSL for SaaS cert stuck on Cloudflare. Switched from Vercel rewrite → Vercel Edge Middleware proxying to `frontend-api.clerk.dev` with Clerk proxy headers |
+### The Problem
 
-## Staging (`coherence-drab.vercel.app`) — In Progress 🟡
+Clerk JS needs to reach the Clerk Frontend API. In production, the SDK derives the URL `clerk.coherenceacrossscales.org` from the publishable key. That hostname has a valid DNS CNAME and Clerk says "SSL certificates issued," but **the Cloudflare SSL-for-SaaS cert has not propagated to all edge PoPs** — Vercel's `sfo1` edge still gets TLS handshake failures.
 
-### Architecture
-The Clerk proxy uses a **Vercel Edge Middleware** (`middleware.js`) that intercepts `/__clerk/*` requests and forwards them to `https://frontend-api.clerk.dev/*` with the required Clerk proxy headers (`Clerk-Proxy-Url`, `Clerk-Secret-Key`, `X-Forwarded-For`). This completely bypasses the `clerk.coherenceacrossscales.org` SSL cert propagation issue.
+### What's Been Tried (and what we learned)
 
-### What's Been Set Up
-- **Clerk production instance** created for `coherenceacrossscales.org` (instance ID: `ins_3CEyFOp8hdF65IQqgC9EhTaVGpZ`)
-- **DNS**: `clerk.coherenceacrossscales.org` CNAME → `frontend-api.clerk.services` (verified in Clerk dashboard, SSL cert issued but slow to propagate)
-- **Vercel env vars** set:
-  - `VITE_CLERK_PUBLISHABLE_KEY` = `pk_live_*` (Production)
-  - `VITE_CLERK_PUBLISHABLE_KEY` = `pk_test_*` (All Pre-Production Environments)
-  - `CLERK_SECRET_KEY` = `sk_live_...` (Production + Preview)
-  - `VITE_CLERK_PROXY_URL` = `https://coherence-drab.vercel.app/__clerk` (Production + Preview)
-- **Vercel Edge Middleware** (`middleware.js`): proxies `/__clerk/*` → `https://frontend-api.clerk.dev/*` with required Clerk headers
-- **Clerk dashboard** proxy URL: `https://coherence-drab.vercel.app/__clerk`
-- **`src/main.js`** passes `proxyUrl` from `VITE_CLERK_PROXY_URL` env var when set
+| Approach | Result | Why |
+|---|---|---|
+| Direct CNAME (`clerk.coherenceacrossscales.org`) | `ERR_SSL_VERSION_OR_CIPHER_MISMATCH` | Cloudflare SSL-for-SaaS cert not propagated to browser's / Vercel's PoP |
+| Vercel rewrite to `clerk.coherenceacrossscales.org` | `502 ROUTER_EXTERNAL_TARGET_HANDSHAKE_ERROR` | Same TLS issue from Vercel's edge |
+| Edge Middleware → `frontend-api.clerk.dev` | `host_invalid` — "unable to attribute to instance" | TLS works, but `Host` is a **forbidden header** in Fetch API — can't be overridden. Clerk Worker sees `Host: frontend-api.clerk.dev` which doesn't map to any instance |
+| Edge Middleware → `clerk.coherenceacrossscales.org` | `500 MIDDLEWARE_INVOCATION_FAILED` | Same TLS propagation issue, now from Edge Runtime |
 
-### Steps to Complete
-1. ✅ Add `middleware.js` Edge Middleware to proxy `/__clerk/*` to `frontend-api.clerk.dev`
-2. ✅ Remove old Vercel rewrite from `vercel.json`
-3. Add `VITE_CLERK_PROXY_URL=https://coherence-drab.vercel.app/__clerk` to Vercel (Production + Preview)
-4. Re-add proxy URL `https://coherence-drab.vercel.app/__clerk` in Clerk dashboard → Domains → Frontend API → Set proxy configuration
-5. Push changes and redeploy
+### Root Cause
+
+Clerk uses **Cloudflare SSL for SaaS** (custom hostnames on Workers). The cert for `clerk.coherenceacrossscales.org` was issued (dashboard confirms) but hasn't propagated to all Cloudflare edge PoPs. This can take up to 24 hours per Cloudflare docs. From some external servers the cert works (WebFetch got 500 responses = TLS succeeded), but from Vercel `sfo1` and local WSL it still fails TLS.
+
+### The Fundamental Constraint
+
+Clerk's FAPI Worker routes by `Host` header. To proxy correctly, we need EITHER:
+1. **TLS to work on `clerk.coherenceacrossscales.org`** — so `fetch()` sends the correct Host automatically
+2. **A way to set the `Host` header** — which the Fetch API forbids
+
+### Next Steps (for new thread)
+
+**Option A: Wait for cert propagation** (simplest)
+- Revert middleware to fetch from `clerk.coherenceacrossscales.org`
+- Monitor `https://coherence-drab.vercel.app/__clerk/v1/environment` — when it stops returning 500 and returns JSON, everything works
+- Could be minutes or hours; Cloudflare says up to 24h
+
+**Option B: Use Vercel Serverless Function instead of Edge Middleware** (if Option A takes too long)
+- Node.js runtime (not Edge) can use `http`/`https` modules which DO allow setting `Host` header
+- Create `api/__clerk/[...path].js` serverless function
+- Can `fetch()` to `frontend-api.clerk.dev` while manually setting `Host: clerk.coherenceacrossscales.org` via Node's `http.request`
+- This completely bypasses both the cert propagation AND the forbidden header issues
+
+**Option C: Contact Clerk support**
+- Instance ID: `ins_3CEyFOp8hdF65IQqgC9EhTaVGpZ`
+- App ID: `app_3CCURqtnqgPjwplV84EqGzlU6mY`
+- Issue: SSL cert shows "issued" in dashboard but TLS handshake fails from multiple locations after 3+ hours
+
+### Current State of Code
+
+**`middleware.js`** — Vercel Edge Middleware
+- Currently points to `clerk.coherenceacrossscales.org` (fails due to SSL)
+- Has a `/__clerk/_debug` endpoint that confirms `CLERK_SECRET_KEY` is available (`sk_live_tK...`)
+- Proxy URL: `https://coherence-drab.vercel.app/__clerk`
+- Strips `host`/`origin`/`referer` headers, adds `Clerk-Proxy-Url`, `Clerk-Secret-Key`, `X-Forwarded-For`
+
+**`vercel.json`** — No `/__clerk` rewrite (middleware handles it)
+
+**`src/main.js`** — Passes `proxyUrl` from `VITE_CLERK_PROXY_URL` env var to Clerk plugin
+
+### Vercel Environment Variables
+
+| Name | Value | Scope |
+|---|---|---|
+| `VITE_CLERK_PUBLISHABLE_KEY` | `pk_live_Y2xlcmsuY29oZXJlbmNlYWNyb3Nzc2NhbGVzLm9yZyQ` | Production |
+| `VITE_CLERK_PUBLISHABLE_KEY` | `pk_test_*` | All Pre-Production |
+| `CLERK_SECRET_KEY` | `sk_live_tK...` | Production + Preview |
+| `VITE_CLERK_PROXY_URL` | `https://coherence-drab.vercel.app/__clerk` | Production + Preview |
+
+### Clerk Dashboard State
+
+- **Domain**: `coherenceacrossscales.org`
+- **Frontend API CNAME**: `clerk.coherenceacrossscales.org` → `frontend-api.clerk.services` — **Verified** ✅
+- **Proxy configuration**: `https://coherence-drab.vercel.app/__clerk` — **Verified** ✅
+- **SSL certificates**: **Issued** ✅ (but not propagated to all Cloudflare PoPs)
+- **Account portal / Email DNS**: Not set (not blocking)
 
 ## Environment Architecture
 
 | Environment | URL | Clerk Instance | Clerk Keys | Proxy |
 |---|---|---|---|---|
-| Local dev | `localhost:5777` | Development (`causal-caribou-97`) | `pk_test_*` from `.env.local` | Not needed |
-| Staging | `coherence-drab.vercel.app` | Production (`coherenceacrossscales.org`) | `pk_live_*` in Vercel | `/__clerk` → Edge Middleware → `frontend-api.clerk.dev` |
-| Production | `coherenceacrossscales.org` | Same production instance | Same `pk_live_*` | Same proxy (or direct once cert propagates) |
+| Local dev | `localhost:5777` | Development (`causal-caribou-97`) | `pk_test_*` / `sk_test_*` from `.env.local` | Not needed |
+| Staging | `coherence-drab.vercel.app` | Production (`coherenceacrossscales.org`) | `pk_live_*` / `sk_live_*` in Vercel | `/__clerk` Edge Middleware |
+| Production | `coherenceacrossscales.org` | Same production instance | Same keys | Same proxy (or direct once cert propagates) |
 
-## Key File Changes Made
+## Key Files
 
-### `middleware.js` (NEW)
-- Vercel Edge Middleware that proxies `/__clerk/*` to `https://frontend-api.clerk.dev/*`
-- Adds required headers: `Clerk-Proxy-Url`, `Clerk-Secret-Key`, `X-Forwarded-For`
-- Replaces the old Vercel rewrite which suffered from TLS handshake failures to `clerk.coherenceacrossscales.org`
+| File | Purpose |
+|---|---|
+| `middleware.js` | Vercel Edge Middleware — proxies `/__clerk/*` to Clerk FAPI |
+| `src/main.js` | Clerk Vue plugin init — conditionally passes `proxyUrl` |
+| `vercel.json` | Redirects + SPA catch-all (no `/__clerk` rewrite) |
+| `api/_clerk-auth.js` | Backend auth helper — `verifyToken` + email allowlist |
+| `api/admin/submissions.js` | Admin API — GET/PATCH submissions |
+| `vite.config.js` | Dev server middleware for `/api/admin/submissions` |
+| `src/pages/AdminPage.vue` | Admin panel UI |
 
-### `vite.config.js`
-- Added `import { createClerkClient, verifyToken as clerkVerifyToken } from '@clerk/backend'`
-- Added `verifyAdminAuthDev()` helper using standalone `verifyToken` (not `clerk.verifyToken`)
-- Added `/api/admin/submissions` GET + PATCH handlers in the middleware
-- Allowed emails list includes `kid@thewebkid.com`
+## Bugs Fixed Along the Way
 
-### `api/_clerk-auth.js`
-- Fixed to use standalone `verifyToken` from `@clerk/backend`
-- Added `kid@thewebkid.com` to `ALLOWED_EMAILS`
-
-### `src/main.js`
-- Clerk plugin now conditionally passes `proxyUrl` when `VITE_CLERK_PROXY_URL` is set
-
-### `vercel.json`
-- Removed `/__clerk/:path*` proxy rewrite (replaced by Edge Middleware)
-- SPA catch-all negative lookahead excludes `api/` and `__clerk/`
-
-## Clerk Dashboard DNS Status (Verified)
-
-| Name | Value | Required For | Status |
-|---|---|---|---|
-| `clerk` | `frontend-api.clerk.services` | Clerk JS / SSL cert | DNS ✅, SSL issued ✅ (slow to propagate to all Cloudflare PoPs) |
-| `accounts` | `accounts.clerk.services` | Account Portal | Not set |
-| `clkmail` | `mail.gxzv7zsnl1fu.clerk.services` | Email sending | Not set |
-| `clk._domainkey` | `dkim1.gxzv7zsnl1fu.clerk.services` | Email DKIM | Not set |
-| `clk2._domainkey` | `dkim2.gxzv7zsnl1fu.clerk.services` | Email DKIM | Not set |
-
-The proxy approach means the SSL cert propagation delay for `clerk.coherenceacrossscales.org` is no longer a blocker.
+| Bug | Fix |
+|---|---|
+| `SyntaxError: Unexpected token 'i'` | Added `/api/admin/submissions` to Vite dev middleware |
+| 403 Forbidden | Added `kid@thewebkid.com` to backend allowlists |
+| 401 Unauthorized | Use standalone `verifyToken` from `@clerk/backend` v3 |
+| Dev server Clerk init | Added `authorizedParties: ['http://localhost:5777']` |
+| Clerk SSL not propagating | Switched from Vercel rewrite to Edge Middleware (ongoing) |
+| `host_invalid` on proxy | `Host` is forbidden in Fetch API — can't override it in Edge Runtime |
