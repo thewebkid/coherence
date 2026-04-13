@@ -71,17 +71,22 @@ export default async function handler(req, res) {
   }
 
   if (clerkPath === '/_test') {
-    try {
-      const t0 = Date.now();
-      const result = await rawHttpRequest(
-        CLERK_FAPI_BACKEND, CLERK_FAPI_BACKEND, 'GET', '/v1/environment',
-        { 'Host': CLERK_FAPI_HOST, 'Clerk-Proxy-Url': proxyUrl, 'Clerk-Secret-Key': secretKey },
-        null,
-      );
-      return res.json({ ok: true, ms: Date.now() - t0, status: result.statusCode, bodySnippet: result.body.slice(0, 500) });
-    } catch (err) {
-      return res.json({ ok: false, error: err.message });
+    const results = {};
+    const configs = [
+      { label: 'host-custom', headers: { 'Host': CLERK_FAPI_HOST, 'Clerk-Proxy-Url': proxyUrl, 'Clerk-Secret-Key': secretKey } },
+      { label: 'host-backend', headers: { 'Host': CLERK_FAPI_BACKEND, 'Clerk-Proxy-Url': proxyUrl, 'Clerk-Secret-Key': secretKey } },
+      { label: 'host-backend+origin', headers: { 'Host': CLERK_FAPI_BACKEND, 'Origin': `https://${req.headers.host}`, 'Clerk-Proxy-Url': proxyUrl, 'Clerk-Secret-Key': secretKey } },
+    ];
+    for (const cfg of configs) {
+      try {
+        const t0 = Date.now();
+        const r = await rawHttpRequest(CLERK_FAPI_BACKEND, CLERK_FAPI_BACKEND, 'GET', '/v1/environment', cfg.headers, null);
+        results[cfg.label] = { ms: Date.now() - t0, status: r.statusCode, body: r.body.slice(0, 300) };
+      } catch (err) {
+        results[cfg.label] = { error: err.message };
+      }
     }
+    return res.json(results);
   }
 
   const forwardedFor =
