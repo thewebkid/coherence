@@ -26,12 +26,15 @@ export default function middleware(request) {
   const secretKey = process.env.CLERK_SECRET_KEY || '';
   const forwardedFor = request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for') || '127.0.0.1';
 
-  const headers = new Headers(request.headers);
+  const headers = new Headers();
+  for (const [key, value] of request.headers.entries()) {
+    const lower = key.toLowerCase();
+    if (lower === 'host' || lower === 'origin' || lower === 'referer') continue;
+    headers.set(key, value);
+  }
   headers.set('Clerk-Proxy-Url', proxyUrl);
   headers.set('Clerk-Secret-Key', secretKey);
   headers.set('X-Forwarded-For', forwardedFor);
-  headers.set('Origin', url.origin);
-  headers.set('Host', new URL(CLERK_FAPI_ORIGIN).host);
 
   return fetch(targetUrl.toString(), {
     method: request.method,
