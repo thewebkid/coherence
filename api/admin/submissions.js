@@ -1,5 +1,9 @@
 import { neon } from '@neondatabase/serverless';
 import { verifyAdminAuth } from '../_clerk-auth.js';
+import {
+  sendSubmitterAcceptedEmail,
+  sendSubmitterDeclinedEmail,
+} from '../_interpretive-mail.js';
 
 const VALID_STATUSES = ['unread', 'approved', 'declined', 'archived'];
 
@@ -58,6 +62,18 @@ export default async function handler(req, res) {
     }
 
     try {
+      let previous = null;
+      if (status !== undefined) {
+        const existing = await sql`
+          SELECT id, status, submitter_email FROM interpretive_work_submissions
+          WHERE id = ${id}
+        `;
+        if (!existing || existing.length === 0) {
+          return res.status(404).json({ error: 'Submission not found' });
+        }
+        previous = existing[0];
+      }
+
       let updatedRows;
       if (status !== undefined && adminNotes !== undefined) {
         updatedRows = await sql`
@@ -86,7 +102,17 @@ export default async function handler(req, res) {
         return res.status(404).json({ error: 'Submission not found' });
       }
 
-      return res.status(200).json(updatedRows[0]);
+      const updated = updatedRows[0];
+      if (previous && status !== undefined) {
+        const email = previous.submitter_email;
+        if (status === 'approved' && previous.status !== 'approved') {
+          await sendSubmitterAcceptedEmail(email);
+        } else if (status === 'declined' && previous.status !== 'declined') {
+          await sendSubmitterDeclinedEmail(email);
+        }
+      }
+
+      return res.status(200).json(updated);
     } catch (err) {
       console.error('PATCH /api/admin/submissions error:', err);
       return res.status(500).json({ error: 'Failed to update submission.' });
