@@ -32,6 +32,7 @@ export default function middleware(request) {
     if (lower === 'host' || lower === 'origin' || lower === 'referer') continue;
     headers.set(key, value);
   }
+  headers.set('Host', 'clerk.coherenceacrossscales.org');
   headers.set('Clerk-Proxy-Url', proxyUrl);
   headers.set('Clerk-Secret-Key', secretKey);
   headers.set('X-Forwarded-For', forwardedFor);
