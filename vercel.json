@@ -11,6 +11,7 @@
     { "source": "/practice/embodied-transcendence", "destination": "/practice/projects/presence", "permanent": false }
   ],
   "rewrites": [
+    { "source": "/__clerk/:path*", "destination": "/api/clerk-proxy?__clerk_path=:path*" },
     { "source": "/((?!api/|__clerk/).*)", "destination": "/index.html" }
   ]
 }
