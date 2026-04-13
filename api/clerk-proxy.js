@@ -1,7 +1,7 @@
 import https from 'node:https';
 
 const CLERK_FAPI_HOST = 'clerk.coherenceacrossscales.org';
-const CLERK_FAPI_BACKEND = 'frontend-api.clerk.dev';
+const CLERK_FAPI_BACKEND = 'frontend-api.clerk.services';
 const SKIP_HEADERS = new Set([
   'host', 'origin', 'referer', 'connection', 'transfer-encoding',
 ]);
