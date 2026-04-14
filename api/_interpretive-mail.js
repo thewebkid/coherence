@@ -2,7 +2,7 @@
 
 export const ADMIN_NOTIFY_EMAILS = ['mahunahi@gmail.com', 'kid@thewebkid.com'];
 
-const FROM = 'notifications@coherenceacrossscales.org';
+const FROM = 'notifications@notify.coherenceacrossscales.org';
 
 export function escapeHtml(text) {
   if (text == null || text === '') return '';
