@@ -84,7 +84,7 @@ export async function sendAdminNewSubmissionEmail(payload) {
     html: `
       <p>A new work submission has been received.</p>
       <table style="border-collapse:collapse;max-width:640px;">${tableRows}</table>
-      <p><a href="https://coherenceacrossscales.org/admin">Review in admin panel →</a></p>
+      <p><a href="https://coherence-drab.vercel.app/admin">Review in admin panel →</a></p>
     `,
   });
 }
