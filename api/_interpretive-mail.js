@@ -1,6 +1,5 @@
 /** Resend helpers for interpretive submissions (Vercel serverless). */
-
-export const ADMIN_NOTIFY_EMAILS = ['mahunahi@gmail.com', 'kid@thewebkid.com'];
+export const ADMIN_NOTIFY_EMAILS = ['submissions@coherenceacrossscales.org', 'kid@thewebkid.com'];
 
 const FROM = 'notifications@notify.coherenceacrossscales.org';
 
