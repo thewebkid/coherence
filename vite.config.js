@@ -354,6 +354,70 @@ export default defineConfig({
               res.setHeader('Content-Type', 'application/json');
               res.end(JSON.stringify({ error: 'Failed to fetch word detail.' }));
             }
+          } else if (req.url === '/api/weekly-signal') {
+            const POSTGRES_URL = process.env.POSTGRES_URL;
+            if (!POSTGRES_URL) {
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Database connection not configured.' }));
+              return;
+            }
+            const sql = neon(POSTGRES_URL);
+
+            if (req.method === 'GET') {
+              try {
+                const rows = await sql`
+                  SELECT id, label, timeframe, content, created_at
+                  FROM current_signals
+                  ORDER BY created_at DESC
+                  LIMIT 1
+                `;
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
+                res.end(JSON.stringify(rows && rows.length ? rows[0] : null));
+              } catch (err) {
+                console.error('GET /api/weekly-signal dev error:', err);
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: 'Failed to fetch current signal.' }));
+              }
+            } else if (req.method === 'POST') {
+              const admin = await verifyAdminAuthDev(req, res);
+              if (!admin) return;
+              let body = '';
+              req.on('data', chunk => body += chunk);
+              req.on('end', async () => {
+                try {
+                  const { label, timeframe, content } = JSON.parse(body);
+                  if (!label || !timeframe || !content) {
+                    res.statusCode = 400;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({
+                      error: 'Missing required fields: label, timeframe, and content are all required.',
+                    }));
+                    return;
+                  }
+                  const inserted = await sql`
+                    INSERT INTO current_signals (label, timeframe, content)
+                    VALUES (${label}, ${timeframe}, ${content})
+                    RETURNING id, label, timeframe, content, created_at
+                  `;
+                  res.statusCode = 201;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify(inserted[0]));
+                } catch (err) {
+                  console.error('POST /api/weekly-signal dev error:', err);
+                  res.statusCode = 500;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify({ error: 'Failed to publish current signal.' }));
+                }
+              });
+            } else {
+              res.statusCode = 405;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Method not allowed' }));
+            }
           } else if (req.url === '/api/submit-work' && req.method === 'POST') {
             let body = '';
             req.on('data', chunk => body += chunk);
@@ -405,6 +469,64 @@ export default defineConfig({
                 res.end(JSON.stringify({ error: 'Failed to store submission. Please try again.' }));
               }
             });
+          } else if (req.url.startsWith('/api/admin/observations')) {
+            const admin = await verifyAdminAuthDev(req, res);
+            if (!admin) return;
+
+            if (req.method !== 'GET') {
+              res.statusCode = 405;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Method not allowed' }));
+              return;
+            }
+
+            const POSTGRES_URL = process.env.POSTGRES_URL;
+            if (!POSTGRES_URL) {
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Database connection not configured.' }));
+              return;
+            }
+            const sql = neon(POSTGRES_URL);
+
+            const VALID_DAYS = new Set(['7', '14', '21', 'all']);
+            const url = new URL(req.url, 'http://localhost');
+            const days = (url.searchParams.get('days') ?? '7').toString();
+            if (!VALID_DAYS.has(days)) {
+              res.statusCode = 400;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({
+                error: `Invalid days. Must be one of: ${[...VALID_DAYS].join(', ')}`,
+              }));
+              return;
+            }
+
+            try {
+              let rows;
+              if (days === 'all') {
+                rows = await sql`
+                  SELECT id, project, signal, reflection, context, geography, created_at
+                  FROM observations
+                  ORDER BY created_at DESC
+                `;
+              } else {
+                const n = parseInt(days, 10);
+                rows = await sql`
+                  SELECT id, project, signal, reflection, context, geography, created_at
+                  FROM observations
+                  WHERE created_at >= NOW() - (INTERVAL '1 day' * ${n})
+                  ORDER BY created_at DESC
+                `;
+              }
+              res.statusCode = 200;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify(rows));
+            } catch (err) {
+              console.error('GET /api/admin/observations dev error:', err);
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Failed to fetch observations.' }));
+            }
           } else if (req.url.startsWith('/api/admin/submissions')) {
             const admin = await verifyAdminAuthDev(req, res);
             if (!admin) return;

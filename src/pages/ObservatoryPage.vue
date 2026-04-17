@@ -10,25 +10,11 @@
         </header>
 
         <!-- Block 2: Weekly Signal -->
-        <section class="weekly-signal">
-          <div class="weekly-signal__inner">
-            <div class="weekly-signal__meta">
-              <span class="weekly-signal__label">Weekly Signal</span>
-              <span class="weekly-signal__date">{{ weeklySignal.date }}</span>
-            </div>
-            <div class="weekly-signal__body">
-              <p>{{ weeklySignal.opening }}</p>
-              <ul v-if="weeklySignal.bullets.length">
-                <li v-for="bullet in weeklySignal.bullets" :key="bullet">{{ bullet }}</li>
-              </ul>
-              <p v-if="weeklySignal.insight">{{ weeklySignal.insight }}</p>
-              <blockquote v-if="weeklySignal.quote" class="signal-quote">
-                "{{ weeklySignal.quote }}"
-              </blockquote>
-              <p v-if="weeklySignal.closing" class="signal-closing">{{ weeklySignal.closing }}</p>
-            </div>
-          </div>
-        </section>
+        <WeeklySignalDisplay
+          :label="currentSignal.label"
+          :timeframe="currentSignal.timeframe"
+          :content="currentSignal.content"
+        />
 
         <!-- Block 3: Short intro -->
         <section class="observatory-intro">
@@ -126,25 +112,46 @@ import WordField from '@/components/WordField.vue';
 import SignalFeed from '@/components/SignalFeed.vue';
 import SignalGlobe from '@/components/SignalGlobe.vue';
 import PlaceSignalModal from '@/components/PlaceSignalModal.vue';
+import WeeklySignalDisplay from '@/components/WeeklySignalDisplay.vue';
+import { fetchCurrentSignal } from '@/utils/currentSignal';
 
 useHead({
   title: 'Observatory — Coherence Across Scales',
   meta: [{ name: 'description', content: 'A live view of how perception is forming across the observer network.' }],
 });
 
-// Weekly signal — edit this object to update the weekly signal
-const weeklySignal = {
-  date: 'Week of April 1, 2026',
-  opening: 'This week, multiple observations pointed toward a shift in how uncertainty is held in conversation.',
-  bullets: [
-    'More pauses before response',
-    'Shared language around "not needing resolution"',
-    'Similar dynamics across unrelated groups',
-  ],
-  insight: 'These signals appeared across Dialogue, Reflection, and Relational Field.',
-  quote: 'The conversation changed when no one tried to resolve it.',
-  closing: 'When uncertainty becomes shared, interaction begins to change.',
+// Fallback Weekly Signal used when the database has no row yet.
+// Once an admin publishes via /admin, the latest DB row replaces this.
+const FALLBACK_SIGNAL = {
+  label: 'Weekly Signal',
+  timeframe: 'Week of April 1, 2026',
+  content: `This week, multiple observations pointed toward a shift in how uncertainty is held in conversation.
+
+ - More pauses before response
+ - Shared language around "not needing resolution"
+ - Similar dynamics across unrelated groups
+
+These signals appeared across Dialogue, Reflection, and Relational Field.
+
+> "The conversation changed when no one tried to resolve it."
+
+_When uncertainty becomes shared, interaction begins to change._`,
 };
+
+const currentSignal = ref({ ...FALLBACK_SIGNAL });
+
+async function loadCurrentSignal() {
+  const row = await fetchCurrentSignal();
+  if (row && row.content) {
+    currentSignal.value = {
+      label: row.label,
+      timeframe: row.timeframe,
+      content: row.content,
+    };
+  }
+  // If row is null (no data / API error / dev middleware missing),
+  // we keep the hardcoded FALLBACK_SIGNAL so the page still renders.
+}
 
 const units = [
   { project: 'AI Observation', copy: 'Patterns detected through AI-assisted observation across language and behavior.', path: '/practice/projects/ai-observation' },
@@ -161,6 +168,7 @@ const alreadyPlaced = ref(false);
 
 onMounted(() => {
   alreadyPlaced.value = !!localStorage.getItem('mysignal-id');
+  loadCurrentSignal();
 });
 
 function openModal() { showModal.value = true; }
@@ -177,59 +185,6 @@ function onSignalPlaced({ lat, lng, id }) {
 
 <style lang="scss" scoped>
 @import '@/assets/styles/blockquote';
-
-// Weekly Signal
-.weekly-signal {
-  margin-bottom: var(--spacing-xl);
-  padding: var(--spacing-xl);
-  background: var(--bg-secondary);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
-}
-
-.weekly-signal__meta {
-  display: flex;
-  align-items: baseline;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
-}
-
-.weekly-signal__label {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-}
-
-.weekly-signal__date {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  color: var(--text-muted);
-}
-
-.weekly-signal__body {
-  p { margin-bottom: var(--spacing-sm); line-height: 1.75; }
-  ul {
-    margin: var(--spacing-sm) 0;
-    padding-left: 1.5rem;
-    li { margin-bottom: var(--spacing-xs); line-height: 1.7; }
-  }
-}
-
-.signal-quote {
-  border-left: 2px solid var(--border);
-  padding-left: var(--spacing-md);
-  font-style: italic;
-  color: var(--text-muted);
-  margin: var(--spacing-md) 0;
-}
-
-.signal-closing {
-  font-style: italic;
-  color: var(--text-muted);
-}
 
 // Intro
 .observatory-intro {
