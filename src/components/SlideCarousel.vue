@@ -116,6 +116,10 @@ onMounted(() => {
   flex-direction: column;
   min-height: calc(100vh - 10rem);
   outline: none;
+  margin:0 -10px;
+  @media (min-width: 768px) {
+    margin:0;
+  }
 }
 
 .slide-viewport {
@@ -123,19 +127,23 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-lg) 0;
+  padding: var(--spacing-xs) 0;
+  @media (min-width: 768px) {
+    padding: var(--spacing-lg) 0;
+  }
 }
 
 .slide-content {
   max-width: var(--content-width);
   width: 100%;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-sm);
   background: var(--bg-secondary);
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
 
   @media (min-width: 768px) {
     padding: var(--spacing-xl) calc(var(--spacing-xl) * 1.5);
+    margin:0;
   }
 }
 

@@ -33,7 +33,8 @@
                 from the cellular and relational to the civilizational and planetary.
               </p>
               <div class="work-card-actions">
-                <a href="/pdf/The-Mirror-Across-Scales.pdf" class="work-link" target="_blank" rel="noopener">Download PDF</a>
+                <router-link to="/mirror-across-scales" class="work-link">Read Online</router-link>
+                <DownloadButton href="/pdf/The-Mirror-Across-Scales.pdf" target="_blank" rel="noopener">Download PDF</DownloadButton>
               </div>
             </div>
           </article>
