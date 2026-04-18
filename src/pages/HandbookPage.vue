@@ -20,7 +20,7 @@
               Back to The Work
             </RouterLink>
             <h1>Handbook of Practices</h1>
-            <p class="handbook-subtitle">A practical guide on carrying coherence in our daily lives</p>
+            <p class="page-subtitle">A practical guide on carrying coherence in our daily lives</p>
           </header>
 
           <article class="handbook-article">
@@ -188,13 +188,6 @@ useHead({
 .handbook-header h1 {
   font-size: clamp(1.5rem, 4vw, 2rem);
   margin-bottom: var(--spacing-xs);
-}
-
-.handbook-subtitle {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--text-muted);
-  margin: 0;
 }
 
 .handbook-article {

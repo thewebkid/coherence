@@ -1,9 +1,9 @@
 <template>
-  <div class="orientation-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
-          <p class="orientation-page__category">Practice</p>
+          <p class="section-eyebrow">Practice</p>
           <h1>Orientation</h1>
         </header>
 
@@ -151,27 +151,8 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.orientation-page__category {
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-sm);
-}
-
 .orientation-page__intro {
   margin-bottom: var(--spacing-xl);
-
-  p {
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.75;
-    color: var(--text);
-    margin-bottom: var(--spacing-md);
-    &:last-child { margin-bottom: 0; }
-  }
 }
 
 .orientation-page__sep {

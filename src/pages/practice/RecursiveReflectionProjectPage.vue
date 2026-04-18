@@ -1,5 +1,5 @@
 <template>
-  <div class="recursive-reflection-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -394,72 +394,9 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.recursive-reflection-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
-  
-  h1 {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-    margin-bottom: 0;
-  }
-}
-
-.page-content {
-  max-width: 720px;
-  margin: 0 auto;
-  
-  p {
-    margin-bottom: var(--spacing-md);
-    line-height: 1.7;
-  }
-  
-  section {
-    margin-bottom: var(--spacing-xl);
-    
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: var(--spacing-md);
-    }
-  }
-  
-  ul {
-    margin: var(--spacing-md) 0;
-    padding-left: var(--spacing-lg);
-    
-    li {
-      margin-bottom: var(--spacing-xs);
-      line-height: 1.7;
-    }
-  }
-}
-
-.divider {
-  height: 0;
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: var(--spacing-xl) 0;
-}
-
-.block-quote {
-  font-style: italic;
-  color: var(--text-muted);
-  padding-left: var(--spacing-md);
-  border-left: 3px solid var(--accent);
-}
-
 .share-section {
   margin-top: var(--spacing-section);
   padding-top: var(--spacing-xl);
   border-top: 1px solid var(--border);
-}
-
-.page-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
 }
 </style>

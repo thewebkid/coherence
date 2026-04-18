@@ -1,8 +1,8 @@
 <template>
-  <div class="civ-orientation-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
-        <header class="page-header">
+        <header class="page-header is-centered">
           <h1>A Civilizational Orientation</h1>
         </header>
 
@@ -99,33 +99,9 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/blockquote';
-
-.civ-orientation-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
+.page-content blockquote {
   text-align: center;
 
-  h1 {
-    margin-bottom: 0;
-  }
-}
-
-.page-content {
-  p {
-    margin-bottom: var(--spacing-md);
-  }
-
-  blockquote {
-    // Using shared blockquote styles from _blockquote.scss
-    text-align: center;
-
-    p {
-      margin-bottom: 0;
-    }
-  }
+  p { margin-bottom: 0; }
 }
 </style>

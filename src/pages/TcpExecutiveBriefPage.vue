@@ -1,10 +1,10 @@
 <template>
-  <div class="doc-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
-        <header class="doc-header">
+        <header class="page-header">
           <h1>TCP Executive Vision Brief</h1>
-          <p class="doc-subtitle">The Coherence Project — A Planetary Observatory for Coherence</p>
+          <p class="page-subtitle">The Coherence Project — A Planetary Observatory for Coherence</p>
           <div class="doc-download">
             <DownloadButton
               href="/pdf/TCP-Executive-Brief.pdf"
@@ -13,7 +13,7 @@
           </div>
         </header>
 
-        <article class="doc-article">
+        <article>
           <MarkdownContent :source="markdownSource" />
         </article>
       </div>
@@ -50,30 +50,7 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.doc-page {
-  padding: var(--spacing-section) 0;
-}
-
-.doc-header {
-  margin-bottom: var(--spacing-xl);
-
-  h1 {
-    margin-bottom: var(--spacing-xs);
-  }
-}
-
-.doc-subtitle {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-lg);
-}
-
 .doc-download {
   margin-top: var(--spacing-md);
-}
-
-.doc-article {
-  max-width: var(--content-width);
 }
 </style>

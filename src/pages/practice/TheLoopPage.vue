@@ -1,10 +1,10 @@
 <template>
-  <div class="the-loop-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
-        <header class="page-header">
+        <header class="page-header is-centered">
           <h1>The Loop of Behavioral Participation</h1>
-          <p class="subtitle"><em>(the physics of embodied coherence)</em></p>
+          <p class="page-subtitle"><em>(the physics of embodied coherence)</em></p>
         </header>
 
         <div class="page-content">
@@ -119,11 +119,11 @@
             <p>
               We might say it simply:
             </p>
-            <blockquote>
+            <div class="accent-block">
               <p><strong>Not "I am sovereign."</strong><br>
               <strong>But:</strong><br>
               <strong>"I am entrusted with local coherence regulation within a multi-scale continuum."</strong></p>
-            </blockquote>
+            </div>
             <p>
               This is a lived responsibility, not an identity claim.
             </p>
@@ -261,67 +261,7 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.the-loop-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
-  text-align: center;
-  
-  h1 {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-    margin-bottom: var(--spacing-sm);
-  }
-}
-
-.subtitle {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.0625rem;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-.page-content {
-  max-width: 720px;
-  margin: 0 auto;
-  
-  p {
-    margin-bottom: var(--spacing-md);
-    line-height: 1.7;
-  }
-  
-  section {
-    margin-bottom: var(--spacing-xl);
-    
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: var(--spacing-md);
-    }
-  }
-  
-  ul {
-    margin: var(--spacing-md) 0;
-    padding-left: var(--spacing-lg);
-    
-    li {
-      margin-bottom: var(--spacing-xs);
-      line-height: 1.7;
-    }
-  }
-  
-  blockquote {
-    margin: var(--spacing-lg) 0;
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-left: 3px solid var(--accent);
-    background: var(--bg-secondary);
-    font-family: var(--font-serif);
-    font-style: italic;
-    color: var(--text);
-  }
-}
-
+// Loop diagram is specific to this page.
 .loop-diagram {
   display: flex;
   flex-wrap: wrap;
@@ -344,19 +284,5 @@ useHead({
 
 .arrow {
   color: var(--text-muted);
-}
-
-.closing-line {
-  margin-top: var(--spacing-xl);
-  text-align: center;
-  font-size: 1rem;
-  color: var(--text-muted);
-}
-
-.page-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
 }
 </style>

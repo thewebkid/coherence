@@ -1,10 +1,10 @@
 <template>
-  <div class="work-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
-        <header class="page-header">
+        <header class="page-header is-centered">
           <h1>The Work</h1>
-          <p class="page-intro">
+          <p class="page-subtitle">
             Three interconnected documents exploring coherence from theory to practice.
             Each is readable online and available for download.
           </p>
@@ -129,24 +129,7 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.work-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  text-align: center;
-  margin-bottom: var(--spacing-xl);
-
-  h1 {
-    margin-bottom: var(--spacing-sm);
-  }
-}
-
-.page-intro {
-  color: var(--text-muted);
-  max-width: 520px;
-  margin: 0 auto;
-}
+@use '@/assets/styles/mixins' as *;
 
 .work-cards {
   display: flex;
@@ -155,12 +138,7 @@ useHead({
 }
 
 .work-section-label {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
+  @include text-label;
   padding-top: var(--spacing-md);
   margin-top: var(--spacing-sm);
   border-top: 1px solid var(--border);

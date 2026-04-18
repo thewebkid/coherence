@@ -1,5 +1,5 @@
 <template>
-  <div class="note-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -166,7 +166,7 @@
           <p class="return-to-practice">
             <RouterLink to="/practice" class="text-link">Return to Practice →</RouterLink>
             <br>
-            <span class="return-to-practice__tagline">(Relational intelligence is key)</span>
+            <span class="text-note">(Relational intelligence is key)</span>
           </p>
         </div>
       </div>
@@ -187,32 +187,6 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.page-content {
-  section {
-    margin-top: var(--spacing-xl);
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid var(--border);
-  }
-
-  p {
-    margin-bottom: var(--spacing-md);
-    line-height: 1.75;
-    &:last-child { margin-bottom: 0; }
-  }
-
-  ul {
-    margin: var(--spacing-sm) 0 var(--spacing-md);
-    padding-left: 1.5rem;
-    li {
-      margin-bottom: var(--spacing-xs);
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--text);
-    }
-  }
-}
-
 .posture-list {
   display: flex;
   flex-direction: column;
@@ -228,6 +202,7 @@ useHead({
     color: var(--text);
     margin-bottom: 2px;
   }
+
   p {
     margin-bottom: 0;
     font-size: 0.9375rem;
@@ -245,18 +220,6 @@ useHead({
 
 .return-to-practice {
   margin-top: var(--spacing-md);
-  padding-top: 0;
   line-height: 1.75;
-}
-
-.text-link {
-  color: var(--accent);
-  text-decoration: none;
-  &:hover { text-decoration: underline; }
-}
-
-.return-to-practice__tagline {
-  font-size: 0.9375rem;
-  color: var(--text-muted);
 }
 </style>

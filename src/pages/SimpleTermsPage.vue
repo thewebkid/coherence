@@ -1,5 +1,5 @@
 <template>
-  <div class="simple-terms-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -49,12 +49,3 @@ useHead({
 });
 </script>
 
-<style lang="scss" scoped>
-.page-content {
-  p {
-    margin-bottom: var(--spacing-md);
-    line-height: 1.75;
-    &:last-child { margin-bottom: 0; }
-  }
-}
-</style>

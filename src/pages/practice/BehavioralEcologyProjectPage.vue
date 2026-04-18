@@ -1,5 +1,5 @@
 <template>
-  <div class="behavioral-ecology-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -254,48 +254,7 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.behavioral-ecology-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
-  
-  h1 {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-    margin-bottom: 0;
-  }
-}
-
-.page-content {
-  max-width: 720px;
-  margin: 0 auto;
-  
-  p {
-    margin-bottom: var(--spacing-md);
-    line-height: 1.7;
-  }
-  
-  section {
-    margin-bottom: var(--spacing-xl);
-    
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: var(--spacing-md);
-    }
-  }
-  
-  ul {
-    margin: var(--spacing-md) 0;
-    padding-left: var(--spacing-lg);
-    
-    li {
-      margin-bottom: var(--spacing-xs);
-      line-height: 1.7;
-    }
-  }
-}
-
+// Mechanism chain is a unique inline display element for this page.
 .mechanism-chain {
   padding: var(--spacing-md);
   background: var(--bg-secondary);
@@ -304,7 +263,7 @@ useHead({
   font-family: var(--font-sans);
   font-size: 0.9375rem;
   color: var(--accent);
-  
+
   p {
     margin: 0;
     line-height: 1.6;
@@ -315,19 +274,5 @@ useHead({
   margin-top: var(--spacing-section);
   padding-top: var(--spacing-xl);
   border-top: 1px solid var(--border);
-}
-
-.closing-line {
-  margin-top: var(--spacing-xl);
-  text-align: center;
-  font-size: 1rem;
-  color: var(--text-muted);
-}
-
-.page-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
 }
 </style>

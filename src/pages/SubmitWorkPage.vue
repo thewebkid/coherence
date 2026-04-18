@@ -1,12 +1,12 @@
 <template>
-  <div class="submit-work-page fade-in">
+  <div class="submit-work-page page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
 
         <header class="page-header">
           <RouterLink to="/interpretive-works" class="back-link">← Interpretive Works</RouterLink>
           <h1>Submit an Interpretive Work</h1>
-          <p class="page-tagline">Share a work that engages the themes of this project.</p>
+          <p class="page-subtitle">Share a work that engages the themes of this project.</p>
         </header>
 
         <div class="page-intro">
@@ -231,7 +231,6 @@ async function handleSubmit() {
 
 <style lang="scss" scoped>
 .submit-work-page {
-  padding: var(--spacing-section) 0;
   background-color: var(--iw-bg);
   min-height: 100vh;
 }
@@ -245,20 +244,6 @@ async function handleSubmit() {
   margin-bottom: var(--spacing-md);
 
   &:hover { color: var(--iw-accent); }
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
-
-  h1 { margin-bottom: var(--spacing-xs); }
-}
-
-.page-tagline {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.125rem;
-  color: var(--text-muted);
-  margin: 0;
 }
 
 .page-intro {

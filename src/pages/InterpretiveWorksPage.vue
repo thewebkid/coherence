@@ -1,11 +1,11 @@
 <template>
-  <div class="interpretive-works-page fade-in">
+  <div class="interpretive-works-page page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
 
         <header class="page-header">
           <h1>Interpretive Works</h1>
-          <p class="page-tagline">Interpretations of the signals shaping our shared world.</p>
+          <p class="page-subtitle">Interpretations of the signals shaping our shared world.</p>
         </header>
 
         <div class="page-intro">
@@ -83,26 +83,12 @@ useHead({
 
 <style lang="scss" scoped>
 .interpretive-works-page {
-  padding: var(--spacing-section) 0;
   background-color: var(--iw-bg);
   min-height: 100vh;
 }
 
-.page-header {
-  margin-bottom: var(--spacing-xl);
-
-  h1 {
-    margin-bottom: var(--spacing-xs);
-    color: var(--iw-accent);
-  }
-}
-
-.page-tagline {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.125rem;
-  color: var(--text-muted);
-  margin: 0;
+.page-header h1 {
+  color: var(--iw-accent);
 }
 
 .page-intro {

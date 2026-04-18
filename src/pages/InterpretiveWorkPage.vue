@@ -1,5 +1,5 @@
 <template>
-  <div class="interpretive-work-page fade-in">
+  <div class="interpretive-work-page page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
 
@@ -126,7 +126,6 @@ useHead(computed(() => ({
 
 <style lang="scss" scoped>
 .interpretive-work-page {
-  padding: var(--spacing-section) 0;
   background-color: var(--iw-bg);
   min-height: 100vh;
 }

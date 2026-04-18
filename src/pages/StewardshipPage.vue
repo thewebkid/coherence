@@ -1,5 +1,5 @@
 <template>
-  <div class="stewardship-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -116,46 +116,3 @@ useHead({
 });
 </script>
 
-<style lang="scss" scoped>
-.stewardship-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
-
-  h1 {
-    margin-bottom: 0;
-  }
-}
-
-.page-content {
-  p {
-    margin-bottom: var(--spacing-sm);
-  }
-
-  h2 {
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-md);
-  }
-
-  hr {
-    border: none;
-    border-top: 1px solid var(--border-color);
-    margin: var(--spacing-xl) 0;
-  }
-
-  ul {
-    margin: var(--spacing-md) 0;
-    padding-left: var(--spacing-lg);
-
-    li {
-      margin-bottom: var(--spacing-xs);
-    }
-  }
-
-  strong {
-    font-weight: 600;
-  }
-}
-</style>

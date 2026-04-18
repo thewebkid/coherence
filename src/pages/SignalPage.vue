@@ -1,5 +1,5 @@
 <template>
-  <div class="signal-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -90,26 +90,6 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/blockquote';
-
-.signal-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
-
-  h1 {
-    margin-bottom: 0;
-  }
-}
-
-.page-content {
-  p {
-    margin-bottom: var(--spacing-sm);
-  }
-}
-
 .opening-text {
   margin-bottom: var(--spacing-xl);
 

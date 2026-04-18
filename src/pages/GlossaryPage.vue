@@ -1,10 +1,10 @@
 <template>
-  <div class="glossary-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
           <h1>Glossary</h1>
-          <p class="page-intro">
+          <p class="page-subtitle">
             The terms in this glossary describe a related architecture. Rather than placed in alphabetical
             order, they are presented in a structural continuity.
           </p>
@@ -436,23 +436,6 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.glossary-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
-
-  h1 {
-    margin-bottom: var(--spacing-sm);
-  }
-}
-
-.page-intro {
-  color: var(--text-muted);
-  font-style: italic;
-  margin: 0;
-}
 
 .glossary-toc {
   display: grid;

@@ -1,5 +1,5 @@
 <template>
-  <div class="definitions-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -272,6 +272,7 @@
           <div class="page-footer">
             <BackToTop />
           </div>
+
         </div>
       </div>
     </div>
@@ -305,68 +306,12 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.definitions-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
-  
-  h1 {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-    margin-bottom: 0;
-  }
-}
-
-.page-content {
-  max-width: 720px;
-  margin: 0 auto;
-  
-  p {
-    margin-bottom: var(--spacing-md);
-    line-height: 1.7;
-  }
-  
-  section {
-    margin-bottom: var(--spacing-xl);
-  }
-  
-  ul {
-    margin: var(--spacing-md) 0;
-    padding-left: var(--spacing-lg);
-    
-    li {
-      margin-bottom: var(--spacing-xs);
-      line-height: 1.7;
-    }
-  }
-}
-
-.opening {
-  font-size: 1.0625rem;
-  color: var(--text);
-  margin-bottom: var(--spacing-lg);
-}
-
+// Definition entries use accent-colored h2 headings unique to this page.
 .definition {
   h2 {
     font-size: 1.25rem;
     margin-bottom: var(--spacing-sm);
     color: var(--accent);
   }
-}
-
-.closing-line {
-  margin-top: var(--spacing-xl);
-  text-align: center;
-  font-size: 1rem;
-  color: var(--text-muted);
-}
-
-.page-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
 }
 </style>

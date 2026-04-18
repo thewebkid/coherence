@@ -118,8 +118,6 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/blockquote';
-
 .home-hero {
   padding: clamp(3rem, 7.5vw, 6rem) 0 var(--spacing-xl);
   text-align: center;

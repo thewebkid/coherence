@@ -20,7 +20,7 @@
               Back to The Work
             </RouterLink>
             <h1>Coherence Across Scales</h1>
-            <p class="manuscript-subtitle">The Manuscript</p>
+            <p class="page-subtitle">The Manuscript</p>
           </header>
 
           <article class="manuscript-article">
@@ -188,13 +188,6 @@ useHead({
 .manuscript-header h1 {
   font-size: clamp(1.5rem, 4vw, 2rem);
   margin-bottom: var(--spacing-xs);
-}
-
-.manuscript-subtitle {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--text-muted);
-  margin: 0;
 }
 
 .manuscript-article {

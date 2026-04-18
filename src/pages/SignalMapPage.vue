@@ -1,5 +1,5 @@
 <template>
-  <div class="signal-map-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -140,26 +140,6 @@ function onSignalPlaced(signal) {
 </script>
 
 <style lang="scss" scoped>
-.signal-map-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-lg);
-
-  h1 {
-    margin-bottom: var(--spacing-xs);
-  }
-}
-
-.page-subtitle {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.0625rem;
-  color: var(--text-muted);
-  margin: 0;
-}
-
 .map-intro {
   font-size: 0.9375rem;
   color: var(--text-muted);

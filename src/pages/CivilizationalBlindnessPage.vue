@@ -1,9 +1,9 @@
 <template>
-  <div class="essay-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
-          <p class="essay-category">Essay</p>
+          <p class="section-eyebrow">Essay</p>
           <h1>Civilizational Blindness</h1>
         </header>
 
@@ -202,39 +202,14 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.essay-category {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+// h3 used as an italic serif sub-heading specific to this essay's structure.
+.page-content h3 {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-style: italic;
+  font-weight: 400;
   color: var(--text-muted);
-  margin-bottom: var(--spacing-xs);
-}
-
-.page-content {
-  section {
-    margin-top: var(--spacing-xl);
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid var(--border);
-  }
-
-  p { margin-bottom: var(--spacing-md); line-height: 1.75; }
-
-  ul {
-    margin: var(--spacing-sm) 0 var(--spacing-md);
-    padding-left: 1.5rem;
-    li { margin-bottom: var(--spacing-xs); line-height: 1.7; }
-  }
-
-  h3 {
-    font-family: var(--font-serif);
-    font-size: 1.0625rem;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--text-muted);
-    margin-bottom: var(--spacing-md);
-  }
+  margin-bottom: var(--spacing-md);
 }
 
 .essay-footer {
@@ -248,6 +223,7 @@ useHead({
   font-size: 0.9375rem;
   color: var(--text-muted);
   text-decoration: none;
+
   &:hover { color: var(--text); }
 }
 </style>

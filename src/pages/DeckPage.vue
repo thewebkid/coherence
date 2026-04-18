@@ -9,7 +9,7 @@
           Back to The Work
         </RouterLink>
         <h1>Coherence Across Scales</h1>
-        <p class="deck-subtitle">The Slide Deck</p>
+        <p class="page-subtitle">The Slide Deck</p>
       </header>
 
       <SlideCarousel :slides="slides" />
@@ -82,13 +82,6 @@ useHead({
 .deck-header h1 {
   font-size: clamp(1.5rem, 4vw, 2rem);
   margin-bottom: var(--spacing-xs);
-}
-
-.deck-subtitle {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--text-muted);
-  margin: 0;
 }
 
 .deck-download {

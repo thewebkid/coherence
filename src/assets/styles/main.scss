@@ -1,5 +1,6 @@
-// 1. Custom variables first (defines CSS custom properties)
+// 1. Custom variables and mixins first
 @import 'variables';
+@import 'mixins';
 
 // 2. Bootstrap imports (minimal, utilities only)
 @import 'bootstrap/scss/functions';
@@ -20,6 +21,8 @@
 @import 'bootstrap/scss/close';
 @import 'bootstrap/scss/offcanvas';
 
-// 3. Custom typography and dark mode AFTER Bootstrap (to override)
+// 3. Foundation — typography, layout, components, dark mode (override Bootstrap)
 @import 'typography';
+@import 'layout';
+@import 'components';
 @import 'dark-mode';

@@ -1,0 +1,37 @@
+// ─── Mixins ───────────────────────────────────────────────────────────────────
+// Shared SCSS mixins for reusable typographic and structural patterns.
+
+// Uppercase, tracked, sans-serif meta/label text.
+// Used for overlines, categories, section eyebrows.
+@mixin text-label($size: 0.75rem, $color: var(--text-muted)) {
+  font-family: var(--font-sans);
+  font-size: $size;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $color;
+}
+
+// Serif italic text — contemplative, subdued.
+// Used for subtitles, section labels, closing lines.
+@mixin text-serif-italic($size: 1rem, $color: var(--text-muted)) {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: $size;
+  color: $color;
+}
+
+// Elevated content surface: secondary background, rounded, padded.
+// Used for panels, forms, callout blocks.
+@mixin surface-panel($padding: var(--spacing-lg)) {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  padding: $padding;
+}
+
+// Top-border section separator with spacing.
+@mixin section-divider($margin-top: var(--spacing-xl)) {
+  margin-top: $margin-top;
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border);
+}

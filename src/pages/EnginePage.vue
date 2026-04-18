@@ -1,5 +1,5 @@
 <template>
-  <div class="engine-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -197,33 +197,7 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/blockquote';
-
-.engine-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
-
-  h1 {
-    margin-bottom: var(--spacing-xs);
-  }
-}
-
-.page-subtitle {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.0625rem;
-  color: var(--text-muted);
-  margin: 0;
-}
-
 .page-content {
-  p {
-    margin-bottom: var(--spacing-sm);
-  }
-
   h2 {
     margin-top: var(--spacing-xl);
     margin-bottom: var(--spacing-md);
@@ -231,22 +205,10 @@ useHead({
     border-bottom: 1px solid var(--border);
   }
 
-  ul {
-    margin: var(--spacing-md) 0;
-    padding-left: var(--spacing-lg);
-
-    li {
-      margin-bottom: var(--spacing-xs);
-    }
-  }
-
   blockquote {
-    // Using shared blockquote styles from _blockquote.scss
     text-align: center;
 
-    p {
-      margin-bottom: 0;
-    }
+    p { margin-bottom: 0; }
   }
 }
 

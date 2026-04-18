@@ -1,0 +1,76 @@
+// ─── Layout ───────────────────────────────────────────────────────────────────
+// Generic page and section structural classes.
+// These replace all the per-page root wrappers like .about-page, .stewardship-page, etc.
+
+@use 'mixins' as *;
+
+// ── Page wrapper ──────────────────────────────────────────────────────────────
+
+// Root page padding. Replaces every .foo-page { padding: var(--spacing-section) 0; }
+.page-wrapper {
+  padding: var(--spacing-section) 0;
+}
+
+// ── Page header ───────────────────────────────────────────────────────────────
+
+.page-header {
+  margin-bottom: var(--spacing-xl);
+
+  &.is-centered {
+    text-align: center;
+  }
+}
+
+// Serif italic subtitle beneath a page h1.
+// Replaces .project-subtitle, .subtitle, .page-intro (when used as a sub-headline).
+.page-subtitle {
+  @include text-serif-italic(1.0625rem);
+  margin-top: var(--spacing-xs);
+  margin-bottom: 0;
+}
+
+// ── Content body ──────────────────────────────────────────────────────────────
+
+// Narrow reading column. Already defined globally in _typography.scss as .content-container.
+// Here we add per-section rhythm for prose pages.
+.page-content {
+  // Sections within prose pages get a top-border divider by default.
+  section {
+    @include section-divider;
+  }
+
+  // Submission/signal sections override the border since they render as panels.
+  .submission-section,
+  .signal-section-panel {
+    border-top: none;
+    margin-top: var(--spacing-xl);
+  }
+}
+
+// ── Section labels ────────────────────────────────────────────────────────────
+
+// Uppercase eyebrow above a heading — e.g., "Practice", "Project".
+// Replaces .project-category and similar one-off class names.
+.section-eyebrow {
+  @include text-label;
+  margin-bottom: var(--spacing-xs);
+}
+
+// ── Closing / footer elements ─────────────────────────────────────────────────
+
+// Centered italic quote that closes a page.
+// Replaces .closing-line across many pages.
+.closing-line {
+  @include text-serif-italic(1rem);
+  margin-top: var(--spacing-xl);
+  text-align: center;
+}
+
+// Centered BackToTop wrapper.
+// Replaces .page-footer across many pages.
+.page-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+}

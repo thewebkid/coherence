@@ -1,0 +1,126 @@
+// ─── Components ───────────────────────────────────────────────────────────────
+// Generic, reusable UI classes applicable to any page or component.
+// These replace page-scoped BEM names for shared visual patterns.
+
+@use 'mixins' as *;
+
+// ── Text utilities ─────────────────────────────────────────────────────────────
+
+// Uppercase tracking label — section headers, meta tags, categories.
+// Replaces .weekly-signal__label, .project-category, .contact-label, etc.
+.text-label {
+  @include text-label;
+}
+
+// Slightly larger label variant — for signal section h3 headings.
+.text-label--md {
+  @include text-label(0.875rem);
+}
+
+// Small muted sans-serif — dates, secondary metadata.
+// Replaces .weekly-signal__date.
+.text-meta {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+// Serif italic descriptor — section sub-labels, contextual captions.
+// Replaces .section-label, .page-intro (when used as a caption).
+.text-caption {
+  @include text-serif-italic(1rem);
+  margin-bottom: var(--spacing-sm);
+}
+
+// ── Surface panels ─────────────────────────────────────────────────────────────
+
+// Standard elevated content area.
+// Replaces .weekly-signal outer wrapper, .submission-section, .loop-diagram container, etc.
+.surface-panel {
+  @include surface-panel(var(--spacing-xl));
+  border: 1px solid var(--border);
+}
+
+// Panel variant without a border (form contexts, signal submissions).
+.surface-panel--borderless {
+  @include surface-panel(var(--spacing-xl));
+}
+
+// ── Signal section ─────────────────────────────────────────────────────────────
+
+// Groups a signal widget (word cloud / feed) with its label.
+// Replaces .signal-section in all practice pages.
+.signal-section {
+  margin-bottom: var(--spacing-xl);
+
+  h3 {
+    @include text-label(0.875rem);
+    margin-bottom: var(--spacing-xs);
+    margin-top: 0;
+  }
+}
+
+// ── Submission section ─────────────────────────────────────────────────────────
+
+// Anonymous signal submission form wrapper.
+// Replaces .submission-section in all practice pages.
+.submission-section {
+  @include surface-panel(var(--spacing-xl));
+  margin-top: var(--spacing-xl);
+}
+
+// ── Meta row ──────────────────────────────────────────────────────────────────
+
+// Horizontal row of label + date / meta info.
+// Replaces .weekly-signal__meta.
+.meta-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+// ── Inline link ───────────────────────────────────────────────────────────────
+
+// Accent-colored inline link. Replaces one-off .text-link, .about-link, .download-link.
+.text-link {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+
+  &:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+  }
+}
+
+// ── Poem / accent blockquote ──────────────────────────────────────────────────
+
+// Poetic or highlighted excerpt block (left-accented).
+// Replaces .closing-poem in EmbodiedTranscendencePage, inline blockquotes, etc.
+.accent-block {
+  @include surface-panel(var(--spacing-lg));
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text);
+
+  p {
+    margin-bottom: var(--spacing-xs);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ── Note / aside ──────────────────────────────────────────────────────────────
+
+// Small muted italic note. Replaces .journal-note, .prompt-note, .note.
+.text-note {
+  font-size: 0.9375rem;
+  font-style: italic;
+  color: var(--text-muted);
+}

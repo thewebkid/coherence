@@ -1,5 +1,5 @@
 <template>
-  <div class="embodied-transcendence-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -174,7 +174,7 @@
 
           <section>
             <h2>A Simple Way to Hold It</h2>
-            <div class="closing-poem">
+            <div class="accent-block">
               <p>To transcend<br>
               is not to leave life.<br>
               It is to remain fully within it<br>
@@ -223,80 +223,3 @@ useHead({
 });
 </script>
 
-<style lang="scss" scoped>
-.embodied-transcendence-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
-  
-  h1 {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-    margin-bottom: 0;
-  }
-}
-
-.page-content {
-  max-width: 720px;
-  margin: 0 auto;
-  
-  p {
-    margin-bottom: var(--spacing-md);
-    line-height: 1.7;
-  }
-  
-  section {
-    margin-bottom: var(--spacing-xl);
-    
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: var(--spacing-md);
-    }
-  }
-  
-  ul {
-    margin: var(--spacing-md) 0;
-    padding-left: var(--spacing-lg);
-    
-    li {
-      margin-bottom: var(--spacing-sm);
-      line-height: 1.7;
-    }
-  }
-}
-
-.opening {
-  font-size: 1.0625rem;
-  color: var(--text);
-  margin-bottom: var(--spacing-xl);
-}
-
-.closing-poem {
-  padding: var(--spacing-xl) var(--spacing-lg);
-  background: var(--bg-secondary);
-  border-left: 3px solid var(--accent);
-  font-family: var(--font-serif);
-  font-size: 1.0625rem;
-  line-height: 1.8;
-  color: var(--text);
-  
-  p {
-    margin-bottom: var(--spacing-xs);
-  }
-}
-
-.closing-line {
-  margin-top: var(--spacing-xl);
-  text-align: center;
-  font-size: 1rem;
-  color: var(--text-muted);
-}
-
-.page-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-}
-</style>

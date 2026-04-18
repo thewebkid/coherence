@@ -1,5 +1,5 @@
 <template>
-  <div class="practice-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -154,28 +154,6 @@ const projects = [
 </script>
 
 <style lang="scss" scoped>
-.page-content {
-  section {
-    margin-top: var(--spacing-xl);
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid var(--border);
-  }
-
-  p { margin-bottom: var(--spacing-md); line-height: 1.75; }
-
-  ul {
-    margin: var(--spacing-sm) 0 var(--spacing-md);
-    padding-left: 1.5rem;
-    li { margin-bottom: var(--spacing-xs); line-height: 1.7; }
-  }
-}
-
-.text-link {
-  color: var(--accent);
-  text-decoration: none;
-  &:hover { text-decoration: underline; }
-}
-
 .practice-structure {
   margin: var(--spacing-md) 0;
   padding: var(--spacing-md);

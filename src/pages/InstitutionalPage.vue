@@ -1,5 +1,5 @@
 <template>
-  <div class="institutional-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -17,14 +17,14 @@
             All inquiries are considered on a case-by-case basis and approached with care for alignment, clarity, and long-term coherence.
           </p>
 
-          <div class="contact-box">
-            <p class="contact-label">For institutional or professional inquiries</p>
+          <div class="contact-box surface-panel">
+            <p class="text-label">For institutional or professional inquiries</p>
             <a href="mailto:Inquiries@CoherenceAcrossScales.org" class="contact-email">
               Inquiries@CoherenceAcrossScales.org
             </a>
           </div>
 
-          <p class="note">Please include a brief description of context and intention.</p>
+          <p class="text-note">Please include a brief description of context and intention.</p>
 
           <section class="download-section">
             <h2 class="download-section__title">The Mirror Across Scales</h2>
@@ -77,47 +77,9 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.institutional-page {
-  padding: var(--spacing-section) 0;
-}
-
-.page-header {
-  margin-bottom: var(--spacing-xl);
-
-  h1 {
-    margin-bottom: 0;
-  }
-}
-
-.page-content {
-  p {
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .note {
-    margin-top: var(--spacing-lg);
-    font-style: italic;
-    color: var(--text-muted);
-  }
-}
-
 .contact-box {
   margin: var(--spacing-xl) 0;
-  padding: var(--spacing-lg);
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
   text-align: center;
-}
-
-.contact-label {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-sm);
 }
 
 .contact-email {
@@ -140,26 +102,15 @@ useHead({
   & + .download-section {
     margin-top: var(--spacing-lg);
   }
-}
 
-.download-section__title {
-  font-size: 1.125rem;
-  margin-bottom: var(--spacing-xs);
-}
+  &__title {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-xs);
+  }
 
-.download-section__desc {
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-sm);
-}
-
-.download-link {
-  color: var(--accent);
-  text-decoration: none;
-  transition: color var(--transition-speed) ease;
-
-  &:hover {
-    color: var(--accent-hover);
-    text-decoration: underline;
+  &__desc {
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-sm);
   }
 }
 </style>

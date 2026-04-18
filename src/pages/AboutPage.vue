@@ -1,5 +1,5 @@
 <template>
-  <div class="about-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -100,8 +100,8 @@
           </p>
 
           <div class="about-links">
-            <RouterLink to="/note-to-observers" class="about-link">A Note to Observers</RouterLink>
-            <a href="/pdf/TCP Executive Brief.pdf" class="about-link" target="_blank" rel="noopener">TCP Executive Brief</a>
+            <RouterLink to="/note-to-observers" class="text-link">A Note to Observers</RouterLink>
+            <a href="/pdf/TCP Executive Brief.pdf" class="text-link" target="_blank" rel="noopener">TCP Executive Brief</a>
           </div>
         </div>
       </div>
@@ -121,14 +121,6 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.page-content {
-  p {
-    margin-bottom: var(--spacing-md);
-    line-height: 1.75;
-    &:last-child { margin-bottom: 0; }
-  }
-}
-
 .about-links {
   display: flex;
   flex-wrap: wrap;
@@ -136,14 +128,9 @@ useHead({
   margin-top: var(--spacing-xl);
   padding-top: var(--spacing-lg);
   border-top: 1px solid var(--border);
-}
 
-.about-link {
-  font-family: var(--font-sans);
-  font-size: 0.9375rem;
-  color: var(--accent);
-  text-decoration: none;
-
-  &:hover { text-decoration: underline; }
+  .text-link {
+    font-size: 0.9375rem;
+  }
 }
 </style>

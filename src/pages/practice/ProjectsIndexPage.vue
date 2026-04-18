@@ -1,5 +1,5 @@
 <template>
-  <div class="projects-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
@@ -189,36 +189,12 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.projects-page {
-  padding: var(--spacing-section) 0;
-}
+@use '@/assets/styles/mixins' as *;
 
-.page-header {
-  margin-bottom: var(--spacing-xl);
-  
-  h1 {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-    margin-bottom: 0;
-  }
-}
-
+// Wider than the standard content-container for the project listing layout.
 .page-content {
   max-width: 820px;
   margin: 0 auto;
-  
-  p {
-    margin-bottom: var(--spacing-md);
-    line-height: 1.7;
-  }
-  
-  section {
-    margin-top: var(--spacing-xl);
-    
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: var(--spacing-md);
-    }
-  }
 }
 
 .opening {
@@ -261,15 +237,10 @@ useHead({
 
 .project-field {
   h3 {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
+    @include text-label;
     margin-bottom: var(--spacing-xs);
   }
-  
+
   p {
     margin: 0;
     font-size: 0.9375rem;

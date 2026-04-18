@@ -1,11 +1,11 @@
 <template>
-  <div class="project-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
         <header class="page-header">
-          <p class="project-category">Practice</p>
+          <p class="section-eyebrow">Practice</p>
           <h1>Dialogue</h1>
-          <p class="project-subtitle"><em>Conversational Recursion</em></p>
+          <p class="page-subtitle"><em>Conversational Recursion</em></p>
         </header>
 
         <div class="page-content">
@@ -72,21 +72,21 @@
             <h2>What Emerges</h2>
             <div class="signal-section">
               <h3>Word Cloud</h3>
-              <p class="section-label">Patterns across many conversations</p>
+              <p class="text-caption">Patterns across many conversations</p>
               <SignalWordCloud project="Dialogue" />
             </div>
             <div class="signal-section">
               <h3>Recent Signals</h3>
-              <p class="section-label">How recognition is experienced</p>
+              <p class="text-caption">How recognition is experienced</p>
               <SignalFeed project="Dialogue" />
             </div>
           </section>
 
-          <section class="submission-section">
+          <div class="submission-section">
             <h2>Submit an Observation</h2>
             <p>All submissions are anonymous.</p>
             <SignalSubmissionForm project="Dialogue" />
-          </section>
+          </div>
         </div>
       </div>
     </div>
@@ -106,32 +106,6 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.project-category {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-xs);
-}
-
-.project-subtitle {
-  font-family: var(--font-serif);
-  font-size: 1.0625rem;
-  color: var(--text-muted);
-  margin-top: var(--spacing-xs);
-}
-
-.page-content {
-  section {
-    margin-top: var(--spacing-xl);
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid var(--border);
-  }
-  p { margin-bottom: var(--spacing-md); line-height: 1.75; }
-}
-
 .example-block {
   margin: var(--spacing-md) 0;
   padding: var(--spacing-md);
@@ -150,34 +124,5 @@ useHead({
   }
 
   p { margin-bottom: var(--spacing-xs); font-size: 0.9375rem; }
-}
-
-.signal-section {
-  margin-bottom: var(--spacing-xl);
-  h3 {
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-    margin-bottom: var(--spacing-xs);
-  }
-}
-
-.section-label {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-sm);
-}
-
-.submission-section {
-  background: var(--bg-secondary);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-xl);
-  margin-top: var(--spacing-xl);
-  border-top: none !important;
 }
 </style>

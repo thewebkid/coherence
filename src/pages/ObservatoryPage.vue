@@ -1,5 +1,5 @@
 <template>
-  <div class="observatory-page fade-in">
+  <div class="page-wrapper fade-in">
     <div class="page-container">
       <div class="content-container">
 
@@ -11,9 +11,9 @@
 
         <!-- Block 2: Weekly Signal -->
         <WeeklySignalDisplay
-          :label="currentSignal.label"
-          :timeframe="currentSignal.timeframe"
-          :content="currentSignal.content"
+            :label="currentSignal.label"
+            :timeframe="currentSignal.timeframe"
+            :content="currentSignal.content"
         />
 
         <!-- Block 3: Short intro -->
@@ -30,12 +30,12 @@
     <!-- Block 4: Observational Units (full page width for wireframe layout) -->
     <div class="page-container">
       <section class="observatory-units">
-        <h2 class="section-label">Observational Units</h2>
+        <h2 class="text-label">Observational Units</h2>
         <div class="units-grid">
           <article
-            v-for="unit in units"
-            :key="unit.project"
-            class="obs-unit"
+              v-for="unit in units"
+              :key="unit.project"
+              class="obs-unit"
           >
             <div class="obs-unit__header">
               <h3>{{ unit.project }}</h3>
@@ -44,13 +44,13 @@
 
             <div class="obs-unit__body">
               <div class="obs-unit__cloud">
-                <p class="obs-unit__sublabel">Signals</p>
-                <WordField :project="unit.project" />
+                <p class="text-label">Signals</p>
+                <WordField :project="unit.project"/>
               </div>
 
               <div class="obs-unit__feed">
-                <p class="obs-unit__sublabel">Recent Signals</p>
-                <SignalFeed :project="unit.project" />
+                <p class="text-label">Recent Signals</p>
+                <SignalFeed :project="unit.project"/>
               </div>
             </div>
 
@@ -81,7 +81,7 @@
 
       <div class="page-container">
         <div class="globe-wrapper">
-          <SignalGlobe ref="globeRef" @ready="onGlobeReady" />
+          <SignalGlobe ref="globeRef" @ready="onGlobeReady"/>
         </div>
       </div>
 
@@ -94,9 +94,9 @@
           </div>
 
           <PlaceSignalModal
-            :visible="showModal"
-            @close="closeModal"
-            @signal-placed="onSignalPlaced"
+              :visible="showModal"
+              @close="closeModal"
+              @signal-placed="onSignalPlaced"
           />
         </div>
       </div>
@@ -106,18 +106,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useHead } from '@unhead/vue';
+import {ref, onMounted} from 'vue';
+import {useHead} from '@unhead/vue';
 import WordField from '@/components/WordField.vue';
 import SignalFeed from '@/components/SignalFeed.vue';
 import SignalGlobe from '@/components/SignalGlobe.vue';
 import PlaceSignalModal from '@/components/PlaceSignalModal.vue';
 import WeeklySignalDisplay from '@/components/WeeklySignalDisplay.vue';
-import { fetchCurrentSignal } from '@/utils/currentSignal';
+import {fetchCurrentSignal} from '@/utils/currentSignal';
 
 useHead({
   title: 'Observatory — Coherence Across Scales',
-  meta: [{ name: 'description', content: 'A live view of how perception is forming across the observer network.' }],
+  meta: [{name: 'description', content: 'A live view of how perception is forming across the observer network.'}]
 });
 
 // Fallback Weekly Signal used when the database has no row yet.
@@ -135,10 +135,10 @@ These signals appeared across Dialogue, Reflection, and Relational Field.
 
 > "The conversation changed when no one tried to resolve it."
 
-_When uncertainty becomes shared, interaction begins to change._`,
+_When uncertainty becomes shared, interaction begins to change._`
 };
 
-const currentSignal = ref({ ...FALLBACK_SIGNAL });
+const currentSignal = ref({...FALLBACK_SIGNAL});
 
 async function loadCurrentSignal() {
   const row = await fetchCurrentSignal();
@@ -146,7 +146,7 @@ async function loadCurrentSignal() {
     currentSignal.value = {
       label: row.label,
       timeframe: row.timeframe,
-      content: row.content,
+      content: row.content
     };
   }
   // If row is null (no data / API error / dev middleware missing),
@@ -154,29 +154,67 @@ async function loadCurrentSignal() {
 }
 
 const units = [
-  { project: 'AI Observation', copy: 'Patterns detected through AI-assisted observation across language and behavior.', path: '/practice/projects/ai-observation' },
-  { project: 'Observation', copy: 'What changes within a single interaction when presence stabilizes.', path: '/practice/projects/observation' },
-  { project: 'Dialogue', copy: 'What happens when meaning is recognized and allowed to deepen.', path: '/practice/projects/dialogue' },
-  { project: 'Relational Field', copy: 'How coherence behaves across environments over time.', path: '/practice/projects/relational-field' },
-  { project: 'Reflection', copy: 'What becomes visible through recursive dialogue with intelligence.', path: '/practice/projects/reflection' },
-  { project: 'Presence', copy: 'How coherence can be lived through ordinary daily life.', path: '/practice/projects/presence' },
+  {
+    project: 'AI Observation',
+    copy: 'Patterns detected through AI-assisted observation across language and behavior.',
+    path: '/practice/projects/ai-observation'
+  },
+  {
+    project: 'Observation',
+    copy: 'What changes within a single interaction when presence stabilizes.',
+    path: '/practice/projects/observation'
+  },
+  {
+    project: 'Dialogue',
+    copy: 'What happens when meaning is recognized and allowed to deepen.',
+    path: '/practice/projects/dialogue'
+  },
+  {
+    project: 'Relational Field',
+    copy: 'How coherence behaves across environments over time.',
+    path: '/practice/projects/relational-field'
+  },
+  {
+    project: 'Reflection',
+    copy: 'What becomes visible through recursive dialogue with intelligence.',
+    path: '/practice/projects/reflection'
+  },
+  {
+    project: 'Presence',
+    copy: 'How coherence can be lived through ordinary daily life.',
+    path: '/practice/projects/presence'
+  }
 ];
 
 const globeRef = ref(null);
 const showModal = ref(false);
 const alreadyPlaced = ref(false);
 
-onMounted(() => {
+onMounted(async () => {
   alreadyPlaced.value = !!localStorage.getItem('mysignal-id');
-  loadCurrentSignal();
+
+  await loadCurrentSignal();
+  const res = await fetch(
+      `/api/observations`
+  );
+  if (res.ok) {
+    const data = await res.json();
+    console.log({observations: data});
+  }
 });
 
-function openModal() { showModal.value = true; }
-function closeModal() { showModal.value = false; }
+function openModal() {
+  showModal.value = true;
+}
 
-function onGlobeReady() {}
+function closeModal() {
+  showModal.value = false;
+}
 
-function onSignalPlaced({ lat, lng, id }) {
+function onGlobeReady() {
+}
+
+function onSignalPlaced({lat, lng, id}) {
   alreadyPlaced.value = true;
   showModal.value = false;
   globeRef.value?.addNewSignal(lng, lat, true);
@@ -184,23 +222,15 @@ function onSignalPlaced({ lat, lng, id }) {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/blockquote';
-
 // Intro
 .observatory-intro {
   margin-bottom: var(--spacing-xl);
-  p { line-height: 1.75; color: var(--text-muted); font-style: italic; }
-}
 
-// Section label
-.section-label {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-lg);
+  p {
+    line-height: 1.75;
+    color: var(--text-muted);
+    font-style: italic;
+  }
 }
 
 // Units grid
@@ -254,15 +284,6 @@ function onSignalPlaced({ lat, lng, id }) {
   line-height: 1.65;
 }
 
-.obs-unit__sublabel {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-xs);
-}
 
 .obs-unit__enter {
   display: inline-block;
@@ -273,7 +294,9 @@ function onSignalPlaced({ lat, lng, id }) {
   text-decoration: none;
   transition: color var(--transition-speed) ease;
 
-  &:hover { color: var(--accent); }
+  &:hover {
+    color: var(--accent);
+  }
 }
 
 // Planetary placeholder
@@ -345,6 +368,8 @@ function onSignalPlaced({ lat, lng, id }) {
   cursor: pointer;
   transition: filter var(--transition-speed) ease;
 
-  &:hover { filter: brightness(1.1); }
+  &:hover {
+    filter: brightness(1.1);
+  }
 }
 </style>
