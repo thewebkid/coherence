@@ -1,17 +1,38 @@
 <template>
   <Teleport to="body">
     <transition name="modal-fade">
-      <div v-if="visible" class="modal-overlay" @click.self="close">
-        <div class="modal-content">
+      <div v-if="visible" class="modal-overlay" @click.self="onOverlayClick">
+        <div class="modal-content" :class="{ 'shake': escapeBlocked }">
           <template v-if="state === 'map'">
             <div class="modal-header">
               <h2>Place an anonymous signal</h2>
-              <button type="button" class="modal-close" aria-label="Close" @click="close">×</button>
+              <div class="header-actions">
+                <template v-if="coords">
+                  <button
+                    type="button"
+                    class="modal-btn header-confirm"
+                    @click="placeSignal"
+                    :disabled="submitting"
+                  >
+                    <svg class="check-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    {{ submitting ? 'Placing…' : 'Place Signal' }}
+                  </button>
+                  <button type="button" class="modal-close cancel-close" aria-label="Cancel" @click="close">Cancel</button>
+                </template>
+                <button v-else type="button" class="modal-close" aria-label="Close" @click="close">×</button>
+              </div>
             </div>
-            <p class="coords-note">
-              Click the map to place the marker, or
-              <button type="button" class="link-btn" @click="useGeolocation">use your location</button>.
-              Drag the marker to adjust.
+            <p class="coords-note" :class="{ 'coords-note--ready': coords }">
+              <template v-if="!coords">
+                Click the map to place the marker, or
+                <button type="button" class="link-btn" @click="useGeolocation">use your location</button>.
+                Drag the marker to adjust. If you have placed a signal on another browser or device, then you are done and can close the modal.
+              </template>
+              <template v-else>
+                Drag the marker to adjust, then click <strong>Place Signal</strong> above to confirm.
+              </template>
             </p>
             <div class="map-wrapper" ref="mapWrapperRef">
               <l-map
@@ -36,15 +57,6 @@
                   @dragend="onMarkerDragEnd"
                 />
               </l-map>
-            </div>
-            <div class="modal-actions">
-              <button
-                class="modal-btn primary"
-                @click="placeSignal"
-                :disabled="submitting || !coords"
-              >
-                {{ submitting ? 'Placing...' : 'Place Signal' }}
-              </button>
             </div>
           </template>
 
@@ -75,7 +87,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, nextTick } from 'vue';
+import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue';
 import { LMap, LTileLayer, LMarker } from '@vue-leaflet/vue-leaflet';
 import { useThemeStore } from '@/stores/theme';
 
@@ -104,6 +116,36 @@ const submitting = ref(false);
 const errorMessage = ref('');
 const mapRef = ref(null);
 const mapWrapperRef = ref(null);
+const escapeBlocked = ref(false);
+
+function onOverlayClick() {
+  if (state.value === 'map' && coords.value) {
+    triggerEscapeBlock();
+    return;
+  }
+  close();
+}
+
+function triggerEscapeBlock() {
+  escapeBlocked.value = true;
+  setTimeout(() => { escapeBlocked.value = false; }, 500);
+}
+
+function onKeyDown(e) {
+  if (!props.visible) return;
+  if (e.key === 'Escape') {
+    if (state.value === 'map' && coords.value) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      triggerEscapeBlock();
+    } else {
+      close();
+    }
+  }
+}
+
+onMounted(() => window.addEventListener('keydown', onKeyDown, true));
+onUnmounted(() => window.removeEventListener('keydown', onKeyDown, true));
 
 async function loadExistingSignalForUpdate() {
   const myId = typeof localStorage !== 'undefined' ? localStorage.getItem('mysignal-id') : null;
@@ -152,12 +194,15 @@ function useGeolocation() {
   }
 
   navigator.geolocation.getCurrentPosition(
-    (position) => {
+    async (position) => {
       const lat = position.coords.latitude;
       const lng = position.coords.longitude;
       coords.value = { lat, lng };
       mapCenter.value = [lat, lng];
       mapZoom.value = 13;
+      await nextTick();
+      const map = mapRef.value?.leafletObject;
+      if (map) map.setView([lat, lng], 13);
     },
     () => {
       errorMessage.value = 'Location access was denied. Click on the map to choose a location.';
@@ -300,6 +345,13 @@ defineExpose({ reset });
   flex-shrink: 0;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
 .modal-close {
   flex-shrink: 0;
   width: 2rem;
@@ -317,6 +369,61 @@ defineExpose({ reset });
   &:hover {
     color: var(--text);
   }
+
+  &.cancel-close {
+    width: auto;
+    height: auto;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+
+    &:hover {
+      background: var(--bg-secondary);
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
+  }
+}
+
+.header-confirm {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.875rem;
+  background: #2d9e5f;
+  color: #fff;
+  border-color: #2d9e5f;
+  animation: confirm-appear 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: #258a52;
+    border-color: #258a52;
+  }
+
+  .check-icon {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes confirm-appear {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.modal-content.shake {
+  animation: shake 0.4s ease;
 }
 
 .link-btn {
@@ -368,17 +475,6 @@ defineExpose({ reset });
   background: transparent;
   color: var(--text);
 
-  &.primary {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent);
-
-    &:hover:not(:disabled) {
-      background: var(--accent-hover);
-      border-color: var(--accent-hover);
-    }
-  }
-
   &.secondary {
     &:hover {
       background: var(--bg-secondary);
@@ -407,6 +503,15 @@ defineExpose({ reset });
 .coords-note {
   font-size: 0.875rem;
   flex-shrink: 0;
+  transition: color var(--transition-speed) ease;
+
+  &--ready {
+    color: #2d9e5f;
+
+    strong {
+      font-weight: 600;
+    }
+  }
 }
 
 .error-message {
