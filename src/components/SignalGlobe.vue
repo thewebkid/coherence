@@ -8,6 +8,10 @@
 import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useThemeStore } from '@/stores/theme';
 
+const props = defineProps({
+  signals: { type: Array, default: () => [] },
+});
+
 const emit = defineEmits(['ready']);
 
 const themeStore = useThemeStore();
@@ -58,22 +62,15 @@ function clearTempMarker() {
   // No-op: placement is done in PlaceSignalModal; kept for API compatibility
 }
 
-async function loadSignals() {
-  try {
-    const res = await fetch('/api/signals');
-    if (!res.ok) return;
-    const signals = await res.json();
-    const myId = localStorage.getItem('mysignal-id');
-    signalData = signals.map(s => ({
-      lat: s.lat,
-      lng: s.lng,
-      isMine: !!myId && s.id === myId,
-      id: s.id
-    }));
-    refreshMarkers();
-  } catch (e) {
-    console.error('Failed to load signals:', e);
-  }
+function loadSignals() {
+  const myId = localStorage.getItem('mysignal-id');
+  signalData = props.signals.map(s => ({
+    lat: s.lat,
+    lng: s.lng,
+    isMine: !!myId && s.id === myId,
+    id: s.id,
+  }));
+  refreshMarkers();
 }
 
 async function initGlobe() {
@@ -110,10 +107,14 @@ async function initGlobe() {
 watch(
   () => themeStore.preference,
   () => {
-    if (globe) {
-      globe.globeImageUrl(getTexture());
-    }
-  }
+    if (globe) globe.globeImageUrl(getTexture());
+  },
+);
+
+watch(
+  () => props.signals,
+  () => { if (globe) loadSignals(); },
+  { deep: true },
 );
 
 onMounted(async () => {

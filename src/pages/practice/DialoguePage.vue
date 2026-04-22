@@ -73,12 +73,12 @@
             <div class="signal-section">
               <h3>Word Cloud</h3>
               <p class="text-caption">Patterns across many conversations</p>
-              <SignalWordCloud project="Dialogue" />
+              <WordField :words="projectWords" project="Dialogue" />
             </div>
             <div class="signal-section">
               <h3>Recent Signals</h3>
               <p class="text-caption">How recognition is experienced</p>
-              <SignalFeed project="Dialogue" />
+              <SignalFeed :entries="projectFeed" />
             </div>
           </section>
 
@@ -94,10 +94,17 @@
 </template>
 
 <script setup>
+import { computed, onMounted } from 'vue';
 import { useHead } from '@unhead/vue';
 import SignalSubmissionForm from '@/components/SignalSubmissionForm.vue';
-import SignalWordCloud from '@/components/SignalWordCloud.vue';
+import WordField from '@/components/WordField.vue';
 import SignalFeed from '@/components/SignalFeed.vue';
+import { initObservatoryData, getWordsForProject, getFeedForProject } from '@/utils/observatoryData';
+
+const projectWords = computed(() => getWordsForProject('Dialogue'));
+const projectFeed = computed(() => getFeedForProject('Dialogue'));
+
+onMounted(() => initObservatoryData());
 
 useHead({
   title: 'Dialogue — Practice — Coherence Across Scales',

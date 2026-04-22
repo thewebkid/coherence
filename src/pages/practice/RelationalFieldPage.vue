@@ -82,12 +82,12 @@
             <div class="signal-section">
               <h3>Word Cloud</h3>
               <p class="text-caption">Environmental patterns across time</p>
-              <SignalWordCloud project="Relational Field" />
+              <WordField :words="projectWords" project="Relational Field" />
             </div>
             <div class="signal-section">
               <h3>Recent Signals</h3>
               <p class="text-caption">How coherence behaves over time</p>
-              <SignalFeed project="Relational Field" />
+              <SignalFeed :entries="projectFeed" />
             </div>
           </section>
 
@@ -103,10 +103,17 @@
 </template>
 
 <script setup>
+import { computed, onMounted } from 'vue';
 import { useHead } from '@unhead/vue';
 import SignalSubmissionForm from '@/components/SignalSubmissionForm.vue';
-import SignalWordCloud from '@/components/SignalWordCloud.vue';
+import WordField from '@/components/WordField.vue';
 import SignalFeed from '@/components/SignalFeed.vue';
+import { initObservatoryData, getWordsForProject, getFeedForProject } from '@/utils/observatoryData';
+
+const projectWords = computed(() => getWordsForProject('Relational Field'));
+const projectFeed = computed(() => getFeedForProject('Relational Field'));
+
+onMounted(() => initObservatoryData());
 
 useHead({
   title: 'Relational Field — Practice — Coherence Across Scales',

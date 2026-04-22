@@ -17,18 +17,28 @@
         />
 
         <!-- Block 3: Short intro -->
-        <section class="observatory-intro">
-          <p>
-            The Observatory reveals patterns of observation as they emerge across the six practice areas.<br>
-            Explore the signals, or enter a project to contribute.
-          </p>
+        <section class="">
+          <h2 class="text-label">Recent Signals</h2>
+         <WordField :words="allWords" />
+          <div class="aggregate-feed">
+            <SignalFeed :entries="allFeed" />
+          </div>
         </section>
 
       </div>
     </div>
-    <WordCloud :words="signals" />
 
-    <!-- Block 4: Observational Units (full page width for wireframe layout) -->
+    <!-- Block 4: Aggregate signal field -->
+    <div class="page-container mt-5"><hr/>
+      <section class="observatory-intro">
+        <p>
+          The Observatory reveals patterns of observation as they emerge across the six practice areas.<br>
+          Enter a project to contribute.
+        </p>
+      </section>
+    </div>
+
+    <!-- Block 5: Observational Units (directory only — cloud + feed live on each project page) -->
     <div class="page-container">
       <section class="observatory-units">
         <h2 class="text-label">Observational Units</h2>
@@ -41,18 +51,6 @@
             <div class="obs-unit__header">
               <h3>{{ unit.project }}</h3>
               <p class="obs-unit__copy">{{ unit.copy }}</p>
-            </div>
-
-            <div class="obs-unit__body">
-              <div class="obs-unit__cloud">
-                <p class="text-label">Signals</p>
-                <WordField :project="unit.project" :words="signals"/>
-              </div>
-
-              <div class="obs-unit__feed">
-                <p class="text-label">Recent Signals</p>
-                <SignalFeed :project="unit.project"/>
-              </div>
             </div>
 
             <RouterLink :to="unit.path" class="obs-unit__enter">
@@ -69,7 +67,7 @@
       </section>
     </div>
 
-    <!-- Block 5: Observer Network -->
+    <!-- Block 6: Observer Network -->
     <section class="observer-network" id="observer-network">
       <div class="page-container">
         <div class="content-container">
@@ -82,7 +80,7 @@
 
       <div class="page-container">
         <div class="globe-wrapper">
-          <SignalGlobe ref="globeRef" @ready="onGlobeReady"/>
+          <SignalGlobe ref="globeRef" :signals="observatoryState.networkSignals" @ready="onGlobeReady"/>
         </div>
       </div>
 
@@ -107,23 +105,25 @@
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue';
-import {useHead} from '@unhead/vue';
+import { ref, computed, onMounted } from 'vue';
+import { useHead } from '@unhead/vue';
 import WordField from '@/components/WordField.vue';
 import SignalFeed from '@/components/SignalFeed.vue';
 import SignalGlobe from '@/components/SignalGlobe.vue';
 import PlaceSignalModal from '@/components/PlaceSignalModal.vue';
 import WeeklySignalDisplay from '@/components/WeeklySignalDisplay.vue';
-import {fetchCurrentSignal} from '@/utils/currentSignal';
-import WordCloud from '@/components/WordCloud.vue';
+import {
+  observatoryState,
+  initObservatoryData,
+  getAllWords,
+  getAllFeed,
+} from '@/utils/observatoryData';
 
 useHead({
   title: 'Observatory — Coherence Across Scales',
-  meta: [{name: 'description', content: 'A live view of how perception is forming across the observer network.'}]
+  meta: [{ name: 'description', content: 'A live view of how perception is forming across the observer network.' }],
 });
 
-// Fallback Weekly Signal used when the database has no row yet.
-// Once an admin publishes via /admin, the latest DB row replaces this.
 const FALLBACK_SIGNAL = {
   label: 'Weekly Signal',
   timeframe: 'Week of April 1, 2026',
@@ -137,148 +137,57 @@ These signals appeared across Dialogue, Reflection, and Relational Field.
 
 > "The conversation changed when no one tried to resolve it."
 
-_When uncertainty becomes shared, interaction begins to change._`
+_When uncertainty becomes shared, interaction begins to change._`,
 };
 
-const currentSignal = ref({...FALLBACK_SIGNAL});
+const currentSignal = computed(() => {
+  const s = observatoryState.currentSignal;
+  return (s && s.content) ? s : FALLBACK_SIGNAL;
+});
 
-async function loadCurrentSignal() {
-  const row = await fetchCurrentSignal();
-  if (row && row.content) {
-    currentSignal.value = {
-      label: row.label,
-      timeframe: row.timeframe,
-      content: row.content
-    };
-  }
-  // If row is null (no data / API error / dev middleware missing),
-  // we keep the hardcoded FALLBACK_SIGNAL so the page still renders.
-}
+const allWords = computed(() => getAllWords());
+const allFeed = computed(() => getAllFeed());
+
+const globeRef = ref(null);
+const showModal = ref(false);
+const alreadyPlaced = ref(false);
 
 const units = [
   {
     project: 'AI Observation',
     copy: 'Patterns detected through AI-assisted observation across language and behavior.',
-    path: '/practice/projects/ai-observation'
+    path: '/practice/projects/ai-observation',
   },
   {
     project: 'Observation',
     copy: 'What changes within a single interaction when presence stabilizes.',
-    path: '/practice/projects/observation'
+    path: '/practice/projects/observation',
   },
   {
     project: 'Dialogue',
     copy: 'What happens when meaning is recognized and allowed to deepen.',
-    path: '/practice/projects/dialogue'
+    path: '/practice/projects/dialogue',
   },
   {
     project: 'Relational Field',
     copy: 'How coherence behaves across environments over time.',
-    path: '/practice/projects/relational-field'
+    path: '/practice/projects/relational-field',
   },
   {
     project: 'Reflection',
     copy: 'What becomes visible through recursive dialogue with intelligence.',
-    path: '/practice/projects/reflection'
+    path: '/practice/projects/reflection',
   },
   {
     project: 'Presence',
     copy: 'How coherence can be lived through ordinary daily life.',
-    path: '/practice/projects/presence'
-  }
+    path: '/practice/projects/presence',
+  },
 ];
 
-const globeRef = ref(null);
-const showModal = ref(false);
-const alreadyPlaced = ref(false);
-/**
- * Process signals for word cloud - fully dynamic, combines repeats for size (capped), uses count for styling
- */
-function processSignalsForWordCloud(data) {
-  if (!data?.length) return [];
-
-  const now = Date.now();
-  const minFont = 18;
-  const maxFont = 42;
-
-  // 1. Normalize + calculate time-ago in milliseconds
-  let entries = data.flatMap(item => {
-    let signal = item.signal.toLowerCase().trim();
-    const t = now - new Date(item.created_at).getTime(); // ms ago
-
-    if (signal.includes(',')) {
-      return signal.split(',')
-          .map(s => s.trim())
-          .filter(s => s.length > 0)
-          .map(s => ({ signal: s, t }));
-    }
-    return { signal, t };
-  });
-
-  // 2. Count occurrences for styling only
-  const countMap = {};
-  entries.forEach(e => {
-    countMap[e.signal] = (countMap[e.signal] || 0) + 1;
-  });
-
-  // 3. Dynamic min/max (fully dynamic, as you wanted)
-  const minT = Math.min(...entries.map(e => e.t));
-  const maxT = Math.max(...entries.map(e => e.t));
-  const range = maxT - minT || 1;
-
-  // 4. Group and combine scores (0–1 ratio kept clean)
-  const grouped = {};
-  entries.forEach(({ signal, t }) => {
-    if (!grouped[signal]) {
-      grouped[signal] = { signal, totalScore: 0, count: countMap[signal] };
-    }
-    const individualScore = (maxT - t) / range;   // clean 0–1
-    grouped[signal].totalScore += individualScore;
-  });
-
-  // 5. Final unique words
-  let result = Object.values(grouped).map(group => {
-    // Combine + hard cap at 1.0 (never exceeds max size)
-    const combinedScore = Math.min(1, group.totalScore);
-
-    const size = Math.round(minFont + combinedScore * (maxFont - minFont));
-
-    // Styling based on repeats
-    const fill = group.count > 1
-        ? 'rgb(0, 0, 0)'
-        : 'rgba(0, 0, 0, 0.75)';
-
-    const fontWeight = group.count >= 3 ? 'bold' : 'normal';
-
-    return {
-      text: group.signal,
-      size,
-      fill,
-      fontWeight,
-      word: group.signal,
-      count: group.count,
-      score: combinedScore,           // ← clean 0–1 ratio, easy to tweak later
-      rawTotal: group.totalScore      // optional: see the pre-cap sum if you want to experiment
-    };
-  });
-
-  result.sort((a, b) => b.size - a.size);
-
-  return result;
-}
-let signals = ref([]);
 onMounted(async () => {
   alreadyPlaced.value = !!localStorage.getItem('mysignal-id');
-
-  await loadCurrentSignal();
-  const res = await fetch(
-      `/api/observations`
-  );
-  if (res.ok) {
-    const data = await res.json();
-    signals.value = processSignalsForWordCloud(data);
-    console.log({observations: data, signals});
-  }
+  await initObservatoryData();
 });
 
 function openModal() {
@@ -289,11 +198,9 @@ function closeModal() {
   showModal.value = false;
 }
 
-function onGlobeReady() {
+function onGlobeReady() {}
 
-}
-
-function onSignalPlaced({lat, lng, id}) {
+function onSignalPlaced({ lat, lng, id }) {
   alreadyPlaced.value = true;
   showModal.value = false;
   globeRef.value?.addNewSignal(lng, lat, true);
@@ -312,6 +219,18 @@ function onSignalPlaced({lat, lng, id}) {
   }
 }
 
+// Aggregate field
+.aggregate-signals {
+  padding: var(--spacing-xl) 0;
+}
+
+.aggregate-feed {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border);
+  max-width: 42rem;
+}
+
 // Units grid
 .units-grid {
   display: grid;
@@ -327,21 +246,11 @@ function onSignalPlaced({lat, lng, id}) {
 }
 
 .obs-unit {
-  container-type: inline-size;
   display: flex;
   flex-direction: column;
   padding: var(--spacing-xl);
   background: var(--bg);
   gap: var(--spacing-md);
-}
-
-.obs-unit__body {
-  display: grid;
-  gap: var(--spacing-md);
-
-  @container (min-width: 500px) {
-    grid-template-columns: 3fr 2fr;
-  }
 }
 
 .obs-unit__header {
@@ -362,7 +271,6 @@ function onSignalPlaced({lat, lng, id}) {
   margin: 0;
   line-height: 1.65;
 }
-
 
 .obs-unit__enter {
   display: inline-block;

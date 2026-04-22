@@ -37,6 +37,7 @@
             top: item.y + 'px',
             fontSize: item.fontSize + 'px',
             opacity: 0.45 + item.ratio * 0.55,
+            cursor: project ? 'pointer' : 'default',
           }"
           :title="`${item.count} signal${item.count !== 1 ? 's' : ''}`"
           @click="onWordClick(item.word)"
@@ -86,7 +87,7 @@
 import { ref, computed, onMounted, onBeforeUnmount, nextTick, watch, toRef } from 'vue';
 
 const props = defineProps({
-  project: { type: String, required: true },
+  project: { type: String, default: null },
   words: { type: Array, default: () => [] },
 });
 
@@ -233,6 +234,8 @@ const layout = computed(() =>
 // ── Word interaction ───────────────────────────────────────────
 
 async function onWordClick(word) {
+  if (!props.project) return;
+
   if (selectedWord.value === word) {
     clearSelection();
     return;
