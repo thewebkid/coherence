@@ -15,12 +15,19 @@ export default async function handler(req, res) {
   }
 
   const { project } = req.query;
-  if (!project) {
-    return res.status(400).json({ error: 'project query parameter is required.' });
-  }
 
   try {
     const sql = neon(POSTGRES_URL);
+
+    if (!project) {
+      const rows = await sql`
+        SELECT * FROM observations
+        WHERE created_at >= now() - interval '100 days'
+        ORDER BY created_at DESC
+      `;
+      res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120');
+      return res.status(200).json(rows);
+    }
 
     // 5 most recent reflections for the feed
     const recentRows = await sql`

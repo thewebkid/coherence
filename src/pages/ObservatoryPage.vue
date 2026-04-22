@@ -26,6 +26,7 @@
 
       </div>
     </div>
+    <WordCloud :words="signals" />
 
     <!-- Block 4: Observational Units (full page width for wireframe layout) -->
     <div class="page-container">
@@ -45,7 +46,7 @@
             <div class="obs-unit__body">
               <div class="obs-unit__cloud">
                 <p class="text-label">Signals</p>
-                <WordField :project="unit.project"/>
+                <WordField :project="unit.project" :words="signals"/>
               </div>
 
               <div class="obs-unit__feed">
@@ -114,6 +115,7 @@ import SignalGlobe from '@/components/SignalGlobe.vue';
 import PlaceSignalModal from '@/components/PlaceSignalModal.vue';
 import WeeklySignalDisplay from '@/components/WeeklySignalDisplay.vue';
 import {fetchCurrentSignal} from '@/utils/currentSignal';
+import WordCloud from '@/components/WordCloud.vue';
 
 useHead({
   title: 'Observatory — Coherence Across Scales',
@@ -189,7 +191,82 @@ const units = [
 const globeRef = ref(null);
 const showModal = ref(false);
 const alreadyPlaced = ref(false);
+/**
+ * Process signals for word cloud - fully dynamic, combines repeats for size (capped), uses count for styling
+ */
+function processSignalsForWordCloud(data) {
+  if (!data?.length) return [];
 
+  const now = Date.now();
+  const minFont = 18;
+  const maxFont = 42;
+
+  // 1. Normalize + calculate time-ago in milliseconds
+  let entries = data.flatMap(item => {
+    let signal = item.signal.toLowerCase().trim();
+    const t = now - new Date(item.created_at).getTime(); // ms ago
+
+    if (signal.includes(',')) {
+      return signal.split(',')
+          .map(s => s.trim())
+          .filter(s => s.length > 0)
+          .map(s => ({ signal: s, t }));
+    }
+    return { signal, t };
+  });
+
+  // 2. Count occurrences for styling only
+  const countMap = {};
+  entries.forEach(e => {
+    countMap[e.signal] = (countMap[e.signal] || 0) + 1;
+  });
+
+  // 3. Dynamic min/max (fully dynamic, as you wanted)
+  const minT = Math.min(...entries.map(e => e.t));
+  const maxT = Math.max(...entries.map(e => e.t));
+  const range = maxT - minT || 1;
+
+  // 4. Group and combine scores (0–1 ratio kept clean)
+  const grouped = {};
+  entries.forEach(({ signal, t }) => {
+    if (!grouped[signal]) {
+      grouped[signal] = { signal, totalScore: 0, count: countMap[signal] };
+    }
+    const individualScore = (maxT - t) / range;   // clean 0–1
+    grouped[signal].totalScore += individualScore;
+  });
+
+  // 5. Final unique words
+  let result = Object.values(grouped).map(group => {
+    // Combine + hard cap at 1.0 (never exceeds max size)
+    const combinedScore = Math.min(1, group.totalScore);
+
+    const size = Math.round(minFont + combinedScore * (maxFont - minFont));
+
+    // Styling based on repeats
+    const fill = group.count > 1
+        ? 'rgb(0, 0, 0)'
+        : 'rgba(0, 0, 0, 0.75)';
+
+    const fontWeight = group.count >= 3 ? 'bold' : 'normal';
+
+    return {
+      text: group.signal,
+      size,
+      fill,
+      fontWeight,
+      word: group.signal,
+      count: group.count,
+      score: combinedScore,           // ← clean 0–1 ratio, easy to tweak later
+      rawTotal: group.totalScore      // optional: see the pre-cap sum if you want to experiment
+    };
+  });
+
+  result.sort((a, b) => b.size - a.size);
+
+  return result;
+}
+let signals = ref([]);
 onMounted(async () => {
   alreadyPlaced.value = !!localStorage.getItem('mysignal-id');
 
@@ -199,7 +276,8 @@ onMounted(async () => {
   );
   if (res.ok) {
     const data = await res.json();
-    console.log({observations: data});
+    signals.value = processSignalsForWordCloud(data);
+    console.log({observations: data, signals});
   }
 });
 
@@ -212,6 +290,7 @@ function closeModal() {
 }
 
 function onGlobeReady() {
+
 }
 
 function onSignalPlaced({lat, lng, id}) {

@@ -23,6 +23,8 @@
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "bootstrap": "^5.3.8",
     "bootstrap-vue-next": "^0.42.0",
+    "d3": "^7.9.0",
+    "d3-cloud": "^1.2.9",
     "dompurify": "3.3.2",
     "globe.gl": "^2.45.0",
     "leaflet": "^1.9.4",

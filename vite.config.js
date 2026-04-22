@@ -280,13 +280,6 @@ export default defineConfig({
               const url = new URL(req.url, 'http://localhost');
               const project = url.searchParams.get('project');
 
-              if (!project) {
-                res.statusCode = 400;
-                res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify({ error: 'project query parameter is required.' }));
-                return;
-              }
-
               const POSTGRES_URL = process.env.POSTGRES_URL;
               if (!POSTGRES_URL) {
                 res.statusCode = 500;
@@ -296,6 +289,14 @@ export default defineConfig({
               }
 
               const sql = neon(POSTGRES_URL);
+
+              if (!project) {
+                const rows = await sql`SELECT * FROM observations WHERE created_at >= now() - interval '100 days' ORDER BY created_at DESC`;
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify(rows));
+                return;
+              }
 
               const [recentRows, signalRows] = await Promise.all([
                 sql`SELECT reflection FROM observations WHERE project = ${project} ORDER BY created_at DESC LIMIT 5`,

@@ -83,10 +83,11 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, nextTick, watch } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount, nextTick, watch, toRef } from 'vue';
 
 const props = defineProps({
   project: { type: String, required: true },
+  words: { type: Array, default: () => [] },
 });
 
 const containerRef = ref(null);
@@ -113,15 +114,23 @@ onMounted(async () => {
       }
     });
     resizeObserver.observe(containerRef.value);
+
+    await nextTick();
+    if (containerWidth.value === 0) {
+      containerWidth.value = containerRef.value.clientWidth;
+    }
+    words.value = props.words;
+    loading.value = false;
   }
 
-  try {
+  /*try {
     const res = await fetch(
       `/api/observations?project=${encodeURIComponent(props.project)}`
     );
     if (res.ok) {
       const data = await res.json();
       words.value = data.signals || [];
+      console.log({[props.project]: words.value})
     }
   } catch {
     // silently degrade
@@ -131,11 +140,16 @@ onMounted(async () => {
     if (containerRef.value && containerWidth.value === 0) {
       containerWidth.value = containerRef.value.clientWidth;
     }
-  }
+  }*/
 });
 
 onBeforeUnmount(() => {
   resizeObserver?.disconnect();
+});
+
+watch(toRef(props, 'words'), (val) => {
+  words.value = val;
+  loading.value = false;
 });
 
 // ── Layout computation ─────────────────────────────────────────
@@ -165,7 +179,7 @@ function computeCloudLayout(wordList, width, height) {
   const items = wordList
     .map(w => {
       const ratio = w.count / maxCount;
-      const fontSize = 12 + ratio * 24;
+      const fontSize = (w.size/2) + ratio * 24;
       const textW = getTextWidth(w.word, fontSize);
       return {
         word: w.word,
