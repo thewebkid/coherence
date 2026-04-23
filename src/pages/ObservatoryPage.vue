@@ -225,8 +225,9 @@ function onSignalPlaced({ lat, lng, id }) {
 }
 
 .aggregate-feed {
-  margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  padding-top: var(--spacing-xl);
   border-top: 1px solid var(--border);
   max-width: 42rem;
 }

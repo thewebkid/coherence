@@ -39,8 +39,8 @@
             opacity: 0.45 + item.ratio * 0.55,
             cursor: project ? 'pointer' : 'default',
           }"
-          :title="`${item.count} signal${item.count !== 1 ? 's' : ''}`"
-          @click="onWordClick(item.word)"
+          x-dont-use-title="`${item.count} signal${item.count !== 1 ? 's' : ''}`"
+          xdisabledclick="onWordClick(item.word)"
         >{{ item.word }}</button>
       </div>
 
@@ -236,7 +236,7 @@ const layout = computed(() =>
 async function onWordClick(word) {
   if (!props.project) return;
 
-  if (selectedWord.value === word) {
+  /*if (selectedWord.value === word) {
     clearSelection();
     return;
   }
@@ -256,7 +256,7 @@ async function onWordClick(word) {
     // silently degrade
   } finally {
     detailLoading.value = false;
-  }
+  }*/
 }
 
 function clearSelection() {
