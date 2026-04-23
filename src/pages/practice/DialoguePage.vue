@@ -77,7 +77,7 @@
             </div>
             <div class="signal-section">
               <h3>Recent Signals</h3>
-              <p class="text-caption">How recognition is experienced</p>
+              <p class="text-caption mb-5">How recognition is experienced</p>
               <SignalFeed :entries="projectFeed" />
             </div>
           </section>
