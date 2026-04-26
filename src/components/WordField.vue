@@ -155,6 +155,11 @@ watch(toRef(props, 'words'), (val) => {
 
 // ── Layout computation ─────────────────────────────────────────
 
+const DESIGN_WIDTH   = 600;  // px — reference width for full-size fonts
+const MIN_SCALE      = 0.50; // never shrink below 50%
+const MAX_JITTER     = 100;  // max px shift for edge words
+const BAND_THRESHOLD = 0.75; // fraction of avgH used for row-grouping
+
 const canvasHeight = computed(() => {
   const w = containerWidth.value;
   if (!w) return 0;
@@ -171,17 +176,89 @@ function getTextWidth(text, fontSize) {
   return _measureCtx.measureText(text).width;
 }
 
+// Deterministic 0..1 value per word so jitter is stable across re-renders.
+function wordHash(word) {
+  let h = 0;
+  for (let i = 0; i < word.length; i++)
+    h = (Math.imul(31, h) + word.charCodeAt(i)) | 0;
+  return (h >>> 0) / 0xFFFFFFFF;
+}
+
+function applyEdgeJitter(placed, width) {
+  if (!placed.length) return placed;
+
+  const avgH = placed.reduce((s, p) => s + p.h, 0) / placed.length;
+  const bandGap = avgH * BAND_THRESHOLD;
+
+  // Sort a copy by vertical center to build horizontal bands.
+  const byY = [...placed].sort((a, b) => (a.y + a.h / 2) - (b.y + b.h / 2));
+
+  // Group into bands by proximity of vertical centers.
+  const bands = [];
+  let band = [byY[0]];
+  let bandCY = byY[0].y + byY[0].h / 2;
+
+  for (let i = 1; i < byY.length; i++) {
+    const cy = byY[i].y + byY[i].h / 2;
+    if (cy - bandCY <= bandGap) {
+      band.push(byY[i]);
+      bandCY = band.reduce((s, p) => s + p.y + p.h / 2, 0) / band.length;
+    } else {
+      bands.push(band);
+      band = [byY[i]];
+      bandCY = cy;
+    }
+  }
+  bands.push(band);
+
+  // Build a lookup for quick mutation by word identity.
+  const offsets = new Map();
+
+  for (const b of bands) {
+    if (b.length >= 4) continue; // 4+ words: no variance
+
+    b.sort((a, b) => a.x - b.x);
+
+    if (b.length === 1) {
+      const item = b[0];
+      const hash = wordHash(item.word); // 0..1
+      const raw  = (hash * 2 - 1) * MAX_JITTER;
+      const lo   = -item.x;
+      const hi   = width - (item.x + item.w);
+      offsets.set(item.word, Math.max(lo, Math.min(hi, raw)));
+    }
+
+    if (b.length === 2 || b.length === 3) {
+      const left  = b[0];
+      const right = b[b.length - 1];
+
+      const leftRoom  = Math.min(left.x, MAX_JITTER);
+      const rightRoom = Math.min(width - (right.x + right.w), MAX_JITTER);
+
+      offsets.set(left.word,  -wordHash(left.word)  * leftRoom);
+      offsets.set(right.word,  wordHash(right.word) * rightRoom);
+    }
+  }
+
+  if (!offsets.size) return placed;
+
+  return placed.map(p =>
+    offsets.has(p.word) ? { ...p, x: p.x + offsets.get(p.word) } : p
+  );
+}
+
 function computeCloudLayout(wordList, width, height) {
   if (!wordList.length || !width || !height) return [];
 
-  const maxCount = Math.max(...wordList.map(w => w.count), 1);
+  const maxCount  = Math.max(...wordList.map(w => w.count), 1);
+  const fontScale = Math.max(MIN_SCALE, Math.min(1, width / DESIGN_WIDTH));
   const PAD = 4;
 
   const items = wordList
     .map(w => {
-      const ratio = w.count / maxCount;
-      const fontSize = (w.size/2) + ratio * 24;
-      const textW = getTextWidth(w.word, fontSize);
+      const ratio    = w.count / maxCount;
+      const fontSize = ((w.size / 2) + ratio * 24) * fontScale;
+      const textW    = getTextWidth(w.word, fontSize);
       return {
         word: w.word,
         count: w.count,
@@ -201,9 +278,9 @@ function computeCloudLayout(wordList, width, height) {
     let found = false;
     for (let step = 0; step < 500; step++) {
       const angle = step * 0.3;
-      const r = step * 0.6;
-      const x = cx + r * Math.cos(angle) - item.w / 2;
-      const y = cy + r * Math.sin(angle) - item.h / 2;
+      const r     = step * 0.6;
+      const x     = cx + r * Math.cos(angle) - item.w / 2;
+      const y     = cy + r * Math.sin(angle) - item.h / 2;
 
       if (x < 0 || y < 0 || x + item.w > width || y + item.h > height) continue;
 
@@ -224,7 +301,7 @@ function computeCloudLayout(wordList, width, height) {
     // Words that can't be placed are omitted (sparse-data handling)
   }
 
-  return placed;
+  return applyEdgeJitter(placed, width);
 }
 
 const layout = computed(() =>
