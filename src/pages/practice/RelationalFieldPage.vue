@@ -77,25 +77,7 @@
             </p>
           </section>
 
-          <section>
-            <h2>What Emerges</h2>
-            <div class="signal-section">
-              <h3>Word Cloud</h3>
-              <p class="text-caption">Environmental patterns across time</p>
-              <WordField :words="projectWords" project="Relational Field" />
-            </div>
-            <div class="signal-section">
-              <h3>Recent Signals</h3>
-              <p class="text-caption mb-5">How coherence behaves over time</p>
-              <SignalFeed :entries="projectFeed" />
-            </div>
-          </section>
-
-          <div class="submission-section">
-            <h2>Submit an Observation</h2>
-            <p>All submissions are anonymous.</p>
-            <SignalSubmissionForm project="Relational Field" />
-          </div>
+          <current-signals project="Relational Field" />
         </div>
       </div>
     </div>
@@ -103,15 +85,10 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useHead } from '@unhead/vue';
-import SignalSubmissionForm from '@/components/SignalSubmissionForm.vue';
-import WordField from '@/components/WordField.vue';
-import SignalFeed from '@/components/SignalFeed.vue';
-import { initObservatoryData, getWordsForProject, getFeedForProject } from '@/utils/observatoryData';
-
-const projectWords = computed(() => getWordsForProject('Relational Field'));
-const projectFeed = computed(() => getFeedForProject('Relational Field'));
+import { initObservatoryData } from '@/utils/observatoryData';
+import CurrentSignals from '@/components/CurrentSignals.vue';
 
 onMounted(() => initObservatoryData());
 

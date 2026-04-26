@@ -68,25 +68,7 @@
             </p>
           </section>
 
-          <section>
-            <h2>What Emerges</h2>
-            <div class="signal-section">
-              <h3>Word Cloud</h3>
-              <p class="text-caption">Patterns across many conversations</p>
-              <WordField :words="projectWords" project="Dialogue" />
-            </div>
-            <div class="signal-section">
-              <h3>Recent Signals</h3>
-              <p class="text-caption mb-5">How recognition is experienced</p>
-              <SignalFeed :entries="projectFeed" />
-            </div>
-          </section>
-
-          <div class="submission-section">
-            <h2>Submit an Observation</h2>
-            <p>All submissions are anonymous.</p>
-            <SignalSubmissionForm project="Dialogue" />
-          </div>
+          <current-signals project="Dialogue" />
         </div>
       </div>
     </div>
@@ -96,13 +78,9 @@
 <script setup>
 import { computed, onMounted } from 'vue';
 import { useHead } from '@unhead/vue';
-import SignalSubmissionForm from '@/components/SignalSubmissionForm.vue';
-import WordField from '@/components/WordField.vue';
-import SignalFeed from '@/components/SignalFeed.vue';
-import { initObservatoryData, getWordsForProject, getFeedForProject } from '@/utils/observatoryData';
 
-const projectWords = computed(() => getWordsForProject('Dialogue'));
-const projectFeed = computed(() => getFeedForProject('Dialogue'));
+import { initObservatoryData } from '@/utils/observatoryData';
+import CurrentSignals from '@/components/CurrentSignals.vue';
 
 onMounted(() => initObservatoryData());
 

@@ -111,25 +111,7 @@
             </p>
           </section>
 
-          <section>
-            <h2>What Emerges</h2>
-            <div class="signal-section">
-              <h3>Word Cloud</h3>
-              <p class="text-caption">Patterns of lived presence</p>
-              <WordField :words="projectWords" project="Presence" />
-            </div>
-            <div class="signal-section">
-              <h3>Recent Signals</h3>
-              <p class="text-caption mb-5">How coherence moves through life</p>
-              <SignalFeed :entries="projectFeed" />
-            </div>
-          </section>
-
-          <div class="submission-section">
-            <h2>Submit an Observation</h2>
-            <p>All submissions are anonymous.</p>
-            <SignalSubmissionForm project="Presence" />
-          </div>
+          <current-signals project="Presence" />
         </div>
       </div>
     </div>
@@ -143,9 +125,7 @@ import SignalSubmissionForm from '@/components/SignalSubmissionForm.vue';
 import WordField from '@/components/WordField.vue';
 import SignalFeed from '@/components/SignalFeed.vue';
 import { initObservatoryData, getWordsForProject, getFeedForProject } from '@/utils/observatoryData';
-
-const projectWords = computed(() => getWordsForProject('Presence'));
-const projectFeed = computed(() => getFeedForProject('Presence'));
+import CurrentSignals from '@/components/CurrentSignals.vue';
 
 onMounted(() => initObservatoryData());
 
