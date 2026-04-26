@@ -39,6 +39,10 @@
 .surface-panel {
   @include surface-panel(var(--spacing-xl));
   border: 1px solid var(--border);
+  @media (max-width: 767px) {
+    padding: var(--spacing-lg) .6em;
+  }
+
 }
 
 // Panel variant without a border (form contexts, signal submissions).

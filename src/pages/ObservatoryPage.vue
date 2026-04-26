@@ -86,7 +86,7 @@
 
       <div class="page-container">
         <div class="content-container">
-          <div class="place-signal-area">
+          <div class="place-signal-area text-center">
             <button class="place-signal-btn" @click="openModal">
               {{ alreadyPlaced ? 'Update your signal' : 'Place a Signal' }}
             </button>

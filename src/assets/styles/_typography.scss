@@ -152,14 +152,23 @@ small, .text-small {
   max-width: var(--page-width);
   margin: 0 auto;
   padding: 0 var(--margin-page);
+
 }
 
 // Content container (narrower for reading)
 .content-container {
   max-width: var(--content-width);
   margin: 0 auto;
-}
 
+}
+@media (max-width: 767px) {
+  .page-container {
+    padding: 0 .6rem; // or whatever feels right
+  }
+  .content-container {
+    padding: 0 0 !important;
+  }
+}
 // Fade in animation
 .fade-in {
   animation: fadeIn var(--transition-slow) ease;
