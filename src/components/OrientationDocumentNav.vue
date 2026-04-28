@@ -1,6 +1,6 @@
 <template>
   <nav class="orientation-doc-nav" aria-label="Related orientation documents">
-    <h2 class="orientation-doc-nav__heading">Orientation documents</h2>
+    <h2 class="orientation-doc-nav__heading">Orientation</h2>
     <ul class="orientation-doc-nav__list">
       <li
         v-for="item in items"
@@ -29,12 +29,21 @@
 </template>
 
 <script setup>
-/** Bottom-of-page links between the three orientation documents; current page is non-interactive and muted. */
+/** Bottom-of-page links between all orientation documents; current page is non-interactive and muted. */
 defineProps({
   current: {
     type: String,
     required: true,
-    validator: (v) => ['note-to-observers', 'stability-permeability', 'first-act'].includes(v),
+    validator: (v) => [
+      'note-to-observers',
+      'first-act',
+      'stability-permeability',
+      'core-condition',
+      'dialogue-on-willingness',
+      'what-attention-makes-visible',
+      'generative-relation',
+      'noticing',
+    ].includes(v),
   },
 });
 
@@ -46,16 +55,46 @@ const items = [
     label: 'Invitation',
   },
   {
+    id: 'first-act',
+    path: '/practice/first-act-of-observation',
+    title: 'The First Act of Observation',
+    label: 'Lived Entry',
+  },
+  {
     id: 'stability-permeability',
     path: '/practice/stability-and-permeability',
     title: 'Stability & Permeability',
     label: 'Internal System',
   },
   {
-    id: 'first-act',
-    path: '/practice/first-act-of-observation',
-    title: 'The First Act of Observation',
-    label: 'Lived Entry',
+    id: 'core-condition',
+    path: '/practice/core-condition',
+    title: 'The Core Condition',
+    label: 'Orientation',
+  },
+  {
+    id: 'dialogue-on-willingness',
+    path: '/practice/dialogue-on-willingness',
+    title: 'Dialogue on Willingness',
+    label: 'Orientation',
+  },
+  {
+    id: 'what-attention-makes-visible',
+    path: '/practice/what-attention-makes-visible',
+    title: 'What Attention Makes Visible',
+    label: 'Orientation',
+  },
+  {
+    id: 'generative-relation',
+    path: '/practice/generative-relation',
+    title: 'Generative Relation',
+    label: 'Orientation',
+  },
+  {
+    id: 'noticing',
+    path: '/practice/noticing',
+    title: 'Noticing',
+    label: 'Orientation',
   },
 ];
 </script>
@@ -89,7 +128,11 @@ const items = [
   overflow: hidden;
 
   @media (min-width: 640px) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 

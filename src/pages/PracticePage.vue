@@ -18,9 +18,16 @@
               The Practice section is not a set of instructions.<br>
               It is a way of observing together.
             </p>
-            <p>
-              <RouterLink to="/practice/orientation" class="text-link">→ Orientation</RouterLink>
-            </p>
+            <div class="orientation-links">
+              <RouterLink to="/note-to-observers" class="orientation-link">A Note to Observers</RouterLink>
+              <RouterLink to="/practice/first-act-of-observation" class="orientation-link">The First Act of Observation</RouterLink>
+              <RouterLink to="/practice/stability-and-permeability" class="orientation-link">Stability &amp; Permeability</RouterLink>
+              <RouterLink to="/practice/core-condition" class="orientation-link">The Core Condition</RouterLink>
+              <RouterLink to="/practice/dialogue-on-willingness" class="orientation-link">Dialogue on Willingness</RouterLink>
+              <RouterLink to="/practice/what-attention-makes-visible" class="orientation-link">What Attention Makes Visible</RouterLink>
+              <RouterLink to="/practice/generative-relation" class="orientation-link">Generative Relation</RouterLink>
+              <RouterLink to="/practice/noticing" class="orientation-link">Noticing</RouterLink>
+            </div>
           </section>
 
           <section>
@@ -154,6 +161,29 @@ const projects = [
 </script>
 
 <style lang="scss" scoped>
+.orientation-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-sm);
+}
+
+.orientation-link {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--accent);
+  text-decoration: none;
+
+  &::before {
+    content: '→ ';
+    color: var(--text-muted);
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .practice-structure {
   margin: var(--spacing-md) 0;
   padding: var(--spacing-md);

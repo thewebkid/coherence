@@ -120,7 +120,7 @@
               The observation belongs to the relation.
             </p>
           </section>
-          <current-signals :project="'AI Observation'" />
+          <ProjectFooter :project="'AI Observation'" />
 <!--          <section>
             <h2>What Emerges</h2>
             <div class="signal-section">
@@ -154,7 +154,7 @@ import SignalSubmissionForm from '@/components/SignalSubmissionForm.vue';
 import WordField from '@/components/WordField.vue';
 import SignalFeed from '@/components/SignalFeed.vue';
 import { initObservatoryData, getWordsForProject, getFeedForProject } from '@/utils/observatoryData';
-import CurrentSignals from '@/components/CurrentSignals.vue';
+import ProjectFooter from '@/components/ProjectFooter.vue';
 
 const projectWords = computed(() => getWordsForProject('AI Observation'));
 const projectFeed = computed(() => getFeedForProject('AI Observation'));

@@ -77,7 +77,7 @@
             </p>
           </section>
 
-          <current-signals project="Relational Field" />
+          <ProjectFooter project="Relational Field" />
         </div>
       </div>
     </div>
@@ -88,7 +88,7 @@
 import { onMounted } from 'vue';
 import { useHead } from '@unhead/vue';
 import { initObservatoryData } from '@/utils/observatoryData';
-import CurrentSignals from '@/components/CurrentSignals.vue';
+import ProjectFooter from '@/components/ProjectFooter.vue';
 
 onMounted(() => initObservatoryData());
 

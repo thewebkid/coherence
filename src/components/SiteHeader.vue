@@ -95,7 +95,6 @@ const menuOpen = ref(false);
 const isDark = computed(() => themeStore.resolvedIsDark());
 
 const navLinks = [
-  { to: '/', label: 'Home' },
   { to: '/practice', label: 'Practice' },
   { to: '/observatory', label: 'Observatory' },
   { to: '/interpretive-works', label: 'Interpretive' },

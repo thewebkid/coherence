@@ -90,7 +90,7 @@
             </p>
           </section>
 
-          <current-signals project="Observation" />
+          <ProjectFooter project="Observation" />
         </div>
       </div>
     </div>
@@ -104,7 +104,7 @@ import SignalSubmissionForm from '@/components/SignalSubmissionForm.vue';
 import WordField from '@/components/WordField.vue';
 import SignalFeed from '@/components/SignalFeed.vue';
 import { initObservatoryData, getWordsForProject, getFeedForProject } from '@/utils/observatoryData';
-import CurrentSignals from '@/components/CurrentSignals.vue';
+import ProjectFooter from '@/components/ProjectFooter.vue';
 
 onMounted(() => initObservatoryData());
 

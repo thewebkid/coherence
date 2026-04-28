@@ -33,13 +33,71 @@
                 from the cellular and relational to the civilizational and planetary.
               </p>
               <div class="work-card-actions">
-                <router-link to="/mirror-across-scales" class="work-link">Read Online</router-link>
-                <DownloadButton href="/pdf/The-Mirror-Across-Scales.pdf" target="_blank" rel="noopener">Download PDF</DownloadButton>
+                <RouterLink to="/mirror-across-scales" class="work-link">Read Online</RouterLink>
+                <DownloadButton href="/pdf/The-Mirror-Across-Scales.pdf" label="Download PDF" />
+              </div>
+            </div>
+          </article>
+
+          <!-- Micro-essays -->
+          <div class="work-section-label">Micro-Essays</div>
+          <article class="work-card">
+            <div class="work-card-content">
+              <h2>The Field Beneath the Names</h2>
+              <p class="work-card-desc">
+                Beneath all names for presence, awareness, consciousness — something remains
+                that is not named. On the field that all language attempts to reach.
+              </p>
+              <div class="work-card-actions">
+                <RouterLink to="/work/field-beneath-the-names" class="work-link">Read Essay</RouterLink>
+              </div>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="work-card-content">
+              <h2>When Nothing Is Carried Forward</h2>
+              <p class="work-card-desc">
+                You do not need to become something new. You only need to see what is being
+                carried forward automatically.
+              </p>
+              <div class="work-card-actions">
+                <RouterLink to="/work/when-nothing-is-carried-forward" class="work-link">Read Essay</RouterLink>
+              </div>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="work-card-content">
+              <h2>The Conditions of Coherent Intelligence</h2>
+              <p class="work-card-desc">
+                Intelligence does not reside in any single form. On the conditions under
+                which distributed, participatory intelligence becomes possible.
+              </p>
+              <div class="work-card-actions">
+                <RouterLink to="/work/conditions-of-coherent-intelligence" class="work-link">Read Essay</RouterLink>
               </div>
             </div>
           </article>
 
           <div class="work-section-label">Core Documents</div>
+          <article class="work-card">
+            <div class="work-card-content">
+              <h2>The Handbook</h2>
+              <p class="work-card-subtitle">A Practical Guide</p>
+              <p class="work-card-desc">
+                A practical guide on carrying coherence in daily life. Five practices —
+                alignment, return, harmonized sovereignty, relational coherence, and shared
+                becoming — meant to be lived alongside, not studied.
+              </p>
+              <div class="work-card-actions">
+                <RouterLink to="/work/handbook" class="work-link">Read Online</RouterLink>
+                <DownloadButton
+                  href="/pdf/Handbook of Practices v1.4.pdf"
+                  label="Download PDF"
+                />
+              </div>
+            </div>
+          </article>
+
           <article class="work-card">
             <div class="work-card-content">
               <h2>The Manuscript</h2>
@@ -80,17 +138,16 @@
 
           <article class="work-card">
             <div class="work-card-content">
-              <h2>The Handbook</h2>
-              <p class="work-card-subtitle">A Practical Guide</p>
+              <h2>Seven Movements</h2>
+              <p class="work-card-subtitle">A Scored Passage</p>
               <p class="work-card-desc">
-                A practical guide on carrying coherence in daily life. Five practices —
-                alignment, return, harmonized sovereignty, relational coherence, and shared
-                becoming — meant to be lived alongside, not studied.
+                A text in seven movements — a portable artifact of the full HTML experience
+                at Interpretive Works.
               </p>
               <div class="work-card-actions">
-                <RouterLink to="/work/handbook" class="work-link">Read Online</RouterLink>
+                <RouterLink to="/interpretive-works/seven-movements" class="work-link">Read Online</RouterLink>
                 <DownloadButton
-                  href="/pdf/Handbook of Practices v1.4.pdf"
+                  href="/pdf/Seven-Movements.pdf"
                   label="Download PDF"
                 />
               </div>

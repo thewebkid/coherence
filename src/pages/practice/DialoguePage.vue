@@ -68,7 +68,7 @@
             </p>
           </section>
 
-          <current-signals project="Dialogue" />
+          <ProjectFooter project="Dialogue" />
         </div>
       </div>
     </div>
@@ -80,7 +80,7 @@ import { computed, onMounted } from 'vue';
 import { useHead } from '@unhead/vue';
 
 import { initObservatoryData } from '@/utils/observatoryData';
-import CurrentSignals from '@/components/CurrentSignals.vue';
+import ProjectFooter from '@/components/ProjectFooter.vue';
 
 onMounted(() => initObservatoryData());
 

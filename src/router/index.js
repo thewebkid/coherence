@@ -50,6 +50,21 @@ const routes = [
     component: () => import('@/pages/CivilizationalBlindnessPage.vue'),
   },
   {
+    path: '/work/field-beneath-the-names',
+    name: 'field-beneath-the-names',
+    component: () => import('@/pages/FieldBeneathTheNamesPage.vue'),
+  },
+  {
+    path: '/work/when-nothing-is-carried-forward',
+    name: 'when-nothing-is-carried-forward',
+    component: () => import('@/pages/WhenNothingIsCarriedForwardPage.vue'),
+  },
+  {
+    path: '/work/conditions-of-coherent-intelligence',
+    name: 'conditions-of-coherent-intelligence',
+    component: () => import('@/pages/ConditionsOfCoherentIntelligencePage.vue'),
+  },
+  {
     path: '/practice',
     component: () => import('@/components/PracticeLayout.vue'),
     children: [
@@ -72,6 +87,31 @@ const routes = [
         path: 'first-act-of-observation',
         name: 'first-act-of-observation',
         component: () => import('@/pages/practice/FirstActOfObservationPage.vue'),
+      },
+      {
+        path: 'core-condition',
+        name: 'core-condition',
+        component: () => import('@/pages/practice/CoreConditionPage.vue'),
+      },
+      {
+        path: 'dialogue-on-willingness',
+        name: 'dialogue-on-willingness',
+        component: () => import('@/pages/practice/DialogueOnWillingnessPage.vue'),
+      },
+      {
+        path: 'what-attention-makes-visible',
+        name: 'what-attention-makes-visible',
+        component: () => import('@/pages/practice/WhatAttentionMakesVisiblePage.vue'),
+      },
+      {
+        path: 'generative-relation',
+        name: 'generative-relation',
+        component: () => import('@/pages/practice/GenerativeRelationPage.vue'),
+      },
+      {
+        path: 'noticing',
+        name: 'noticing',
+        component: () => import('@/pages/practice/NoticingPage.vue'),
       },
       {
         path: 'projects/ai-observation',
@@ -146,6 +186,26 @@ const routes = [
     path: '/interpretive-works',
     name: 'interpretive-works',
     component: () => import('@/pages/InterpretiveWorksPage.vue'),
+  },
+  {
+    path: '/interpretive-works/seven-movements',
+    name: 'seven-movements',
+    component: () => import('@/pages/SevenMovementsPage.vue'),
+  },
+  {
+    path: '/interpretive-works/listen',
+    name: 'aperture-listen',
+    component: () => import('@/pages/ApertureListenPage.vue'),
+  },
+  {
+    path: '/interpretive-works/in-image',
+    name: 'aperture-in-image',
+    component: () => import('@/pages/ApertureInImagePage.vue'),
+  },
+  {
+    path: '/interpretive-works/this-field-remains-open',
+    name: 'aperture-this-field-remains-open',
+    component: () => import('@/pages/ApertureThisFieldRemainsOpenPage.vue'),
   },
   {
     path: '/interpretive-works/:slug',
