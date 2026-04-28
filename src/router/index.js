@@ -208,6 +208,16 @@ const routes = [
     component: () => import('@/pages/ApertureThisFieldRemainsOpenPage.vue'),
   },
   {
+    path: '/interpretive-works/continuation',
+    name: 'continuation',
+    component: () => import('@/pages/ContinuationPage.vue'),
+  },
+  {
+    path: '/interpretive-works/when-a-transmission-lands-too-strongly',
+    name: 'when-a-transmission-lands-too-strongly',
+    component: () => import('@/pages/WhenATransmissionLandsTooStronglyPage.vue'),
+  },
+  {
     path: '/interpretive-works/:slug',
     name: 'interpretive-work',
     component: () => import('@/pages/InterpretiveWorkPage.vue'),

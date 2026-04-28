@@ -4,6 +4,7 @@ import { resolve } from 'path';
 import dotenv from 'dotenv';
 import { neon } from '@neondatabase/serverless';
 import { createClerkClient, verifyToken as clerkVerifyToken } from '@clerk/backend';
+import formidable from 'formidable';
 
 dotenv.config({ path: '.env.local' });
 
@@ -631,6 +632,45 @@ export default defineConfig({
               res.statusCode = 405;
               res.setHeader('Content-Type', 'application/json');
               res.end(JSON.stringify({ error: 'Method not allowed' }));
+            }
+          } else if (req.url === '/api/field-submission' && req.method === 'POST') {
+            const form = formidable({ maxFileSize: 20 * 1024 * 1024 });
+            try {
+              const [fields] = await form.parse(req);
+              const name = fields.name?.[0]?.trim() || null;
+              const location = fields.location?.[0]?.trim() || null;
+              const expression = fields.formOfExpression?.[0]?.trim() || null;
+              const movement = fields.submission?.[0]?.trim() || null;
+
+              if (!name && !location && !expression && !movement) {
+                res.statusCode = 400;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: 'Please share at least one field.' }));
+                return;
+              }
+
+              const POSTGRES_URL = process.env.POSTGRES_URL;
+              if (!POSTGRES_URL) {
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: 'Database connection not configured.' }));
+                return;
+              }
+
+              const sql = neon(POSTGRES_URL);
+              await sql`
+                INSERT INTO field_expressions (name, expression, location, movement)
+                VALUES (${name}, ${expression}, ${location}, ${movement})
+              `;
+
+              res.statusCode = 200;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ success: true }));
+            } catch (error) {
+              console.error('POST /api/field-submission dev error:', error);
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Failed to store submission.' }));
             }
           } else {
             next();

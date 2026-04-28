@@ -89,6 +89,35 @@ export async function sendAdminNewSubmissionEmail(payload) {
   });
 }
 
+/**
+ * Notify admins of a new field expression submission.
+ */
+export async function sendFieldExpressionEmail({ name, location, expression, movement, file_url }) {
+  const rows = [
+    ['Name', name ? escapeHtml(name) : '—'],
+    ['Location', location ? escapeHtml(location) : '—'],
+    ['Form of expression', expression ? escapeHtml(expression) : '—'],
+    ['Submission', movement ? formatBodyHtml(movement) : '—'],
+    ['File', file_url ? `<a href="${escapeHtml(file_url)}">${escapeHtml(file_url)}</a>` : '—'],
+  ];
+
+  const tableRows = rows
+    .map(
+      ([k, v]) =>
+        `<tr><td style="padding:8px 12px;border:1px solid #ddd;vertical-align:top;font-weight:600;">${k}</td><td style="padding:8px 12px;border:1px solid #ddd;">${v}</td></tr>`
+    )
+    .join('');
+
+  await postResend({
+    to: ADMIN_NOTIFY_EMAILS,
+    subject: 'New Field Expression Submission',
+    html: `
+      <p>A new field expression has been received via <em>This field remains open</em>.</p>
+      <table style="border-collapse:collapse;max-width:640px;">${tableRows}</table>
+    `,
+  });
+}
+
 /** Stakeholder copy: submission accepted. */
 export async function sendSubmitterAcceptedEmail(to) {
   await postResend({
