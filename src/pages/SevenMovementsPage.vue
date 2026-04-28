@@ -90,7 +90,7 @@ const router = useRouter();
 // Split the markdown into sections at each top-level movement heading.
 // We split on Roman-numeral movements only (I–VII), leaving VI.V attached to VI.
 function parseSections(raw) {
-  const movementRe = /^## (Movement (?:VII|VI|V|IV|III|II|I)(?:\s|$)[^\n]*|Seven Movements)\s*$/gm;
+  const movementRe = /^## (Movement (?:VII|VI|V|IV|III|II|I)(?:[ \t]|$)[^\n]*|Seven Movements)\s*$/gm;
   const matches = [...raw.matchAll(movementRe)];
   const result = [];
 
