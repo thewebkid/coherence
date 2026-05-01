@@ -54,7 +54,7 @@ import { ref, computed } from 'vue';
 const props = defineProps({
   src: {
     type: String,
-    default: '',
+    default: 'https://gwcryrwrqfivffbu.public.blob.vercel-storage.com/Seven-Movements.mp3',
   },
 });
 
