@@ -5,7 +5,7 @@
     <main class="site-main">
       <RouterView v-slot="{ Component }">
         <transition name="page" mode="out-in">
-          <component :is="Component" />
+          <component :is="Component" :key="$route.fullPath" />
         </transition>
       </RouterView>
     </main>

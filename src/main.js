@@ -20,13 +20,22 @@ export const createApp = ViteSSG(
       return { top: 0, behavior: 'smooth' };
     },
   },
-  ({ app, isClient }) => {
+  ({ app, router, isClient }) => {
     const pinia = createPinia();
     app.use(pinia);
     app.use(createBootstrap());
     app.directive('b-tooltip', vBTooltip);
 
     if (isClient) {
+      router.onError((err, to) => {
+        const isChunkError =
+          err.message.includes('Failed to fetch dynamically imported module') ||
+          err.message.includes('Importing a module script failed') ||
+          err.message.includes('Unable to preload CSS');
+        if (isChunkError) {
+          window.location.href = to.fullPath;
+        }
+      });
       const clerkOptions = {
         publishableKey: import.meta.env.VITE_CLERK_PUBLISHABLE_KEY,
       };
