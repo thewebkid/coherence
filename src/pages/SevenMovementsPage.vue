@@ -156,8 +156,8 @@
             <p class="sep">—</p>
           </section>
 
-          <div class="gap-sm"></div>
-
+          <div class="gap-sm mb-5 pb-5"></div>
+          <div class="m-4 p-4 hidden">&nbsp;</div>
           <!-- ===== MOVEMENT III ===== -->
           <section class="movement">
             <h2 class="movement-heading">Movement III</h2>
@@ -225,7 +225,8 @@
             <p>Nothing here breaks apart.<br>It becomes more<br>than one<br>without becoming less<br>than whole.</p>
           </section>
 
-          <div class="gap-sm"></div>
+          <div class="gap-sm mb-5 pb-5"></div>
+          <div class="m-4 p-4 hidden">&nbsp;</div>
 
           <!-- ===== MOVEMENT IV ===== -->
           <section class="movement">
@@ -490,7 +491,7 @@
             <p>The previous assumption is that separation is real<br>and relation must be constructed.</p>
             <p>What becomes visible<br>is that relation is primary—<br>and separation was inferred.</p>
             <p class="sep">—</p>
-            <p><em>Language is barely still needed.</em></p>
+
           </section>
 
           <hr class="movements-rule">
@@ -498,6 +499,7 @@
 
           <!-- ===== MOVEMENT VII ===== -->
           <section class="movement">
+            <h3 class="movement-subheading"><em>Language is barely still needed.</em></h3>
             <h2 class="movement-heading">Movement VII</h2>
             <h3 class="movement-subheading"><em>You move as the field itself</em></h3>
 
@@ -542,7 +544,7 @@
 
         <div class="movements-ending">
           <RouterLink to="/interpretive-works/continuation" class="continuation-link">
-            If something remains open…
+            →  If something remains open…
           </RouterLink>
         </div>
 

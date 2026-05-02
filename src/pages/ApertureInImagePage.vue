@@ -29,9 +29,9 @@
           <hr class="aperture-rule" />
 
           <div class="image-field">
-            <div v-for="movement in movements" :key="movement.label" class="image-entry">
-              <span class="image-label">{{ movement.label }}</span>
-              <img v-if="movement.src" :src="movement.src" :alt="movement.label" class="movement-image" />
+            <div v-for="image in images" :key="image.src" class="image-entry">
+              <span class="image-label">{{ image.label }}</span>
+              <img :src="image.src" :alt="image.label" class="movement-image" />
             </div>
           </div>
 
@@ -54,13 +54,22 @@
 <script setup>
 import { useHead } from '@unhead/vue';
 
-const movements = [
-  { label: 'Movement I', src: '' },
-  { label: 'Movement II', src: '' },
-  { label: 'Movement III', src: '' },
-  { label: 'Movement IV', src: '' },
-  { label: 'Movement V', src: '' },
-  { label: 'Movement VI', src: '' },
+function encodeSrc(path) {
+  return path.split('/').map((seg) => encodeURIComponent(seg)).join('/');
+}
+
+const images = [
+  { label: 'Movement I — Drawing',           src: encodeSrc('/img/7m/Movement I Drawing.jpg') },
+  { label: 'Movement I — Painting',          src: encodeSrc('/img/7m/Movement I Painting.jpg') },
+  { label: 'Movement II — Drawing',          src: encodeSrc('/img/7m/Movement II Drawing.jpg') },
+  { label: 'Movement II — Image Lumina',     src: encodeSrc('/img/7m/Movement II Image Lumina.jpg') },
+  { label: 'Movement III — Drawing',         src: encodeSrc('/img/7m/Movement III Drawing.jpg') },
+  { label: 'Movement III — Image Lumina',    src: encodeSrc('/img/7m/Movement III Image Lumina.jpg') },
+  { label: 'Movement IV — Drawing',          src: encodeSrc('/img/7m/Movement IV Drawing.jpg') },
+  { label: 'Movement IV — Painting',         src: encodeSrc('/img/7m/Movement IV Painting (Lumina).jpg') },
+  { label: 'Movement V — Drawing',           src: encodeSrc('/img/7m/Movement  V Drawing.jpg') },
+  { label: 'Movement V — James',             src: encodeSrc('/img/7m/Movement  V James.jpg') },
+  { label: 'Movement VI — Graphite Drawing', src: encodeSrc('/img/7m/Movement VI Graphite Drawing.jpg') },
 ];
 
 useHead({ title: 'In Image — Seven Movements — Coherence Across Scales' });
@@ -120,32 +129,35 @@ useHead({ title: 'In Image — Seven Movements — Coherence Across Scales' });
 .image-field {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-section);
+  gap: calc(var(--spacing-section) * 1.5);
+  // Break out of the content-width text column so images can breathe wider
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .image-entry {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--spacing-md);
 }
 
 .image-label {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
-  opacity: 0.6;
-  align-self: flex-start;
+  opacity: 0.5;
 }
 
 .movement-image {
   width: 100%;
-  max-width: 720px;
+  max-width: 1200px;
   height: auto;
   display: block;
-  margin: 0 auto;
 }
 
 .aperture-closing {
