@@ -32,10 +32,21 @@
             <template v-for="(movement, idx) in movements" :key="movement.id">
               <p class="movement-transition">— Movement {{ movement.id }} Visual Interpretations —</p>
               <div v-for="image in movement.images" :key="image.src" class="image-entry">
-                <img :src="image.src" :alt="image.alt" class="movement-image" />
+                <img
+                  :src="image.src"
+                  :alt="image.alt"
+                  class="movement-image movement-image--zoomable"
+                  @click="lightboxSrc = image.src; lightboxAlt = image.alt"
+                />
               </div>
             </template>
           </div>
+
+          <ImageLightbox
+            :src="lightboxSrc"
+            :alt="lightboxAlt"
+            @close="lightboxSrc = null"
+          />
 
           <hr class="aperture-rule" />
 
@@ -54,7 +65,12 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { useHead } from '@unhead/vue';
+import ImageLightbox from '@/components/ImageLightbox.vue';
+
+const lightboxSrc = ref(null);
+const lightboxAlt = ref('');
 
 function encodeSrc(path) {
   return path.split('/').map((seg) => encodeURIComponent(seg)).join('/');
@@ -101,8 +117,8 @@ const movements = [
     id: 'VI',
     images: [
       { src: encodeSrc('/img/7m/Movement VI Graphite Drawing.jpg'), alt: 'Movement VI Graphite Drawing' },
-      { src: encodeSrc('/img/7m/Movement VI.jpg'),                  alt: 'Movement VI' },
-      { src: encodeSrc('/img/7m/Movement VI (large).jpg'),          alt: 'Movement VI Large' },
+      { src: encodeSrc('/img/7m/Movement-VI.jpg'),                  alt: 'Movement VI' },
+      { src: encodeSrc('/img/7m/Movement-VI-(large).jpg'),          alt: 'Movement VI Large' },
     ],
   },
 ];
@@ -195,6 +211,15 @@ useHead({ title: 'In Image — Seven Movements — Coherence Across Scales' });
   max-width: 1200px;
   height: auto;
   display: block;
+
+  &--zoomable {
+    cursor: zoom-in;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.92;
+    }
+  }
 }
 
 .aperture-closing {

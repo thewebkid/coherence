@@ -13,7 +13,11 @@
           </p>
 
           <section class="practice-intro">
-            <h2>Before You Begin</h2>
+            <h2>A Gentle Orientation</h2>
+            <p class="orientation-preface">
+              You don't need to read all of these.<br>
+              Let one draw you.
+            </p>
             <p>
               The Practice section is not a set of instructions.<br>
               It is a way of observing together.
@@ -161,6 +165,14 @@ const projects = [
 </script>
 
 <style lang="scss" scoped>
+.orientation-preface {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  margin-bottom: var(--spacing-sm);
+}
+
 .orientation-links {
   display: flex;
   flex-direction: column;

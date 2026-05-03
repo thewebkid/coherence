@@ -25,9 +25,16 @@
       <img
         :src="selectedItem.src"
         :alt="selectedItem.alt"
-        class="detail-image"
+        class="detail-image detail-image--zoomable"
+        @click="lightboxSrc = selectedItem.src; lightboxAlt = selectedItem.alt"
       />
     </figure>
+
+    <ImageLightbox
+      :src="lightboxSrc"
+      :alt="lightboxAlt"
+      @close="lightboxSrc = null"
+    />
 
     <div class="detail-content">
       <h2 class="detail-title">{{ selectedItem.title }}</h2>
@@ -38,14 +45,14 @@
 
       <nav class="detail-links" aria-label="Image actions">
         <a
-          class="detail-link detail-link--disabled"
+          class="detail-link detail-link--disabled d-none"
           aria-disabled="true"
           role="link"
           tabindex="-1"
           @click.prevent
         >About</a>
         <a
-          class="detail-link detail-link--disabled"
+          class="d-none detail-link detail-link--disabled"
           aria-disabled="true"
           role="link"
           tabindex="-1"
@@ -59,7 +66,7 @@
           Next &gt;
         </button>
         <a
-          class="detail-link detail-link--disabled"
+          class="detail-link detail-link--disabled d-none"
           aria-disabled="true"
           role="link"
           tabindex="-1"
@@ -119,6 +126,7 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import ImageLightbox from './ImageLightbox.vue';
 
 const props = defineProps({
   work: { type: Object, required: true },
@@ -127,6 +135,8 @@ const props = defineProps({
 const route = useRoute();
 const router = useRouter();
 const detailRoot = ref(null);
+const lightboxSrc = ref(null);
+const lightboxAlt = ref('');
 
 const media = computed(() => props.work.media ?? []);
 
@@ -232,6 +242,15 @@ function backToGallery() {
   width: 100%;
   height: auto;
   border-radius: var(--radius-sm);
+
+  &--zoomable {
+    cursor: zoom-in;
+    transition: opacity var(--transition-speed);
+
+    &:hover {
+      opacity: 0.93;
+    }
+  }
 }
 
 .detail-content {
