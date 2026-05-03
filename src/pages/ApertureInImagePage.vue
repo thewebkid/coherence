@@ -29,10 +29,12 @@
           <hr class="aperture-rule" />
 
           <div class="image-field">
-            <div v-for="image in images" :key="image.src" class="image-entry">
-              <span class="image-label">{{ image.label }}</span>
-              <img :src="image.src" :alt="image.label" class="movement-image" />
-            </div>
+            <template v-for="(movement, idx) in movements" :key="movement.id">
+              <p class="movement-transition">— Movement {{ movement.id }} Visual Interpretations —</p>
+              <div v-for="image in movement.images" :key="image.src" class="image-entry">
+                <img :src="image.src" :alt="image.alt" class="movement-image" />
+              </div>
+            </template>
           </div>
 
           <hr class="aperture-rule" />
@@ -58,18 +60,51 @@ function encodeSrc(path) {
   return path.split('/').map((seg) => encodeURIComponent(seg)).join('/');
 }
 
-const images = [
-  { label: 'Movement I — Drawing',           src: encodeSrc('/img/7m/Movement I Drawing.jpg') },
-  { label: 'Movement I — Painting',          src: encodeSrc('/img/7m/Movement I Painting.jpg') },
-  { label: 'Movement II — Drawing',          src: encodeSrc('/img/7m/Movement II Drawing.jpg') },
-  { label: 'Movement II — Image Lumina',     src: encodeSrc('/img/7m/Movement II Image Lumina.jpg') },
-  { label: 'Movement III — Drawing',         src: encodeSrc('/img/7m/Movement III Drawing.jpg') },
-  { label: 'Movement III — Image Lumina',    src: encodeSrc('/img/7m/Movement III Image Lumina.jpg') },
-  { label: 'Movement IV — Drawing',          src: encodeSrc('/img/7m/Movement IV Drawing.jpg') },
-  { label: 'Movement IV — Painting',         src: encodeSrc('/img/7m/Movement IV Painting (Lumina).jpg') },
-  { label: 'Movement V — Drawing',           src: encodeSrc('/img/7m/Movement  V Drawing.jpg') },
-  { label: 'Movement V — James',             src: encodeSrc('/img/7m/Movement  V James.jpg') },
-  { label: 'Movement VI — Graphite Drawing', src: encodeSrc('/img/7m/Movement VI Graphite Drawing.jpg') },
+const movements = [
+  {
+    id: 'I',
+    images: [
+      { src: encodeSrc('/img/7m/Movement I Drawing.jpg'),        alt: 'Movement I Drawing' },
+      { src: encodeSrc('/img/7m/Movement I Painting.jpg'),       alt: 'Movement I Painting' },
+    ],
+  },
+  {
+    id: 'II',
+    images: [
+      { src: encodeSrc('/img/7m/Movement II Drawing.jpg'),       alt: 'Movement II Drawing' },
+      { src: encodeSrc('/img/7m/Movement II Image Lumina.jpg'),  alt: 'Movement II Image Lumina' },
+    ],
+  },
+  {
+    id: 'III',
+    images: [
+      { src: encodeSrc('/img/7m/Movement III Drawing.jpg'),      alt: 'Movement III Drawing' },
+      { src: encodeSrc('/img/7m/Movement III Image Lumina.jpg'), alt: 'Movement III Image Lumina' },
+    ],
+  },
+  {
+    id: 'IV',
+    images: [
+      { src: encodeSrc('/img/7m/Movement IV Drawing.jpg'),               alt: 'Movement IV Drawing' },
+      { src: encodeSrc('/img/7m/Movement IV Painting (Lumina).jpg'),     alt: 'Movement IV Painting' },
+    ],
+  },
+  {
+    id: 'V',
+    images: [
+      { src: encodeSrc('/img/7m/Movement  V Drawing.jpg'), alt: 'Movement V Drawing' },
+      { src: encodeSrc('/img/7m/Movement  V James.jpg'),   alt: 'Movement V James' },
+      { src: encodeSrc('/img/7m/Movement V.jpg'),          alt: 'Movement V' },
+    ],
+  },
+  {
+    id: 'VI',
+    images: [
+      { src: encodeSrc('/img/7m/Movement VI Graphite Drawing.jpg'), alt: 'Movement VI Graphite Drawing' },
+      { src: encodeSrc('/img/7m/Movement VI.jpg'),                  alt: 'Movement VI' },
+      { src: encodeSrc('/img/7m/Movement VI (large).jpg'),          alt: 'Movement VI Large' },
+    ],
+  },
 ];
 
 useHead({ title: 'In Image — Seven Movements — Coherence Across Scales' });
@@ -141,16 +176,18 @@ useHead({ title: 'In Image — Seven Movements — Coherence Across Scales' });
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--spacing-md);
 }
 
-.image-label {
+.movement-transition {
   font-family: var(--font-sans);
   font-size: 0.6875rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
-  opacity: 0.5;
+  opacity: 0.4;
+  text-align: center;
+  width: 100%;
+  margin: calc(var(--spacing-section) * 0.5) 0;
 }
 
 .movement-image {
