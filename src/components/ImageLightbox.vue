@@ -44,8 +44,8 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown));
 }
 
 .lb-img {
-  max-width: min(92vw, 1400px);
-  max-height: 92vh;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 40px);
   width: auto;
   height: auto;
   display: block;

@@ -31,11 +31,11 @@
           <div class="image-field">
             <template v-for="(movement, idx) in movements" :key="movement.id">
               <p class="movement-transition">— Movement {{ movement.id }} Visual Interpretations —</p>
-              <div v-for="image in movement.images" :key="image.src" class="image-entry">
+              <div v-for="image in movement.images" :key="image.src" :class="['image-entry', { 'image-entry--landscape': image.landscape }]">
                 <img
                   :src="image.src"
                   :alt="image.alt"
-                  class="movement-image movement-image--zoomable"
+                  :class="['movement-image', 'movement-image--zoomable', { 'movement-image--landscape': image.landscape }]"
                   @click="lightboxSrc = image.src; lightboxAlt = image.alt"
                 />
               </div>
@@ -118,7 +118,7 @@ const movements = [
     images: [
       { src: encodeSrc('/img/7m/Movement VI Graphite Drawing.jpg'), alt: 'Movement VI Graphite Drawing' },
       { src: encodeSrc('/img/7m/Movement-VI.jpg'),                  alt: 'Movement VI' },
-      { src: encodeSrc('/img/7m/Movement-VI-(large).jpg'),          alt: 'Movement VI Large' },
+      { src: encodeSrc('/img/7m/Movement-VI-(large).jpg'),          alt: 'Movement VI Large', landscape: true },
     ],
   },
 ];
@@ -192,6 +192,14 @@ useHead({ title: 'In Image — Seven Movements — Coherence Across Scales' });
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  &--landscape {
+    // Break out of the 680px reading column to fill the page-container inner width.
+    // Extra space each side = (page-width - 2×margin-page - content-width) / 2
+    $extra: calc((var(--page-width) - 2 * var(--margin-page) - var(--content-width)) / 2);
+    width: calc(100% + 2 * max(0px, #{$extra}));
+    margin-left: calc(-1 * max(0px, #{$extra}));
+  }
 }
 
 .movement-transition {
@@ -211,6 +219,10 @@ useHead({ title: 'In Image — Seven Movements — Coherence Across Scales' });
   max-width: 1200px;
   height: auto;
   display: block;
+
+  &--landscape {
+    max-width: none;
+  }
 
   &--zoomable {
     cursor: zoom-in;
