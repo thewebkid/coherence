@@ -94,7 +94,7 @@ const movements = [
     images: [
       { src: encodeSrc('/img/7m/Movement  V Drawing.jpg'), alt: 'Movement V Drawing' },
       { src: encodeSrc('/img/7m/Movement  V James.jpg'),   alt: 'Movement V James' },
-      { src: encodeSrc('/img/7m/Movement V.jpg'),          alt: 'Movement V' },
+      { src: encodeSrc('/img/7m/Movement-V.jpg'),          alt: 'Movement V' },
     ],
   },
   {
