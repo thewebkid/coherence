@@ -63,6 +63,12 @@
                 />
               </div>
               <div class="form-field">
+                <select v-model="form.movementNumber" :disabled="submitting" class="movement-select">
+                  <option value="">Which movement, if any…</option>
+                  <option v-for="m in movements" :key="m.value" :value="m.value">{{ m.label }}</option>
+                </select>
+              </div>
+              <div class="form-field">
                 <textarea
                   v-model="form.submission"
                   rows="6"
@@ -75,6 +81,10 @@
                   <input type="file" :disabled="submitting" @change="onFileChange" />
                   <span class="file-text">{{ fileName || 'Attach a file' }}</span>
                 </label>
+              </div>
+              <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden">
+                <label for="website-field">Website</label>
+                <input id="website-field" v-model="form.website" type="text" name="website" tabindex="-1" autocomplete="off" />
               </div>
               <p v-if="submitError" class="submit-error">{{ submitError }}</p>
               <button type="submit" class="submit-btn" :disabled="submitting">
@@ -125,12 +135,24 @@ const submitting = ref(false);
 const submitError = ref('');
 const fileName = ref('');
 
+const movements = [
+  { value: 'I', label: 'Movement I' },
+  { value: 'II', label: 'Movement II' },
+  { value: 'III', label: 'Movement III' },
+  { value: 'IV', label: 'Movement IV' },
+  { value: 'V', label: 'Movement V' },
+  { value: 'VI', label: 'Movement VI' },
+  { value: 'VII', label: 'Movement VII' },
+];
+
 const form = reactive({
   name: '',
   location: '',
   formOfExpression: '',
+  movementNumber: '',
   submission: '',
   file: null,
+  website: '',
 });
 
 function onFileChange(e) {
@@ -156,8 +178,10 @@ async function handleSubmit() {
     if (form.name) data.append('name', form.name);
     if (form.location) data.append('location', form.location);
     if (form.formOfExpression) data.append('formOfExpression', form.formOfExpression);
+    if (form.movementNumber) data.append('movementNumber', form.movementNumber);
     if (form.submission) data.append('submission', form.submission);
     if (form.file) data.append('file', form.file);
+    data.append('website', form.website);
 
     const res = await fetch('/api/field-submission', { method: 'POST', body: data });
     const json = await res.json().catch(() => ({}));
@@ -262,6 +286,27 @@ async function handleSubmit() {
       border-bottom-color: var(--iw-accent);
     }
   }
+}
+
+.movement-select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: var(--spacing-sm) 0;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--text);
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color var(--transition-speed) ease;
+
+  option { background: var(--bg, #fff); }
+
+  &:focus { border-bottom-color: var(--iw-accent); }
+
+  &:disabled { opacity: 0.5; }
 }
 
 .file-label {

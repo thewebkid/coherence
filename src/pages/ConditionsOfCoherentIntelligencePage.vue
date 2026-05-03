@@ -26,19 +26,18 @@
         </div>
       </div>
     </div>
+    <Teleport to="body">
+      <Transition name="modal">
+        <div v-if="modalOpen" class="modal-overlay" @click="modalOpen = false">
+          <img
+            src="/img/conditions-of-coherent-intelligence.png"
+            alt="Conditions of Coherent Intelligence — full diagram"
+            class="modal-img"
+          />
+        </div>
+      </Transition>
+    </Teleport>
   </div>
-
-  <Teleport to="body">
-    <Transition name="modal">
-      <div v-if="modalOpen" class="modal-overlay" @click="modalOpen = false">
-        <img
-          src="/img/conditions-of-coherent-intelligence.png"
-          alt="Conditions of Coherent Intelligence — full diagram"
-          class="modal-img"
-        />
-      </div>
-    </Transition>
-  </Teleport>
 </template>
 
 <script setup>

@@ -28,6 +28,7 @@
           >
             <option value="interpretive-works">Interpretive Works</option>
             <option value="weekly-signal">Weekly Signal</option>
+            <option value="field-expressions">Field Expressions</option>
           </select>
         </div>
         <div class="admin-user">
@@ -44,6 +45,7 @@
         :initial-loading="signalLoading"
         @published="onSignalPublished"
       />
+      <AdminFieldExpressions v-else-if="activeView === 'field-expressions'" />
     </div>
   </div>
 </template>
@@ -55,6 +57,7 @@ import { useAuth, useUser, useClerk } from '@clerk/vue';
 import { useHead } from '@unhead/vue';
 import AdminInterpretiveWorks from '@/components/admin/AdminInterpretiveWorks.vue';
 import AdminWeeklySignal from '@/components/admin/AdminWeeklySignal.vue';
+import AdminFieldExpressions from '@/components/admin/AdminFieldExpressions.vue';
 import { fetchCurrentSignal } from '@/utils/currentSignal';
 
 useHead({

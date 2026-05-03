@@ -128,6 +128,11 @@
             </div>
           </fieldset>
 
+          <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden">
+            <label for="website-work">Website</label>
+            <input id="website-work" v-model="form.website" type="text" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
           <div v-if="submitError" class="error-banner">
             {{ submitError }}
           </div>
@@ -169,6 +174,7 @@ const form = reactive({
   workDescription: '',
   workUrl: '',
   workFileInfo: '',
+  website: '',
 });
 
 const errors = reactive({});
@@ -211,6 +217,7 @@ async function handleSubmit() {
         workDescription: form.workDescription.trim(),
         workUrl: form.workUrl.trim() || undefined,
         workFileInfo: form.workFileInfo.trim() || undefined,
+        website: form.website,
       }),
     });
 

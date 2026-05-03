@@ -1,3 +1,5 @@
+import { limiters, checkRateLimit } from './_rate-limit.js';
+
 const UPSTASH_URL = process.env.UPSTASH_KV_REST_API_URL;
 const UPSTASH_TOKEN = process.env.UPSTASH_KV_REST_API_TOKEN;
 
@@ -93,6 +95,7 @@ export default async function handler(req, res) {
     return handleGet(res);
   }
   if (req.method === 'POST') {
+    if (await checkRateLimit(limiters.signals, req, res)) return;
     return handlePost(req, res);
   }
   return res.status(405).json({ error: 'Method not allowed' });

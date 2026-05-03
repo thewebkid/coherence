@@ -3,6 +3,16 @@ import formidable from 'formidable';
 import { createReadStream } from 'fs';
 import { neon } from '@neondatabase/serverless';
 import { sendFieldExpressionEmail } from './_interpretive-mail.js';
+import { limiters, checkRateLimit } from './_rate-limit.js';
+import { validateHoneypot } from './_honeypot.js';
+
+const ALLOWED_MIME_PREFIXES = ['image/', 'video/', 'audio/', 'text/'];
+const ALLOWED_MIME_EXACT = ['application/pdf'];
+
+function isAllowedMimeType(mime) {
+  if (!mime) return true;
+  return ALLOWED_MIME_PREFIXES.some((p) => mime.startsWith(p)) || ALLOWED_MIME_EXACT.includes(mime);
+}
 
 export const config = {
   api: { bodyParser: false },
@@ -12,6 +22,8 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+
+  if (await checkRateLimit(limiters.fieldSubmission, req, res)) return;
 
   const POSTGRES_URL = process.env.POSTGRES_URL;
   if (!POSTGRES_URL) {
@@ -28,11 +40,19 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Failed to parse form data.' });
   }
 
+  const honeypot = fields.website?.[0];
+  try { validateHoneypot(honeypot); } catch (e) { return res.status(e.status).json({ error: e.message }); }
+
   const name = fields.name?.[0]?.trim() || null;
   const location = fields.location?.[0]?.trim() || null;
   const expression = fields.formOfExpression?.[0]?.trim() || null;
+  const movementNumber = fields.movementNumber?.[0]?.trim() || null;
   const movement = fields.submission?.[0]?.trim() || null;
   const uploadedFile = files.file?.[0];
+
+  if (uploadedFile && !isAllowedMimeType(uploadedFile.mimetype)) {
+    return res.status(415).json({ error: 'Unsupported file type. Please upload an image, video, audio, PDF, or text file.' });
+  }
 
   if (!name && !location && !expression && !movement && !uploadedFile) {
     return res.status(400).json({ error: 'Please share at least one field.' });
@@ -59,11 +79,11 @@ export default async function handler(req, res) {
   try {
     const sql = neon(POSTGRES_URL);
     await sql`
-      INSERT INTO field_expressions (name, expression, location, movement, file_url, file_pathname)
-      VALUES (${name}, ${expression}, ${location}, ${movement}, ${file_url}, ${file_pathname})
+      INSERT INTO field_expressions (name, expression, location, movement, movement_number, file_url, file_pathname)
+      VALUES (${name}, ${expression}, ${location}, ${movement}, ${movementNumber}, ${file_url}, ${file_pathname})
     `;
 
-    await sendFieldExpressionEmail({ name, location, expression, movement, file_url });
+    await sendFieldExpressionEmail({ name, location, expression, movementNumber, movement, file_url });
 
     return res.status(200).json({ success: true });
   } catch (error) {

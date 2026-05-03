@@ -633,6 +633,96 @@ export default defineConfig({
               res.setHeader('Content-Type', 'application/json');
               res.end(JSON.stringify({ error: 'Method not allowed' }));
             }
+          } else if (req.url.startsWith('/api/admin/field-expressions')) {
+            const admin = await verifyAdminAuthDev(req, res);
+            if (!admin) return;
+
+            const POSTGRES_URL = process.env.POSTGRES_URL;
+            if (!POSTGRES_URL) {
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Database connection not configured.' }));
+              return;
+            }
+            const sql = neon(POSTGRES_URL);
+
+            if (req.method === 'GET') {
+              const url = new URL(req.url, 'http://localhost');
+              const filter = url.searchParams.get('filter') ?? 'unreviewed';
+              try {
+                let rows;
+                if (filter === 'unreviewed') {
+                  rows = await sql`
+                    SELECT * FROM field_expressions
+                    WHERE reviewed IS NOT TRUE
+                    ORDER BY created_at DESC
+                  `;
+                } else if (filter === 'reviewed') {
+                  rows = await sql`
+                    SELECT * FROM field_expressions
+                    WHERE reviewed = TRUE
+                    ORDER BY created_at DESC
+                  `;
+                } else {
+                  rows = await sql`
+                    SELECT * FROM field_expressions
+                    ORDER BY created_at DESC
+                  `;
+                }
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify(rows));
+              } catch (err) {
+                console.error('GET /api/admin/field-expressions dev error:', err);
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: 'Failed to fetch field expressions.' }));
+              }
+            } else if (req.method === 'PATCH') {
+              let body = '';
+              req.on('data', chunk => body += chunk);
+              req.on('end', async () => {
+                try {
+                  const { id, reviewed } = JSON.parse(body);
+                  if (!id) {
+                    res.statusCode = 400;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ error: 'Missing required field: id' }));
+                    return;
+                  }
+                  if (typeof reviewed !== 'boolean') {
+                    res.statusCode = 400;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ error: 'reviewed must be a boolean' }));
+                    return;
+                  }
+                  const rows = await sql`
+                    UPDATE field_expressions
+                    SET reviewed = ${reviewed}
+                    WHERE id = ${id}
+                    RETURNING *
+                  `;
+                  if (!rows || rows.length === 0) {
+                    res.statusCode = 404;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ error: 'Field expression not found' }));
+                    return;
+                  }
+                  res.statusCode = 200;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify(rows[0]));
+                } catch (err) {
+                  console.error('PATCH /api/admin/field-expressions dev error:', err);
+                  res.statusCode = 500;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify({ error: 'Failed to update field expression.' }));
+                }
+              });
+            } else {
+              res.statusCode = 405;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Method not allowed' }));
+            }
           } else if (req.url === '/api/field-submission' && req.method === 'POST') {
             const form = formidable({ maxFileSize: 20 * 1024 * 1024 });
             try {

@@ -1,4 +1,6 @@
 import { neon } from '@neondatabase/serverless';
+import { limiters, checkRateLimit } from './_rate-limit.js';
+import { validateHoneypot } from './_honeypot.js';
 
 const PROJECTS = [
   'AI Observation',
@@ -20,7 +22,11 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Database connection not configured.' });
   }
 
-  const { project, signal, reflection, context, geography } = req.body || {};
+  if (await checkRateLimit(limiters.observation, req, res)) return;
+
+  const { project, signal, reflection, context, geography, website } = req.body || {};
+
+  try { validateHoneypot(website); } catch (e) { return res.status(e.status).json({ error: e.message }); }
 
   if (!project || !signal || !reflection) {
     return res.status(400).json({ error: 'Missing required fields: project, signal, and reflection are required.' });

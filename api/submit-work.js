@@ -1,5 +1,7 @@
 import { neon } from '@neondatabase/serverless';
 import { sendAdminNewSubmissionEmail } from './_interpretive-mail.js';
+import { limiters, checkRateLimit } from './_rate-limit.js';
+import { validateHoneypot } from './_honeypot.js';
 
 const VALID_TYPES = ['Visual Art', 'Writing', 'Video', 'Music', 'Other'];
 
@@ -14,7 +16,11 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Database connection not configured. Please contact the site administrator.' });
   }
 
-  const { submitterName, submitterEmail, workTitle, workType, workDescription, workUrl, workFileInfo, displayNameConsent } = req.body;
+  if (await checkRateLimit(limiters.submitWork, req, res)) return;
+
+  const { submitterName, submitterEmail, workTitle, workType, workDescription, workUrl, workFileInfo, displayNameConsent, website } = req.body;
+
+  try { validateHoneypot(website); } catch (e) { return res.status(e.status).json({ error: e.message }); }
 
   if (!submitterName || !submitterEmail || !workTitle || !workType || !workDescription) {
     return res.status(400).json({

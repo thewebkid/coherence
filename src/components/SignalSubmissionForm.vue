@@ -72,6 +72,11 @@
           </div>
         </div>
 
+        <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden">
+          <label for="website-signal">Website</label>
+          <input id="website-signal" v-model="formData.website" type="text" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
         <div v-if="submitError" class="error-banner">{{ submitError }}</div>
 
         <button type="submit" class="submit-button" :disabled="loading">
@@ -105,7 +110,7 @@ const loading = ref(false);
 const submitted = ref(false);
 const submitError = ref('');
 
-const formData = reactive({ signal: '', reflection: '', context: '', geography: '' });
+const formData = reactive({ signal: '', reflection: '', context: '', geography: '', website: '' });
 const errors = reactive({ signal: '', reflection: '' });
 
 const charCount = computed(() => formData.reflection.length);
@@ -145,6 +150,7 @@ async function handleSubmit() {
         reflection: formData.reflection.trim(),
         context: formData.context.trim() || null,
         geography: formData.geography.trim() || null,
+        website: formData.website,
       }),
     });
 
