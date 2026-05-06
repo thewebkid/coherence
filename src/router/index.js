@@ -65,6 +65,11 @@ const routes = [
     component: () => import('@/pages/ConditionsOfCoherentIntelligencePage.vue'),
   },
   {
+    path: '/work/dialogue-on-authorship',
+    name: 'dialogue-on-authorship',
+    component: () => import('@/pages/DialogueOnAuthorshipPage.vue'),
+  },
+  {
     path: '/practice',
     component: () => import('@/components/PracticeLayout.vue'),
     children: [

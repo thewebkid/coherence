@@ -77,6 +77,17 @@
               </div>
             </div>
           </article>
+          <article class="work-card">
+            <div class="work-card-content">
+              <h2>Dialogue On Authorship</h2>
+              <p class="work-card-desc">
+                There is a condition where coordination does not require a coordinator.
+              </p>
+              <div class="work-card-actions">
+                <RouterLink to="/work/dialogue-on-authorship" class="work-link">Read Online</RouterLink>
+              </div>
+            </div>
+          </article>
 
           <div class="work-section-label">Core Documents</div>
           <article class="work-card">

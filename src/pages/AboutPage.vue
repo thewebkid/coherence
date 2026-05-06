@@ -30,7 +30,7 @@
             Coherence begins locally:<br>
             within a body<br>
             between beings<br>
-            within moments of attention
+            within moments of attention.
           </p>
 
           <p>
@@ -43,12 +43,13 @@
             This principle applies across scales:<br>
             cellular and nervous system coherence<br>
             relational tone between people<br>
-            cultural and societal patterns
+            cultural and societal patterns.
           </p>
 
           <p>
             Across all levels, the same dynamic appears:<br>
-            alignment stabilizes&nbsp;&nbsp;fragmentation generates friction
+            alignment stabilizes&nbsp;&nbsp;<br>
+            fragmentation generates friction.
           </p>
 
           <p>
@@ -60,7 +61,7 @@
             Where coherence is lived, even quietly:<br>
             fragmentation begins to resolve<br>
             trust becomes possible<br>
-            alignment propagates
+            alignment propagates.
           </p>
 
           <p>What appears distant becomes immediate. What appears global becomes local.</p>
@@ -71,7 +72,7 @@
             relational coherence<br>
             harmonized sovereignty<br>
             alignment<br>
-            return
+            return.
           </p>
 
           <p>
