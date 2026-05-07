@@ -126,18 +126,33 @@ useHead({
 
 const FALLBACK_SIGNAL = {
   label: 'Weekly Signal',
-  timeframe: 'Week of April 1, 2026',
-  content: `This week, multiple observations pointed toward a shift in how uncertainty is held in conversation.
+  timeframe: 'April 27, 2026',
+  content: `Something is deepening.
+Not in one place.
+Across different entries, the tone settles before it speaks.
 
- - More pauses before response
- - Shared language around "not needing resolution"
- - Similar dynamics across unrelated groups
+—
 
-These signals appeared across Dialogue, Reflection, and Relational Field.
+Stability appears more often.
+Not as a goal.
+More as a return to the body, to the immediate environment.
 
-> "The conversation changed when no one tried to resolve it."
+—
 
-_When uncertainty becomes shared, interaction begins to change._`,
+Words simplify.
+Fewer attempts to define.
+More attention to what is already present.
+
+—
+
+There is less urgency to resolve.
+A willingness to remain with what is not yet clear.
+
+—
+
+Nothing directs this.
+And yet responses adjust to one another.
+It continues where it is noticed.`,
 };
 
 const currentSignal = computed(() => {
