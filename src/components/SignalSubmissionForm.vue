@@ -7,7 +7,7 @@
           <label for="signal-input">
             Signal <span class="required">*</span>
           </label>
-          <p class="field-hint">One word from the interaction</p>
+          <p class="field-hint">(a word or short phrase)</p>
           <input
             id="signal-input"
             v-model="formData.signal"

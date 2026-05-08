@@ -529,8 +529,9 @@
             <p class="sep">—</p>
             <p>There is no field<br>you are part of.</p>
             <p class="sep">—</p>
-            <p>No movement<br>that you are in. —</p>
-            <p>And yet—<br>nothing is other than this.</p>
+            <p>No movement<br>that you are in.</p>
+            <p class="sep">—</p>
+            <p>And yet—<br>nothing is other<br>than this.</p>
             <p class="sep">—</p>
           </section>
 

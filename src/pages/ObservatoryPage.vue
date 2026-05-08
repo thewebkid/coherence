@@ -128,39 +128,30 @@ const FALLBACK_SIGNAL = {
   label: 'Weekly Signal',
   timeframe: 'April 27, 2026',
   content: `Something is deepening.
-
 Not in one place.
-
 Across different entries, the tone settles before it speaks.
 
 —
 
 Stability appears more often.
-
 Not as a goal.
-
 More as a return to the body, to the immediate environment.
 
 —
 
 Words simplify.
-
 Fewer attempts to define.
-
 More attention to what is already present.
 
 —
 
 There is less urgency to resolve.
-
 A willingness to remain with what is not yet clear.
 
 —
 
 Nothing directs this.
-
 And yet responses adjust to one another.
-
 It continues where it is noticed.`,
 };
 
