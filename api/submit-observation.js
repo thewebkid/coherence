@@ -1,6 +1,30 @@
 import { neon } from '@neondatabase/serverless';
+import { generateObject } from 'ai';
+import { z } from 'zod';
 import { limiters, checkRateLimit } from './_rate-limit.js';
 import { validateHoneypot } from './_honeypot.js';
+
+const translationSchema = z.object({
+  signal_en: z.string(),
+  reflection_en: z.string(),
+});
+
+async function translateToEnglish(signal, reflection, language) {
+  try {
+    const { object } = await generateObject({
+      model: 'openai/gpt-4o-mini',
+      schema: translationSchema,
+      prompt: `Translate the following two fields from ${language} into English.
+Preserve the contemplative, observational tone of the original — do not add explanation or interpretation.
+
+Signal (a word or short phrase): ${signal}
+Reflection (a single sentence, max 140 chars): ${reflection}`,
+    });
+    return object;
+  } catch {
+    return { signal_en: null, reflection_en: null };
+  }
+}
 
 const PROJECTS = [
   'AI Observation',
@@ -24,7 +48,7 @@ export default async function handler(req, res) {
 
   if (await checkRateLimit(limiters.observation, req, res)) return;
 
-  const { project, signal, reflection, context, geography, website } = req.body || {};
+  const { project, signal, reflection, context, geography, website, language } = req.body || {};
 
   try { validateHoneypot(website); } catch (e) { return res.status(e.status).json({ error: e.message }); }
 
@@ -49,16 +73,26 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Reflection must not be empty.' });
   }
 
+  const normalizedLanguage = language?.trim() || null;
+  const isEnglish = !normalizedLanguage || normalizedLanguage.toLowerCase().startsWith('en');
+
+  const { signal_en, reflection_en } = isEnglish
+    ? { signal_en: null, reflection_en: null }
+    : await translateToEnglish(signalTrimmed, reflectionTrimmed, normalizedLanguage);
+
   try {
     const sql = neon(POSTGRES_URL);
     await sql`
-      INSERT INTO observations (project, signal, reflection, context, geography)
+      INSERT INTO observations (project, signal, reflection, context, geography, language, signal_en, reflection_en)
       VALUES (
         ${project},
         ${signalTrimmed},
         ${reflectionTrimmed},
         ${context?.trim() || null},
-        ${geography?.trim() || null}
+        ${geography?.trim() || null},
+        ${normalizedLanguage},
+        ${signal_en},
+        ${reflection_en}
       )
     `;
     return res.status(200).json({ success: true });

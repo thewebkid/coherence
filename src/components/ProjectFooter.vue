@@ -1,7 +1,14 @@
 <template>
   <div class="project-footer">
     <section class="signals-section">
-      <h2 class="text-label">Recent Signals</h2>
+      <div class="signals-header">
+        <h2 class="text-label">Recent Signals</h2>
+        <div class="lang-toggle" role="group" aria-label="Language view">
+          <button :class="{ active: !showEnglish }" @click="showEnglish = false">Original</button>
+          <span class="lang-toggle__divider">/</span>
+          <button :class="{ active: showEnglish }" @click="showEnglish = true">English</button>
+        </div>
+      </div>
       <WordField :words="projectWords" :project="project" />
       <div class="pt-5 mt-5">
         <SignalFeed :entries="projectFeed" />
@@ -41,7 +48,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import SignalSubmissionForm from '@/components/SignalSubmissionForm.vue';
 import SignalFeed from '@/components/SignalFeed.vue';
@@ -49,6 +56,8 @@ import WordField from '@/components/WordField.vue';
 import { getWordsForProject, getFeedForProject } from '@/utils/observatoryData';
 
 const props = defineProps({ project: { type: String, required: true } });
+
+const showEnglish = ref(false);
 
 const route = useRoute();
 
@@ -61,8 +70,9 @@ const projects = [
   { title: 'Presence', subtitle: 'Embodied Transcendence in Daily Life', path: '/practice/projects/presence' },
 ];
 
-const projectWords = computed(() => getWordsForProject(props.project));
-const projectFeed = computed(() => getFeedForProject(props.project));
+const projectWords = computed(() => getWordsForProject(props.project, showEnglish.value));
+const projectFeed = computed(() => getFeedForProject(props.project, showEnglish.value));
+
 </script>
 
 <style lang="scss" scoped>
@@ -73,6 +83,41 @@ const projectFeed = computed(() => getFeedForProject(props.project));
 .signals-section {
   padding-top: var(--spacing-xl);
   border-top: 1px solid var(--border);
+}
+
+.signals-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color var(--transition-speed) ease;
+
+    &:hover { color: var(--text); }
+    &.active { color: var(--text); }
+  }
+}
+
+.lang-toggle__divider {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+  user-select: none;
 }
 
 .submission-section {

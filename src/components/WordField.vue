@@ -150,6 +150,7 @@ onBeforeUnmount(() => {
 
 watch(toRef(props, 'words'), (val) => {
   words.value = val;
+  console.log({[props.project]: val})
   loading.value = false;
 });
 
