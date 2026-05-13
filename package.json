@@ -47,7 +47,7 @@
     "vite-ssg": "^28.2.2"
   },
   "overrides": {
-    "unhead": ">=2.1.13",
-    "@unhead/dom": ">=2.1.11"
+    "unhead": "2.1.15",
+    "@unhead/dom": "2.1.15"
   }
 }
