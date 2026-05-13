@@ -38,7 +38,35 @@ export async function initObservatoryData() {
 
 // ── Signal processing ─────────────────────────────────────────────────────────
 
-function processSignalsForWordCloud(rows) {
+/**
+ * Normalize a raw signal string into one or more word-cloud tokens.
+ * Rules (in order):
+ *   1. Strip surrounding quotation marks.
+ *   2. Comma-separated values are split into individual parts.
+ *   3. Multi-word parts (spaces) are reduced to just the first word, so
+ *      phrases submitted as signals don't pollute the cloud as long strings.
+ *   4. Tokens shorter than 2 chars are dropped.
+ */
+function toSignalTokens(raw) {
+  const stripped = raw.replace(/^["""'']+|["""'']+$/g, '').trim();
+  if (!stripped) return [];
+
+  const parts = stripped.includes(',')
+    ? stripped.split(',').map(p => p.trim()).filter(Boolean)
+    : [stripped];
+
+  return parts
+    .map(part => {
+      const words = part.split(/\s+/);
+      const word = words.length === 1
+        ? words[0]
+        : words[0].replace(/["""''.,;:!?()]+$/, '');
+      return word.toLowerCase();
+    })
+    .filter(w => w.length > 1);
+}
+
+function processSignalsForWordCloud(rows, englishMode = false) {
   if (!rows?.length) return [];
 
   const now = Date.now();
@@ -46,16 +74,9 @@ function processSignalsForWordCloud(rows) {
   const maxFont = 42;
 
   let entries = rows.flatMap(item => {
-    const signal = item.signal.toLowerCase().trim();
+    const rawSignal = (englishMode && item.signal_en) ? item.signal_en : item.signal;
     const t = now - new Date(item.created_at).getTime();
-
-    if (signal.includes(',')) {
-      return signal.split(',')
-        .map(s => s.trim())
-        .filter(s => s.length > 0)
-        .map(s => ({ signal: s, t }));
-    }
-    return { signal, t };
+    return toSignalTokens(rawSignal).map(signal => ({ signal, t }));
   });
 
   const countMap = {};
@@ -102,8 +123,8 @@ function processSignalsForWordCloud(rows) {
  * Aggregate word cloud — all observations, no project filter.
  * Call inside computed() to stay reactive to store updates.
  */
-export function getAllWords() {
-  return processSignalsForWordCloud(observatoryState.allObservations);
+export function getAllWords(englishMode = false) {
+  return processSignalsForWordCloud(observatoryState.allObservations, englishMode);
 }
 
 /**
@@ -111,33 +132,33 @@ export function getAllWords() {
  * prefer last 7 days; backfill to MIN_FLOOR if sparse.
  * Call inside computed() to stay reactive.
  */
-export function getWordsForProject(project) {
+export function getWordsForProject(project, englishMode = false) {
   const rows = observatoryState.allObservations.filter(r => r.project === project);
   const cutoff = Date.now() - WINDOW_MS;
   const recent = rows.filter(r => new Date(r.created_at).getTime() >= cutoff);
 
   const working = recent.length >= MIN_FLOOR ? recent : rows.slice(0, MIN_FLOOR);
-  return processSignalsForWordCloud(working);
+  return processSignalsForWordCloud(working, englishMode);
 }
 
 /**
  * Per-project rolling feed — most recent reflections.
  * Call inside computed() to stay reactive.
  */
-export function getFeedForProject(project) {
+export function getFeedForProject(project, englishMode = false) {
   return observatoryState.allObservations
     .filter(r => r.project === project && r.reflection)
     .slice(0, 5)
-    .map(r => r.reflection);
+    .map(r => (englishMode && r.reflection_en) ? r.reflection_en : r.reflection);
 }
 
 /**
  * Aggregate rolling feed for the Observatory page — all projects, most recent.
  * Call inside computed() to stay reactive.
  */
-export function getAllFeed() {
+export function getAllFeed(englishMode = false) {
   return observatoryState.allObservations
     .filter(r => r.reflection)
     .slice(0, 20)
-    .map(r => r.reflection);
+    .map(r => (englishMode && r.reflection_en) ? r.reflection_en : r.reflection);
 }

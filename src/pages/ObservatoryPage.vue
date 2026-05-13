@@ -18,8 +18,15 @@
 
         <!-- Block 3: Short intro -->
         <section class="">
-          <h2 class="text-label">Recent Signals</h2>
-         <WordField :words="allWords" />
+          <div class="signals-header">
+            <h2 class="text-label">Recent Signals</h2>
+            <div class="lang-toggle" role="group" aria-label="Language view">
+              <button :class="{ active: !showEnglish }" @click="showEnglish = false">Original</button>
+              <span class="lang-toggle__divider">/</span>
+              <button :class="{ active: showEnglish }" @click="showEnglish = true">English</button>
+            </div>
+          </div>
+          <WordField :words="allWords" />
           <div class="aggregate-feed">
             <SignalFeed :entries="allFeed" />
           </div>
@@ -160,8 +167,9 @@ const currentSignal = computed(() => {
   return (s && s.content) ? s : FALLBACK_SIGNAL;
 });
 
-const allWords = computed(() => getAllWords());
-const allFeed = computed(() => getAllFeed());
+const showEnglish = ref(false);
+const allWords = computed(() => getAllWords(showEnglish.value));
+const allFeed = computed(() => getAllFeed(showEnglish.value));
 
 const globeRef = ref(null);
 const showModal = ref(false);
@@ -223,6 +231,42 @@ function onSignalPlaced({ lat, lng, id }) {
 </script>
 
 <style lang="scss" scoped>
+// Signals header with toggle
+.signals-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color var(--transition-speed) ease;
+
+    &:hover { color: var(--text); }
+    &.active { color: var(--text); }
+  }
+}
+
+.lang-toggle__divider {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+  user-select: none;
+}
+
 // Intro
 .observatory-intro {
   margin-bottom: var(--spacing-xl);

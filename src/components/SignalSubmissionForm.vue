@@ -151,6 +151,7 @@ async function handleSubmit() {
         context: formData.context.trim() || null,
         geography: formData.geography.trim() || null,
         website: formData.website,
+        language: navigator.language || null,
       }),
     });
 
