@@ -28,7 +28,7 @@
     "bootstrap-vue-next": "^0.42.0",
     "d3": "^7.9.0",
     "d3-cloud": "^1.2.9",
-    "dompurify": "3.3.2",
+    "dompurify": "^3.4.2",
     "formidable": "^3.5.4",
     "globe.gl": "^2.45.0",
     "leaflet": "^1.9.4",
@@ -45,5 +45,9 @@
     "sharp": "^0.34.5",
     "vite": "^7.2.4",
     "vite-ssg": "^28.2.2"
+  },
+  "overrides": {
+    "unhead": ">=2.1.13",
+    "@unhead/dom": ">=2.1.11"
   }
 }
