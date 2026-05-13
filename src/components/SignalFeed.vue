@@ -3,10 +3,21 @@
     <div v-if="!entries.length" class="feed-empty">
       <p>Reflections will appear here as observations are submitted.</p>
     </div>
-    <div v-else class="feed-stage">
+    <div
+      v-else
+      class="feed-stage"
+      @click="handleClick"
+      @pointerenter="onPointerEnter"
+      @pointerleave="onPointerLeave"
+    >
       <Transition name="feed-toast">
         <p :key="currentIndex" class="feed-entry">{{ current }}</p>
       </Transition>
+      <span
+        class="feed-control"
+        :class="{ 'is-visible': paused || hovered }"
+        aria-hidden="true"
+      >{{ paused ? '▶' : '‖' }}</span>
     </div>
   </div>
 </template>
@@ -21,10 +32,13 @@ const props = defineProps({
 const currentIndex = ref(0);
 const current = computed(() => props.entries[currentIndex.value] ?? null);
 
+const paused = ref(false);
+const hovered = ref(false);
+
 let timer = null;
 
 function start() {
-  if (timer || props.entries.length <= 1) return;
+  if (timer || props.entries.length <= 1 || paused.value) return;
   timer = setInterval(() => {
     currentIndex.value = (currentIndex.value + 1) % props.entries.length;
   }, 8500);
@@ -35,6 +49,25 @@ function stop() {
   timer = null;
 }
 
+function handleClick() {
+  if (!paused.value) {
+    stop();
+    paused.value = true;
+  } else {
+    currentIndex.value = (currentIndex.value + 1) % props.entries.length;
+    paused.value = false;
+    start();
+  }
+}
+
+function onPointerEnter() {
+  hovered.value = true;
+}
+
+function onPointerLeave() {
+  hovered.value = false;
+}
+
 onMounted(start);
 onBeforeUnmount(stop);
 
@@ -43,7 +76,6 @@ watch(
   (len, prev) => {
     if (len && !prev) start();
     if (!len) stop();
-    // Reset index if it's now out of bounds
     if (currentIndex.value >= len) currentIndex.value = 0;
   },
 );
@@ -57,6 +89,7 @@ watch(
 .feed-stage {
   position: relative;
   min-height: 3.5rem;
+  cursor: pointer;
 }
 
 .feed-entry {
@@ -72,6 +105,30 @@ watch(
     content: '— ';
     color: var(--text-muted);
     opacity: 0.6;
+  }
+}
+
+.feed-control {
+  position: absolute;
+  right:-34px;
+  top: 0;
+  font-family: var(--font-sans);
+  display: inline-block;
+  width: 33px;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity var(--transition-speed, 0.2s) ease;
+  user-select: none;
+  pointer-events: none;
+  box-shadow:inset 0 0 2px var(--text-muted);
+  border-radius: 50%;
+  padding: 0.2rem;
+  cursor: pointer;
+  &.is-visible {
+    opacity: 0.45;
   }
 }
 
