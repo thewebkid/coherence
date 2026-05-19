@@ -1,14 +1,15 @@
-## When Coherence Is Practiced Locally
+## Why This Matters Now?
 
-Inside teams and organizations,  
-this begins to change:
+Because the future will not be decided by  
+human intelligence alone,  
+or AI alone.
 
-- Meetings become spaces of shared attention, not performance
-- Mistakes become material for return, not blame
-- Authority circulates through responsibility, not title
-- Decisions consider long-term relational impact, not only speed
-- Innovation increases because trust increases
-- People act without waiting for permission when coherence is clear
+It will be decided by  
+how intelligences relate.
 
-This does not require permission from the whole system.  
-It begins wherever one node practices it consistently.
+---
+
+**Key Practices:**
+
+**Alignment** = living in reference to the triad across scales  
+**Return** = restoring alignment when we drift

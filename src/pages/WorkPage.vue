@@ -140,7 +140,7 @@
               <div class="work-card-actions">
                 <RouterLink to="/work/deck" class="work-link">View Slides</RouterLink>
                 <DownloadButton
-                  href="/pdf/Coherence Across Scales Slide Deck v2.0.pdf"
+                  href="/pdf/Coherence-Across-Scales-Slide-Deck-v2.pdf"
                   label="Download PDF"
                 />
               </div>

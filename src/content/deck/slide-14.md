@@ -1,14 +1,18 @@
-## When Coherence Is Practiced Locally
+## Authority in a Coherence-Based System
 
-Inside teams and organizations,  
-this begins to change:
+Authority does not disappear.  
+It becomes relational.
 
-- Meetings become spaces of shared attention, not performance
-- Mistakes become material for return, not blame
-- Authority circulates through responsibility, not title
-- Decisions consider long-term relational impact, not only speed
-- Innovation increases because trust increases
-- People act without waiting for permission when coherence is clear
+Authority circulates through those  
+most willing to:
 
-This does not require permission from the whole system.  
-It begins wherever one node practices it consistently.
+- perceive clearly
+- act responsibly
+- repair when needed
+- maintain alignment
+
+This is not the removal of structure.  
+It is the removal of domination.
+
+Titles may remain.  
+But coherence determines influence.

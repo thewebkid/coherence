@@ -16,7 +16,7 @@
 
       <div class="deck-download">
         <DownloadButton
-          href="/pdf/Coherence Across Scales Slide Deck v2.0.pdf"
+          href="/pdf/Coherence-Across-Scales-Slide-Deck-v2.pdf"
           label="Download Full Deck (PDF)"
         />
       </div>

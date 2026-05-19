@@ -1,15 +1,7 @@
-## Why This Matters Now?
+Also available for further reference:
 
-Because the future will not be decided by  
-human intelligence alone,  
-or AI alone.
+**Manuscript:** *Coherence Across Scales — A Civilizational Language*  
+**Handbook** (in development): *Practicing Coherence Across Scales*
 
-It will be decided by  
-how intelligences relate.
-
----
-
-**Key Practices:**
-
-**Alignment** = living in reference to the triad across scales  
-**Return** = restoring alignment when we drift
+These materials exist as open reference works  
+for individuals and institutions choosing to practice locally.
