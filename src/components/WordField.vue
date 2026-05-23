@@ -269,7 +269,7 @@ function computeCloudLayout(wordList, width, height) {
         h: fontSize * 1.35 + 6,
       };
     })
-    .sort((a, b) => b.count - a.count);
+    .sort((a, b) => b.count - a.count || b.fontSize - a.fontSize);
 
   const placed = [];
   const cx = width / 2;

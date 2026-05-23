@@ -3,6 +3,7 @@ import { fetchCurrentSignal } from './currentSignal';
 
 const MIN_FLOOR = 3;
 const WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
+const ALL_WORD_LIMIT = 25;
 
 export const observatoryState = reactive({
   allObservations: [],
@@ -66,7 +67,37 @@ function toSignalTokens(raw) {
     .filter(w => w.length > 1);
 }
 
-function processSignalsForWordCloud(rows, englishMode = false) {
+function rawSignalForRow(row, englishMode) {
+  return (englishMode && row.signal_en) ? row.signal_en : row.signal;
+}
+
+/**
+ * Walk observations newest-first until `limit` unique signal tokens are
+ * collected. Returns the rows that contributed at least one new token.
+ */
+function selectRowsForRecentWordWindow(rows, { limit = ALL_WORD_LIMIT, englishMode = false } = {}) {
+  if (!rows?.length) return [];
+
+  const sorted = [...rows].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+  );
+
+  const seen = new Set();
+  const selected = [];
+
+  for (const row of sorted) {
+    const tokens = toSignalTokens(rawSignalForRow(row, englishMode));
+    if (!tokens.some(t => !seen.has(t))) continue;
+
+    tokens.forEach(t => seen.add(t));
+    selected.push(row);
+    if (seen.size >= limit) break;
+  }
+
+  return selected;
+}
+
+function processSignalsForWordCloud(rows, englishMode = false, tokenFilter = null) {
   if (!rows?.length) return [];
 
   const now = Date.now();
@@ -74,10 +105,13 @@ function processSignalsForWordCloud(rows, englishMode = false) {
   const maxFont = 42;
 
   let entries = rows.flatMap(item => {
-    const rawSignal = (englishMode && item.signal_en) ? item.signal_en : item.signal;
     const t = now - new Date(item.created_at).getTime();
-    return toSignalTokens(rawSignal).map(signal => ({ signal, t }));
+    const tokens = toSignalTokens(rawSignalForRow(item, englishMode));
+    const scoped = tokenFilter ? tokens.filter(tok => tokenFilter.has(tok)) : tokens;
+    return scoped.map(signal => ({ signal, t }));
   });
+
+  if (!entries.length) return [];
 
   const countMap = {};
   entries.forEach(e => {
@@ -120,11 +154,26 @@ function processSignalsForWordCloud(rows, englishMode = false) {
 // ── Public accessors ──────────────────────────────────────────────────────────
 
 /**
- * Aggregate word cloud — all observations, no project filter.
+ * Aggregate word cloud — most recent 25 unique tokens across all projects.
  * Call inside computed() to stay reactive to store updates.
  */
 export function getAllWords(englishMode = false) {
-  return processSignalsForWordCloud(observatoryState.allObservations, englishMode);
+  const selectedRows = selectRowsForRecentWordWindow(observatoryState.allObservations, {
+    limit: ALL_WORD_LIMIT,
+    englishMode,
+  });
+  const allowedTokens = new Set();
+  selectedRows.forEach(row => {
+    toSignalTokens(rawSignalForRow(row, englishMode)).forEach(t => allowedTokens.add(t));
+  });
+  if (!allowedTokens.size) return [];
+
+  // Score/size from all appropriate rows that use these tokens (restores count spread
+  // for layout) while the token set itself comes from the recent-25 walk above.
+  const rowsForScoring = observatoryState.allObservations.filter(row =>
+    toSignalTokens(rawSignalForRow(row, englishMode)).some(t => allowedTokens.has(t)),
+  );
+  return processSignalsForWordCloud(rowsForScoring, englishMode, allowedTokens);
 }
 
 /**
@@ -153,12 +202,16 @@ export function getFeedForProject(project, englishMode = false) {
 }
 
 /**
- * Aggregate rolling feed for the Observatory page — all projects, most recent.
+ * Aggregate rolling feed for the Observatory page — reflections from the same
+ * observations that drive getAllWords (most recent 25 unique tokens).
  * Call inside computed() to stay reactive.
  */
 export function getAllFeed(englishMode = false) {
-  return observatoryState.allObservations
+  const rows = selectRowsForRecentWordWindow(observatoryState.allObservations, {
+    limit: ALL_WORD_LIMIT,
+    englishMode,
+  });
+  return rows
     .filter(r => r.reflection)
-    .slice(0, 20)
     .map(r => (englishMode && r.reflection_en) ? r.reflection_en : r.reflection);
 }

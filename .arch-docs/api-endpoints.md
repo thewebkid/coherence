@@ -30,11 +30,13 @@ Accepts a practice observation from any of the six Observatory projects.
 
 ### `GET /api/observations`
 
-Returns recent observations. Optionally filtered by project.
+Returns recent observations. Optionally filtered by project. All public reads exclude rows where `inappropriate` is true (`inappropriate IS NOT TRUE` in SQL, so NULL and false are included).
 
 **Query params:**
-- `?project=Dialogue` — returns `feed` (5 recent reflections) and `signals` (top 30 word counts)
-- No param — returns all observations from the last 100 days
+- `?project=Dialogue` — returns `feed` (5 recent reflections) and `signals` (top 30 word counts) for that project
+- No param — returns all appropriate observations from the last 100 days, `ORDER BY created_at DESC`
+
+**Client (Observatory aggregate):** `observatoryData.js` loads the no-param response into `allObservations`. `getAllWords` / `getAllFeed` derive the 25 most recent **unique signal tokens** (newest-first walk, shared row window) for the aggregate word cloud and feed — not the full 100-day list.
 
 **Reads from:** `observations`  
 **Auth:** None (public)
@@ -55,7 +57,7 @@ Returns observation fragments and co-occurring signals for a specific word in a 
 }
 ```
 
-**Reads from:** `observations`  
+**Reads from:** `observations` (excludes `inappropriate = true`)  
 **Auth:** None (public)
 
 ---
@@ -185,7 +187,7 @@ Updates the status or admin notes on a submission. Triggers submitter notificati
 
 ### `GET /api/admin/observations`
 
-Returns observations for admin review, with optional day-range filter.
+Returns observations for admin review, with optional day-range filter. Does **not** filter on `inappropriate` — admins see all rows including flagged ones.
 
 **Query params:** `?days=7` (or `14`, `21`, `all`)
 

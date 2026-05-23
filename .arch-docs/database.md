@@ -14,15 +14,21 @@ Stores practice entries submitted through the six observational projects (Observ
 
 ```sql
 CREATE TABLE observations (
-  id          serial PRIMARY KEY,
-  project     text NOT NULL,        -- one of the 6 valid project names
-  signal      text NOT NULL,        -- short word/phrase (the "signal")
-  reflection  text NOT NULL,        -- up to 140 chars
-  context     text,                 -- optional extended note
-  geography   text,                 -- optional location string
-  created_at  timestamptz DEFAULT now()
+  id              serial PRIMARY KEY,
+  project         text NOT NULL,        -- one of the 6 valid project names
+  signal          text NOT NULL,        -- short word/phrase (the "signal")
+  reflection      text NOT NULL,        -- up to 140 chars (CHECK: char_length <= 140)
+  context         text,                 -- optional extended note
+  geography       text,                 -- optional location string
+  created_at      timestamptz NOT NULL DEFAULT now(),
+  language        text,                 -- submitter locale (e.g. from navigator.language)
+  signal_en       text,                 -- English translation when language is not English
+  reflection_en   text,                 -- English translation when language is not English
+  inappropriate   boolean               -- when true, excluded from all public reads
 );
 ```
+
+Public API queries exclude rows where `inappropriate IS TRUE` (NULL and false are shown). The admin observations endpoint returns all rows regardless of this flag.
 
 Valid project values: `AI Observation`, `Observation`, `Dialogue`, `Relational Field`, `Reflection`, `Presence`
 

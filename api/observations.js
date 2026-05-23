@@ -23,6 +23,7 @@ export default async function handler(req, res) {
       const rows = await sql`
         SELECT * FROM observations
         WHERE created_at >= now() - interval '100 days'
+          AND (inappropriate IS NOT TRUE)
         ORDER BY created_at DESC
       `;
       res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120');
@@ -34,6 +35,7 @@ export default async function handler(req, res) {
       SELECT reflection, created_at
       FROM observations
       WHERE project = ${project}
+        AND (inappropriate IS NOT TRUE)
       ORDER BY created_at DESC
       LIMIT 5
     `;
@@ -43,6 +45,7 @@ export default async function handler(req, res) {
       SELECT signal, count(*) AS count
       FROM observations
       WHERE project = ${project}
+        AND (inappropriate IS NOT TRUE)
       GROUP BY signal
       ORDER BY count DESC
       LIMIT 30

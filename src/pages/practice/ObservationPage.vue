@@ -98,12 +98,10 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useHead } from '@unhead/vue';
-import SignalSubmissionForm from '@/components/SignalSubmissionForm.vue';
-import WordField from '@/components/WordField.vue';
-import SignalFeed from '@/components/SignalFeed.vue';
-import { initObservatoryData, getWordsForProject, getFeedForProject } from '@/utils/observatoryData';
+
+import { initObservatoryData } from '@/utils/observatoryData';
 import ProjectFooter from '@/components/ProjectFooter.vue';
 
 onMounted(() => initObservatoryData());

@@ -32,6 +32,7 @@ export default async function handler(req, res) {
         SELECT reflection
         FROM observations
         WHERE project = ${project} AND signal = ${word}
+          AND (inappropriate IS NOT TRUE)
         ORDER BY created_at DESC
         LIMIT 7
       `,
@@ -41,6 +42,7 @@ export default async function handler(req, res) {
         WHERE project = ${project}
           AND signal != ${word}
           AND created_at >= now() - interval '30 days'
+          AND (inappropriate IS NOT TRUE)
         GROUP BY signal
         ORDER BY count DESC
         LIMIT 5

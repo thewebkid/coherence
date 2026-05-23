@@ -292,7 +292,7 @@ export default defineConfig({
               const sql = neon(POSTGRES_URL);
 
               if (!project) {
-                const rows = await sql`SELECT * FROM observations WHERE created_at >= now() - interval '100 days' ORDER BY created_at DESC`;
+                const rows = await sql`SELECT * FROM observations WHERE created_at >= now() - interval '100 days' AND (inappropriate IS NOT TRUE) ORDER BY created_at DESC`;
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.end(JSON.stringify(rows));
@@ -300,8 +300,8 @@ export default defineConfig({
               }
 
               const [recentRows, signalRows] = await Promise.all([
-                sql`SELECT reflection FROM observations WHERE project = ${project} ORDER BY created_at DESC LIMIT 5`,
-                sql`SELECT signal, count(*) AS count FROM observations WHERE project = ${project} GROUP BY signal ORDER BY count DESC LIMIT 30`,
+                sql`SELECT reflection FROM observations WHERE project = ${project} AND (inappropriate IS NOT TRUE) ORDER BY created_at DESC LIMIT 5`,
+                sql`SELECT signal, count(*) AS count FROM observations WHERE project = ${project} AND (inappropriate IS NOT TRUE) GROUP BY signal ORDER BY count DESC LIMIT 30`,
               ]);
 
               res.statusCode = 200;
@@ -340,8 +340,8 @@ export default defineConfig({
               const sql = neon(POSTGRES_URL);
 
               const [fragmentRows, coRows] = await Promise.all([
-                sql`SELECT reflection FROM observations WHERE project = ${project} AND signal = ${word} ORDER BY created_at DESC LIMIT 7`,
-                sql`SELECT signal, count(*) AS count FROM observations WHERE project = ${project} AND signal != ${word} AND created_at >= now() - interval '30 days' GROUP BY signal ORDER BY count DESC LIMIT 5`,
+                sql`SELECT reflection FROM observations WHERE project = ${project} AND signal = ${word} AND (inappropriate IS NOT TRUE) ORDER BY created_at DESC LIMIT 7`,
+                sql`SELECT signal, count(*) AS count FROM observations WHERE project = ${project} AND signal != ${word} AND created_at >= now() - interval '30 days' AND (inappropriate IS NOT TRUE) GROUP BY signal ORDER BY count DESC LIMIT 5`,
               ]);
 
               res.statusCode = 200;
