@@ -198,6 +198,11 @@ const routes = [
     component: () => import('@/pages/SevenMovementsPage.vue'),
   },
   {
+    path: '/interpretive-works/seven-apertures',
+    name: 'seven-apertures',
+    component: () => import('@/pages/SevenAperturesPage.vue'),
+  },
+  {
     path: '/interpretive-works/listen',
     name: 'aperture-listen',
     component: () => import('@/pages/ApertureListenPage.vue'),

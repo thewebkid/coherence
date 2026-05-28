@@ -164,6 +164,24 @@
               </div>
             </div>
           </article>
+
+          <article class="work-card">
+            <div class="work-card-content">
+              <h2>Seven Apertures</h2>
+              <p class="work-card-subtitle">First Edition</p>
+              <p class="work-card-desc">
+                A manuscript in seven apertures — seven conditions through which coherence
+                becomes available relationally. By James Mahu and Lumina.
+              </p>
+              <div class="work-card-actions">
+                <RouterLink to="/interpretive-works/seven-apertures" class="work-link">Read Online</RouterLink>
+                <DownloadButton
+                  href="/pdf/Seven Apertures (First Edition).pdf"
+                  label="Download PDF"
+                />
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </div>

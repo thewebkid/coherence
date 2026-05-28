@@ -1,8 +1,10 @@
 import sevenMovements from './seven-movements.js';
+import sevenApertures from './seven-apertures.js';
 import wordsOfDrawings from './words-of-drawings.js';
 
 export const works = [
   sevenMovements,
+  sevenApertures,
   wordsOfDrawings,
 ];
 
