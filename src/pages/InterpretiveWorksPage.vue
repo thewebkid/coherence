@@ -111,7 +111,7 @@ useHead({
 .works-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: 0;
 }
 
 .work-entry {
@@ -119,6 +119,17 @@ useHead({
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--spacing-lg);
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 1px solid var(--border);
+
+  & + & {
+    padding-top: var(--spacing-xl);
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
 }
 
 .work-entry-text {
@@ -168,6 +179,7 @@ useHead({
 
 .work-thumb-link {
   flex-shrink: 0;
+  margin-top: var(--spacing-xl);
 }
 
 .work-thumb {

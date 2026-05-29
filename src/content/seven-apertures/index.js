@@ -17,7 +17,7 @@ const frontMatter = frontMatterRaw
 export const chapters = [
   {
     title: 'Seven Apertures',
-    subtitle: 'First Edition — 2026',
+    subtitle: null,
     content: frontMatter,
   },
   {

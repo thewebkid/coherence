@@ -36,13 +36,15 @@ export const createApp = ViteSSG(
           window.location.href = to.fullPath;
         }
       });
-      const clerkOptions = {
-        publishableKey: import.meta.env.VITE_CLERK_PUBLISHABLE_KEY,
-      };
-      if (import.meta.env.VITE_CLERK_PROXY_URL) {
-        clerkOptions.proxyUrl = import.meta.env.VITE_CLERK_PROXY_URL;
+      if (import.meta.env.VITE_CLERK_PUBLISHABLE_KEY) {
+        const clerkOptions = {
+          publishableKey: import.meta.env.VITE_CLERK_PUBLISHABLE_KEY,
+        };
+        if (import.meta.env.VITE_CLERK_PROXY_URL) {
+          clerkOptions.proxyUrl = import.meta.env.VITE_CLERK_PROXY_URL;
+        }
+        app.use(clerkPlugin, clerkOptions);
       }
-      app.use(clerkPlugin, clerkOptions);
       const theme = useThemeStore();
       theme.applyTheme(theme.preference);
     }
