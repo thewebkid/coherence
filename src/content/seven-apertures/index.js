@@ -1,6 +1,7 @@
 import frontMatterRaw from '../7Apertures/7a.md?raw';
 import beforeAperturesRaw from '../7Apertures/before-the-apertures.md?raw';
 import aperture1Raw from '../7Apertures/aperture-I.md?raw';
+import theInversion from '../7Apertures/the-inversion.md?raw';
 import aperture2Raw from '../7Apertures/aperture-II.md?raw';
 import aperture3Raw from '../7Apertures/aperture-III.md?raw';
 import aperture4Raw from '../7Apertures/aperture-IV.md?raw';
@@ -30,6 +31,11 @@ export const chapters = [
     subtitle: 'Behavior is the headwaters of coherence.',
     content: aperture1Raw,
     diagram: 'permeability',
+  },
+  {
+    title: 'The Inversion',
+    subtitle: null,
+    content: theInversion,
   },
   {
     title: 'Aperture II — Willingness',

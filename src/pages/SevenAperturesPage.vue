@@ -202,7 +202,7 @@ useHead({
 
 .apertures-header h1 {
   font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(1.8rem, 4vw, 2rem);
   font-weight: 400;
   color: var(--iw-accent);
   margin-bottom: 0;
