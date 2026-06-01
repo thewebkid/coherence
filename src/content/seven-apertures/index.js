@@ -1,6 +1,6 @@
 import frontMatterRaw from '../7Apertures/7a.md?raw';
 import beforeAperturesRaw from '../7Apertures/before-the-apertures.md?raw';
-import aperture1Raw from '../7Apertures/aperture-1.md?raw';
+import aperture1Raw from '../7Apertures/aperture-I.md?raw';
 import aperture2Raw from '../7Apertures/aperture-II.md?raw';
 import aperture3Raw from '../7Apertures/aperture-III.md?raw';
 import aperture4Raw from '../7Apertures/aperture-IV.md?raw';
