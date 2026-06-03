@@ -173,6 +173,7 @@ useHead({
   background-color: var(--bg);
   min-height: 100vh;
   padding: var(--spacing-lg) 0 var(--spacing-section);
+  padding: var(--spacing-lg) 0 var(--spacing-section);
 }
 
 .apertures-header {
@@ -237,6 +238,9 @@ useHead({
   :deep(.markdown-body) {
     line-height: var(--iw-line-height-prose, 2);
     color: var(--text-muted);
+    p{
+      max-width: 50ch;
+    }
   }
 
   :deep(h1),

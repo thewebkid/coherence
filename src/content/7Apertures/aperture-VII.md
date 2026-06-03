@@ -247,7 +247,9 @@ A pale sky was turning a faint blue, as the moon slowly disappeared.
 
 But the organism remained gently open.
 
-Stillpoint
+---
+<center>
+<h1> Stillpoint</h1>
 
 At first, you looked into the apertures.
 
@@ -264,3 +266,4 @@ learning how to remain open to itself.
 The apertures do not ask you to believe.
 
 They ask only: Can you remain present while reality becomes more permeable than identity?
+</center>
