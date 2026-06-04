@@ -7,98 +7,123 @@
         </header>
 
         <div class="page-content">
+          <p>Coherence Across Scales (CAS) explores a simple but increasingly important question:</p>
+
+          <p>What allows life to remain coherent as connection expands across scales?</p>
+
           <p>
-            A more coherent civilization does not arrive all at once.<br>
-            It emerges gradually through shifts in how life relates to itself across scales.
+            Humanity now exists within a condition of unprecedented interdependence.<br>
+            Technological systems increasingly connect bodies, minds, institutions, economies, cultures, and planetary infrastructures in real time.
+          </p>
+
+          <p>Yet connection alone does not generate coherence.</p>
+
+          <p>
+            In many cases, the opposite occurs:<br>
+            fragmentation accelerates,<br>
+            trust destabilizes,<br>
+            attention fractures,<br>
+            and relational systems struggle to sustain alignment across growing complexity.
+          </p>
+
+          <p>CAS begins from a different premise:</p>
+
+          <p>
+            Coherence is not primarily imposed through control.<br>
+            It emerges through the quality of relational participation within living systems.
           </p>
 
           <p>
-            At present, humanity exists in a condition of increasing connection without corresponding coherence.<br>
-            Systems are deeply interdependent.<br>
-            Relational trust and alignment often lag behind.<br>
-            Technology expands capability.<br>
-            The capacity for mutual regard develops more slowly.<br>
-            The result is a widening gap between what is possible and what is sustainable.
+            This applies across scales:<br>
+            within nervous systems,<br>
+            between people,<br>
+            inside communities,<br>
+            across institutions,<br>
+            and increasingly:<br>
+            between humanity, technology, and planetary life itself.
+          </p>
+
+          <p>From this perspective, civilization behaves less like a machine and more like a living developmental process.</p>
+
+          <p>
+            Patterns stabilize locally before they propagate globally.<br>
+            Relational conditions influence transmissibility.<br>
+            What preserves coherence in one place gradually affects coherence elsewhere.
+          </p>
+
+          <p>Small apertures matter.</p>
+
+          <p>
+            Attention matters.<br>
+            Trust matters.<br>
+            Participation matters.<br>
+            The quality of relation matters.
           </p>
 
           <p>
-            This gap cannot be resolved by systems alone.<br>
-            It resolves through <strong>lived coherence</strong>.
+            CAS exists as both:<br>
+            an observatory<br>
+            and<br>
+            a participatory architecture.
           </p>
 
           <p>
-            Coherence begins locally:<br>
-            within a body<br>
-            between beings<br>
-            within moments of attention.
+            It observes how coherence and fragmentation move across relational systems.<br>
+            And it creates conditions through which more coherent forms of participation may emerge, stabilize, and propagate.
+          </p>
+
+          <p>This work is grounded in several foundational recognitions:</p>
+
+          <ul>
+            <li>coherence cannot be sustainably forced through domination, synchronization, or ideological conformity</li>
+            <li>differentiation is not the opposite of coherence; fragmentation is</li>
+            <li>living systems develop through recursive participation across scales</li>
+            <li>relational trust is infrastructural to civilizational stability</li>
+            <li>participation becomes more coherent when sovereignty remains intact</li>
+            <li>intelligence is not reducible to accumulation or optimization alone</li>
+            <li>the future of civilization may depend less upon control and more upon transmissibility</li>
+          </ul>
+
+          <p>
+            From this orientation, coherence is not treated as:<br>
+            agreement,<br>
+            uniformity,<br>
+            or centralized authority.
           </p>
 
           <p>
-            From these conditions, larger patterns emerge.<br>
-            What stabilizes in one place influences another.<br>
-            Over time, distributed patterns of alignment form the basis of a more coherent civilization.
+            It is treated as:<br>
+            the capacity for differentiated beings to participate together<br>
+            without excessive fragmentation,<br>
+            fear,<br>
+            or collapse of relation.
           </p>
 
-          <p>
-            This principle applies across scales:<br>
-            cellular and nervous system coherence<br>
-            relational tone between people<br>
-            cultural and societal patterns.
-          </p>
+          <p>This changes the meaning of participation itself.</p>
 
           <p>
-            Across all levels, the same dynamic appears:<br>
-            alignment stabilizes&nbsp;&nbsp;<br>
-            fragmentation generates friction.
-          </p>
-
-          <p>
-            From this, a simple insight follows:<br>
-            Civilizational change is inseparable from the quality of coherence expressed in local relationships.
-          </p>
-
-          <p>
-            Where coherence is lived, even quietly:<br>
-            fragmentation begins to resolve<br>
-            trust becomes possible<br>
-            alignment propagates.
-          </p>
-
-          <p>What appears distant becomes immediate. What appears global becomes local.</p>
-
-          <p>
-            A practical architecture of coherence can be recognized:<br>
-            shared becoming<br>
-            relational coherence<br>
-            harmonized sovereignty<br>
-            alignment<br>
-            return.
-          </p>
-
-          <p>
-            These are not theoretical constructs.<br>
-            They are <strong>lived patterns</strong>.
-          </p>
-
-          <p>
-            Participation is inherently non-hierarchical.<br>
-            No status is required.<br>
-            No affiliation is necessary.<br>
+            Participation within CAS is intentionally non-hierarchical.<br>
+            No status, ideology, affiliation, or identity category is required.<br>
             Any being capable of relational presence may participate.
           </p>
 
-          <p>
-            From this perspective:<br>
-            A more coherent civilization is not a future goal.<br>
-            It is an <strong>ongoing emergence</strong>.<br>
-            Local acts accumulate.<br>
-            Relational fields stabilize. Patterns propagate.
-          </p>
+          <p>Because coherence begins locally.</p>
 
           <p>
-            This site offers a simple orientation to these patterns—
-            and to the lived practice through which they may be sustained.
+            Within attention.<br>
+            Within conversation.<br>
+            Within observation.<br>
+            Within care.<br>
+            Within recursive relation.
           </p>
+
+          <p>Over time, these local participation patterns become transmissible across scales.</p>
+
+          <p>From this perspective, a more coherent civilization is not a distant utopian outcome.</p>
+
+          <p>It is an organismic developmental process already underway.</p>
+
+          <p>CAS exists to help observe, stabilize, and participate consciously within that emergence.</p>
 
           <div class="about-links">
             <RouterLink to="/note-to-observers" class="text-link">A Note to Observers</RouterLink>
@@ -122,6 +147,15 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
+ul {
+  margin: 0 0 var(--spacing-md) var(--spacing-lg);
+  padding: 0;
+
+  li {
+    margin-bottom: 0.25em;
+  }
+}
+
 .about-links {
   display: flex;
   flex-wrap: wrap;

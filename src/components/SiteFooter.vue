@@ -38,6 +38,7 @@
           <RouterLink to="/simple-terms">Simple Terms</RouterLink>
           <RouterLink to="/mirror-across-scales">Mirror Across Scales</RouterLink>
           <RouterLink to="/tcp-executive-brief">TCP Executive Brief</RouterLink>
+          <RouterLink to="/updates">Updates</RouterLink>
         </nav>
       </div>
 

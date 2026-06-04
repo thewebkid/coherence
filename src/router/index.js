@@ -10,6 +10,11 @@ const routes = [
     component: () => import('@/pages/AboutPage.vue'),
   },
   {
+    path: '/updates',
+    name: 'updates',
+    component: () => import('@/pages/UpdatesPage.vue'),
+  },
+  {
     path: '/note-to-observers',
     name: 'note-to-observers',
     component: () => import('@/pages/NoteToObserversPage.vue'),

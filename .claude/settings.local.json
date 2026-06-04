@@ -1,0 +1,8 @@
+{
+  "enabledMcpjsonServers": [
+    "github",
+    "jetbrains",
+    "vercel",
+    "chrome-devtools"
+  ]
+}
