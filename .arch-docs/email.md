@@ -6,7 +6,19 @@ Transactional email notifications sent to admins and submitters. All email logic
 
 **Provider:** [Resend](https://resend.com)  
 **From address:** `notifications@notify.coherenceacrossscales.org`  
-**Environment variable:** `RESEND_API_KEY` — stored in `.env.local` only (not a Vercel env var). Must be manually maintained after `vercel env pull`. See [auth.md](./auth.md) for context.
+**Environment variable:** `RESEND_API_KEY` — must be set in **Vercel Production** (and Preview if desired) for live notifications. Also keep a copy in `.env.local` for local dev; `vercel env pull` does not include Development-scoped secrets for Clerk/Resend, so re-add those manually after a pull if needed.
+
+**Sending domain:** `notify.coherenceacrossscales.org` (verified in Resend)
+
+DNS for Resend lives on the `notify` subdomain in **Vercel DNS** for `coherenceacrossscales.org` (not on the apex — Zoho MX/SPF on the root domain are unchanged):
+
+| Type | Name | Purpose |
+|---|---|---|
+| TXT | `resend._domainkey.notify` | DKIM |
+| TXT | `send.notify` | SPF (`v=spf1 include:amazonses.com ~all`) |
+| MX | `send.notify` | Bounce/feedback (`feedback-smtp.us-east-1.amazonses.com`, priority 10) |
+
+If nameservers or DNS host changes again, re-add these records and re-verify the domain in the Resend dashboard.
 
 ---
 
