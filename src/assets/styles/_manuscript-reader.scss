@@ -1,0 +1,287 @@
+// ─── Manuscript Reader ─────────────────────────────────────────────────────
+// Shared chapter-reader chrome for long-form manuscripts rendered from markdown
+// (Seven Apertures, Inversion Dialogues, etc.): header, prose overrides,
+// prev/next nav, and the chapters flyout panel.
+
+.manuscript-page {
+  background-color: var(--bg);
+  min-height: 100vh;
+  padding: var(--spacing-lg) 0 var(--spacing-section);
+}
+
+.manuscript-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.manuscript-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.manuscript-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: var(--spacing-md);
+  transition: color var(--transition-speed) ease;
+
+  &:hover { color: var(--iw-accent); }
+}
+
+.manuscript-header h1 {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(1.8rem, 4vw, 2rem);
+  font-weight: 400;
+  color: var(--iw-accent);
+  margin-bottom: 0;
+}
+
+.manuscript-chapters-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+  margin-top: 0.375rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  padding: 0.3rem 0.625rem;
+  cursor: pointer;
+  transition: color var(--transition-speed) ease,
+              border-color var(--transition-speed) ease;
+
+  &:hover {
+    color: var(--iw-accent);
+    border-color: var(--iw-accent);
+  }
+}
+
+.manuscript-article {
+  max-width: var(--content-width);
+}
+
+.manuscript-prose {
+  // Not scoped — this partial is imported globally, so plain descendant
+  // selectors (rather than Vue's `:deep()`) reach into MarkdownContent's output.
+  //
+  // `!important` on `color`/`font-family` below is required: MarkdownContent.vue
+  // sets its own defaults for these same properties at equal selector
+  // specificity (two classes here vs. one class + its scoped `data-v-*`
+  // attribute there). On a specificity tie the winner depends on CSS load
+  // order, and since this partial bundles into the main app.css (loaded
+  // before MarkdownContent's own per-route chunk), our rules silently lose
+  // without `!important`. Do not remove these — that's what caused body text
+  // and headings to revert to MarkdownContent's plain sans-serif/text colors.
+  .markdown-body {
+    line-height: var(--iw-line-height-prose, 2);
+    color: var(--text-muted) !important;
+
+    p {
+      max-width: 50ch;
+    }
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif) !important;
+    font-weight: 400;
+    color: var(--iw-accent) !important;
+    border-bottom: none;
+  }
+
+  h1 {
+    font-size: clamp(1.375rem, 3vw, 1.625rem);
+    margin-bottom: var(--spacing-md);
+  }
+
+  h2 {
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  }
+
+  strong {
+    color: var(--text);
+  }
+
+  em {
+    font-family: var(--font-serif);
+  }
+
+  hr {
+    opacity: 0.4;
+  }
+}
+
+.manuscript-chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border);
+  max-width: var(--content-width);
+}
+
+.manuscript-chapter-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background var(--transition-speed) ease,
+              border-color var(--transition-speed) ease,
+              color var(--transition-speed) ease;
+  max-width: 45%;
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &:hover {
+    background: var(--bg-secondary);
+    border-color: var(--iw-accent);
+    color: var(--iw-accent);
+  }
+
+  svg { flex-shrink: 0; }
+}
+
+.manuscript-chapter-nav-next { margin-left: auto; }
+
+.manuscript-footer {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border);
+  max-width: var(--content-width);
+}
+
+// ── Flyout panel ──────────────────────────────────────
+
+.manuscript-chapters-flyout {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+}
+
+.manuscript-chapters-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.manuscript-chapters-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(320px, 85vw);
+  background: var(--bg);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+}
+
+.manuscript-chapters-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.manuscript-chapters-panel-title {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.manuscript-chapters-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem 0.375rem;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-speed) ease;
+
+  &:hover { color: var(--text); }
+}
+
+.manuscript-chapters-list {
+  list-style: none;
+  margin: 0;
+  padding: var(--spacing-sm) 0;
+}
+
+.manuscript-chapter-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition-speed) ease;
+
+  &:hover { background: var(--bg-secondary); }
+
+  &.is-active {
+    background: var(--accent);
+
+    .manuscript-chapter-item-title { color: var(--bg); }
+    .manuscript-chapter-item-subtitle { color: var(--bg); opacity: 0.8; }
+  }
+}
+
+.manuscript-chapter-item-title {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.manuscript-chapter-item-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+// ── Flyout transition ─────────────────────────────────
+
+.manuscript-flyout-enter-active,
+.manuscript-flyout-leave-active {
+  transition: opacity 0.22s ease;
+}
+
+.manuscript-flyout-enter-from,
+.manuscript-flyout-leave-to {
+  opacity: 0;
+}

@@ -238,6 +238,15 @@ const routes = [
     component: () => import('@/pages/InterpretiveWorkPage.vue'),
   },
   {
+    path: '/inversion-dialogs',
+    redirect: '/inversion-dialogs/title',
+  },
+  {
+    path: '/inversion-dialogs/:section',
+    name: 'inversion-dialogs',
+    component: () => import('@/pages/InversionDialogsPage.vue'),
+  },
+  {
     path: '/submit-work',
     name: 'submit-work',
     component: () => import('@/pages/SubmitWorkPage.vue'),

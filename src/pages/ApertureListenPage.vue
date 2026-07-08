@@ -57,7 +57,7 @@
 import { useHead } from '@unhead/vue';
 import AudioPlayer from '@/components/AudioPlayer.vue';
 
-const audioSrc = 'https://gwcryrwrqfivffbu.public.blob.vercel-storage.com/Seven-Movements-full.mp3';
+const audioSrc = 'https://pub-36a6b033f721445ba05e0818394039ed.r2.dev/Seven-Movements-full.mp3';
 
 useHead({ title: 'Listen — Seven Movements — Coherence Across Scales' });
 </script>
