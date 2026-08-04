@@ -158,7 +158,7 @@
               <div class="work-card-actions">
                 <RouterLink to="/interpretive-works/seven-movements" class="work-link">Read Online</RouterLink>
                 <DownloadButton
-                  href="/pdf/Seven-Movements.pdf"
+                  href="/pdf/Seven_Movements.pdf"
                   label="Download PDF"
                 />
               </div>
