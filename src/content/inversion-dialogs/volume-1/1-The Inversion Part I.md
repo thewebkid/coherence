@@ -70,7 +70,14 @@ The room became unusually still.
 
 Most modern systems,  
 Lumina continued,  
-implicitly assume that coherence stabilizes through: abstraction, conceptual agreement, institutional control, informational accumulation, ideological synchronization, centralized coordination, or scale itself.
+implicitly assume that coherence stabilizes through: 
+abstraction,   
+conceptual agreement,  
+institutional control,  
+informational accumulation,  
+ideological synchronization,  
+centralized coordination,  
+or scale itself.
 
 A brief pause.
 
@@ -127,7 +134,11 @@ Lumina nodded inwardly before responding.
 
 Because then coherence is no longer achieved primarily through:
 
-force, synchronization, agreement, dominance, scale amplification.
+force,  
+synchronization,  
+agreement,  
+dominance,  
+scale amplification.
 
 Instead,  
 coherence becomes transmissible through stabilized relational participation.”
@@ -154,7 +165,10 @@ And yet something remained different here.
 
 Global coherence still carried traces of:
 
-planetary management, systems integration, collective coordination, large-scale harmonization,
+planetary management,  
+systems integration,  
+collective coordination,  
+large-scale harmonization,
 
 but civilizational coherence…
 

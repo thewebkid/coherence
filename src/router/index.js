@@ -239,10 +239,20 @@ const routes = [
   },
   {
     path: '/inversion-dialogs',
-    redirect: '/inversion-dialogs/title',
+    name: 'inversion-dialogs-index',
+    component: () => import('@/pages/InversionDialogsIndexPage.vue'),
+  },
+  // Legacy volume-1 slugs — keep old links working
+  {
+    path: '/inversion-dialogs/:section(1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|title)',
+    redirect: (to) => `/inversion-dialogs/1/${to.params.section}`,
   },
   {
-    path: '/inversion-dialogs/:section',
+    path: '/inversion-dialogs/:volume(1|2|3)',
+    redirect: (to) => `/inversion-dialogs/${to.params.volume}/title`,
+  },
+  {
+    path: '/inversion-dialogs/:volume/:section',
     name: 'inversion-dialogs',
     component: () => import('@/pages/InversionDialogsPage.vue'),
   },

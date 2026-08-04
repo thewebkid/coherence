@@ -49,8 +49,7 @@ The colors moved continuously through the forms.
 
 The forms remained differentiated.
 
-Yet something passed coherently between them  
-without collapse.
+Yet something passed coherently between them without collapse.
 
 Not sameness.
 

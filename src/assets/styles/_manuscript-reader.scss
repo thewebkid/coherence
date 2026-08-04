@@ -42,6 +42,18 @@
   margin-bottom: 0;
 }
 
+// Volume label sitting under the manuscript title (e.g. "Volume II").
+.manuscript-header-volume {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-top: var(--spacing-xs);
+}
+
 .manuscript-chapters-toggle {
   display: inline-flex;
   align-items: center;
@@ -218,6 +230,14 @@
   color: var(--text-muted);
 }
 
+// Panel title doubles as the quiet link back to the volumes landing.
+.manuscript-chapters-panel-home {
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+
+  &:hover { color: var(--iw-accent); }
+}
+
 .manuscript-chapters-close {
   background: none;
   border: none;
@@ -274,6 +294,21 @@
   margin-top: 2px;
 }
 
+// Volume label on the flyout's title item — small eyebrow above the work title.
+.manuscript-chapter-item-volume {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.manuscript-chapter-item.is-active {
+  .manuscript-chapter-item-volume { color: var(--bg); opacity: 0.8; }
+}
+
 // ── Flyout transition ─────────────────────────────────
 
 .manuscript-flyout-enter-active,
@@ -284,4 +319,113 @@
 .manuscript-flyout-enter-from,
 .manuscript-flyout-leave-to {
   opacity: 0;
+}
+
+// ── Volume landing (The Inversion Dialogues) ──────────
+// Cover tiles linking to the start of each volume. Quiet, image-led, no
+// marketing chrome. Forthcoming volumes render still and non-interactive.
+
+.inversion-landing-title {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(1.8rem, 4vw, 2.25rem);
+  font-weight: 400;
+  color: var(--iw-accent);
+  text-align: center;
+  margin-bottom: var(--spacing-xs);
+}
+
+.inversion-landing-subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 0 0 var(--spacing-xl);
+}
+
+.volume-tiles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+  max-width: 720px;
+  margin: 0 auto;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+  }
+}
+
+.volume-tile {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: opacity var(--transition-speed) ease;
+
+  &:hover:not(.is-forthcoming) {
+    .volume-tile-image { opacity: 1; }
+    .volume-tile-title { color: var(--iw-accent); }
+  }
+
+  &.is-forthcoming {
+    cursor: default;
+    opacity: 0.6;
+  }
+}
+
+.volume-tile-image {
+  width: 100%;
+  aspect-ratio: 2550 / 3300; // matches the source cover art
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-md);
+  opacity: 0.92;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.volume-tile-placeholder {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+}
+
+.volume-tile-body {
+  padding: var(--spacing-sm) var(--spacing-xs) 0;
+  text-align: center;
+}
+
+.volume-tile-title {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0;
+  transition: color var(--transition-speed) ease;
+}
+
+.volume-tile-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin: 2px 0 0;
+}
+
+// Title-page cover image inside a manuscript chapter (Vol I & II frontispiece).
+// Sized to fill more of the viewport; click opens the shared lightbox.
+.manuscript-title-image {
+  display: block;
+  width: 100%;
+  max-width: min(560px, 78vh * (2550 / 3300)); // viewport-aware, keeps cover aspect
+  max-height: 78vh;
+  object-fit: contain;
+  margin: 0 auto var(--spacing-lg);
+  border-radius: var(--radius-md);
+  cursor: zoom-in;
+  transition: opacity var(--transition-speed) ease;
+
+  &:hover {
+    opacity: 0.92;
+  }
 }

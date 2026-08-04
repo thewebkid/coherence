@@ -788,13 +788,18 @@ export default defineConfig({
     includedRoutes: async (paths, routes) => {
       const { works } = await import('./src/content/interpretive-works/index.js');
       const workPaths = works.map((w) => `/interpretive-works/${w.slug}`);
-      // Slugs mirror src/content/inversion-dialogs/index.js — kept inline here
-      // since that module imports markdown via `?raw`, which esbuild can't
-      // resolve when Node loads this config file directly.
-      const inversionSlugs = ['title', ...Array.from({ length: 19 }, (_, i) => String(i + 1))];
-      const inversionPaths = inversionSlugs.map((slug) => `/inversion-dialogs/${slug}`);
+      // Slugs mirror src/content/inversion-dialogs/volume-*/index.js — kept
+      // inline here since those modules import markdown via `?raw`, which
+      // esbuild can't resolve when Node loads this config file directly.
+      const v1Slugs = ['title', ...Array.from({ length: 19 }, (_, i) => String(i + 1))];
+      const v2Slugs = ['title', ...Array.from({ length: 14 }, (_, i) => String(i + 1)), 'epilogue'];
+      const inversionPaths = [
+        '/inversion-dialogs',
+        ...v1Slugs.map((slug) => `/inversion-dialogs/1/${slug}`),
+        ...v2Slugs.map((slug) => `/inversion-dialogs/2/${slug}`),
+      ];
       return [
-        ...paths.filter((p) => !p.startsWith('/admin') && !p.includes(':slug') && !p.includes(':section')),
+        ...paths.filter((p) => !p.startsWith('/admin') && !p.includes(':')),
         ...workPaths,
         ...inversionPaths,
       ];

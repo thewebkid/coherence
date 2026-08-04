@@ -9,4 +9,5 @@ Thumbs.db
 /.idea/
 .env*.local
 /.cursor/settings.json
-/inversion-dialogs/
+/inversion-dialogs-volume-1/
+/inversion-dialogs-volume-2/
