@@ -4,6 +4,7 @@
 
 import * as volume1 from './volume-1/index.js';
 import * as volume2 from './volume-2/index.js';
+import * as volume3 from './volume-3/index.js';
 
 export const volumes = [
   {
@@ -32,13 +33,12 @@ export const volumes = [
     id: 3,
     slug: '3',
     title: 'Volume III',
-    subtitle: null,
-    range: 'Forthcoming',
-    image: null,
-    forthcoming: true,
-    chapters: [],
-    defaultSlug: null,
-    getChapterIndex: () => -1,
+    subtitle: 'The Flowering of Participation',
+    range: 'Parts I–XVI + Epilogue',
+    image: '/img/inversion-dialogs/inversion-dialogs-v3-cover.jpg',
+    chapters: volume3.chapters,
+    defaultSlug: volume3.defaultSlug,
+    getChapterIndex: volume3.getChapterIndex,
   },
 ];
 
