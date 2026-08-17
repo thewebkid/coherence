@@ -8,25 +8,21 @@
 
         <div class="page-content">
           <section class="updates-section">
-            <h2 class="section-label">new</h2>
+            <h2 class="updates-label">new</h2>
             <div class="updates-list">
-              <div class="update-entry">
-                <span class="update-date">Jun 2026</span>
-                <RouterLink to="/interpretive-works/seven-apertures" class="update-title">Seven Apertures</RouterLink>
-              </div>
-              <div class="update-entry">
-                <span class="update-date">May 2026</span>
-                <RouterLink to="/work/dialogue-on-authorship" class="update-title">Dialogue On Authorship</RouterLink>
+              <div v-for="entry in updates.new" :key="entry.to" class="update-entry">
+                <span class="update-date">{{ entry.date }}</span>
+                <RouterLink :to="entry.to" class="update-title">{{ entry.title }}</RouterLink>
               </div>
             </div>
           </section>
 
-          <section class="updates-section">
-            <h2 class="section-label">revised</h2>
+          <section v-if="updates.revised.length" class="updates-section">
+            <h2 class="updates-label">revised</h2>
             <div class="updates-list">
-              <div class="update-entry">
-                <span class="update-date">Jun 2026</span>
-                <RouterLink to="/about" class="update-title">About</RouterLink>
+              <div v-for="entry in updates.revised" :key="entry.to" class="update-entry">
+                <span class="update-date">{{ entry.date }}</span>
+                <RouterLink :to="entry.to" class="update-title">{{ entry.title }}</RouterLink>
               </div>
             </div>
           </section>
@@ -38,6 +34,7 @@
 
 <script setup>
 import { useHead } from '@unhead/vue';
+import { updates } from '@/content/updates.js';
 
 useHead({
   title: 'Updates — Coherence Across Scales',
@@ -46,52 +43,3 @@ useHead({
   ],
 });
 </script>
-
-<style lang="scss" scoped>
-.updates-section {
-  margin-bottom: var(--spacing-xl);
-}
-
-.section-label {
-  font-family: var(--font-sans);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-sm);
-  padding-bottom: var(--spacing-xs);
-  border-bottom: 1px solid var(--border);
-}
-
-.updates-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.update-entry {
-  display: grid;
-  grid-template-columns: 6.5rem 1fr;
-  gap: var(--spacing-md);
-  align-items: baseline;
-}
-
-.update-date {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  color: var(--text-muted);
-  font-feature-settings: "tnum";
-  white-space: nowrap;
-}
-
-.update-title {
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  color: var(--text);
-  text-decoration: none;
-  transition: color var(--transition-speed) ease;
-
-  &:hover { color: var(--accent); }
-}
-</style>

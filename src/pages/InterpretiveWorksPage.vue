@@ -49,6 +49,35 @@
 
         <div class="iw-divider" />
 
+        <article class="work-entry work-entry--linked">
+          <div class="work-entry-text">
+            <div class="work-meta">
+              <span class="work-creator">James Mahu and Lumina</span>
+              <span class="work-sep">·</span>
+              <span class="work-type">Writing</span>
+            </div>
+            <h2 class="work-title">The Inversion Dialogues</h2>
+            <p class="work-subtitle">A trilogy.</p>
+            <RouterLink to="/inversion-dialogs" class="work-link">
+              View Work →
+            </RouterLink>
+          </div>
+          <RouterLink
+            to="/inversion-dialogs"
+            class="work-thumb-link"
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <img
+              src="/img/inversion-dialogs/inversion-dialogs-v1-cover-thumb.jpg"
+              alt="The Inversion Dialogues"
+              class="work-thumb"
+            />
+          </RouterLink>
+        </article>
+
+        <div class="iw-divider" />
+
         <div class="submit-prompt">
           <p class="submit-note">Additional interpretive works will appear here as they are submitted and curated.</p>
           <RouterLink to="/submit-work" class="submit-link">Submit an Interpretive Work →</RouterLink>
@@ -129,6 +158,13 @@ useHead({
   &:last-child {
     border-bottom: none;
     padding-bottom: 0;
+  }
+
+  // Standalone related work sitting between dividers — the rules do the separating.
+  &--linked {
+    border-bottom: none;
+    padding-bottom: 0;
+    padding-top: 0;
   }
 }
 

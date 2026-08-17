@@ -18,8 +18,8 @@
             :class="{ 'is-forthcoming': v.forthcoming }"
           >
             <img
-              v-if="v.image"
-              :src="v.image"
+              v-if="v.thumbnail || v.image"
+              :src="v.thumbnail || v.image"
               :alt="`${v.title} cover`"
               class="volume-tile-image"
               loading="lazy"

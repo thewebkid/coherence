@@ -89,6 +89,22 @@
         </div>
       </div>
     </section>
+
+    <section class="home-updates">
+      <div class="page-container">
+        <div class="content-container">
+          <section class="updates-section">
+            <h2 class="updates-label">new</h2>
+            <div class="updates-list">
+              <div v-for="entry in updates.new" :key="entry.to" class="update-entry">
+                <span class="update-date">{{ entry.date }}</span>
+                <RouterLink :to="entry.to" class="update-title">{{ entry.title }}</RouterLink>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -97,6 +113,7 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
 import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
+import { updates } from '@/content/updates.js';
 
 const route = useRoute();
 
@@ -177,6 +194,10 @@ useHead({
 }
 
 .home-note {
+  padding-bottom: var(--spacing-section);
+}
+
+.home-updates {
   padding-bottom: var(--spacing-section);
 }
 
