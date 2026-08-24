@@ -220,6 +220,10 @@ useHead({
   margin-left: auto;
   margin-right: auto;
 
+  .manuscript-title-image {
+    margin-bottom: 3rem;
+  }
+
   :deep(.markdown-body) {
     display: flex;
     flex-direction: column;
@@ -230,12 +234,8 @@ useHead({
       max-width: 42ch;
     }
 
-    // Thematic break (`---` in markdown) — generous space, echoing the
-    // manuscript's title page. Robust to content edits since it doesn't
-    // depend on paragraph order.
-    hr {
-      width: 80px;
-      margin: var(--spacing-section) 0;
+    h1 {
+      margin-bottom: 1.75rem;
     }
   }
 }

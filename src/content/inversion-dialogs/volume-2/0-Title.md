@@ -1,3 +1,1 @@
-# *Parts I - XIV*
-
-\- Volume II -
+# The Sequence That Renews

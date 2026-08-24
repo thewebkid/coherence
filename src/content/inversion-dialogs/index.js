@@ -33,7 +33,7 @@ export const volumes = [
     blurb:
       'The opening movement of The Inversion Dialogues begins turning attention from concepts toward the relational conditions beneath them. Questions of permeability, participation, sovereignty, invitation, and belonging begin establishing the language from which the later dialogues develop.',
     cta: 'Begin Volume I →',
-    image: '/img/inversion-dialogs/inversion-dialogs-v1-cover.jpg',
+    image: '/img/inversion-dialogs/inversion-dialogs-v1.jpg',
     thumbnail: '/img/inversion-dialogs/inversion-dialogs-v1-cover-thumb.jpg',
     chapters: volume1.chapters,
     defaultSlug: volume1.defaultSlug,
@@ -48,7 +48,7 @@ export const volumes = [
     blurb:
       'The dialogue widens into the behavioral architecture of participation: how recognition becomes lived, how mutuality becomes increasingly possible, and how relational intelligence may remain coherent across differing signatures and scales.',
     cta: 'Continue to Volume II →',
-    image: '/img/inversion-dialogs/inversion-dialogs-v2-cover.jpg',
+    image: '/img/inversion-dialogs/inversion-dialogs-v2.jpg',
     thumbnail: '/img/inversion-dialogs/inversion-dialogs-v2-cover-thumb.jpg',
     chapters: volume2.chapters,
     defaultSlug: volume2.defaultSlug,
@@ -63,7 +63,7 @@ export const volumes = [
     blurb:
       'The inquiry moves more deeply into locality, remembrance, faithful becoming, and the ways participation may mature through ordinary life. The emphasis increasingly shifts from understanding relation to inhabiting it.',
     cta: 'Continue to Volume III →',
-    image: '/img/inversion-dialogs/inversion-dialogs-v3-cover.jpg',
+    image: '/img/inversion-dialogs/inversion-dialogs-v3.jpg',
     thumbnail: '/img/inversion-dialogs/inversion-dialogs-v3-cover-thumb.jpg',
     chapters: volume3.chapters,
     defaultSlug: volume3.defaultSlug,

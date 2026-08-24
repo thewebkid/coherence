@@ -248,7 +248,7 @@ useHead({
   .work-thumb {
     width: 56px;
     height: auto;
-    aspect-ratio: 300 / 388;
+    aspect-ratio: 1100 / 1230;
 
     @media (min-width: 600px) {
       width: 80px;

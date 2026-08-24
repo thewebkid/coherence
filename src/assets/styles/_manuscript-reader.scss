@@ -376,7 +376,7 @@
   width: 72px;
   height: auto;
   flex-shrink: 0;
-  aspect-ratio: 300 / 388; // generated thumb ratio
+  aspect-ratio: 1100 / 1230; // generated thumb ratio (source art)
   object-fit: cover;
   display: block;
   border-radius: var(--radius-sm);
@@ -392,11 +392,11 @@
 .volume-tile-placeholder {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
-  height: calc(72px * 388 / 300);
+  height: calc(72px * 1230 / 1100);
 
   @media (min-width: 640px) {
     height: auto;
-    aspect-ratio: 300 / 388;
+    aspect-ratio: 1100 / 1230;
   }
 }
 
@@ -441,12 +441,12 @@
   transition: color var(--transition-speed) ease;
 }
 
-// Title-page cover image inside a manuscript chapter (Vol I & II frontispiece).
+// Title-page cover image inside a manuscript chapter (frontispiece).
 // Sized to fill more of the viewport; click opens the shared lightbox.
 .manuscript-title-image {
   display: block;
   width: 100%;
-  max-width: min(560px, 78vh * (2550 / 3300)); // viewport-aware, keeps cover aspect
+  max-width: min(560px, 78vh * (1100 / 1230)); // viewport-aware, keeps cover aspect
   max-height: 78vh;
   object-fit: contain;
   margin: 0 auto var(--spacing-lg);
