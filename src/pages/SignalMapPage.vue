@@ -177,7 +177,7 @@ function onSignalPlaced(signal) {
   &.place-signal,
   &.primary {
     font-family: var(--font-serif);
-    font-size: 1.125rem;
+    font-size: 1.2rem;
     font-style: italic;
     padding: 0.875rem 2.5rem;
     color: var(--accent);

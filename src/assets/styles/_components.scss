@@ -28,7 +28,7 @@
 // Serif italic descriptor — section sub-labels, contextual captions.
 // Replaces .section-label, .page-intro (when used as a caption).
 .text-caption {
-  @include text-serif-italic(1rem);
+  @include text-serif-italic(1.2rem);
   margin-bottom: var(--spacing-sm);
 }
 
@@ -115,7 +115,7 @@
   border-left: 3px solid var(--accent);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
+  font-size: 1.2rem;
   line-height: 1.8;
   color: var(--text);
 
@@ -180,7 +180,7 @@
 
 .update-title {
   font-family: var(--font-serif);
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text);
   text-decoration: none;
   transition: color var(--transition-speed) ease;

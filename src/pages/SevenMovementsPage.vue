@@ -633,7 +633,7 @@ section.stillpoint {
   p {
     margin-top: 0;
     margin-bottom: var(--spacing-sm);
-
+    color: var(--text-muted);
     &:last-child {
       margin-bottom: 0;
     }
@@ -662,7 +662,7 @@ section.stillpoint {
 
 .movement-subheading {
   font-family: var(--font-serif);
-  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  font-size: clamp(1.15rem, 2.5vw, 1.25rem);
   font-weight: 400;
   font-style: italic;
   color: var(--text-muted);
@@ -672,7 +672,7 @@ section.stillpoint {
 
 .stillpoint-heading {
   font-family: var(--font-serif);
-  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
   font-weight: 400;
   color: var(--text-muted);
   margin-top: 0;
@@ -704,7 +704,7 @@ section.stillpoint {
 
 .continuation-link {
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
+  font-size: 1.2rem;
   font-style: italic;
   color: var(--text-muted);
   text-decoration: none;

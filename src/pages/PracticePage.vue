@@ -169,7 +169,7 @@ const projects = [
   font-family: var(--font-serif);
   font-style: italic;
   color: var(--text-muted);
-  font-size: 0.9375rem;
+  font-size: 1.1rem;
   margin-bottom: var(--spacing-sm);
 }
 
@@ -224,7 +224,7 @@ const projects = [
 .guiding-question {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.0625rem;
+  font-size: 1.2rem;
   line-height: 1.7;
 }
 
@@ -269,7 +269,7 @@ const projects = [
 
 .project-card__subtitle {
   font-family: var(--font-serif);
-  font-size: 0.875rem;
+  font-size: 1.1rem;
   color: var(--text-muted);
   margin: 0;
 }
@@ -313,7 +313,7 @@ const projects = [
 .closing {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   text-align: center;
 }

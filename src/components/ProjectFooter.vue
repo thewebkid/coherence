@@ -188,7 +188,7 @@ const projectFeed = computed(() => getFeedForProject(props.project, showEnglish.
 
 .project-nav__title {
   font-family: var(--font-sans);
-  font-size: 0.9375rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--text);
 
@@ -199,7 +199,7 @@ const projectFeed = computed(() => getFeedForProject(props.project, showEnglish.
 
 .project-nav__subtitle {
   font-family: var(--font-serif);
-  font-size: 0.8125rem;
+  font-size: 1rem;
   color: var(--text-muted);
 }
 </style>

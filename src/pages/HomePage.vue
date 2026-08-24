@@ -54,6 +54,21 @@
       </div>
     </section>
 
+    <section class="home-dialogues">
+      <div class="page-container">
+        <div class="content-container">
+          <h2 class="home-dialogues-title">{{ inversionDialogues.title }}</h2>
+          <p class="home-dialogues-question">{{ inversionDialogues.question }}</p>
+          <p>{{ inversionDialogues.summary }}</p>
+          <p>{{ inversionDialogues.summaryContinued }}</p>
+          <p>{{ inversionDialogues.availability }}</p>
+          <RouterLink to="/inversion-dialogs" class="home-dialogues-link">
+            {{ inversionDialogues.cta }}
+          </RouterLink>
+        </div>
+      </div>
+    </section>
+
     <section class="home-nav-section">
       <div class="page-container">
         <nav class="home-nav">
@@ -114,6 +129,7 @@ import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
 import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
 import { updates } from '@/content/updates.js';
+import { inversionDialogues } from '@/content/inversion-dialogs/index.js';
 
 const route = useRoute();
 
@@ -148,6 +164,48 @@ useHead({
     color: var(--text);
     &:last-of-type { margin-bottom: 0; }
   }
+}
+
+.home-dialogues {
+  padding-bottom: var(--spacing-section);
+
+  .content-container {
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border);
+  }
+
+  p {
+    margin-bottom: var(--spacing-md);
+    color: var(--text);
+  }
+}
+
+.home-dialogues-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+}
+
+.home-dialogues-question {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--text);
+  margin-bottom: var(--spacing-md);
+}
+
+.home-dialogues-link {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+
+  &:hover { filter: brightness(1.15); }
 }
 
 .home-nav-section {
@@ -217,7 +275,7 @@ useHead({
 .note-desc {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.9375rem;
+  font-size: 1.1rem;
   color: var(--text-muted);
   margin: 0;
 }

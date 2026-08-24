@@ -24,7 +24,7 @@
 // Serif italic subtitle beneath a page h1.
 // Replaces .project-subtitle, .subtitle, .page-intro (when used as a sub-headline).
 .page-subtitle {
-  @include text-serif-italic(1.0625rem);
+  @include text-serif-italic(1.2rem);
   margin-top: var(--spacing-xs);
   margin-bottom: 0;
 }
@@ -61,7 +61,7 @@
 // Centered italic quote that closes a page.
 // Replaces .closing-line across many pages.
 .closing-line {
-  @include text-serif-italic(1rem);
+  @include text-serif-italic(1.2rem);
   margin-top: var(--spacing-xl);
   text-align: center;
 }

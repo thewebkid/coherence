@@ -201,7 +201,7 @@ label {
 .field-hint {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   margin: 0 0 var(--spacing-xs);
 }

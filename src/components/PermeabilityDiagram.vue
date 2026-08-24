@@ -108,7 +108,7 @@ const layers = [
 
 .diagram-tagline {
   font-family: var(--font-serif) !important;
-  font-size: 1.0625rem;
+  font-size: 1.2rem;
   color: var(--iw-accent) !important;
   margin-bottom: var(--spacing-md) !important;
 }
@@ -163,6 +163,7 @@ const layers = [
 
     em {
       font-family: var(--font-serif);
+      font-size: 1.1rem;
     }
   }
 }

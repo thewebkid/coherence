@@ -159,7 +159,7 @@ useHead({
 
 .continuation-link-desc {
   font-family: var(--font-serif);
-  font-size: 0.9375rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   color: var(--text-muted);
   margin: 0;
@@ -181,7 +181,7 @@ useHead({
 
 .transmission-link {
   font-family: var(--font-serif);
-  font-size: 0.9375rem;
+  font-size: 1.1rem;
   color: var(--text-muted);
   text-decoration: none;
   transition: color var(--transition-speed) ease;
@@ -191,7 +191,7 @@ useHead({
 
 .transmission-desc {
   font-family: var(--font-serif);
-  font-size: 0.875rem;
+  font-size: 1.1rem;
   color: var(--text-muted);
   opacity: 0.7;
   margin-top: var(--spacing-xs);

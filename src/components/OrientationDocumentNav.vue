@@ -163,7 +163,7 @@ const items = [
 
 .orientation-doc-nav__title {
   font-family: var(--font-sans);
-  font-size: 0.9375rem;
+  font-size:1rem;
   font-weight: 500;
   color: var(--text);
 }
@@ -182,7 +182,8 @@ const items = [
 
 .orientation-doc-nav__label {
   font-family: var(--font-serif);
-  font-size: 0.8125rem;
+  font-size: 1.1rem;
+  line-height: 1;
   color: var(--text-muted);
 }
 </style>

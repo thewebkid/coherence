@@ -212,7 +212,7 @@ useHead({
 
 .central-question {
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   text-align: center;
   margin: var(--spacing-lg) 0;

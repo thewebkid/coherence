@@ -301,7 +301,7 @@ function onSignalPlaced({ lat, lng, id }) {
 .obs-unit__copy {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   margin: 0;
   line-height: 1.65;
@@ -341,7 +341,7 @@ function onSignalPlaced({ lat, lng, id }) {
 .coming-soon-desc {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   margin: 0;
 }
@@ -364,7 +364,7 @@ function onSignalPlaced({ lat, lng, id }) {
 .network-copy {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   margin-bottom: var(--spacing-lg);
   line-height: 1.7;

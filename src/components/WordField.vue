@@ -435,7 +435,7 @@ function clearSelection() {
 .wf-detail__none {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   margin: 0;
 }
@@ -450,7 +450,7 @@ function clearSelection() {
 
   li {
     font-family: var(--font-serif);
-    font-size: 0.875rem;
+    font-size: 1.1rem;
     line-height: 1.65;
     color: var(--text);
     padding: var(--spacing-xs) 0;
@@ -526,7 +526,7 @@ function clearSelection() {
 .wf-empty-hint {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
 }
 </style>

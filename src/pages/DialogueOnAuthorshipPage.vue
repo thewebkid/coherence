@@ -310,7 +310,7 @@ useHead({
 
 .speaker {
   font-family: var(--font-serif);
-  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.25rem);
   font-weight: 600;
   color: var(--iw-accent);
   margin-top: var(--spacing-lg) !important;
@@ -330,12 +330,12 @@ useHead({
   font-family: var(--font-serif);
   font-style: italic;
   color: var(--text-muted);
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .dialogue-quote {
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
+  font-size: 1.2rem;
   line-height: 1.85;
   color: var(--text);
   padding-left: var(--spacing-lg);
@@ -352,7 +352,7 @@ useHead({
 
 .section-question {
   font-family: var(--font-serif);
-  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.25rem);
   font-weight: 400;
   font-style: italic;
   color: var(--text-muted);

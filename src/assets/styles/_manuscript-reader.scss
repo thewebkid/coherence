@@ -322,8 +322,8 @@
 }
 
 // ── Volume landing (The Inversion Dialogues) ──────────
-// Cover tiles linking to the start of each volume. Quiet, image-led, no
-// marketing chrome. Forthcoming volumes render still and non-interactive.
+// Sequential volume entries: cover thumb + title, blurb, and invitation.
+// Read-in-order, not a product grid. Forthcoming volumes render still.
 
 .inversion-landing-title {
   font-family: var(--font-serif) !important;
@@ -337,49 +337,38 @@
 .inversion-landing-subtitle {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   text-align: center;
-  margin: 0 0 var(--spacing-xl);
+  margin: 0 0 var(--spacing-lg);
 }
 
 .volume-tiles {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
-  max-width: 720px;
-  margin: 0 auto;
-
-  @media (min-width: 640px) {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-md);
-  }
+  gap: 0;
+  margin-top: var(--spacing-lg);
 }
 
 .volume-tile {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: var(--spacing-sm);
+  align-items: flex-start;
+  gap: var(--spacing-md);
   text-decoration: none;
-  border-radius: var(--radius-md);
+  padding: var(--spacing-lg) 0;
+  border-top: 1px solid var(--border);
   transition: opacity var(--transition-speed) ease;
 
   &:hover:not(.is-forthcoming) {
     .volume-tile-image { opacity: 1; }
     .volume-tile-title { color: var(--iw-accent); }
+    .volume-tile-cta { color: var(--iw-accent-hover); }
   }
 
   &.is-forthcoming {
     cursor: default;
     opacity: 0.6;
-  }
-
-  @media (min-width: 640px) {
-    flex-direction: column;
-    align-items: stretch;
-    overflow: hidden;
   }
 }
 
@@ -387,7 +376,6 @@
   width: 72px;
   height: auto;
   flex-shrink: 0;
-  align-self: center;
   aspect-ratio: 300 / 388; // generated thumb ratio
   object-fit: cover;
   display: block;
@@ -396,8 +384,7 @@
   transition: opacity var(--transition-speed) ease;
 
   @media (min-width: 640px) {
-    width: 100%;
-    height: auto;
+    width: 120px;
     border-radius: var(--radius-md);
   }
 }
@@ -417,16 +404,11 @@
   min-width: 0;
   padding: 0;
   text-align: left;
-
-  @media (min-width: 640px) {
-    padding: var(--spacing-sm) var(--spacing-xs) 0;
-    text-align: center;
-  }
 }
 
 .volume-tile-title {
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--text);
   margin: 0;
@@ -437,10 +419,26 @@
 .volume-tile-subtitle {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.9375rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   margin: 0.2em 0 0;
   line-height: 1.35;
+}
+
+.volume-tile-blurb {
+  font-size: 0.9375rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin: var(--spacing-sm) 0;
+}
+
+.volume-tile-cta {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--iw-accent);
+  letter-spacing: 0.02em;
+  transition: color var(--transition-speed) ease;
 }
 
 // Title-page cover image inside a manuscript chapter (Vol I & II frontispiece).

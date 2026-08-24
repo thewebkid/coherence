@@ -56,24 +56,29 @@
               <span class="work-sep">·</span>
               <span class="work-type">Writing</span>
             </div>
-            <h2 class="work-title">The Inversion Dialogues</h2>
-            <p class="work-subtitle">A trilogy.</p>
+            <h2 class="work-title">{{ inversionDialogues.title }}</h2>
+            <p class="work-subtitle">{{ inversionDialogues.tagline }}</p>
+            <p class="work-excerpt">{{ inversionDialogues.summary }}</p>
             <RouterLink to="/inversion-dialogs" class="work-link">
-              View Work →
+              {{ inversionDialogues.cta }}
             </RouterLink>
           </div>
-          <RouterLink
-            to="/inversion-dialogs"
-            class="work-thumb-link"
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <img
-              src="/img/inversion-dialogs/inversion-dialogs-v1-cover-thumb.jpg"
-              alt="The Inversion Dialogues"
-              class="work-thumb"
-            />
-          </RouterLink>
+          <div class="work-thumbs">
+            <RouterLink
+              v-for="v in volumes"
+              :key="v.slug"
+              to="/inversion-dialogs"
+              class="work-thumb-link"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                :src="v.thumbnail"
+                :alt="`${v.title}: ${v.subtitle}`"
+                class="work-thumb"
+              />
+            </RouterLink>
+          </div>
         </article>
 
         <div class="iw-divider" />
@@ -93,6 +98,7 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
 import { works } from '@/content/interpretive-works/index.js';
+import { inversionDialogues, volumes } from '@/content/inversion-dialogs/index.js';
 import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
 
 const route = useRoute();
@@ -165,6 +171,10 @@ useHead({
     border-bottom: none;
     padding-bottom: 0;
     padding-top: 0;
+
+    @media (max-width: 599px) {
+      flex-direction: column;
+    }
   }
 }
 
@@ -200,6 +210,13 @@ useHead({
   margin-bottom: var(--spacing-sm);
 }
 
+.work-excerpt {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0 0 var(--spacing-sm);
+}
+
 .work-link {
   font-family: var(--font-sans);
   font-size: 0.875rem;
@@ -216,6 +233,27 @@ useHead({
 .work-thumb-link {
   flex-shrink: 0;
   margin-top: var(--spacing-xl);
+}
+
+.work-thumbs {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.4rem;
+  align-items: flex-start;
+
+  .work-thumb-link {
+    margin-top: 0;
+  }
+
+  .work-thumb {
+    width: 56px;
+    height: auto;
+    aspect-ratio: 300 / 388;
+
+    @media (min-width: 600px) {
+      width: 80px;
+    }
+  }
 }
 
 .work-thumb {

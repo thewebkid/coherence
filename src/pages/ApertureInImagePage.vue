@@ -236,7 +236,7 @@ useHead({ title: 'In Image — Seven Movements — Coherence Across Scales' });
 
 .aperture-closing {
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
   font-style: italic;
   color: var(--text-muted);
   opacity: 0.7;
@@ -250,7 +250,7 @@ useHead({ title: 'In Image — Seven Movements — Coherence Across Scales' });
 
 .crosslink {
   font-family: var(--font-serif);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-style: italic;
   color: var(--text-muted);
   text-decoration: none;

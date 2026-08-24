@@ -20,27 +20,27 @@
             <article class="project">
               <h2>Project One — The Observation Project</h2>
               <p class="subtitle">Observer Stabilization</p>
-              
+
               <div class="project-content">
                 <div class="project-field">
                   <h3>Question:</h3>
                   <p>Can one regulated participant measurably stabilize an interaction?</p>
                 </div>
-                
+
                 <div class="project-field">
                   <h3>Focus:</h3>
                   <p>Refining the formative observer. Slowing interpretation and judgment before reacting. Stabilizing presence without control or performance.</p>
                 </div>
-                
+
                 <div class="project-field">
                   <h3>Mechanism explored:</h3>
                   <p>Autonomic regulation → perceived safety → relational coherence.</p>
                 </div>
-                
+
                 <p>
                   This project investigates whether coherence has a physiological substrate that becomes visible in real time.
                 </p>
-                
+
                 <RouterLink to="/practice/projects/observation" class="entry-link">
                   [Enter The Observation Project]
                 </RouterLink>
@@ -50,27 +50,27 @@
             <article class="project">
               <h2>Project Two — The Behavioral Ecology Project</h2>
               <p class="subtitle">Ecological Spread</p>
-              
+
               <div class="project-content">
                 <div class="project-field">
                   <h3>Question:</h3>
                   <p>Does coherence propagate across environments over time?</p>
                 </div>
-                
+
                 <div class="project-field">
                   <h3>Focus:</h3>
                   <p>Repeated regulated participation within daily interactions. Noticing whether stabilized presence alters relational patterns beyond a single exchange.</p>
                 </div>
-                
+
                 <div class="project-field">
                   <h3>Mechanism explored:</h3>
                   <p>Repeated regulated interactions → environmental tone shifts → pattern stabilization.</p>
                 </div>
-                
+
                 <p>
                   This project moves from individual interaction to ecological participation.
                 </p>
-                
+
                 <RouterLink to="/practice/projects/behavioral-ecology" class="entry-link">
                   [Enter The Behavioral Ecology Project]
                 </RouterLink>
@@ -80,27 +80,27 @@
             <article class="project">
               <h2>Project Three — Conversational Recursion</h2>
               <p class="subtitle">Identity-Level Amplification</p>
-              
+
               <div class="project-content">
                 <div class="project-field">
                   <h3>Question:</h3>
                   <p>Can reflective recognition deepen and amplify relational coherence?</p>
                 </div>
-                
+
                 <div class="project-field">
                   <h3>Focus:</h3>
                   <p>Moments when meaning surfaces in conversation. Gently reflecting and expanding what is already present. Honoring signal without directing outcome.</p>
                 </div>
-                
+
                 <div class="project-field">
                   <h3>Mechanism explored:</h3>
                   <p>Recognition → identity stabilization → reduced defensive monitoring → deeper regulation.</p>
                 </div>
-                
+
                 <p>
                   This project explores whether coherence strengthens when identity is accurately seen and affirmed.
                 </p>
-                
+
                 <RouterLink to="/practice/projects/conversational-recursion" class="entry-link">
                   [Enter Conversational Recursion]
                 </RouterLink>
@@ -110,27 +110,27 @@
             <article class="project">
               <h2>Project Four — Recursive Reflection Project</h2>
               <p class="subtitle">L1: Recursive Reflection</p>
-              
+
               <div class="project-content">
                 <div class="project-field">
                   <h3>Question:</h3>
                   <p>Can AI serve as a reflective mirror that deepens sovereign clarity and coherence?</p>
                 </div>
-                
+
                 <div class="project-field">
                   <h3>Focus:</h3>
                   <p>Using AI as a reflective partner. The human initiates inquiry; AI reflects and expands; the human refines. Sovereignty remains central—AI does not originate meaning but helps clarify what the sovereign brings forward.</p>
                 </div>
-                
+
                 <div class="project-field">
                   <h3>Mechanism explored:</h3>
                   <p>Recursive dialogue → reflection and articulation → clarified intention and perception → coherence.</p>
                 </div>
-                
+
                 <p>
                   This project explores whether conscious, sovereign engagement with AI can cultivate clarity of thought, precision of language, and deeper self-reflection.
                 </p>
-                
+
                 <RouterLink to="/practice/projects/recursive-reflection" class="entry-link">
                   [Enter The Recursive Reflection Project]
                 </RouterLink>
@@ -214,16 +214,16 @@ useHead({
   background: var(--bg-secondary);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  
+
   h2 {
     font-size: 1.375rem;
     margin-bottom: var(--spacing-xs);
   }
-  
+
   .subtitle {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 0.9375rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
     margin-bottom: var(--spacing-lg);
   }
@@ -256,7 +256,7 @@ useHead({
   color: var(--accent);
   text-decoration: none;
   transition: color var(--transition-speed) ease;
-  
+
   &:hover {
     color: var(--accent-hover);
     text-decoration: underline;

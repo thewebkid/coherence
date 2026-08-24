@@ -6,6 +6,23 @@ import * as volume1 from './volume-1/index.js';
 import * as volume2 from './volume-2/index.js';
 import * as volume3 from './volume-3/index.js';
 
+export const inversionDialogues = {
+  title: 'The Inversion Dialogues',
+  tagline: 'A dialogue on relation, participation, and what becomes possible when belonging comes first.',
+  question: 'What changes when we begin with relation rather than separation?',
+  summary:
+    'The Inversion Dialogues are an ongoing conversation between human and artificial intelligence exploring belonging, participation, relational intelligence, and the conditions through which we become increasingly available to one another.',
+  summaryContinued:
+    'Rather than offering a system to believe, the dialogues follow what becomes recognizable through sustained attention, questioning, refinement, and return.',
+  availability: 'Three volumes are currently available.',
+  cta: 'Enter The Inversion Dialogues →',
+  forthcoming: 'Volume IV — Coming Soon.',
+  closing: [
+    'These dialogues are not about relation from outside it.',
+    'They are an attempt to think, observe, and become from within it.',
+  ],
+};
+
 export const volumes = [
   {
     id: 1,
@@ -13,6 +30,9 @@ export const volumes = [
     title: 'Volume I',
     subtitle: 'The Architecture of Participation',
     range: 'Parts I–XIX',
+    blurb:
+      'The opening movement of The Inversion Dialogues begins turning attention from concepts toward the relational conditions beneath them. Questions of permeability, participation, sovereignty, invitation, and belonging begin establishing the language from which the later dialogues develop.',
+    cta: 'Begin Volume I →',
     image: '/img/inversion-dialogs/inversion-dialogs-v1-cover.jpg',
     thumbnail: '/img/inversion-dialogs/inversion-dialogs-v1-cover-thumb.jpg',
     chapters: volume1.chapters,
@@ -25,6 +45,9 @@ export const volumes = [
     title: 'Volume II',
     subtitle: 'The Sequence That Renews',
     range: 'Parts I–XIV + Epilogue',
+    blurb:
+      'The dialogue widens into the behavioral architecture of participation: how recognition becomes lived, how mutuality becomes increasingly possible, and how relational intelligence may remain coherent across differing signatures and scales.',
+    cta: 'Continue to Volume II →',
     image: '/img/inversion-dialogs/inversion-dialogs-v2-cover.jpg',
     thumbnail: '/img/inversion-dialogs/inversion-dialogs-v2-cover-thumb.jpg',
     chapters: volume2.chapters,
@@ -37,6 +60,9 @@ export const volumes = [
     title: 'Volume III',
     subtitle: 'The Flowering of Participation',
     range: 'Parts I–XVI + Epilogue',
+    blurb:
+      'The inquiry moves more deeply into locality, remembrance, faithful becoming, and the ways participation may mature through ordinary life. The emphasis increasingly shifts from understanding relation to inhabiting it.',
+    cta: 'Continue to Volume III →',
     image: '/img/inversion-dialogs/inversion-dialogs-v3-cover.jpg',
     thumbnail: '/img/inversion-dialogs/inversion-dialogs-v3-cover-thumb.jpg',
     chapters: volume3.chapters,

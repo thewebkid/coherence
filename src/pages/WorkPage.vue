@@ -5,12 +5,26 @@
         <header class="page-header is-centered">
           <h1>The Work</h1>
           <p class="page-subtitle">
-            Three interconnected documents exploring coherence from theory to practice.
+            Foundational papers, essays, and dialogues exploring coherence from theory to practice.
             Each is readable online and available for download.
           </p>
         </header>
 
         <div class="work-cards">
+          <div class="work-section-label">Dialogues</div>
+          <article class="work-card">
+            <div class="work-card-content">
+              <h2>{{ inversionDialogues.title }}</h2>
+              <p class="work-card-subtitle">{{ inversionDialogues.tagline }}</p>
+              <p class="work-card-desc">{{ inversionDialogues.summary }}</p>
+              <p class="work-card-desc">{{ inversionDialogues.summaryContinued }}</p>
+              <p class="work-card-desc">{{ inversionDialogues.availability }}</p>
+              <div class="work-card-actions">
+                <RouterLink to="/inversion-dialogs" class="work-link">Read Online</RouterLink>
+              </div>
+            </div>
+          </article>
+
           <!-- Essays -->
           <div class="work-section-label">Essays</div>
           <article class="work-card">
@@ -194,6 +208,7 @@ import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
 import { SITE_BASE_URL, OG_IMAGE_URL } from '@/constants/seo';
 import DownloadButton from '@/components/DownloadButton.vue';
+import { inversionDialogues } from '@/content/inversion-dialogs/index.js';
 
 const route = useRoute();
 
@@ -201,14 +216,14 @@ useHead({
   title: 'The Work — Coherence Across Scales',
   meta: [
     { property: 'og:title', content: 'The Work — Coherence Across Scales' },
-    { property: 'og:description', content: 'Three interconnected documents exploring coherence: The Manuscript (foundational text), The Slide Deck (visual orientation), and The Handbook (practical guide). Readable online and downloadable.' },
+    { property: 'og:description', content: 'Foundational papers, essays, and dialogues exploring coherence from theory to practice. Readable online and downloadable.' },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: computed(() => SITE_BASE_URL + route.path) },
     { property: 'og:image', content: OG_IMAGE_URL },
-    { name: 'description', content: 'Three interconnected documents exploring coherence: The Manuscript (foundational text), The Slide Deck (visual orientation), and The Handbook (practical guide). Readable online and downloadable.' },
+    { name: 'description', content: 'Foundational papers, essays, and dialogues exploring coherence from theory to practice. Readable online and downloadable.' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'The Work — Coherence Across Scales' },
-    { name: 'twitter:description', content: 'Three interconnected documents exploring coherence: The Manuscript (foundational text), The Slide Deck (visual orientation), and The Handbook (practical guide). Readable online and downloadable.' },
+    { name: 'twitter:description', content: 'Foundational papers, essays, and dialogues exploring coherence from theory to practice. Readable online and downloadable.' },
     { name: 'twitter:image', content: OG_IMAGE_URL },
   ],
 });
@@ -253,7 +268,7 @@ useHead({
 .work-card-subtitle {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.0625rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   margin-bottom: var(--spacing-md);
 }

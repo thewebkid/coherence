@@ -150,20 +150,20 @@ const submitError = ref('');
 
 const validateForm = () => {
   let isValid = true;
-  
+
   errors.context = '';
   errors.whatShifted = '';
-  
+
   if (!formData.context.trim()) {
     errors.context = 'This field is required';
     isValid = false;
   }
-  
+
   if (!formData.whatShifted.trim()) {
     errors.whatShifted = 'This field is required';
     isValid = false;
   }
-  
+
   return isValid;
 };
 
@@ -171,10 +171,10 @@ const handleSubmit = async () => {
   if (!validateForm()) {
     return;
   }
-  
+
   loading.value = true;
   submitError.value = '';
-  
+
   try {
     const response = await fetch('/api/submit-observation', {
       method: 'POST',
@@ -192,12 +192,12 @@ const handleSubmit = async () => {
         geography: formData.geography || null
       })
     });
-    
+
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(errorData.error || 'Failed to submit observation');
     }
-    
+
     submitted.value = true;
   } catch (error) {
     console.error('Submission error:', error);
@@ -235,19 +235,19 @@ const handleSubmit = async () => {
 .optional-note {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   margin: 0;
 }
 
 .form-field {
   margin-bottom: var(--spacing-lg);
-  
+
   &.has-error {
     label {
       color: var(--error, #d32f2f);
     }
-    
+
     input,
     textarea {
       border-color: var(--error, #d32f2f);
@@ -262,7 +262,7 @@ label {
   font-weight: 500;
   color: var(--text);
   margin-bottom: var(--spacing-xs);
-  
+
   .required {
     color: var(--accent);
   }
@@ -279,17 +279,17 @@ textarea {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   transition: border-color var(--transition-speed) ease;
-  
+
   &:focus {
     outline: none;
     border-color: var(--accent);
   }
-  
+
   &::placeholder {
     color: var(--text-muted);
     opacity: 0.6;
   }
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -332,11 +332,11 @@ textarea {
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: background-color var(--transition-speed) ease;
-  
+
   &:hover:not(:disabled) {
     background: var(--accent-hover, var(--accent));
   }
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -352,13 +352,13 @@ textarea {
   border: 2px solid var(--accent);
   border-radius: var(--radius-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  
+
   p {
     margin-bottom: var(--spacing-sm);
     font-size: 1.0625rem;
     line-height: 1.7;
     color: var(--text);
-    
+
     &:last-child {
       margin-bottom: 0;
     }

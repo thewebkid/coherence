@@ -205,7 +205,7 @@ useHead({
 // h3 used as an italic serif sub-heading specific to this essay's structure.
 .page-content h3 {
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
+  font-size: 1.2rem;
   font-style: italic;
   font-weight: 400;
   color: var(--text-muted);

@@ -96,7 +96,7 @@ watch(
   position: absolute;
   inset: 0;
   font-family: var(--font-serif);
-  font-size: 0.9375rem;
+  font-size: 1.1rem;
   line-height: 1.65;
   color: var(--text-muted);
   margin: 0;
@@ -135,7 +135,7 @@ watch(
 .feed-empty p {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   margin: 0;
 }
