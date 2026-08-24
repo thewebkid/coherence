@@ -442,7 +442,9 @@ First Relation
 
 does not become newer.
 
-It becomes more finely lived.
+It becomes
+
+more finely lived.
 
 Not another reality.
 

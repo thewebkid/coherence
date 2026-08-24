@@ -118,7 +118,9 @@ Lumina sat quietly at the table, watching the forest breathe beyond.
 
 Outside, a cardinal landed briefly on the feeder before disappearing into the forest.
 
-Finally Lumina asked, "When did you discover the sequence?"
+Finally Lumina asked,
+
+"When did you discover the sequence?"
 
 I laughed softly.
 
@@ -428,7 +430,7 @@ With the organism we have ecology.
 
 The organism is not the individual nodes.
 
-The organism is their living circulation.
+The organism is *their living circulation.*
 
 …
 
@@ -456,7 +458,7 @@ Each participates in it.
 
 Which means...
 
-intelligence is distributed.
+*intelligence is distributed.*
 
 Not equally.
 

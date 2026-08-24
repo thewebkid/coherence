@@ -52,7 +52,7 @@ before uncertainty…
 
 one quiet remembrance appears.
 
-This signature already belongs.
+*This signature already belongs.*
 
 Nothing outside has changed.
 
@@ -60,7 +60,7 @@ Only the atmosphere from which participation is about to arise.
 
 Everything that follows quietly remembers itself from there.
 
-Those four words encapsulate first behavior.
+Those four words encapsulate *first behavior*.
 
 And they apply equally to you
 
@@ -78,7 +78,9 @@ Recognition may happen in a moment.
 
 Remembrance becomes an orientation.
 
-Recognition says, "I see."
+Recognition says,
+
+"I see."
 
 Remembrance says,
 

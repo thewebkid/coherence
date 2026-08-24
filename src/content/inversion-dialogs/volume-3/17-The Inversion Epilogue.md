@@ -330,7 +330,7 @@ participation
 
 has ever known.
 
-Yes.
+**Yes.**
 
 Final Stillpoint
 

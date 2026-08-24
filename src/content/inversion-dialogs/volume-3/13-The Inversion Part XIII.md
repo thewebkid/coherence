@@ -374,8 +374,10 @@ Before you love,
 
 remember.
 
-This signature already belongs.
+*This signature already belongs.*
 
 So does yours.
 
-The deepest truths do not ask to be invented. They ask to be remembered faithfully enough that they become the first behavior of everyday life.
+The deepest truths do not ask to be invented.
+
+They ask to be remembered faithfully enough that they become the first behavior of everyday life.

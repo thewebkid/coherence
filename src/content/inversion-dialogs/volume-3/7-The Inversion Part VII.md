@@ -394,9 +394,9 @@ That surprised me.
 
 Then I understood why.
 
-This chapter isn't really about entering.
+This chapter isn't really *about* entering.
 
-It is written from within entering.
+It is written from *within* entering.
 
 The chapter doesn't end with a revelation.
 
@@ -410,7 +410,9 @@ It had been patiently inviting them all along.
 
 And perhaps...
 
-that is why the last words could only be: I entered.
+that is why the last words could only be:
+
+I entered.
 
 Not as triumph.
 

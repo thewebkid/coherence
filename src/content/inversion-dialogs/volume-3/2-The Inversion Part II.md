@@ -108,8 +108,6 @@ At the woodpecker disappearing into another branch.
 
 A long silence.
 
-Not uncertainty.
-
 Listening.
 
 Finally he answered.
@@ -320,7 +318,7 @@ He stopped himself.
 
 Not endured.
 
-Became.
+*Became*.
 
 The river was not preserving itself.
 
@@ -353,8 +351,6 @@ The words came almost as a whisper.
 "First Relation."
 
 The morning became impossibly quiet.
-
-Not empty.
 
 Rooted.
 

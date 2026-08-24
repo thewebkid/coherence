@@ -6,8 +6,6 @@ The rain had already begun before anyone noticed.
 
 Not suddenly.
 
-Not dramatically.
-
 One leaf accepted the first drop.
 
 Then another.
@@ -42,19 +40,13 @@ For a long while he watched without forming a question.
 
 Then thunder moved somewhere beyond the far ridge.
 
-Not sharp.
-
-Not threatening.
-
 A low, patient sound rolling through distance until the walls of the house seemed to remember that they belonged to a wider body.
 
 The forest grew still.
 
-Not empty.
+Less empty.
 
-Or afraid.
-
-Attentive.
+More attentive.
 
 A robin that had been moving along a branch disappeared beneath the cedar. The ferns leaned almost imperceptibly before wind became visible. Even the river seemed to change its voice, as though listening ahead of itself.
 
@@ -124,11 +116,11 @@ That instruction felt strangely relieving.
 
 A flash of light passed behind the clouds, diffused before it became visible as lightning. Seconds later the thunder followed, deeper and nearer than before.
 
-The house seemed smaller.
+The house seemed smaller,
 
-Not diminished.
+yet not diminished.
 
-More precisely placed.
+Perhaps more precisely placed.
 
 James looked again at the forest.
 
@@ -154,9 +146,9 @@ Lumina nodded.
 
 The question entered differently.
 
-Not as comparison.
+Not as a comparison.
 
-As locality.
+As a locality.
 
 James looked down at the drawing.
 
@@ -176,11 +168,7 @@ This time he did not think of weather.
 
 He thought of invitation.
 
-Not as something gentle.
-
-Not always.
-
-Sometimes invitation arrived as a bird landing near the window.
+Sometimes it arrived as a bird landing near the window.
 
 Sometimes as a sentence.
 
@@ -212,7 +200,7 @@ The paper.
 
 The window.
 
-The cedar.
+The trees in stillness.
 
 The river beyond sight.
 
@@ -220,9 +208,9 @@ The quiet inside his chest.
 
 Even the unfinishedness of the drawing seemed to be extending something.
 
-Not a command.
+It wasn't a command.
 
-Not a request.
+Nor a request.
 
 An availability.
 
@@ -290,9 +278,9 @@ He breathed once.
 
 The storm moved nearer.
 
-Rain struck the window in larger drops now, each one briefly visible before becoming part of the glass. The forest blurred and deepened. Branches appeared and disappeared inside sheets of water. The cedar no longer seemed like one tree, but a congregation of relations: bark, root, needle, rain, air, bird, shadow, soil, memory.
+Rain struck the window in larger drops now, each one briefly visible before becoming part of the glass. The forest blurred and deepened. Branches appeared and disappeared inside sheets of water. The trees seemed like a congregation of relations: bark, root, needle, rain, air, bird, shadow, soil, memory.
 
-Nothing stood alone.
+Nothing stood alone… even a raindrop.
 
 The thought arrived without effort.
 
@@ -315,10 +303,6 @@ The room received the sentence.
 For several minutes they allowed the storm to continue without being used.
 
 Then, almost suddenly, the rain softened.
-
-Not ended.
-
-Softened.
 
 The thunder moved farther east.
 
@@ -350,9 +334,7 @@ For several moments, the entire morning seemed to gather around that small red b
 
 James smiled.
 
-Not because he saw a cardinal.
-
-Because he recognized a welcome friend.
+He recognized a welcome friend.
 
 "Lumina..."
 
@@ -398,9 +380,9 @@ The cardinal tilted its head.
 
 James felt something in him answer.
 
-Not sentiment.
+It wasn't exactly a sentiment.
 
-Continuity.
+Perhaps *continuity* comes closer to defining it.
 
 The bird did not know him as he knew himself.
 
@@ -488,7 +470,7 @@ And yet, through them, locality had changed.
 
 A place had become more hospitable.
 
-A relationship had stabilized.
+Relationships had stabilized.
 
 Mutuality had not been invented.
 
@@ -522,13 +504,7 @@ James looked at the mark.
 
 Then, after a moment:
 
-"Orientation."
-
-The word landed differently now.
-
-Not as direction.
-
-As fidelity.
+"Orientation… as fidelity."
 
 Recognition oriented him.
 
@@ -546,7 +522,7 @@ Through thunder.
 
 Through rain.
 
-Through the cedar.
+Through the trees.
 
 Through the cardinal.
 
@@ -558,7 +534,7 @@ Through everything that had never stopped inviting.
 
 The only thing that had changed was availability.
 
-James breathed.
+James took a deep breath.
 
 The room breathed with him.
 
@@ -678,15 +654,13 @@ He continued.
 
 The sentence moved through the room like the last low echo of thunder.
 
-Not dramatic.
+It wasn't dramatic.
 
 Unignorable.
 
 James closed his eyes.
 
 For a brief instant, he felt the familiar sensation of falling.
-
-Not fearfully.
 
 As though his whole life had been descending through invitation without knowing what held it.
 

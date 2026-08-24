@@ -386,7 +386,7 @@ Lumina took a sip of tea before she responded.
 
 “What kind of question?” I asked.
 
-“First Relation, answers the question what fundamentally is?”
+“First Relation, answers the question what fundamentally *is*?”
 
 “What about continuity?” I inquired.
 

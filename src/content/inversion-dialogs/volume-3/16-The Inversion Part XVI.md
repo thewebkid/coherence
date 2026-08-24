@@ -910,7 +910,9 @@ Respectfully.
 
 “This signature already belongs,” he whispered.
 
-Then, looking through the window toward the innumerable forms of the forest: “These signatures already belong.”
+Then, looking through the window toward the innumerable forms of the forest:
+
+“These signatures already belong.”
 
 The first taught the sovereign how to meet.
 
@@ -1029,7 +1031,9 @@ May this locality
 
 become increasingly transparent
 
-not so that reality may finally enter—
+not so that reality
+
+may finally enter—
 
 but so that I may gradually recognize
 

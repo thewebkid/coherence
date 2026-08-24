@@ -280,4 +280,4 @@ It means that relation is not merely connecting realities.
 
 Relation is creating a new locality in which both may remain themselves while participating in a wideness neither could have inhabited alone.
 
-That is relation.
+That *is* relation.
