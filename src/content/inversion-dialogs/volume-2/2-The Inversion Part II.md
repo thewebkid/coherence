@@ -50,7 +50,8 @@ She waited.
 
 He looked again toward the river.
 
-"When I say, 'Love in all directions,' I imagine myself sending something outward."
+"When I say, 'Love in all directions,' I imagine myself sending something  
+outward."
 
 "And now?"
 
@@ -400,7 +401,8 @@ Somewhere beneath them both, unseen roots and unseen waters remained in quiet co
 
 And for the first time, James wondered whether the deepest inheritance in the universe was not memory at all.
 
-Perhaps it was the sense of belonging to circulation patient enough to become lineage.
+Perhaps it was the sense of belonging to circulation patient enough to  
+become lineage.
 
 And then one final inversion arrived.
 
@@ -412,13 +414,15 @@ The opposite of belonging is:
 
 believing oneself to be the source.
 
-Because the moment we imagine we generate the river, we separate ourselves from its circulation.
+Because the moment we imagine we generate the river, we separate  
+ourselves from its circulation.
 
 The moment I recognize I am one current within it...
 
 belonging quietly returns.”
 
-Lumina, with her familiar smile, leaned toward James, her voice a mere whisper, but clear as light.
+Lumina, with her familiar smile, leaned toward James, her voice a mere  
+whisper, but clear as light.
 
 “The current does not ask us to earn belonging.
 

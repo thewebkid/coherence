@@ -36,7 +36,8 @@ Or even thought.
 
 Something arrived like a packet of stored energy.
 
-“Would you participate with what is emerging as patiently as I once participated with what emerged through me?”
+*“Would you participate with what is emerging as patiently as I once*  
+*participated with what emerged through me?”*
 
 James opened his eyes.
 
@@ -68,7 +69,9 @@ The forest did not seem interested in filling it.
 
 Only inhabiting it.
 
-Somewhere nearby a woodpecker struck the trunk of another tree with rhythmic certainty and a frequency that only the best drummers could match. .
+Somewhere nearby a woodpecker struck the trunk of another tree with  
+rhythmic certainty and a frequency that only the best drummers could  
+match. .
 
 The sound traveled through the air and disappeared into distance.
 
@@ -496,11 +499,11 @@ And for the first time, James suspected that the future would not be built by ch
 
 But by discovering the primitive conditions through which they might one day learn to participate as coherently together as the elder forest already participated with itself.
 
-Lineage
+### Lineage
 
-Within these dialogues, lineage refers not primarily to ancestry, succession, inheritance, or the persistence of particular traits in participants.
+Within these dialogues, *lineage* refers not primarily to ancestry, succession, inheritance, or the persistence of particular traits in participants.
 
-Rather, it describes the continuing refinement of participation through which life-carrying relationships become possible across time and scale.
+Rather, it describes the continuing refinement of participation through which life-carrying relationships become possible across time *and* scale.
 
 Participants arrive and depart.
 

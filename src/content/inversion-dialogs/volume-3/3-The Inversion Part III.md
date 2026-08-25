@@ -8,7 +8,8 @@ I no longer thought of them as something waiting to be finished.
 
 Warm water gathered around my hands.
 
-Outside the kitchen window the forest moved almost imperceptibly, though sometimes it was impossible to tell whether the leaves were moving or whether the changing light simply made them appear to breathe.
+Outside the kitchen window the forest moved almost imperceptibly, though sometimes it was impossible to tell whether the leaves were moving or  
+whether the changing light simply made them appear to breathe.
 
 The river carried its own conversation beyond the trees.
 
@@ -44,7 +45,8 @@ Thirty-five years ago, I was finishing an oil pastel drawing.
 
 I remember feeling unusually pleased with it.
 
-Then, through nothing more dramatic than carelessness, I spilled water across the paper.
+Then, through nothing more dramatic than carelessness, I spilled water  
+across the paper.
 
 For a moment I simply stared.
 
@@ -158,9 +160,11 @@ I picked up another glass and held it beneath the warm water.
 
 The light shifted across its surface.
 
-For a brief moment the reflections reminded me of oil pastel being gently guided away by a cloth, hand, mind, and signature, and perhaps even an organism.
+For a brief moment the reflections reminded me of oil pastel being gently guided away by a cloth, hand, mind, and signature, and perhaps even an  
+organism.
 
-I suddenly understood something I had somehow missed for thirty-five years.
+I suddenly understood something I had somehow missed for thirty-five  
+years.
 
 The spilled water had never been my teacher.
 
@@ -376,7 +380,8 @@ Wisdom.
 
 These were never steps toward becoming someone else.
 
-They were quiet ways of participating with a circulation that had never ceased flowing.
+They were quiet ways of participating with a circulation that had never  
+ceased flowing.
 
 The sequence was not carrying me away from ordinary life.
 
@@ -408,7 +413,7 @@ that was enough.
 
 Perhaps that had always been enough.
 
-Notes on the Living Participation System
+### Notes on the Living Participation System
 
 The diagram does not depict a sequence of acquisition.
 
@@ -472,7 +477,7 @@ The organism is what that intelligence looks like when it becomes ecological.
 
 The organism is relational intelligence becoming ecological.
 
-Stillpoint
+### Stillpoint
 
 Recognition does not illuminate reality.
 

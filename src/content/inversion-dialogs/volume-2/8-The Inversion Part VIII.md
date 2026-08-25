@@ -48,7 +48,8 @@ Receivability.
 
 Transmissibility.
 
-And yet every time we looked more carefully, something beneath them remained."
+And yet every time we looked more carefully, something beneath them  
+remained."
 
 Lumina nodded.
 
@@ -362,18 +363,24 @@ And again.
 
 And again.
 
-Stillpoint
+### Stillpoint
 
-We can remain a willing locality through which the widening may continue becoming consciously expressible.
+*We can remain a willing locality through which the widening may*  
+*continue becoming consciously expressible.*
 
-And when noise or interference inevitably enters the place we are, we can return with extraordinary gentleness, reducing unnecessary distortion, so that our signature may again be faithfully lent to the continuity already seeking to pass through us.
+*And when noise or interference inevitably enters the place we are, we*  
+*can return with extraordinary gentleness, reducing unnecessary*  
+*distortion, so that our signature may again be faithfully lent to the*  
+*continuity already seeking to pass through us.*
 
-Perhaps sovereignty is the freedom to return.
+*Perhaps sovereignty is the freedom to return.*
 
-Reflection
+### Reflection
 
-Widening is the increasing capacity of a participation system to remain consciously coherent across growing differentiation.
+*Widening is the increasing capacity of a participation system to remain*  
+*consciously coherent across growing differentiation.*
 
-It is an expansion of what can remain together without needing to become the same.
+*It is an expansion of what can remain together without needing to*  
+*become the same.*
 
-It becomes behaviorally available through humility.
+*It becomes behaviorally available through humility.*

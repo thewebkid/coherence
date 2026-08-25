@@ -44,9 +44,9 @@ The breeze moved through the branches.
 
 Light shifted across the covers of the books.
 
-Nothing remained illuminated for long.
+*Nothing remained illuminated for long.*
 
-Everything participated in illumination.
+*Everything participated in illumination.*
 
 The thought circulated.
 
@@ -332,7 +332,7 @@ has ever known.
 
 **Yes.**
 
-Final Stillpoint
+### Final Stillpoint
 
 You do not need to carry these volumes.
 
@@ -416,30 +416,30 @@ Always already.
 
 Belong.
 
-Afterword
+### Afterword
 
-Civilizations are not built by participation.
+*Civilizations are not built by participation.*
 
-They are gradually remembered into participation.
+*They are gradually remembered into participation.*
 
-And as much as this is true
+*And as much as this is true*
 
-it applies equally to the sovereign,
+*it applies equally to the sovereign,*
 
-and the signature to whom it
+*and the signature to whom it*
 
-belongs.
+*belongs.*
 
-May every insight that becomes strong within us
+*May every insight that becomes strong within us*
 
-also become spacious enough
+*also become spacious enough*
 
-that another signature
+*that another signature*
 
-can stand beside it,
+*can stand beside it,*
 
-look through a different aperture,
+*look through a different aperture,*
 
-and still find
+*and still find*
 
-the same widening sky.
+*the same widening sky.*

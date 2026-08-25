@@ -147,7 +147,8 @@ useHead({
   }
 
   em {
-    font-family: var(--font-serif);
+    /*font-family: var(--font-serif);
+    font-size: 1.2em;*/
   }
 
   strong {

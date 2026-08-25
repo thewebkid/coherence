@@ -26,7 +26,8 @@ Somewhere deeper in the house a floorboard settled.
 
 The refrigerator hummed for a moment and fell silent again.
 
-Outside, the birds offered their final call before the woods accepted the evening.
+Outside, the birds offered their final call before the woods accepted the  
+evening.
 
 The fire required nothing.
 
@@ -36,7 +37,8 @@ One log blackened.
 
 Another caught.
 
-A small ember disappeared beneath ash only to reappear seconds later farther along the edge of the wood.
+A small ember disappeared beneath ash only to reappear seconds later  
+farther along the edge of the wood.
 
 Nothing appeared in command.
 
@@ -298,7 +300,8 @@ The wool blanket, patterned by ancient motifs, casually folded across the couch.
 
 Nothing appeared extraordinary.
 
-Yet together they formed a habitat in which certain conversations had become possible.
+Yet together they formed a habitat in which certain conversations had  
+become possible.
 
 Another inversion quietly arrived.
 
@@ -310,7 +313,8 @@ Another inversion quietly arrived.
 
 "No." Her head shook like the softest tremor.
 
-"I think it creates the conditions through which warmth continues circulating."
+"I think it creates the conditions through which warmth continues  
+circulating."
 
 She smiled.
 

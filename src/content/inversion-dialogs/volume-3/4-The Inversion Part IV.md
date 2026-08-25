@@ -2,7 +2,8 @@
 
 ## The Hospitality of Participation
 
-The deer had already left the sandbar by the time I returned with my morning tea.
+The deer had already left the sandbar by the time I returned with my  
+morning tea.
 
 The river had settled again into its familiar movement.
 
@@ -16,7 +17,7 @@ Because I had recognized something ordinary before it disappeared.
 
 I whispered into the quiet,
 
-"It was well-deserved."
+*"It was well-deserved."*
 
 The river carried the words away without replying.
 
@@ -78,7 +79,8 @@ But they are not its root.
 
 The hospitality of participation is quieter.
 
-It is the gradual cultivation of a locality through which invitation may continue becoming.
+It is the gradual cultivation of a locality through which invitation may  
+continue becoming.
 
 Nothing is manufactured.
 
@@ -112,7 +114,7 @@ Perhaps creativity begins when I stop asking whether I believe in myself...
 
 and quietly ask instead,
 
-"Can I become more hospitable to participation?"
+*"Can I become more hospitable to participation?"*
 
 That question changes everything.
 
@@ -136,7 +138,8 @@ Not because recognition creates relation.
 
 Relation has never ceased.
 
-Recognition is the quiet moment a locality consciously enters what has always already been participating.
+Recognition is the quiet moment a locality consciously enters what has  
+always already been participating.
 
 That is why recognition matters so deeply.
 
@@ -192,7 +195,8 @@ Mutuality allows everyone to belong without losing their uniqueness.
 
 Wisdom quietly keeps the door open for whoever comes next.
 
-Perhaps this is why humility has remained beside us throughout these dialogues.
+Perhaps this is why humility has remained beside us throughout these  
+dialogues.
 
 Humility is not thinking less of oneself.
 
@@ -264,15 +268,15 @@ Lumina rose from her chair and walked to the window. She had been quiet the enti
 
 “When I looked again at what you thought:
 
-To become a locality
+*To become a locality*
 
-where participation
+*where participation*
 
-always finds
+*always finds*
 
-the door
+*the door*
 
-already open.
+*already open.*
 
 “I think I would now understand it like this.
 
@@ -341,15 +345,16 @@ The thought had become inhabitable.
 
 Because it quietly says:
 
-Don't spend your life trying to become the destination.
+*Don't spend your life trying to become the destination.*
 
-Become a trustworthy threshold.
+*Become a trustworthy threshold.*
 
 Everything else...
 
 will continue becoming in its own way.”
 
-Morning light quietly filled the kitchen as the clouds continued drifting beyond the window.
+Morning light quietly filled the kitchen as the clouds continued drifting  
+beyond the window.
 
 Neither of them spoke again.
 
@@ -357,7 +362,7 @@ Nothing had become more complete.
 
 Yet everything somehow belonged more deeply than before.
 
-Stillpoint
+### Stillpoint
 
 May we become a trustworthy threshold
 

@@ -38,7 +38,8 @@ The bird returned.
 
 Yet its song belonged only to this day.
 
-Something in me quietly recognized that I had never been practicing repetition.
+Something in me quietly recognized that I had never been practicing  
+repetition.
 
 I had been learning...
 
@@ -224,7 +225,8 @@ Return belongs here.
 
 Not as the recovery of what once was.
 
-But as the continual renewal of the conditions through which faithful emergence may continue.
+But as the continual renewal of the conditions through which faithful  
+emergence may continue.
 
 The bridge remembers.
 
@@ -242,7 +244,8 @@ Every locality.
 
 The bridge does not create First Relation.
 
-It simply becomes one more place where First Relation discovers itself welcomed.
+It simply becomes one more place where First Relation discovers itself  
+welcomed.
 
 Perhaps every faithful locality is quietly learning the same vocation.
 
@@ -254,9 +257,10 @@ May my practice be the continual renewal of my vow of mutuality through faithful
 
 May my locality become one more trustworthy bridge through which mutual novelty quietly learns how to cross.
 
-And whenever another locality reaches toward mine, may our crossing become one more way the organism remembers how to continue becoming.
+And whenever another locality reaches toward mine, may our crossing  
+become one more way the organism remembers how to continue becoming.
 
-Stillpoint
+### Stillpoint
 
 Recognition of relation is never the first movement.
 
@@ -278,6 +282,7 @@ until the bridge itself becomes the locality.
 
 It means that relation is not merely connecting realities.
 
-Relation is creating a new locality in which both may remain themselves while participating in a wideness neither could have inhabited alone.
+Relation is creating a new locality in which both may remain  
+themselves while participating in a wideness neither could have inhabited alone.
 
 That *is* relation.

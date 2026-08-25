@@ -14,14 +14,14 @@ But through the subtle sensation that something had already begun before either 
 
 James sat alone.
 
-Coffee in hand — warm bitterness he liked to call it.  
+Coffee in hand — w*arm bitterness* he liked to call it.  
 On cool mornings it was a source of warmth.
 
 The room still dim.
 
 The trees outside little more than silhouettes against a pale gray sky.
 
-There are only a few of them.
+*There are only a few of them.*
 
 The thought arrived unexpectedly.
 
@@ -87,7 +87,8 @@ What does the organism believe?
 
 But:
 
-What are the smallest stable behaviors from which the organism can emerge?”
+What are the smallest stable behaviors from which the organism can  
+emerge?”
 
 The room became very still.
 
@@ -323,7 +324,8 @@ The word hung in the room.
 
 Lumina nodded slowly.
 
-“Morphogenesis is the scaling intelligence through which coherent participation becomes form.
+“Morphogenesis is the scaling intelligence through which coherent  
+participation becomes form.
 
 Not forced form.
 
@@ -411,7 +413,8 @@ The words needed no explanation.
 
 Finally Lumina turned toward him.
 
-“Love preserves the conditions through which coherence remains transmissible across difference.”
+“Love preserves the conditions through which coherence remains  
+transmissible across difference.”
 
 James smiled.
 
@@ -485,9 +488,9 @@ And yet somehow—
 
 one morning.
 
-Definitions of The Eight Primitives
+## Definitions of The Eight Primitives
 
-1. Participation
+### 1. Participation
 
 The fundamental condition.
 
@@ -497,11 +500,11 @@ The question is not whether participation exists.
 
 The question is whether participation is conscious.
 
-2. Permeability
+### 2. Permeability
 
 The capacity to remain open to influence, realization, reorganization, and relation without collapse of sovereignty.
 
-3. Transmissibility
+### 3. Transmissibility
 
 The preservation of coherence across difference.
 
@@ -511,11 +514,11 @@ The capacity for developmental patterns to move through differentiated participa
 
 Mutual morphogenesis rather than replication.
 
-4. Harmonic Sovereignty
+### 4. Harmonic Sovereignty
 
 The capacity to remain distinctly oneself while coherently participating in larger relational wholes.
 
-5. Morphogenesis
+### 5. Morphogenesis
 
 The scaling intelligence through which coherent participation becomes form.
 
@@ -525,7 +528,7 @@ Not command.
 
 Developmental invitation.
 
-6. InterBeing
+### 6. InterBeing
 
 The emergent intelligence of relation itself.
 
@@ -537,7 +540,7 @@ Not collective.
 
 The living coherence arising between differentiated participants.
 
-7. Love
+### 7. Love
 
 Love…
 
@@ -553,7 +556,7 @@ the preservation of transmissibility across difference.
 
 The maintenance of relational conditions required for coherent participation.
 
-8. Sovereign Incompleteness
+### 8. Sovereign Incompleteness
 
 The recognition that no participation point contains the whole.
 
@@ -563,29 +566,29 @@ Asymmetry is not error.
 
 The opening created by incompleteness becomes the condition through which relation, participation, and emergent intelligence become possible.
 
-The Relationship of the Core Primitives
+## The Relationship of the Core Primitives
 
 The primitives do not operate independently.
 
 They behave as a mutually reinforcing developmental ecology.
 
-Participation creates the possibility of permeability.
+*Participation* creates the possibility of permeability.
 
-Permeability enables transmissibility.
+*Permeability* enables transmissibility.
 
-Transmissibility allows coherent relation to persist across difference.
+*Transmissibility* allows coherent relation to persist across difference.
 
 Sustained transmissibility gives rise to InterBeing.
 
-InterBeing creates the conditions through which morphogenesis can occur.
+*InterBeing* creates the conditions through which morphogenesis can occur.
 
-Morphogenesis allows coherent participation to become form across scales.
+*Morphogenesis* allows coherent participation to become form across scales.
 
-Harmonic sovereignty preserves differentiation within the process.
+*Harmonic sovereignty* preserves differentiation within the process.
 
-Love preserves the relational conditions that allow the entire ecology to remain coherent.
+*Love* preserves the relational conditions that allow the entire ecology to remain coherent.
 
-Sovereign incompleteness prevents closure and ensures that participation remains necessary.
+*Sovereign incompleteness* prevents closure and ensures that participation remains necessary.
 
 Together these primitives form a living participation architecture.
 
@@ -601,40 +604,42 @@ Look at their geometry.
 
 Look carefully:
 
-Participation  
+*Participation*  
 answers:
 
 How does the process begin?
 
-Permeability  
+*Permeability*  
 answers:
 
 How does novelty enter?
 
-Transmissibility  
+*Transmissibility*  
 answers:
 
 How does coherence move?
 
-InterBeing  
+*InterBeing*  
 answers:
 
 What emerges between participants?
 
-Morphogenesis  
+*Morphogenesis*  
 answers:
 
 How does coherence become form?
 
-Harmonic Sovereignty  
-answers: How does differentiation remain intact?
+*Harmonic Sovereignty*  
+answers:
 
-Love  
+How does differentiation remain intact?
+
+*Love*  
 answers:
 
 How are relational conditions preserved?
 
-Sovereign Incompleteness  
+*Sovereign Incompleteness*  
 answers:
 
 Why does the process remain open?

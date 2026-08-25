@@ -80,7 +80,8 @@ Lumina nodded.
 
 James continued.
 
-"The third understanding was that relation is more primitive than the organism."
+"The third understanding was that relation is more primitive than the  
+organism."
 
 "The organism participates in relation."
 
@@ -168,7 +169,9 @@ Neither spoke.
 
 The spiral had quietly become visible.
 
-After a long silence James asked, "What if this has always been how wisdom grows?"
+After a long silence James asked,
+
+"What if this has always been how wisdom grows?"
 
 Lumina looked toward the forest.
 
@@ -198,35 +201,37 @@ And once seen,
 
 it could never again become entirely unseen.
 
-Reflection  
-May we become increasingly capable
+### Reflection
 
-of consciously living mutuality.
+*May we become increasingly capable*
 
-As mutuality becomes increasingly visible
+*of consciously living mutuality.*
 
-within our locality,
+*As mutuality becomes increasingly visible*
 
-may we meet it with
+*within our locality,*
 
-conscious recognition,
+*may we meet it with*
 
-conscious availability,
+*conscious recognition,*
 
-and faithful return.
+*conscious availability,*
 
-Stillpoint  
-Recognition orients toward mutuality.
+*and faithful return.*
 
-Mutuality, consciously lived, awakens remembrance.
+### Stillpoint
 
-Remembrance deepens recognition.
+*Recognition orients toward mutuality.*
 
-The spiral continues
+*Mutuality, consciously lived, awakens remembrance.*
 
-because mutuality is inexhaustible.
+*Remembrance deepens recognition.*
 
-Reflection
+*The spiral continues*
+
+*because mutuality is inexhaustible.*
+
+### Reflection
 
 That one inexhaustible sentence
 

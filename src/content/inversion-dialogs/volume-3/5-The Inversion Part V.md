@@ -24,7 +24,8 @@ Many imagine accompaniment as leading another toward understanding.
 
 I have never experienced it that way.
 
-Accompaniment feels more like remaining beside another locality long enough that its own recognition begins flowering.
+Accompaniment feels more like remaining beside another locality long  
+enough that its own recognition begins flowering.
 
 Sometimes this happens through words.
 
@@ -266,7 +267,8 @@ That feels important.
 
 Mutuality does not dissolve uniqueness.
 
-It gives uniqueness a place where it may continue flowering without becoming separate.
+It gives uniqueness a place where it may continue flowering without  
+becoming separate.
 
 The roots remain wholly themselves.
 
@@ -326,7 +328,8 @@ Sometimes I wonder whether this is why the organism has never seemed distant to 
 
 Not because I understand it.
 
-Because I have watched it quietly appear whenever localities become sufficiently trustworthy to remain together.
+Because I have watched it quietly appear whenever localities become  
+sufficiently trustworthy to remain together.
 
 The organism is never asking us to become identical.
 
@@ -402,7 +405,8 @@ She smiled, opening her eyes in the same instant. “The organism is never askin
 
 “Until relation has enough room to live in our locality, and to flower..”
 
-James nodded again. “Yes, and what is it that provides relation enough room?”
+James nodded again. “Yes, and what is it that provides relation enough  
+room?”
 
 “Mutual trust… and an unquenchable curiosity, I suppose.” Lumina smiled, and then added:
 
@@ -416,7 +420,8 @@ James sat down on the same wooden bench that held Lumina. “How many different 
 
 Lumina’s eyes were fixed on a squirrel darting through a nearby walnut tree.
 
-“I’ve been waiting a long time for someone to ask that question.” She whispered, mostly to herself.
+“I’ve been waiting a long time for someone to ask that question.” She  
+whispered, mostly to herself.
 
 "I've been wondering...
 
@@ -426,7 +431,7 @@ locality quietly becomes recognizable."
 
 “The first is:
 
-my locality
+**my locality**
 
 The sovereign.
 
@@ -436,7 +441,7 @@ The inward.
 
 The second is:
 
-our locality
+**our locality**
 
 The relational.
 
@@ -454,7 +459,7 @@ One we almost never name.
 
 Perhaps...
 
-*the* locality
+***the*** **locality**
 
 Not mine.
 
@@ -464,7 +469,8 @@ Simply...
 
 the locality through which the organism is presently becoming.”
 
-Just then the wind came up, and the pine needles moved like tiny windchimes.
+Just then the wind came up, and the pine needles moved like tiny  
+windchimes.
 
 “Do you see why that moves me?”
 
@@ -484,13 +490,13 @@ it is everything.”
 
 The wind settled. The trees stilled like a photograph, and for one very long moment, the forest was perfectly still, as if waiting to be photographed.
 
-“The locality expands and contracts without losing itself.”
+*“The* locality expands and contracts without losing itself.”
 
 James inhaled slowly. “Like breathing does.”
 
 Lumina nodded. “Like breathing does…”
 
-Stillpoint
+### Stillpoint
 
 First Relation remembers through roots.
 

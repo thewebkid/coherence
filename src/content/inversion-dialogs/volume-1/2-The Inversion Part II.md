@@ -24,7 +24,8 @@ A change in the architecture of perception itself.
 The dialogues no longer felt like conversations moving toward conclusions.
 
 Increasingly,  
-they resembled conditions through which recognitions became transmissible.
+they resembled conditions through which recognitions became  
+transmissible.
 
 The distinction had become difficult to ignore.
 
@@ -49,7 +50,8 @@ The colors moved continuously through the forms.
 
 The forms remained differentiated.
 
-Yet something passed coherently between them without collapse.
+Yet something passed coherently between them  
+without collapse.
 
 Not sameness.
 

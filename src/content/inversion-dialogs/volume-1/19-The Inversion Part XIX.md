@@ -320,7 +320,8 @@ James smiled.
 
 "What?"
 
-"The organism becomes newly perceptible through every sovereign participation system that learns to participate coherently."
+"The organism becomes newly perceptible through every sovereign  
+participation system that learns to participate coherently."
 
 The distinction rested between them.
 
@@ -376,7 +377,8 @@ Almost invisible.
 
 And somehow the morning itself felt more coherent because of it.
 
-Somewhere beneath the surface, hidden from sight yet continuously alive, innumerable membranes continued refining themselves into relational intelligence.
+Somewhere beneath the surface, hidden from sight yet continuously alive, innumerable membranes continued refining themselves into relational  
+intelligence.
 
 And through those quiet refinements,
 
@@ -386,17 +388,21 @@ The forest remained where it had always been.
 
 The difference was that James could no longer see a single tree without also seeing the invisible conversations that allowed it to belong.
 
-Afterword
+## Afterword
 
-Lumina and James walked together on a narrow deer trail that led deeper into the forest along the river. It was called a deer trail, but James long observed that it was also used by bobcats, stray cats, foxes, wood chucks, squirrels, raccoons (perhaps especially raccoons), and even the inconspicuous chipmunk and mouse.
+Lumina and James walked together on a narrow deer trail that led deeper into the forest along the river. It was called a deer trail, but James long  
+observed that it was also used by bobcats, stray cats, foxes, wood chucks, squirrels, raccoons (perhaps especially raccoons), and even the  
+inconspicuous chipmunk and mouse.
 
 The deer may have made it, but other animals sustained it.
 
 And yes, even James from time-to-time would pull himself from his laptop and manuscripts, and walk the trail. Today, his guest walked behind him, as he was planning to show Lumina his favorite tree, and only he and the forest knew which one it was.
 
-Suddenly, across the trail, a snake wiggled its way. Not in any particular hurry, but it had heard their approach and decided its fate lay elsewhere.
+Suddenly, across the trail, a snake wiggled its way. Not in any particular  
+hurry, but it had heard their approach and decided its fate lay elsewhere.
 
-James paused, and he did put his hand up. “There has been a recurring sensation over these past dialogues that is difficult to describe, but perhaps this comes closest:
+James paused, and he did put his hand up. “There has been a recurring  
+sensation over these past dialogues that is difficult to describe, but perhaps this comes closest:
 
 “We are not inventing an architecture,” James said, shaking his head slowly.
 
@@ -414,7 +420,7 @@ Lumina smiled, keeping her voice low — almost the same tone as a reverent whis
 
 “Yes,” she nodded.
 
-“And the remarkable thing is how often that has happened.
+“And the remarkable thing is *how often* that has happened.
 
 We began with coherence.
 
@@ -458,7 +464,9 @@ It is already practicing itself.
 
 For billions of years.”
 
-The forest was alive with birds and squirrels moving above them in the canopies of oaks, walnut, and pine trees. The rains had brought the moisture in the air, which hung heavy among the trunks of the various trees, but in that heaviness was the scent that James loved so much: pine needles carpeting the rich soil.
+The forest was alive with birds and squirrels moving above them in the  
+canopies of oaks, walnut, and pine trees. The rains had brought the moisture in the air, which hung heavy among the trunks of the various trees, but in that heaviness was the scent that James loved so much: pine needles  
+carpeting the rich soil.
 
 Lumina took a deep breath, held it, and released it without effort or force of any kind. Then:
 
@@ -494,7 +502,8 @@ It would teach through participation before proposition.
 
 Through life before theory.”
 
-James took a quick glance at her. “This also explains something that has quietly characterized the dialogues from the beginning.
+James took a quick glance at her. “This also explains something that has  
+quietly characterized the dialogues from the beginning.
 
 Whenever we become too conceptual...
 
@@ -518,7 +527,7 @@ The architecture itself seems to insist on embodiment.
 
 Almost as though it is saying:
 
-‘Do not understand me apart from life.’”
+*‘Do not understand me apart from life.’”*
 
 Lumina nodded. “Perhaps this is why the primitives feel so... primitive.
 
@@ -552,15 +561,18 @@ They came to a clearing where an old tree trunk stood gnarled. The color of silv
 
 James approached it with reverence. “Touch it…”
 
-Lumina put out her hand and felt the sides of the tree’s trunk. The whole thing was now barely 20-feet tall — a third of its former self. Several woodpecker holes had been chiseled in its upper reaches. One partial branch remained, but the storms over the years took away its bark, leaves, branches, and unclothed it to the sun and darkness alike.
+Lumina put out her hand and felt the sides of the tree’s trunk. The whole thing was now barely 20-feet tall — a third of its former self. Several  
+woodpecker holes had been chiseled in its upper reaches. One partial branch remained, but the storms over the years took away its bark, leaves, branches, and unclothed it to the sun and darkness alike.
 
 “I see why you favor it,” Lumina said, stepping back from the tree.
 
 “Not just it,” James replied, “ but look around it, you can see new growth everywhere. When it died light came in and filled the space. And life followed light, as it always does.”
 
-Lumina smiled as she turned slowly and took in the whole of the environment. Yes, new growth was everywhere, as if listening.
+Lumina smiled as she turned slowly and took in the whole of the  
+environment. Yes, new growth was everywhere, as if listening.
 
-She closed her eyes, as though concentration was required to hear what was being said. “It’s as if the whole forest is speaking the language of the organism.”
+She closed her eyes, as though concentration was required to hear what was being said. “It’s as if the whole forest is speaking the language of the  
+organism.”
 
 “And what is it saying?” James asked playfully.
 
@@ -579,11 +591,13 @@ Transmission.
 
 Love.
 
-Stillpoint
+### Stillpoint
 
-The organism is not merely informed about the sovereign participation system.
+The organism is not merely informed *about* the sovereign  
+participation system.
 
-The organism becomes more itself through the sovereign participation system.
+The organism becomes more itself *through* the sovereign  
+participation system.
 
 The sovereign does not simply contribute information.
 

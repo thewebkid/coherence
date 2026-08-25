@@ -100,11 +100,13 @@ const rendered = computed(() => {
   :deep(strong),
   :deep(b) {
     font-weight: 600;
+    color:inherit;
   }
 
   :deep(em),
   :deep(i) {
     font-style: italic;
+    font-family: inherit;
   }
 
   // Blockquotes - contemplative, refined (serif for artistic accent)

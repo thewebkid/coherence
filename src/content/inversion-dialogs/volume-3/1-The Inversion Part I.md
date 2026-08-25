@@ -12,7 +12,8 @@ Then another.
 
 Then another.
 
-Somewhere beneath the forest floor, roots altered their conversation long before the branches acknowledged the weather. Fungi carried moisture through darkness. Soil opened itself without announcement. The river, not yet visibly changed, had already begun receiving what would later widen its banks.
+Somewhere beneath the forest floor, roots altered their conversation long before the branches acknowledged the weather. Fungi carried moisture  
+through darkness. Soil opened itself without announcement. The river, not yet visibly changed, had already begun receiving what would later widen its banks.
 
 No signal marked the beginning.
 
@@ -26,7 +27,8 @@ Only the forest remembering how to receive.
 
 By the time James looked up from the drawing resting across his knees, the morning had already entered another phase of itself.
 
-The light beyond the window had softened into a gray-green hush. The countless leaves held moisture as though each had become the keeper of one small memory. The cedar branches, darkened by rain, seemed less arranged than gathered. Nothing moved with urgency. Nothing resisted being changed.
+The light beyond the window had softened into a gray-green hush. The  
+countless leaves held moisture as though each had become the keeper of one small memory. The cedar branches, darkened by rain, seemed less arranged than gathered. Nothing moved with urgency. Nothing resisted being changed.
 
 The room itself appeared to be listening.
 
@@ -90,7 +92,8 @@ The forest received.
 
 The drawing waited.
 
-James remained seated, aware that nothing outside him had asked to be understood. Yet everything seemed to be inviting participation.
+James remained seated, aware that nothing outside him had asked to be  
+understood. Yet everything seemed to be inviting participation.
 
 The storm had not arrived as an interruption.
 
@@ -152,7 +155,8 @@ As a locality.
 
 James looked down at the drawing.
 
-The charcoal lines had not yet become what they were becoming. A figure, perhaps. An aperture. A field around it, or through it. He was no longer certain whether he was drawing a form or listening to one.
+The charcoal lines had not yet become what they were becoming. A figure, perhaps. An aperture. A field around it, or through it. He was no longer  
+certain whether he was drawing a form or listening to one.
 
 "I think I receive by pausing."
 
@@ -208,7 +212,7 @@ The quiet inside his chest.
 
 Even the unfinishedness of the drawing seemed to be extending something.
 
-It wasn't a command.
+It wasn’t a command.
 
 Nor a request.
 
@@ -278,7 +282,9 @@ He breathed once.
 
 The storm moved nearer.
 
-Rain struck the window in larger drops now, each one briefly visible before becoming part of the glass. The forest blurred and deepened. Branches appeared and disappeared inside sheets of water. The trees seemed like a congregation of relations: bark, root, needle, rain, air, bird, shadow, soil, memory.
+Rain struck the window in larger drops now, each one briefly visible before becoming part of the glass. The forest blurred and deepened. Branches  
+appeared and disappeared inside sheets of water. The trees seemed like a congregation of relations: bark, root, needle, rain, air, bird, shadow, soil,  
+memory.
 
 Nothing stood alone… even a raindrop.
 
@@ -312,7 +318,8 @@ James returned to the drawing.
 
 He did not pick up the charcoal.
 
-He looked instead through the window, where the forest had begun to brighten from within the clouded light.
+He looked instead through the window, where the forest had begun to  
+brighten from within the clouded light.
 
 Entire regions of branches appeared illuminated.
 
@@ -380,7 +387,7 @@ The cardinal tilted its head.
 
 James felt something in him answer.
 
-It wasn't exactly a sentiment.
+It wasn’t exactly a sentiment.
 
 Perhaps *continuity* comes closer to defining it.
 
@@ -400,7 +407,8 @@ And James knew, in the way sovereigns slowly learn to know, that he had not mere
 
 He had been receiving all along.
 
-"We are both the benefactors and the beneficiaries of our locality," he whispered.
+"We are both the benefactors and the beneficiaries of our locality," he  
+whispered.
 
 The sentence seemed to arrive from the same place as the rain.
 
@@ -504,7 +512,7 @@ James looked at the mark.
 
 Then, after a moment:
 
-"Orientation… as fidelity."
+"Orientation… as fidelity.”
 
 Recognition oriented him.
 
@@ -654,7 +662,7 @@ He continued.
 
 The sentence moved through the room like the last low echo of thunder.
 
-It wasn't dramatic.
+It wasn’t dramatic.
 
 Unignorable.
 
@@ -752,7 +760,8 @@ In recurrence.
 
 In the quiet return of relationship.
 
-And for the first time, James wondered whether writing from within the organism did not require becoming larger at all.
+And for the first time, James wondered whether writing from within the  
+organism did not require becoming larger at all.
 
 Perhaps it required becoming more faithful to the locality through which the organism was already speaking.
 
@@ -768,17 +777,17 @@ had begun again
 
 without beginning.
 
-Stillpoint
+### Stillpoint
 
 Return has two beautiful movements.
 
 The first is familiar.
 
-Return from forgetting.
+*Return from forgetting.*
 
 The second is quieter.
 
-Return through remembering.
+*Return through remembering.*
 
 One restores.
 

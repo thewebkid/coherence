@@ -196,12 +196,12 @@ The river continued speaking.
 
 And neither felt the need to interrupt.
 
-Stillpoint
+### Stillpoint
 
-The deepest discoveries
+*The deepest discoveries*
 
-are not the ones we finally understand.
+*are not the ones we finally understand.*
 
-They are the ones we gradually recognize
+*They are the ones we gradually recognize*
 
-we have already begun living.
+*we have already begun living.*

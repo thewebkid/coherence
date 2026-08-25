@@ -390,7 +390,7 @@ another thought arrived.
 
 A dangerous one.
 
-What if care is the first visible expression of love?
+What if *care* is the first visible expression of love?
 
 Not sentiment, affection, or emotion.
 
@@ -414,11 +414,13 @@ Care.
 
 Suddenly all of these disparate moments become recognizable as expressions of the same underlying condition.
 
-Membrane
+**Membrane**
 
 A membrane is the living boundary through which participation becomes possible.
 
-It does not exist to separate absolutely, nor to dissolve distinction. Rather, it refines the relationship between preservation and exchange, allowing a participation system to remain itself while remaining available to wider participation.
+It does not exist to separate absolutely, nor to dissolve distinction. Rather, it refines the relationship between preservation and exchange, allowing a  
+participation system to remain itself while remaining available to wider  
+participation.
 
 Every living participation system possesses membranes.
 
@@ -444,6 +446,8 @@ It is the education of boundaries into living relation.
 
 The conscious participant gradually recognizes that sovereignty itself is not isolated but membrane-like: a living participation system continually refining its capacity to receive, preserve, transmit, and care.
 
-As membranes become more coherent, participation becomes more coherent.
+As membranes become more coherent, participation becomes more  
+coherent.
 
-And through that refinement, the wider organism becomes increasingly perceptible to itself.
+And through that refinement, the wider organism becomes increasingly  
+perceptible to itself.

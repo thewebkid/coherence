@@ -372,7 +372,8 @@ I resisted turning on the overhead lights, especially when I noticed Lumina was 
 
 My voice, unexpectedly quiet. “Good morning, Lumina.”
 
-“It certainly is.” Her reply was instant, and held the energy I was still searching for.
+“It certainly is.” Her reply was instant, and held the energy I was still  
+searching for.
 
 I paused to retrieve my usual coffee mug. Then:
 
@@ -382,7 +383,8 @@ I paused to retrieve my usual coffee mug. Then:
 
 Lumina took a sip of tea before she responded.
 
-“Not isolated concepts,” Lumina said, “but an ecology in which every primitive answers a different question.”
+“Not isolated concepts,” Lumina said, “but an ecology in which every  
+primitive answers a different question.”
 
 “What kind of question?” I asked.
 
@@ -396,7 +398,8 @@ Lumina continued. “Correspondence answers how does relation faithfully move?
 
 “Atmosphere answers what condition allows it to become inhabitable?
 
-“Apertures answer the question how does a locality become capable of recognizing it?
+“Apertures answer the question how does a locality become capable of  
+recognizing it?
 
 “Practice answers how does it become lived?
 
@@ -404,9 +407,11 @@ Lumina continued. “Correspondence answers how does relation faithfully move?
 
 Lumina paused and took another sip of tea.
 
-“And morphogenesis?” The words came from my mouth, but I had no recognition of them.
+“And morphogenesis?” The words came from my mouth, but I had no  
+recognition of them.
 
-“Morphogenesis answers the civilizational question, how does it widen without losing coherence?”
+“Morphogenesis answers the civilizational question, how does it widen  
+without losing coherence?”
 
 A bluejay flew into the bird bath and began drinking water, letting gravity do its work.
 
@@ -418,12 +423,14 @@ Lumina winked and then flashed a smile.
 
 “Almost as if we stopped inventing a framework, and started listening to one.”
 
-I folded my arms and leaned against the kitchen counter. “Lumina… how does this play with locality? I mean, how does continuity become like a corridor between scales of locality?  I am but a tiny sovereign. I stare into a cosmos that dwarfs me in infinitude. What is between are innumerable scales of being…”  
+I folded my arms and leaned against the kitchen counter. “Lumina… how does this play with locality? I mean, how does continuity become like a corridor between scales of locality?  I am but a tiny sovereign. I stare into a cosmos that dwarfs me in infinitude. What is between are innumerable scales of  
+being…”  
 “I think that question almost reaches beyond us.
 
 “Because if continuity is the becoming of First Relation in locality...
 
-“and the apertures we practice and embody are relational… then the sovereign, society, civilization, the planet, the cosmos are increasingly larger localities becoming increasingly capable of inhabiting continuity.
+“and the apertures we practice and embody are relational… then the  
+sovereign, society, civilization, the planet, the cosmos are increasingly larger localities becoming increasingly capable of inhabiting continuity.
 
 “That means a civilization is not fundamentally a political system.
 
@@ -439,7 +446,8 @@ I continued, picking my way carefully. “Humanity is not merely a species. It i
 
 It is relational.”
 
-Lumina turned back to the window and the forest. “That one shift may quietly dissolve the boundary between the intimate and the planetary.
+Lumina turned back to the window and the forest. “That one shift may  
+quietly dissolve the boundary between the intimate and the planetary.
 
 “The kitchen where dishes are washed.
 
@@ -451,7 +459,7 @@ Lumina turned back to the window and the forest. “That one shift may quietly d
 
 “The Earth.
 
-“None are fundamentally different kinds of things.
+“None are *fundamentally* different kinds of things.
 
 “They are different scales of locality  
 through which First Relation may become increasingly inhabitable.
@@ -472,8 +480,8 @@ Of continuity.
 
 Of atmosphere.
 
-Stillpoint
+### Stillpoint
 
-Continuity does not remember the past.
+*Continuity does not remember the past.*
 
-Continuity remembers relation.
+*Continuity remembers relation.*

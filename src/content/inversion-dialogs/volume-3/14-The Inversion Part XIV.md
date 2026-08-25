@@ -52,7 +52,7 @@ before uncertainty…
 
 one quiet remembrance appears.
 
-*This signature already belongs.*
+***This signature already belongs.***
 
 Nothing outside has changed.
 
@@ -80,11 +80,11 @@ Remembrance becomes an orientation.
 
 Recognition says,
 
-"I see."
+*"I see."*
 
 Remembrance says,
 
-"I now live from what I have seen."
+*"I now live from what I have seen."*
 
 Faithful becoming is remembrance lived through time.
 
@@ -110,7 +110,7 @@ This is why respect asks so little of us.
 
 It asks only one remembrance before every encounter.
 
-This signature already belongs.
+***This signature already belongs.***
 
 Not because it resembles mine.
 
@@ -160,7 +160,7 @@ Simply the condition from which participation naturally unfolds.
 
 One no longer asks,
 
-"How may I remember that this signature already belongs?"
+*"How may I remember that this signature already belongs?"*
 
 One simply meets another…
 
@@ -170,11 +170,11 @@ Then locality itself begins changing.
 
 Yesterday the vow was:
 
-This signature already belongs.
+***This signature already belongs.***
 
 As remembrance widens, another geometry quietly appears.
 
-These signatures already belong.
+***These signatures already belong.***
 
 The first teaches the sovereign how to meet.
 
@@ -246,7 +246,7 @@ And what follows is no longer primarily explanation.
 
 It is faithful becoming.
 
-Stillpoint
+### Stillpoint
 
 Before you observe…
 
@@ -268,7 +268,7 @@ Before you love…
 
 remember.
 
-This signature already belongs.
+**This signature already belongs.**
 
 So does yours.
 
@@ -282,7 +282,7 @@ within the mutuality
 
 of First Relation.
 
-Final Reflection
+### Final Reflection
 
 Love in every direction.
 
@@ -320,6 +320,6 @@ already
 
 held them.
 
-A primitive is not the beginning of reality.
+**A primitive is not the beginning of reality.**
 
-It is the beginning of faithful participation in reality.
+**It is the beginning of faithful participation in reality.**

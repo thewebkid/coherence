@@ -12,7 +12,8 @@ James had spent much of the afternoon reviewing the dialogues again.
 
 Listening without analysis.
 
-Something in the architecture had begun reorganizing further since the previous evening’s recognitions around:  
+Something in the architecture had begun reorganizing further since the  
+previous evening’s recognitions around:  
 signal,  
 interference,  
 transmissibility,  

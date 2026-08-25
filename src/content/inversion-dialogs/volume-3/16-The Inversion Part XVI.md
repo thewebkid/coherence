@@ -936,7 +936,7 @@ to answer once more:
 
 Yes.
 
-Stillpoint
+### Stillpoint
 
 Remembrance is not what locality retrieves.
 
@@ -991,9 +991,9 @@ with the oldest word
 participation  
 has ever known:
 
-Yes.
+**Yes.**
 
-A Vow of Availability
+### A Vow of Availability
 
 May I remain available enough
 

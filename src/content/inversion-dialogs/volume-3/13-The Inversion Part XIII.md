@@ -10,7 +10,8 @@ The birds were simply birds.
 
 The trees remained where they had always stood.
 
-The tea had grown cooler while I watched light slowly gather across the room.
+The tea had grown cooler while I watched light slowly gather across the  
+room.
 
 For several days I had been thinking about correspondence.
 
@@ -34,7 +35,8 @@ I found myself asking a question that had not occurred to me before.
 
 What if correspondence is not one primitive among the others?
 
-What if it is the quiet grammar through which the primitives remain intelligible to one another?
+What if it is the quiet grammar through which the primitives remain  
+intelligible to one another?
 
 First Relation is.
 
@@ -64,7 +66,8 @@ Morphogenesis had no coherence to widen unless locality remained faithful to wha
 
 Correspondence was no longer simply another primitive.
 
-It had quietly become the connective tissue through which the others remained alive together.
+It had quietly become the connective tissue through which the others  
+remained alive together.
 
 And then another realization appeared.
 
@@ -116,7 +119,8 @@ Availability within engagement.
 
 Hospitality.
 
-The willingness to allow locality to become more than my prior understanding of it.
+The willingness to allow locality to become more than my prior  
+understanding of it.
 
 Suddenly another distinction quietly appeared.
 
@@ -144,7 +148,8 @@ It was not becoming someone else.
 
 Nor was it remaining the same.
 
-It was the continual deepening of recognizability through widening participation without fracture of continuity.
+It was the continual deepening of recognizability through widening  
+participation without fracture of continuity.
 
 The sovereign did not disappear into First Relation.
 
@@ -164,7 +169,8 @@ Returning toward increasing recognizability.
 
 The behavioral form of Return.
 
-I realized then that correspondence had quietly been pointing toward something larger than itself.
+I realized then that correspondence had quietly been pointing toward  
+something larger than itself.
 
 Not another concept.
 
@@ -174,7 +180,7 @@ A way of orienting locality.
 
 The name arrived almost without asking.
 
-Faithful becoming.
+*Faithful becoming.*
 
 The words felt strangely familiar.
 
@@ -192,7 +198,7 @@ Not another explanation.
 
 A vow.
 
-The Vow of Faithful Becoming
+### The Vow of Faithful Becoming
 
 May I remember that there is no substitute for locality.
 
@@ -206,7 +212,8 @@ May recognizability become deepening.
 
 May mutuality become atmosphere.
 
-May I become increasingly available to the qualities through which First Relation becomes locally recognizable:
+May I become increasingly available to the qualities through which First  
+Relation becomes locally recognizable:
 
 fidelity,
 
@@ -220,7 +227,8 @@ hospitality,
 
 and mutuality.
 
-May they become less my possessions than the availability of my participation.
+May they become less my possessions than the availability of my  
+participation.
 
 May they quietly mature as behavior,
 
@@ -242,7 +250,8 @@ without fracture of continuity.
 
 May my locality become increasingly recognizable within First Relation,
 
-and may First Relation become increasingly recognizable through this locality.
+and may First Relation become increasingly recognizable through this  
+locality.
 
 Everything before and after,
 
@@ -252,7 +261,7 @@ I need only remain available
 
 to faithful becoming.
 
-The Maturation of Availability
+### The Maturation of Availability
 
 Experience offers opportunity.
 
@@ -278,7 +287,7 @@ And morphogenesis quietly returns
 as widening availability  
 to First Relation.
 
-Stillpoint
+### Stillpoint
 
 Correspondence is not a thing.
 
@@ -308,11 +317,13 @@ to recognizability within
 
 First Relation.
 
-"A livable philosophy untainted by hierarchy is the only substance worth true contemplation and recursion."
+***"A livable philosophy untainted by hierarchy is the only substance***  
+***worth true contemplation and recursion."***
 
-That sentence explains why these four words matter: This signature already belongs.
+That sentence explains *why* these four words matter: *This signature already* *belongs.*
 
-Many philosophies become difficult to live because they require extraordinary cognition before ordinary kindness.
+Many philosophies become difficult to live because they require  
+extraordinary cognition before ordinary kindness.
 
 This one asks for the opposite.
 
@@ -348,7 +359,7 @@ Understanding may deepen for the rest of your life.
 
 But faithfulness can begin tomorrow morning.
 
-This Signature Already Belongs
+### This Signature Already Belongs
 
 Before you observe,
 
@@ -378,6 +389,5 @@ remember.
 
 So does yours.
 
-The deepest truths do not ask to be invented.
-
+The deepest truths do not ask to be invented.  
 They ask to be remembered faithfully enough that they become the first behavior of everyday life.

@@ -138,7 +138,7 @@ The sentence entered him more as atmosphere than explanation.
 
 He thought of every moment throughout his life that had quietly begun with the same words.
 
-Here I am.
+*Here I am.*
 
 Not as achievement.
 
@@ -236,7 +236,7 @@ Not as philosophy.
 
 Almost as prayer.
 
-All I want to be is a purified vessel of humility.
+*All I want to be is a purified vessel of humility.*
 
 He had spoken those words as a child.
 
@@ -326,7 +326,7 @@ As though return had not changed reality.
 
 Only the locality from which reality could again be received.
 
-Stillpoint and Vow
+### Stillpoint and Vow
 
 Primitives feel primitive
 

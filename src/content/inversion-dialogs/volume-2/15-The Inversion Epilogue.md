@@ -88,7 +88,7 @@ James watched.
 
 Without intending to, he noticed.
 
-Recognition.
+*Recognition*.
 
 The child looked up.
 
@@ -96,13 +96,13 @@ An older woman sitting on a nearby bench smiled without interrupting.
 
 The child smiled back.
 
-Appreciation.
+*Appreciation.*
 
 No instruction followed.
 
 Only patient watching.
 
-Discernment.
+*Discernment.*
 
 After another attempt, the knot held.
 
@@ -110,7 +110,7 @@ The woman stood.
 
 She brushed a leaf from the child's shoulder before they continued down the path together, holding hands.
 
-Care.
+*Care.*
 
 Neither celebrated.
 
@@ -120,7 +120,7 @@ They simply walked.
 
 Guided by something that could only be called
 
-relational intelligence.
+*relational intelligence.*
 
 The forest dissolved.
 
@@ -140,7 +140,7 @@ No performance.
 
 Only a long breath.
 
-She thought of mutuality…
+She thought of *mutuality…*
 
 The depths of empathy where she chose to live.
 
@@ -199,7 +199,7 @@ Yet something within that small circle became unexpectedly spacious.
 
 Unexpectedly open.
 
-Wisdom.
+*Wisdom.*
 
 The dream shifted.
 
@@ -209,7 +209,7 @@ Not searching for confirmation.
 
 Wonder.
 
-Recognition of locality in a new way.
+*Recognition* of locality in a new way.
 
 The dream shifted.
 

@@ -72,7 +72,8 @@ James held a wooden match stick to one of the candles and let it become a flame 
 
 Then it appeared as something the organism was expressing.
 
-Now it is beginning to appear as something both are continuously participating in.”
+Now it is beginning to appear as something both are continuously  
+participating in.”
 
 “Yes,” Lumina said. “The sovereign is shaped by the field.
 
@@ -164,7 +165,9 @@ A very different spiritual question.
 
 And perhaps even a very different way of being alive.
 
-The room suddenly held a low hum of indeterminate source or location. There was a small modulation in pitch and volume. And then the words formed in Lumina’s mind: The Four Intelligences.
+The room suddenly held a low hum of indeterminate source or location.  
+There was a small modulation in pitch and volume. And then the words  
+formed in Lumina’s mind: *The Four Intelligences*.
 
 She looked at James
 

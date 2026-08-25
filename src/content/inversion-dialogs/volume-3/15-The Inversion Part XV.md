@@ -182,13 +182,15 @@ The sovereign does not lose itself by belonging.
 
 It finally discovers what it has always been participating within.
 
-We are gradually invited into faithful participation with what has never ceased occurring.
+We are gradually invited into faithful participation with what has never  
+ceased occurring.
 
 Humility naturally appears when belonging becomes more fundamental than possession.
 
 Wisdom is not the accumulation of concepts.
 
-Wisdom is what quietly flowers when the primitives remain in faithful correspondence within locality.
+Wisdom is what quietly flowers when the primitives remain in faithful  
+correspondence within locality.
 
 The ecology of the primitives does not eliminate plurality.
 
@@ -214,7 +216,8 @@ The child does not first learn the roots of the tree.
 
 The child first plays beneath its branches.
 
-Only later does the child discover that everything above the ground has always depended upon what quietly remained faithful below it.
+Only later does the child discover that everything above the ground has  
+always depended upon what quietly remained faithful below it.
 
 So it is with the primitives.
 
@@ -232,7 +235,7 @@ The more inhabitable the organism becomes...
 
 the more natural reality shows intelligence how to belong.
 
-Stillpoint
+### Stillpoint
 
 Reality presents.
 
@@ -270,7 +273,7 @@ what reality
 
 has never forgotten.
 
-a final reflection
+### a final reflection
 
 May the rain continue nourishing the roots.
 

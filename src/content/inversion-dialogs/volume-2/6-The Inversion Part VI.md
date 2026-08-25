@@ -164,7 +164,7 @@ He did not recite it from memory.
 
 He read it slowly, as though hearing it for the first time.
 
-I vow to remain a willing locality through which coherent participation may continue circulating, without mistaking my locality for its source, nor my incompleteness for its limitation.
+*I vow to remain a willing locality through which coherent participation* *may continue circulating, without mistaking my locality for its source,* *nor my incompleteness for its limitation.*
 
 When he finished, neither moved.
 
@@ -256,30 +256,32 @@ It simply continued…
 
 belonging.
 
-Stillpoint
+### Stillpoint
 
-Receive faithfully.
+*Receive faithfully.*
 
-Transmit hospitably.
+*Transmit hospitably.*
 
-Return gracefully.
+*Return gracefully.*
 
-Keep the circulation alive.
+*Keep the circulation alive.*
 
-And hold one question to your heart:
+*And hold one question to your heart:*
 
-How faithfully may continuity pass through me today?
+*How faithfully may continuity pass through me today?*
 
-Interlude
+### Interlude
 
-A primitive is that which no locality can consciously refuse without diminishing its own participation in the widening.
+*A primitive is that which no locality can consciously*  
+*refuse without diminishing its own participation in the*  
+*widening.*
 
-They (primitives) are generative conditions.
+*They (primitives) are generative conditions.*
 
-And the doorway for the sovereign to understand  
-these primitives  
-is locality.
+*And the doorway for the sovereign to understand*  
+*these primitives*  
+*is locality.*
 
-Locality is the aperture.
+*Locality is the aperture.*
 
-Not the obstacle.
+*Not the obstacle.*

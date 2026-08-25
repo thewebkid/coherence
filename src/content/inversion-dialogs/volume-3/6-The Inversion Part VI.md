@@ -18,7 +18,8 @@ Some had only begun opening.
 
 Others had already offered nearly everything they carried.
 
-One blossom rested on the soil below the stem that had held it only yesterday.
+One blossom rested on the soil below the stem that had held it only  
+yesterday.
 
 Nothing appeared hurried.
 
@@ -42,7 +43,8 @@ James brushed a little earth from one hand before continuing.
 
 A breeze passed gently through the taller flowers.
 
-The movement seemed to travel across the entire bed like a slow conversation no one was directing.
+The movement seemed to travel across the entire bed like a slow  
+conversation no one was directing.
 
 I looked toward the forest beyond the garden.
 

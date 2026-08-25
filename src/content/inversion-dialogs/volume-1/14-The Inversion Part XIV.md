@@ -152,7 +152,8 @@ Yet strangely difficult to hold.
 
 Then James looked up.
 
-"What if hierarchy and non-hierarchy are both reacting to the same misunderstanding?"
+"What if hierarchy and non-hierarchy are both reacting to the same  
+misunderstanding?"
 
 Lumina's eyes brightened.
 

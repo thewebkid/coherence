@@ -56,7 +56,7 @@ Then Lumina smiled.
 
 James sat with the sentence.
 
-Visible.
+*Visible*.
 
 The word echoed.
 
@@ -271,4 +271,6 @@ Not because the arrangement was finally correct.
 
 Because the place itself had become one more way
 
-the widening could continue.
+the widening
+
+could continue.

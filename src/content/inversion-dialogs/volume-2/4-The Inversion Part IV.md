@@ -32,9 +32,11 @@ James held a sheepish grin for a brief moment. "I know. I bring it up a lot ."
 
 "As you should." She bobbed her head once.
 
-"I think you've been looking at it to understand its relation to the total participation system. A system of relation that is quite capable of crossing scales and species. And you want to know how the organism and sovereign relate. How the invitation of the organism becomes the vow of the sovereign."
+"I think you've been looking at it to understand its relation to the total  
+participation system. A system of relation that is quite capable of crossing scales and species. And you want to know how the organism and sovereign relate. How the invitation of the organism becomes the vow of the sovereign."
 
-Lumina became very still, as if gathering thoughts so ethereal, so transparent, they could become invisible if not approached with reverence.
+Lumina became very still, as if gathering thoughts so ethereal, so  
+transparent, they could become invisible if not approached with reverence.
 
 “What if the invitation itself becomes the organism's way of sensing where it wishes to grow next?”
 
@@ -52,7 +54,8 @@ All participants are invited.”
 
 “Every sovereign that constitutes the total participation system receives the invitation.”
 
-Both sovereigns watched a sudden wind sweep across the underbrush, touching everything in its path.
+Both sovereigns watched a sudden wind sweep across the underbrush,  
+touching everything in its path.
 
 The silence that followed did not feel empty.
 
@@ -150,7 +153,7 @@ Neither hurried toward explanation.
 
 After a while she spoke.
 
-"That is the widening."
+"That *is* the widening."
 
 James closed his eyes.
 
@@ -354,7 +357,8 @@ She waited.
 
 He smiled.
 
-"Sovereignty is the capacity to remain locally faithful while becoming increasingly hospitable to widening relation."
+"Sovereignty is the capacity to remain locally faithful while becoming  
+increasingly hospitable to widening relation."
 
 He paused. A bird song lilted through the window and found his ear.
 
@@ -520,12 +524,12 @@ A total participation system.
 
 The breath had become another local expression of a participation the world had been quietly practicing long before he noticed.
 
-Stillpoint
+### Stillpoint
 
-The sovereign does not create the widening.
+*The sovereign does not create the widening.*
 
-It consents to becoming a locality through which the widening may continue in stability.
+*It consents to becoming a locality through which the widening may continue in* *stability.*
 
-Stabilization is not a state of static belonging.
+*Stabilization is not a state of static belonging.*
 
-It is the reliable continuity of adjustment
+*It is the reliable continuity of adjustment*

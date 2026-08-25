@@ -354,7 +354,8 @@ The morning became impossibly quiet.
 
 Rooted.
 
-He understood then that the sequence which had accompanied him for months—
+He understood then that the sequence which had accompanied him for  
+months—
 
 Recognition.
 
@@ -452,7 +453,7 @@ she said,
 
 "...is where the flower begins."
 
-A Note on First Relation
+### A Note on First Relation
 
 First Relation is not the first relationship.
 
@@ -466,7 +467,8 @@ It is the primitive relation that never ceases becoming.
 
 The sequence that renews does not create First Relation.
 
-It gradually increases the sovereign's capacity to recognize, appreciate, discern, care for, and consciously participate within it.
+It gradually increases the sovereign's capacity to recognize, appreciate,  
+discern, care for, and consciously participate within it.
 
 First Relation does not diminish uniqueness.
 
@@ -492,4 +494,5 @@ It is not a belief.
 
 It is not something one enters.
 
-It is the always already relation that gradually becomes consciously inhabitable through the sequence that renews.
+It is the always already relation that gradually becomes consciously  
+inhabitable through the sequence that renews.

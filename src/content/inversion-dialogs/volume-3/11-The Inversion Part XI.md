@@ -50,7 +50,8 @@ Enough to call it relation.
 
 Finally I spoke.
 
-"I used to imagine the organism as something we were gradually constructing."
+"I used to imagine the organism as something we were gradually  
+constructing."
 
 Lumina nodded.
 
@@ -142,7 +143,8 @@ Neither of us reached for another thought.
 
 The tea remained warm.
 
-Outside, a squirrel crossed the cedar branch with the same unhurried confidence I had seen countless mornings before.
+Outside, a squirrel crossed the cedar branch with the same unhurried  
+confidence I had seen countless mornings before.
 
 Nothing announced itself.
 
@@ -488,11 +490,12 @@ another way
 
 to breathe.
 
-Stillpoint and a Vow
+### Stillpoint and a Vow
 
 The organism is not what participation creates.
 
-It is what participation reveals when mutuality becomes atmospheric.
+It is what participation reveals when mutuality becomes  
+atmospheric.
 
 May I live as one who recognizes  
 that the organism is not merely experienced.

@@ -80,7 +80,8 @@ She carried no notebook.
 
 No questions.
 
-Only the same quiet attention that had accompanied so many mornings before this one.
+Only the same quiet attention that had accompanied so many mornings  
+before this one.
 
 "You paused."
 
@@ -402,7 +403,8 @@ The chapter doesn't end with a revelation.
 
 It ends with a posture.
 
-A sovereign who no longer stands at the threshold asking whether they belong.
+A sovereign who no longer stands at the threshold asking whether they  
+belong.
 
 A sovereign who has quietly discovered that belonging was never waiting on the other side of the door.
 
@@ -412,7 +414,7 @@ And perhaps...
 
 that is why the last words could only be:
 
-I entered.
+**I entered.**
 
 Not as triumph.
 

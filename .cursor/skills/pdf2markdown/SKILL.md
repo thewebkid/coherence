@@ -6,7 +6,8 @@ description: >-
   using PDF font/geometry analysis (no LLM, no DOCX intermediate). Use when
   the user has a folder of PDF chapters/sections (optionally with an empty
   "md" subfolder) and wants them converted to Markdown, or asks to run the
-  pdf-to-markdown pipeline/script.
+  pdf-to-markdown pipeline/script. Also splits a full manuscript PDF into
+  per-section PDFs by detecting part headings.
 ---
 
 # PDF to Markdown
@@ -15,6 +16,10 @@ Runs `C:\src\pyscripts\pdf_to_md.py`, a pure-Python (PyMuPDF) converter built
 for this workflow. Full algorithm rationale lives in that script's module
 docstring -- read it if something looks wrong and you need to debug the logic.
 
+Section PDFs are produced by `C:\src\pyscripts\pdf_split_sections.py`, which
+auto-detects `The Inversion — Part …` / `Epilogue` headings. Do **not**
+hardcode page ranges: they go stale the moment the manuscript is revised.
+
 ## Prerequisites
 
 Check PyMuPDF is installed before running:
@@ -22,10 +27,24 @@ Check PyMuPDF is installed before running:
 python -c "import fitz" || pip install pymupdf
 ```
 
+## Split a full manuscript first (if needed)
+
+If the source is one bound PDF rather than already-sliced chapter files:
+
+```bash
+python C:\src\pyscripts\pdf_split_sections.py "<manuscript.pdf>" --out-dir "<path-to-folder>"
+```
+
+This writes numbered files such as `0-Title.pdf`, `1-The Inversion Part I.pdf`,
+`17-The Inversion Epilogue.pdf` next to (or into) the output folder. Almost-empty
+cover pages are skipped. Re-running overwrites the section PDFs.
+
 ## Quick start
 
-Convert every `*.pdf` directly inside a folder into `<folder>/md/*.md`
-(creates `md/` if missing):
+Convert numbered `N-*.pdf` files directly inside a folder into `<folder>/md/*.md`
+(creates `md/` if missing). Unnumbered PDFs in the same folder (the full
+manuscript, extras) are skipped when numbered section files are present:
+
 ```bash
 python C:\src\pyscripts\pdf_to_md.py --folder "<path-to-folder>"
 ```
@@ -35,8 +54,21 @@ Convert a single file:
 python C:\src\pyscripts\pdf_to_md.py "<input.pdf>" "<output.md>"
 ```
 
-Add `--keep-header` to either form if the running header on page 1 (title +
-rule above the chapter heading) should be kept instead of stripped.
+Add `--keep-header` to either form if italic running headers at the top of
+pages should be kept instead of stripped.
+
+## What the converter emits
+
+- `#` title (large roman heading)
+- `##` chapter subtitle (italic, first page only, before body)
+- `###` mid-chapter labels such as Stillpoint / Afterword (larger + bold)
+- `**bold**` / `*italic*` / `***both***` per PDF span-run (mixed
+  emphasis on one line is preserved; do not wrap the whole line from
+  the first span's flags)
+- Running headers are skipped only when the exact repeating header
+  string matches. Italic body at the top of a later page is never dropped.
+- hard line breaks from the PDF's U+200B markers
+- `-` list items from bullet glyphs
 
 ## After running
 
@@ -52,5 +84,12 @@ rule above the chapter heading) should be kept instead of stripped.
    explicitly which files triggered this warning -- don't silently accept
    degraded quality for them.
 3. Spot-check 1-2 output files against their source PDFs, especially any
-   with bulleted lists or short poetic stanzas, before treating the whole
-   batch as trustworthy.
+   with bulleted lists, short poetic stanzas, or mid-chapter labels
+   (Stillpoint, Afterword), before treating the whole batch as trustworthy.
+
+## Copying into the site
+
+Chapter markdown is enough for the Inversion Dialogues reader (`index.js`
+already imports each file). Copy `*.md` from each volume's `md/` folder into
+`src/content/inversion-dialogs/volume-N/`, but **do not overwrite**
+`0-Title.md` (hand-authored) or `index.js`. Do not use robocopy `/MIR`.

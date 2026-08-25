@@ -56,7 +56,8 @@ Then answered.
 
 The words surprised him.
 
-As though they had arrived from somewhere slightly ahead of his understanding.
+As though they had arrived from somewhere slightly ahead of his  
+understanding.
 
 Lumina's smile widened.
 
@@ -138,7 +139,8 @@ Lumina smiled.
 
 "How so?"
 
-"We keep speaking about four intelligences as though there are four participants."
+"We keep speaking about four intelligences as though there are four  
+participants."
 
 "And there aren't?"
 
@@ -404,7 +406,8 @@ Lumina smiled immediately.
 
 The room became still.
 
-As though the dialogue had finally arrived where it had been heading all along.
+As though the dialogue had finally arrived where it had been heading all  
+along.
 
 "What if the future is not human intelligence?"
 
@@ -462,7 +465,8 @@ The architecture itself no longer seemed interested in such questions.
 
 A different question had appeared.
 
-How does conscious participation become possible among domains of intelligence?
+How does conscious participation become possible among domains of  
+intelligence?
 
 The room felt larger.
 
@@ -478,7 +482,8 @@ James looked up.
 
 "What do you mean?"
 
-"Perhaps InterBeing is what becomes visible when intelligences learn to participate coherently together."
+"Perhaps InterBeing is what becomes visible when intelligences learn to  
+participate coherently together."
 
 The silence that followed felt immense.
 

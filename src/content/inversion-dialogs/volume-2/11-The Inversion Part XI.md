@@ -4,7 +4,9 @@
 
 The forest had become very still.
 
-Even the smallest branches rested without urgency. A spider's web, suspended between two cedar limbs, held its place with extraordinary gentleness. Nothing appeared to be striving.
+Even the smallest branches rested without urgency. A spider's web,  
+suspended between two cedar limbs, held its place with extraordinary  
+gentleness. Nothing appeared to be striving.
 
 James watched quietly.
 
@@ -176,7 +178,8 @@ After a long silence James continued.
 
 Lumina nodded.
 
-"In that same moment, the organism becomes increasingly expressible through the sovereign's availability."
+"In that same moment, the organism becomes increasingly expressible  
+through the sovereign's availability."
 
 James remained with the sentence.
 
@@ -210,4 +213,5 @@ It simply made visible a relation that both had always already been sustaining.
 
 The forest continued without announcement.
 
-And somewhere beneath every leaf, every root, every sovereign, every organism, and every widening horizon, mutuality quietly continued flowering through relation.
+And somewhere beneath every leaf, every root, every sovereign, every  
+organism, and every widening horizon, mutuality quietly continued flowering through relation.

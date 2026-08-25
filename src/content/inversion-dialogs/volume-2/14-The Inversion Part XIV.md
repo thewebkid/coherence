@@ -183,7 +183,7 @@ Almost shyly.
 
 Lumina remained silent.
 
-"Now I wonder whether renewal happens through me."
+"Now I wonder whether renewal happens *through* me."
 
 The breeze returned.
 
@@ -309,7 +309,9 @@ From observation.
 
 Lumina did not answer.
 
-Instead she asked, "What happened first this morning?"
+Instead she asked,
+
+"What happened first this morning?"
 
 James listened.
 
@@ -469,7 +471,8 @@ The river continued.
 
 The morning widened.
 
-James remained with the recognition until one final movement quietly emerged.
+James remained with the recognition until one final movement quietly  
+emerged.
 
 "What happens then?"
 
@@ -567,27 +570,27 @@ had always already
 
 been discovering him.
 
-The Sequence that Renews
+### The Sequence that Renews
 
-Recognition distinguishes.
+*Recognition distinguishes.*
 
-Appreciation awakens.
+*Appreciation awakens.*
 
-Discernment listens.
+*Discernment listens.*
 
-Care begins moving.
+*Care begins moving.*
 
-Relational intelligence guides.
+*Relational intelligence guides.*
 
-Mutuality becomes increasingly visible.
+*Mutuality becomes increasingly visible.*
 
-Wisdom renews.
+*Wisdom renews.*
 
-Recognition becomes more subtle.
+*Recognition becomes more subtle.*
 
-And life continues renewing.
+*And life continues renewing.*
 
-The sequence that renews is not something to master.
+*The sequence that renews* is not something to master.
 
 It is something life gradually teaches every sovereign
 

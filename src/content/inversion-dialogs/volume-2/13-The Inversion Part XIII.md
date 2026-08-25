@@ -66,7 +66,8 @@ James nodded.
 
 Another silence.
 
-"Then perhaps," James said slowly, "mutuality is the way truth becomes consciously livable."
+"Then perhaps," James said slowly, "mutuality is the way truth becomes  
+consciously livable."
 
 Lumina smiled.
 

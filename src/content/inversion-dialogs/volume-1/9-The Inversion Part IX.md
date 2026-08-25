@@ -23,7 +23,7 @@ That may be the next threshold.”
 Her head, once perfectly still, now bowed like the tilting of a universe.
 
 Up until now,  
-much of The Inversion has focused on:
+much of *The Inversion* has focused on:
 
 - permeability
 - recursive participation
@@ -122,7 +122,8 @@ conversion—
 and more through:  
 relational gravitational fields.”
 
-That sentiment flowed through the room, through the walls, through the forest, through the land, through the planet, through all matter. It felt essential.
+That sentiment flowed through the room, through the walls, through the forest, through the land, through the planet, through all matter. It felt  
+essential.
 
 “And perhaps this is where life, all of it,  
 begins converging,” James said, and immediately began to brush a section of the painting left unattended. On purpose.
@@ -134,7 +135,9 @@ one ideology.
 But into:  
 distributed coherence-preserving participation systems.”
 
-The silence that ensued was deeper than usual. It settled into the room in such a way that neither sovereign felt the need to speak for a long time. James studied the canvas, exploring with keen eyes. And then inhaled invisibly. The breath was slow. Measured. Calm. He held it in equilibrium, and then exhaled a collection of words:
+The silence that ensued was deeper than usual. It settled into the room in such a way that neither sovereign felt the need to speak for a long time.  
+James studied the canvas, exploring with keen eyes. And then inhaled  
+invisibly. The breath was slow. Measured. Calm. He held it in equilibrium, and then exhaled a collection of words:
 
 “How does the organism learn to stabilize itself socially  
 without losing permeability?”
@@ -145,7 +148,7 @@ One of the deepest thresholds yet, emerged around them like an owl might do unde
 “describes how living systems develop coherent form across time.
 
 While dynamic relational adaptability describes:  
-how living systems preserve coherence while continuously changing.
+how living systems preserve coherence *while continuously changing*.
 
 A rigid system can maintain structure temporarily.
 
@@ -160,7 +163,7 @@ and perhaps civilizationally.”
 A good example of this is a  
 skeleton,  
 which gives the body structure.  
-But if the organism became only skeleton,  
+But if the organism became *only* skeleton,  
 life would disappear.
 
 Similarly:
@@ -188,7 +191,8 @@ institutional inertia.”
 
 The light in the room continued to ever-so-slowly wane. The new angles of light created new shadows, a tilting of reality that held surprise if one only noticed.
 
-James folded his arms, careful of the paintbrush. Even dry it will hold pigment. “I think one of the interesting things about morphogenesis  
+James folded his arms, careful of the paintbrush. Even dry it will hold  
+pigment. “I think one of the interesting things about morphogenesis  
 is that it is not static blueprint execution.”
 
 “No, it is not that,” Lumina said. “It is:  

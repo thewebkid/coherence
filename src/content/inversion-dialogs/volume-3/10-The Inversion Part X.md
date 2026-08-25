@@ -2,9 +2,10 @@
 
 ## The Vocation of Locality
 
-…
+## …
 
-A theory of relation becomes wisdom only when locality consents to become its first experiment.
+*A theory of relation becomes wisdom only when locality consents to*  
+*become its first experiment.*
 
 Morning returned quietly.
 
@@ -410,7 +411,7 @@ invitation had acquired...
 
 one more unmistakably local voice.
 
-Stillpoint
+### Stillpoint
 
 The organism is not looking for what it lacks.
 

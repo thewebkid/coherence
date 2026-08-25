@@ -248,7 +248,7 @@ Toward what has always already been seeking
 
 to continue through their place.
 
-Mutuality
+**Mutuality**
 
 Mutuality is the first behavior of relation.
 
@@ -266,11 +266,13 @@ It is not symmetry.
 
 It is not sameness.
 
-It is the conscious willingness of sovereign and organism to become increasingly available to one another's always already invitation.
+It is the conscious willingness of sovereign and organism to become  
+increasingly available to one another's always already invitation.
 
 The organism becomes increasingly expressible through the sovereign's availability.
 
-The sovereign becomes increasingly available through the organism's continuity.
+The sovereign becomes increasingly available through the organism's  
+continuity.
 
 Neither precedes the other.
 

@@ -17,7 +17,8 @@ Not restless.
 
 Recursive.
 
-The previous evening’s recognitions continued moving gently beneath thought:  
+The previous evening’s recognitions continued moving gently beneath  
+thought:  
 morphogenesis,  
 recursive signaling,  
 fractality,  
@@ -301,7 +302,7 @@ through which civilization
 might eventually learn  
 to recurse as life itself.
 
-Stillpoint
+### Stillpoint
 
 Permeability is not the absence of boundaries.
 
