@@ -1,0 +1,125 @@
+// ─── Aperture / Continuation Page Family ────────────────────────────────────
+// Shared styles for the three Aperture pages (In-Image, Listen, This Field),
+// ContinuationPage, and WhenATransmissionLandsTooStronglyPage. Previously this
+// block was copy-pasted across all four with only class-name prefixes differing.
+
+// Page frame wrapper
+.aperture-page {
+  background-color: var(--iw-bg);
+  min-height: 100vh;
+  padding: var(--spacing-lg) 0 var(--spacing-section);
+}
+
+// Body container (content-width)
+.aperture-body {
+  max-width: var(--content-width);
+}
+
+// Italic serif title
+.aperture-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--iw-accent);
+  margin-bottom: var(--spacing-xl);
+}
+
+// Body prose block
+.aperture-prose {
+  p {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+// Horizontal rule between sections
+.aperture-rule {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--spacing-xl) 0;
+  opacity: 0.5;
+}
+
+// Italic serif closing line (used by InImage + Listen)
+.aperture-closing {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+// Cross-links column (prev/next work)
+.aperture-crosslinks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.crosslink {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+
+  &:hover { color: var(--iw-accent); }
+}
+
+// Image field helpers (InImage page landscape breakout)
+.image-field {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-section) * 1.5);
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &--landscape {
+    $extra: calc((var(--page-width) - 2 * var(--margin-page) - var(--content-width)) / 2);
+    width: calc(100% + 2 * max(0px, #{$extra}));
+    margin-left: calc(-1 * max(0px, #{$extra}));
+  }
+}
+
+.movement-transition {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.4;
+  text-align: center;
+  width: 100%;
+  margin: calc(var(--spacing-section) * 0.5) 0;
+}
+
+.movement-image {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: block;
+
+  &--landscape {
+    max-width: none;
+  }
+
+  &--zoomable {
+    cursor: zoom-in;
+    transition: opacity 0.2s ease;
+
+    &:hover { opacity: 0.92; }
+  }
+}

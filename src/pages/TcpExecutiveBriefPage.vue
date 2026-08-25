@@ -49,8 +49,4 @@ useHead({
 });
 </script>
 
-<style lang="scss" scoped>
-.doc-download {
-  margin-top: var(--spacing-md);
-}
-</style>
+<style lang="scss" scoped></style>

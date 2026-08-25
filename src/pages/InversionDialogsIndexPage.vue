@@ -36,6 +36,10 @@
           <p>
             For this reason, <em>The Inversion Dialogues</em> are best approached not as a philosophy presented from beginning to end, but as a record of <strong>philosophy becoming lived through dialogue</strong>.
           </p>
+
+          <p>
+            <RouterLink to="/inversion-dialogs/about" class="quiet-link">About the Dialogue →</RouterLink>
+          </p>
         </div>
 
         <section class="landing-reading">

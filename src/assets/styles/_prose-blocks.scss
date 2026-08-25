@@ -1,0 +1,79 @@
+// ─── Shared Prose Content Blocks ────────────────────────────────────────────
+// Frequently duplicated block-level prose styles used across project & content pages.
+
+// ── Mechanism/summary chain callout (obs/behavioral/conversational pages) ───
+.mechanism-chain {
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--accent);
+
+  p {
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+// ── Share/CTA section (project pages) ───────────────────────────────────────
+.share-section {
+  margin-top: var(--spacing-section);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--border);
+}
+
+// ── Dialogue/QA block (back-link + prose) ───────────────────────────────────
+// Used by About the Dialogue (Q&A) in AboutTheInversionDialogs.
+.qa-block {
+  h2 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    color: var(--iw-accent);
+    margin: 0 0 var(--spacing-md);
+  }
+
+  p {
+    color: var(--text-muted);
+    line-height: var(--iw-line-height-prose, 1.85);
+    margin-bottom: var(--spacing-md);
+
+    &:last-child { margin-bottom: 0; }
+
+    strong {
+      font-weight: 500;
+      color: var(--text);
+    }
+  }
+
+  // Italic sub-question line within a Q&A section
+  .qa-block-subquestion {
+    font-style: italic;
+    color: var(--text);
+  }
+}
+
+// ── Prose container (long-form body text, p-based nesting) ─────────────────
+.prose-block {
+  p {
+    color: var(--text-muted);
+    line-height: var(--iw-line-height-prose, 1.85);
+    margin-bottom: var(--spacing-md);
+
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+// ── Italic serif closing line (e.g. "For now.", territory closings) ────────
+.prose-closing {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--text);
+}
+
+// ── Doc download wrapper (shared by MirrorAcrossScales, TcpExecutiveBrief) ─
+.doc-download {
+  margin-top: var(--spacing-md);
+}

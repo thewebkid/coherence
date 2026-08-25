@@ -1,5 +1,5 @@
 <template>
-  <div class="transmission-page fade-in">
+  <div class="aperture-page fade-in">
     <div class="page-container">
       <div class="content-container">
         <RouterLink to="/interpretive-works/continuation" class="back-link">
@@ -9,7 +9,7 @@
           If something remains open…
         </RouterLink>
 
-        <article class="transmission-body">
+        <article class="aperture-body">
           <MarkdownContent :source="rawSource" />
         </article>
       </div>
@@ -30,28 +30,4 @@ useHead({
 });
 </script>
 
-<style lang="scss" scoped>
-.transmission-page {
-  background-color: var(--iw-bg);
-  min-height: 100vh;
-  padding: var(--spacing-lg) 0 var(--spacing-section);
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  margin-bottom: var(--spacing-xl);
-  transition: color var(--transition-speed) ease;
-
-  &:hover { color: var(--iw-accent); }
-}
-
-.transmission-body {
-  max-width: var(--content-width);
-}
-</style>
+<style lang="scss" scoped></style>

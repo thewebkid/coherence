@@ -49,10 +49,4 @@ useHead({
 });
 </script>
 
-<style lang="scss" scoped>
-.doc-footer {
-  margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-md);
-  line-height: 1.75;
-}
-</style>
+<style lang="scss" scoped></style>

@@ -137,6 +137,51 @@
   color: var(--text-muted);
 }
 
+// ── Contact panel ─────────────────────────────────────────────────────────────
+// Shared by ContactPage and InstitutionalPage. Wraps a surface-panel email blurb.
+
+.contact-box {
+  margin: var(--spacing-xl) 0;
+  text-align: center;
+}
+
+.contact-email {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  color: var(--accent);
+  text-decoration: none;
+  word-break: break-all;
+
+  &:hover { text-decoration: underline; }
+}
+
+// ── Custom dot list ───────────────────────────────────────────────────────────
+// List of items with small accent dot bullets (used in Signal and SignalMap pages).
+.dot-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-md) 0;
+
+  li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-muted);
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+  }
+}
+
 // ── Updates list ──────────────────────────────────────────────────────────────
 // Shared by /updates and the home-page "new" listing.
 

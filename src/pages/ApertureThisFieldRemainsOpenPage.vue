@@ -201,56 +201,6 @@ async function handleSubmit() {
 </script>
 
 <style lang="scss" scoped>
-.aperture-page {
-  background-color: var(--iw-bg);
-  min-height: 100vh;
-  padding: var(--spacing-lg) 0 var(--spacing-section);
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  margin-bottom: var(--spacing-xl);
-  transition: color var(--transition-speed) ease;
-
-  &:hover { color: var(--iw-accent); }
-}
-
-.aperture-body {
-  max-width: var(--content-width);
-}
-
-.aperture-title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-weight: 400;
-  font-style: italic;
-  color: var(--iw-accent);
-  margin-bottom: var(--spacing-xl);
-}
-
-.aperture-prose {
-  p {
-    font-family: var(--font-sans);
-    font-size: 1.0625rem;
-    line-height: 1.85;
-    color: var(--text-muted);
-    margin-bottom: var(--spacing-md);
-  }
-}
-
-.aperture-rule {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: var(--spacing-xl) 0;
-  opacity: 0.5;
-}
-
 .submission-form-wrap {
   padding: var(--spacing-sm) 0;
 }
@@ -373,22 +323,5 @@ async function handleSubmit() {
     color: var(--text-muted);
     line-height: 1.85;
   }
-}
-
-.aperture-crosslinks {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-}
-
-.crosslink {
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  font-style: italic;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color var(--transition-speed) ease;
-
-  &:hover { color: var(--iw-accent); }
 }
 </style>

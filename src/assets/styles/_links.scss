@@ -1,0 +1,78 @@
+// ─── Shared Link & Footer Patterns ──────────────────────────────────────────
+// Centralized link/footer styles previously copy-pasted across many page files.
+// Import via main.scss so templates can use these classes without local styles.
+
+// ── Back link (svg arrow + hover→iw-accent; usage: <RouterLink class="back-link">) ─
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: var(--spacing-xl);
+  transition: color var(--transition-speed) ease;
+
+  &:hover { color: var(--iw-accent); }
+
+  // Variant used at page bottom (no top-margin, smaller spacing).
+  &--bottom {
+    margin-bottom: 0;
+  }
+}
+
+// ── Simple text back link (hover→text rather than accent) ───────────────────
+// Used in the essay-footer pair. Matches previous inline .essay-footer > .back-link.
+.back-link-text {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  text-decoration: none;
+
+  &:hover { color: var(--text); }
+}
+
+// ── Quiet inline link (sans, muted, accent hover) ───────────────────────────
+// Used in landing prose as "About the Dialogue →" and similar.
+.quiet-link {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+
+  &:hover { color: var(--iw-accent); }
+}
+
+// ── Footer for prose pages (essay-footer pattern) ───────────────────────────
+.essay-footer {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border);
+}
+
+// ── Footer for document/micro-essay pages (doc-footer pattern) ─────────────
+.doc-footer {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  line-height: 1.75;
+}
+
+// ── Page footer link (centered, bordered, e.g. "Begin X →") ────────────────
+.page-footer-link {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border);
+
+  a {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+
+    &:hover { color: var(--iw-accent); }
+  }
+}

@@ -77,25 +77,6 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-.contact-box {
-  margin: var(--spacing-xl) 0;
-  text-align: center;
-}
-
-.contact-email {
-  font-family: var(--font-sans);
-  font-size: 1.125rem;
-  color: var(--accent);
-  text-decoration: none;
-  word-break: break-all;
-  transition: color var(--transition-speed) ease;
-
-  &:hover {
-    color: var(--accent-hover);
-    text-decoration: underline;
-  }
-}
-
 .download-section {
   margin-top: var(--spacing-xl);
 

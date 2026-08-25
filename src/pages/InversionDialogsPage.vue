@@ -72,14 +72,21 @@
       <div v-if="isNavOpen" class="manuscript-chapters-flyout">
         <aside class="manuscript-chapters-panel">
           <div class="manuscript-chapters-panel-header">
+          <div class="manuscript-chapters-panel-titles">
             <RouterLink
               to="/inversion-dialogs"
               class="manuscript-chapters-panel-title manuscript-chapters-panel-home"
               aria-label="All volumes"
               @click="isNavOpen = false"
             >The Inversion Dialogues</RouterLink>
-            <button class="manuscript-chapters-close" @click="isNavOpen = false" aria-label="Close chapters">&#x2715;</button>
+            <RouterLink
+              to="/inversion-dialogs/about"
+              class="manuscript-chapters-panel-about"
+              @click="isNavOpen = false"
+            >About the Dialogues</RouterLink>
           </div>
+          <button class="manuscript-chapters-close" @click="isNavOpen = false" aria-label="Close chapters">&#x2715;</button>
+        </div>
 
           <ul class="manuscript-chapters-list">
             <li v-for="(chapter, i) in currentVolume.chapters" :key="chapter.slug">

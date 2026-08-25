@@ -242,6 +242,11 @@ const routes = [
     name: 'inversion-dialogs-index',
     component: () => import('@/pages/InversionDialogsIndexPage.vue'),
   },
+  {
+    path: '/inversion-dialogs/about',
+    name: 'about-inversion-dialogs',
+    component: () => import('@/pages/AboutTheInversionDialogs.vue'),
+  },
   // Legacy volume-1 slugs — keep old links working
   {
     path: '/inversion-dialogs/:section(1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|title)',

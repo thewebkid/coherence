@@ -218,24 +218,6 @@ useHead(computed(() => ({
   }
 }
 
-.iw-divider {
-  width: 48px;
-  height: 1px;
-  background: var(--iw-accent);
-  opacity: 0.4;
-  margin: var(--spacing-xl) 0;
-}
-
-.work-intro {
-  max-width: 680px;
-  margin-bottom: var(--spacing-xl);
-
-  p {
-    line-height: var(--iw-line-height-prose, 2);
-    margin-bottom: var(--spacing-sm);
-  }
-}
-
 .work-reflection {
   max-width: 680px;
   margin-top: var(--spacing-xl);

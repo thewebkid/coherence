@@ -393,10 +393,4 @@ useHead({
 });
 </script>
 
-<style lang="scss" scoped>
-.share-section {
-  margin-top: var(--spacing-section);
-  padding-top: var(--spacing-xl);
-  border-top: 1px solid var(--border);
-}
-</style>
+<style lang="scss" scoped></style>

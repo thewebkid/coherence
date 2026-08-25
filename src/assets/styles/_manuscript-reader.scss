@@ -238,6 +238,25 @@
   &:hover { color: var(--iw-accent); }
 }
 
+.manuscript-chapters-panel-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+// Quiet secondary link sitting beneath the panel title.
+.manuscript-chapters-panel-about {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+
+  &:hover { color: var(--iw-accent); }
+}
+
 .manuscript-chapters-close {
   background: none;
   border: none;

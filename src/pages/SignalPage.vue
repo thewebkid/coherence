@@ -43,7 +43,7 @@
           <div class="what-happens">
             <h2>What happens when you signal</h2>
             <p>If you choose to place a signal:</p>
-            <ul>
+            <ul class="dot-list">
               <li>A small anonymous marker will appear on the world map</li>
               <li>Your precise location will never be shown</li>
               <li>No one can contact you</li>
@@ -110,31 +110,6 @@ useHead({
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: var(--spacing-md);
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: var(--spacing-md) 0;
-
-    li {
-      position: relative;
-      padding-left: 1.5rem;
-      margin-bottom: var(--spacing-xs);
-      color: var(--text-muted);
-
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0.7em;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--accent);
-        opacity: 0.5;
-      }
-    }
   }
 }
 

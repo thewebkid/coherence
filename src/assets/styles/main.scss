@@ -27,3 +27,9 @@
 @import 'components';
 @import 'manuscript-reader';
 @import 'dark-mode';
+
+// 4. Centralized page-family patterns (previously copy-pasted per page)
+@import 'links';
+@import 'prose-blocks';
+@import 'aperture';
+@import 'interpretive';

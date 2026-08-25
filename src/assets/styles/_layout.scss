@@ -19,6 +19,15 @@
   &.is-centered {
     text-align: center;
   }
+
+  // Optional: serif-accent h1 style (used by About the Dialogue / manuscript-family headers)
+  &.is-serif-accent h1 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(1.8rem, 4vw, 2rem);
+    color: var(--iw-accent);
+    margin-bottom: 0;
+  }
 }
 
 // Serif italic subtitle beneath a page h1.

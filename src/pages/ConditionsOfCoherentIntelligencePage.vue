@@ -22,7 +22,7 @@
         </article>
 
         <div class="essay-footer">
-          <RouterLink to="/work" class="back-link">← The Work</RouterLink>
+          <RouterLink to="/work" class="back-link-text">← The Work</RouterLink>
         </div>
       </div>
     </div>
@@ -96,21 +96,6 @@ useHead({
   font-size: 0.8125rem;
   color: var(--text-muted);
   transition: color var(--transition-speed) ease;
-}
-
-.essay-footer {
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--border);
-}
-
-.back-link {
-  font-family: var(--font-sans);
-  font-size: 0.9375rem;
-  color: var(--text-muted);
-  text-decoration: none;
-
-  &:hover { color: var(--text); }
 }
 
 // Modal

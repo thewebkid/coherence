@@ -65,7 +65,7 @@
             work has no wider relevance.
           </p>
           <p>When they know others exist:</p>
-          <ul>
+          <ul class="dot-list">
             <li>Confidence increases</li>
             <li>Clarity sharpens</li>
             <li>Long-term thinking stabilizes</li>
@@ -217,30 +217,6 @@ function onSignalPlaced(signal) {
     margin-bottom: var(--spacing-sm);
   }
 
-  ul {
-    margin: var(--spacing-md) 0;
-    padding-left: 0;
-    list-style: none;
-
-    li {
-      position: relative;
-      padding-left: 1.5rem;
-      margin-bottom: var(--spacing-xs);
-      color: var(--text-muted);
-
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0.7em;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--accent);
-        opacity: 0.5;
-      }
-    }
-  }
 }
 
 .return-note {

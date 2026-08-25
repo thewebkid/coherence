@@ -253,26 +253,4 @@ useHead({
 });
 </script>
 
-<style lang="scss" scoped>
-// Mechanism chain is a unique inline display element for this page.
-.mechanism-chain {
-  padding: var(--spacing-md);
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  font-family: var(--font-sans);
-  font-size: 0.9375rem;
-  color: var(--accent);
-
-  p {
-    margin: 0;
-    line-height: 1.6;
-  }
-}
-
-.share-section {
-  margin-top: var(--spacing-section);
-  padding-top: var(--spacing-xl);
-  border-top: 1px solid var(--border);
-}
-</style>
+<style lang="scss" scoped></style>
