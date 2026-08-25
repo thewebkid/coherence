@@ -88,7 +88,36 @@
               <h2 class="volume-tile-title">{{ v.title }}</h2>
               <p class="volume-tile-subtitle">{{ v.forthcoming ? 'Forthcoming' : v.subtitle }}</p>
               <p v-if="v.blurb && !v.forthcoming" class="volume-tile-blurb">{{ v.blurb }}</p>
-              <span v-if="v.cta && !v.forthcoming" class="volume-tile-cta">{{ v.cta }}</span>
+              <div v-if="!v.forthcoming" class="volume-tile-actions">
+                <span v-if="v.cta" class="volume-tile-cta">{{ v.cta }}</span>
+                <a
+                  v-if="v.pdf"
+                  :href="v.pdf"
+                  target="_blank"
+                  rel="noopener"
+                  class="volume-tile-pdf"
+                  :aria-label="`Download ${v.title} as PDF`"
+                  @click.stop
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  <span>PDF</span>
+                </a>
+              </div>
             </div>
           </component>
         </div>

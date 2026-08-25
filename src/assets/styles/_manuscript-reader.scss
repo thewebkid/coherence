@@ -451,13 +451,48 @@
   margin: var(--spacing-sm) 0;
 }
 
+.volume-tile-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
 .volume-tile-cta {
-  display: inline-block;
   font-family: var(--font-sans);
   font-size: 0.875rem;
   color: var(--iw-accent);
   letter-spacing: 0.02em;
   transition: color var(--transition-speed) ease;
+}
+
+.volume-tile-pdf {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding-left: var(--spacing-sm);
+  border-left: 1px solid var(--border);
+  transition: color var(--transition-speed) ease;
+
+  svg {
+    opacity: 0.75;
+    transition: opacity var(--transition-speed) ease,
+                transform var(--transition-speed) ease;
+  }
+
+  &:hover {
+    color: var(--iw-accent);
+
+    svg {
+      opacity: 1;
+      transform: translateY(1px);
+    }
+  }
 }
 
 // Title-page cover image inside a manuscript chapter (frontispiece).
