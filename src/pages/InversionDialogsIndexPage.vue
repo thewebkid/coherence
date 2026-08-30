@@ -122,7 +122,7 @@
           </component>
         </div>
 
-        <p class="volume-forthcoming">{{ inversionDialogues.forthcoming }}</p>
+        <p v-if="inversionDialogues.forthcoming" class="volume-forthcoming">{{ inversionDialogues.forthcoming }}</p>
 
         <p class="landing-closing">
           <em>{{ inversionDialogues.closing[0] }}</em><br>

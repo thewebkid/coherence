@@ -18,7 +18,7 @@ import part16Raw from './16-The Inversion Part XVI.md?raw';
 import epilogueRaw from './17-The Inversion Epilogue.md?raw';
 
 export const chapters = [
-  { slug: 'title', title: 'The Inversion Dialogues', subtitle: 'Parts I–XVI', content: titleRaw, layout: 'title', cover: '/img/inversion-dialogs/inversion-dialogs-v3.jpg' },
+  { slug: 'title', title: 'The Inversion Dialogues', subtitle: 'The Flowering of Participation', content: titleRaw, layout: 'title', cover: '/img/inversion-dialogs/inversion-dialogs-v3.jpg' },
   { slug: '1', title: 'Part I', subtitle: 'The Transparent Locality', content: part1Raw },
   { slug: '2', title: 'Part II', subtitle: 'The First Layer', content: part2Raw },
   { slug: '3', title: 'Part III', subtitle: 'The Invitation to Belong', content: part3Raw },

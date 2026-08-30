@@ -794,11 +794,13 @@ export default defineConfig({
       const v1Slugs = ['title', ...Array.from({ length: 19 }, (_, i) => String(i + 1))];
       const v2Slugs = ['title', ...Array.from({ length: 14 }, (_, i) => String(i + 1)), 'epilogue'];
       const v3Slugs = ['title', ...Array.from({ length: 16 }, (_, i) => String(i + 1)), 'epilogue'];
+      const v4Slugs = ['title', ...Array.from({ length: 10 }, (_, i) => String(i + 1))];
       const inversionPaths = [
         '/inversion-dialogs',
         ...v1Slugs.map((slug) => `/inversion-dialogs/1/${slug}`),
         ...v2Slugs.map((slug) => `/inversion-dialogs/2/${slug}`),
         ...v3Slugs.map((slug) => `/inversion-dialogs/3/${slug}`),
+        ...v4Slugs.map((slug) => `/inversion-dialogs/4/${slug}`),
       ];
       return [
         ...paths.filter((p) => !p.startsWith('/admin') && !p.includes(':')),

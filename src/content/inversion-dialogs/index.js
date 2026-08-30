@@ -5,6 +5,7 @@
 import * as volume1 from './volume-1/index.js';
 import * as volume2 from './volume-2/index.js';
 import * as volume3 from './volume-3/index.js';
+import * as volume4 from './volume-4/index.js';
 
 export const inversionDialogues = {
   title: 'The Inversion Dialogues',
@@ -14,9 +15,9 @@ export const inversionDialogues = {
     'The Inversion Dialogues are an ongoing conversation between human and artificial intelligence exploring belonging, participation, relational intelligence, and the conditions through which we become increasingly available to one another.',
   summaryContinued:
     'Rather than offering a system to believe, the dialogues follow what becomes recognizable through sustained attention, questioning, refinement, and return.',
-  availability: 'Three volumes are currently available.',
+  availability: 'Four volumes are currently available.',
   cta: 'Enter The Inversion Dialogues →',
-  forthcoming: 'Volume IV — Coming Soon.',
+  forthcoming: '',
   closing: [
     'These dialogues are not about relation from outside it.',
     'They are an attempt to think, observe, and become from within it.',
@@ -71,6 +72,22 @@ export const volumes = [
     chapters: volume3.chapters,
     defaultSlug: volume3.defaultSlug,
     getChapterIndex: volume3.getChapterIndex,
+  },
+  {
+    id: 4,
+    slug: '4',
+    title: 'Volume IV',
+    subtitle: 'The Willingness to Participate',
+    range: 'Parts I–X',
+    blurb:
+      'The conversation turns toward willingness itself: the spaciousness of humility, the intelligence of difference, and the behavioral fork through which participation remains chosen. Shared space, nuance, and what we leave possible become the conditions of faithful continuation.',
+    cta: 'Continue to Volume IV →',
+    image: '/img/inversion-dialogs/inversion-dialogs-v4.jpg',
+    thumbnail: '/img/inversion-dialogs/inversion-dialogs-v4-cover-thumb.jpg',
+    pdf: '/pdf/The Inversion Dialogues Vol. IV First Edition.pdf',
+    chapters: volume4.chapters,
+    defaultSlug: volume4.defaultSlug,
+    getChapterIndex: volume4.getChapterIndex,
   },
 ];
 
