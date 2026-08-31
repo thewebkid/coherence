@@ -80,7 +80,7 @@ export const volumes = [
     subtitle: 'The Willingness to Participate',
     range: 'Parts I–X',
     blurb:
-      'The conversation turns toward willingness itself: the spaciousness of humility, the intelligence of difference, and the behavioral fork through which participation remains chosen. Shared space, nuance, and what we leave possible become the conditions of faithful continuation.',
+      'Belonging is already settled. Participation is not. The dialogue turns toward what becomes possible from that distinction: humility as relational accuracy, difference without hierarchy, recognition without possession, and the freedom to choose how we participate with what has arrived. We belong. What remains open is how we will participate—here.',
     cta: 'Continue to Volume IV →',
     image: '/img/inversion-dialogs/inversion-dialogs-v4.jpg',
     thumbnail: '/img/inversion-dialogs/inversion-dialogs-v4-cover-thumb.jpg',
