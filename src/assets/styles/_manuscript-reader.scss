@@ -370,11 +370,11 @@
 }
 
 .volume-tile {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: var(--spacing-md);
-  text-decoration: none;
   padding: var(--spacing-lg) 0;
   border-top: 1px solid var(--border);
   transition: opacity var(--transition-speed) ease;
@@ -383,6 +383,11 @@
     .volume-tile-image { opacity: 1; }
     .volume-tile-title { color: var(--iw-accent); }
     .volume-tile-cta { color: var(--iw-accent-hover); }
+  }
+
+  &:has(.volume-tile-title-link:focus-visible) {
+    outline: 2px solid var(--iw-accent);
+    outline-offset: 4px;
   }
 
   &.is-forthcoming {
@@ -435,6 +440,25 @@
   transition: color var(--transition-speed) ease;
 }
 
+// Stretch the title link across this tile only — never nest a PDF <a> inside it.
+// Nested anchors are rewritten by the HTML parser on SSG pages and merge
+// adjacent volumes into one hover/click region (Chrome especially).
+.volume-tile-title-link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+}
+
 .volume-tile-subtitle {
   font-family: var(--font-serif);
   font-style: italic;
@@ -467,6 +491,8 @@
 }
 
 .volume-tile-pdf {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   gap: 0.35em;
