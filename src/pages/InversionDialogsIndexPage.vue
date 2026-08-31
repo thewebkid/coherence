@@ -74,8 +74,22 @@
             class="volume-tile"
             :class="{ 'is-forthcoming': v.forthcoming }"
           >
+            <RouterLink
+              v-if="!v.forthcoming && (v.thumbnail || v.image)"
+              :to="`/inversion-dialogs/${v.slug}/title`"
+              class="volume-tile-cover"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <img
+                :src="v.thumbnail || v.image"
+                :alt="`${v.title} cover`"
+                class="volume-tile-image"
+                loading="lazy"
+              />
+            </RouterLink>
             <img
-              v-if="v.thumbnail || v.image"
+              v-else-if="v.thumbnail || v.image"
               :src="v.thumbnail || v.image"
               :alt="`${v.title} cover`"
               class="volume-tile-image"
@@ -94,7 +108,11 @@
               <p class="volume-tile-subtitle">{{ v.forthcoming ? 'Forthcoming' : v.subtitle }}</p>
               <p v-if="v.blurb && !v.forthcoming" class="volume-tile-blurb">{{ v.blurb }}</p>
               <div v-if="!v.forthcoming" class="volume-tile-actions">
-                <span v-if="v.cta" class="volume-tile-cta">{{ v.cta }}</span>
+                <RouterLink
+                  v-if="v.cta"
+                  :to="`/inversion-dialogs/${v.slug}/title`"
+                  class="volume-tile-cta"
+                >{{ v.cta }}</RouterLink>
                 <a
                   v-if="v.pdf"
                   :href="v.pdf"
