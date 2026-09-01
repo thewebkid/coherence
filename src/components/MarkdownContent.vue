@@ -50,21 +50,21 @@ const rendered = computed(() => {
   }
 
   :deep(h1) {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-size: clamp(1.9rem, 4vw, 2.35rem);
     font-weight: 400;
     letter-spacing: -0.02em;
     margin-bottom: var(--spacing-md);
   }
 
   :deep(h2) {
-    font-size: clamp(1.375rem, 3vw, 1.625rem);
+    font-size: clamp(1.45rem, 3vw, 1.8rem);
     margin-top: var(--spacing-xl);
     padding-bottom: var(--spacing-xs);
     border-bottom: 1px solid var(--border);
   }
 
   :deep(h3) {
-    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+    font-size: clamp(1.3rem, 2.5vw, 1.45rem);
     margin-top: var(--spacing-lg);
   }
 
