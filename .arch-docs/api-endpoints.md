@@ -139,6 +139,62 @@ Open participatory submission from the *This Field Remains Open* page (Seven Mov
 
 ---
 
+### Observation instrument
+
+Unlisted participant sitting. No Clerk. Return token is shown once and stored only as a SHA-256 hash. Lens tags are never in the payload. No LLM.
+
+#### `POST /api/instrument/session`
+
+Creates a participant, first sitting, item-level responses, and a `private_storage` consent event.
+
+**Body (JSON):**
+```json
+{
+  "responses": [
+    { "itemId": "p5-permeability-would-harm", "choiceId": "named-limit-remained", "otherText": null }
+  ],
+  "website": ""
+}
+```
+
+All v0.1 items are required. `website` is a honeypot.
+
+**Returns:** `{ token, instrumentVersion, sessions, whatFollowed }`  
+**Writes to:** `instrument_participants`, `instrument_sessions`, `instrument_responses`, `instrument_consent_events`  
+**Auth:** None (public)
+
+#### `GET /api/instrument/session/:token`
+
+Loads all sittings for a return code.
+
+**Reads from:** instrument tables  
+**Auth:** None (possession of the token)
+
+#### `POST /api/instrument/session/:token`
+
+Adds another sitting (same frozen version). Complete the sitting blind; the client juxtaposes afterward.
+
+**Body:** same `responses` shape as create.  
+**Auth:** None (possession of the token)
+
+#### `POST /api/instrument/session/:token/followed`
+
+Optional look-back on a prior sitting. Free-text notes stay on the private record.
+
+**Body (JSON):**
+```json
+{
+  "entries": [
+    { "priorSessionId": 1, "itemId": "p5-permeability-would-harm", "choiceId": "could-not-tell", "note": null }
+  ]
+}
+```
+
+**Writes to:** `instrument_what_followed`  
+**Auth:** None (possession of the token)
+
+---
+
 ## Admin-only endpoints
 
 All admin endpoints call `verifyAdminAuth(req, res)` from `api/_clerk-auth.js`. Requests must include a valid Clerk session token as `Authorization: Bearer <token>`. See [auth.md](./auth.md).

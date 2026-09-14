@@ -20,6 +20,12 @@
             and used only for the purpose it was given.
           </p>
 
+          <p>
+            The observational instrument stores only a private return code and
+            the movements you recognize. Returning with that code does not enroll
+            you in research.
+          </p>
+
           <p>This site is offered as a public resource.<br>
             You are welcome to explore, read, and engage with the material freely.
           </p>

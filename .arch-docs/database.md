@@ -98,6 +98,71 @@ File uploads are stored in Vercel Blob; only the URL and pathname are stored her
 
 ---
 
+### Observation instrument (v0.1)
+
+Private “My Continuity” sitting at `/observe`. Separate from `observations`. Do not mix these tables with the Observatory word field.
+
+```sql
+CREATE TABLE instrument_versions (
+  id          serial PRIMARY KEY,
+  label       text NOT NULL UNIQUE,
+  lifecycle   text NOT NULL DEFAULT 'prototype',  -- prototype | deployed
+  created_at  timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE TABLE instrument_participants (
+  id                 serial PRIMARY KEY,
+  return_token_hash  text NOT NULL UNIQUE,  -- SHA-256 of the return code; raw token is never stored
+  created_at         timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE TABLE instrument_sessions (
+  id                      serial PRIMARY KEY,
+  participant_id          integer NOT NULL REFERENCES instrument_participants(id) ON DELETE CASCADE,
+  instrument_version      text NOT NULL,
+  observational_position  text NOT NULL DEFAULT 'interior',
+  scale                   text NOT NULL DEFAULT 'sovereign_participant',
+  session_index           integer NOT NULL,
+  ensemble_id             text,  -- null in v0.1; reserved for later paired sittings
+  started_at              timestamptz NOT NULL DEFAULT now(),
+  completed_at            timestamptz,
+  UNIQUE (participant_id, session_index)
+);
+
+CREATE TABLE instrument_responses (
+  id          serial PRIMARY KEY,
+  session_id  integer NOT NULL REFERENCES instrument_sessions(id) ON DELETE CASCADE,
+  item_id     text NOT NULL,
+  choice_id   text NOT NULL,
+  other_text  text,
+  created_at  timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE TABLE instrument_consent_events (
+  id             serial PRIMARY KEY,
+  participant_id integer NOT NULL REFERENCES instrument_participants(id) ON DELETE CASCADE,
+  consent_type   text NOT NULL,     -- v0.1: private_storage
+  text_version   text NOT NULL,
+  granted        boolean NOT NULL,
+  created_at     timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE TABLE instrument_what_followed (
+  id                serial PRIMARY KEY,
+  prior_session_id  integer NOT NULL REFERENCES instrument_sessions(id) ON DELETE CASCADE,
+  item_id           text NOT NULL,
+  choice_id         text NOT NULL,
+  note              text,
+  created_at        timestamptz NOT NULL DEFAULT now()
+);
+```
+
+The frozen item bank lives in [`src/content/instrument/v0.1.js`](../src/content/instrument/v0.1.js), not as derived scores. Lens tags are metadata only and are not returned by the public API.
+
+Migration: `node -r dotenv/config scripts/migrate-instrument-v01.js dotenv_config_path=.env.local`
+
+---
+
 ## Connection pattern
 
 All API functions use the same pattern:
