@@ -233,6 +233,11 @@ const routes = [
     component: () => import('@/pages/WhenATransmissionLandsTooStronglyPage.vue'),
   },
   {
+    path: '/interpretive-works/educating-perception',
+    name: 'educating-perception',
+    component: () => import('@/pages/EducatingPerceptionPage.vue'),
+  },
+  {
     path: '/interpretive-works/:slug',
     name: 'interpretive-work',
     component: () => import('@/pages/InterpretiveWorkPage.vue'),

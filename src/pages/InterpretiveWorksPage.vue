@@ -52,6 +52,23 @@
         <article class="work-entry work-entry--linked">
           <div class="work-entry-text">
             <div class="work-meta">
+              <span class="work-creator">Anonymous</span>
+              <span class="work-sep">·</span>
+              <span class="work-type">Other</span>
+            </div>
+            <h2 class="work-title">Educating Perception</h2>
+            <p class="work-subtitle">A vision for cultivating observation and relational intelligence in ordinary life.</p>
+            <RouterLink to="/interpretive-works/educating-perception" class="work-link">
+              View Work →
+            </RouterLink>
+          </div>
+        </article>
+
+        <div class="iw-divider" />
+
+        <article class="work-entry work-entry--linked">
+          <div class="work-entry-text">
+            <div class="work-meta">
               <span class="work-creator">James Mahu and Lumina</span>
               <span class="work-sep">·</span>
               <span class="work-type">Writing</span>
