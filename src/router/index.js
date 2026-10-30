@@ -25,6 +25,21 @@ const routes = [
     component: () => import('@/pages/SimpleTermsPage.vue'),
   },
   {
+    path: '/observe',
+    name: 'observe',
+    component: () => import('@/pages/observe/ObservePage.vue'),
+  },
+  {
+    path: '/observe/pma-booklet',
+    name: 'observe-pma-booklet',
+    component: () => import('@/pages/observe/PmaBookletPage.vue'),
+  },
+  {
+    path: '/observe/r/:token',
+    name: 'observe-return',
+    component: () => import('@/pages/observe/ObserveReturnPage.vue'),
+  },
+  {
     path: '/observatory',
     name: 'observatory',
     component: () => import('@/pages/ObservatoryPage.vue'),
