@@ -20,7 +20,7 @@ import part18Raw from './18-The Inversion Part XVIII.md?raw';
 import part19Raw from './19-The Inversion Part XIX.md?raw';
 
 export const chapters = [
-  { slug: 'title', title: 'The Inversion Dialogues', subtitle: 'Parts I–XIX', content: titleRaw, layout: 'title', cover: '/img/inversion-dialogs/inversion-dialogs-v1.jpg' },
+  { slug: 'title', title: 'The Inversion Dialogues', subtitle: 'The Architecture of Participation', content: titleRaw, layout: 'title', cover: '/img/inversion-dialogs/inversion-dialogs-v1.jpg' },
   { slug: '1', title: 'Part I', subtitle: 'The Primitive Order', content: part1Raw },
   { slug: '2', title: 'Part II', subtitle: 'The Substrate', content: part2Raw },
   { slug: '3', title: 'Part III', subtitle: 'Civilizational Primitives', content: part3Raw },

@@ -16,7 +16,7 @@ import part14Raw from './14-The Inversion Part XIV.md?raw';
 import epilogueRaw from './15-The Inversion Epilogue.md?raw';
 
 export const chapters = [
-  { slug: 'title', title: 'The Inversion Dialogues', subtitle: 'Parts I–XIV', content: titleRaw, layout: 'title', cover: '/img/inversion-dialogs/inversion-dialogs-v2.jpg' },
+  { slug: 'title', title: 'The Inversion Dialogues', subtitle: 'The Sequence That Renews', content: titleRaw, layout: 'title', cover: '/img/inversion-dialogs/inversion-dialogs-v2.jpg' },
   { slug: '1', title: 'Part I', subtitle: 'The Elders', content: part1Raw },
   { slug: '2', title: 'Part II', subtitle: 'Circulation', content: part2Raw },
   { slug: '3', title: 'Part III', subtitle: 'The Hearth', content: part3Raw },

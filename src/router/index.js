@@ -248,6 +248,11 @@ const routes = [
     component: () => import('@/pages/WhenATransmissionLandsTooStronglyPage.vue'),
   },
   {
+    path: '/interpretive-works/educating-perception',
+    name: 'educating-perception',
+    component: () => import('@/pages/EducatingPerceptionPage.vue'),
+  },
+  {
     path: '/interpretive-works/:slug',
     name: 'interpretive-work',
     component: () => import('@/pages/InterpretiveWorkPage.vue'),
@@ -262,13 +267,19 @@ const routes = [
     name: 'about-inversion-dialogs',
     component: () => import('@/pages/AboutTheInversionDialogs.vue'),
   },
+  // Volume IV short URL must win over the legacy volume-1 section matcher,
+  // which also includes "4" (old /inversion-dialogs/4 → Volume I Part IV).
+  {
+    path: '/inversion-dialogs/:volume(4)',
+    redirect: (to) => `/inversion-dialogs/${to.params.volume}/title`,
+  },
   // Legacy volume-1 slugs — keep old links working
   {
     path: '/inversion-dialogs/:section(1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|title)',
     redirect: (to) => `/inversion-dialogs/1/${to.params.section}`,
   },
   {
-    path: '/inversion-dialogs/:volume(1|2|3)',
+    path: '/inversion-dialogs/:volume(1|2|3|4)',
     redirect: (to) => `/inversion-dialogs/${to.params.volume}/title`,
   },
   {

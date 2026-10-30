@@ -68,16 +68,28 @@
         </section>
 
         <div class="volume-tiles">
-          <component
-            :is="v.forthcoming ? 'article' : 'RouterLink'"
+          <article
             v-for="v in volumes"
             :key="v.slug"
-            :to="v.forthcoming ? undefined : `/inversion-dialogs/${v.slug}/title`"
             class="volume-tile"
             :class="{ 'is-forthcoming': v.forthcoming }"
           >
+            <RouterLink
+              v-if="!v.forthcoming && (v.thumbnail || v.image)"
+              :to="`/inversion-dialogs/${v.slug}/title`"
+              class="volume-tile-cover"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <img
+                :src="v.thumbnail || v.image"
+                :alt="`${v.title} cover`"
+                class="volume-tile-image"
+                loading="lazy"
+              />
+            </RouterLink>
             <img
-              v-if="v.thumbnail || v.image"
+              v-else-if="v.thumbnail || v.image"
               :src="v.thumbnail || v.image"
               :alt="`${v.title} cover`"
               class="volume-tile-image"
@@ -85,11 +97,22 @@
             />
             <div v-else class="volume-tile-image volume-tile-placeholder" aria-hidden="true" />
             <div class="volume-tile-body">
-              <h2 class="volume-tile-title">{{ v.title }}</h2>
+              <h2 class="volume-tile-title">
+                <RouterLink
+                  v-if="!v.forthcoming"
+                  :to="`/inversion-dialogs/${v.slug}/title`"
+                  class="volume-tile-title-link"
+                >{{ v.title }}</RouterLink>
+                <template v-else>{{ v.title }}</template>
+              </h2>
               <p class="volume-tile-subtitle">{{ v.forthcoming ? 'Forthcoming' : v.subtitle }}</p>
               <p v-if="v.blurb && !v.forthcoming" class="volume-tile-blurb">{{ v.blurb }}</p>
               <div v-if="!v.forthcoming" class="volume-tile-actions">
-                <span v-if="v.cta" class="volume-tile-cta">{{ v.cta }}</span>
+                <RouterLink
+                  v-if="v.cta"
+                  :to="`/inversion-dialogs/${v.slug}/title`"
+                  class="volume-tile-cta"
+                >{{ v.cta }}</RouterLink>
                 <a
                   v-if="v.pdf"
                   :href="v.pdf"
@@ -97,7 +120,6 @@
                   rel="noopener"
                   class="volume-tile-pdf"
                   :aria-label="`Download ${v.title} as PDF`"
-                  @click.stop
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -119,10 +141,10 @@
                 </a>
               </div>
             </div>
-          </component>
+          </article>
         </div>
 
-        <p class="volume-forthcoming">{{ inversionDialogues.forthcoming }}</p>
+        <p v-if="inversionDialogues.forthcoming" class="volume-forthcoming">{{ inversionDialogues.forthcoming }}</p>
 
         <p class="landing-closing">
           <em>{{ inversionDialogues.closing[0] }}</em><br>
