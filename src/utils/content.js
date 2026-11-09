@@ -28,6 +28,19 @@ const handbookModules = import.meta.glob('/src/content/handbook/*.md', {
   eager: true,
 });
 
+// Mutual Assistance — Booklet and Manuscript content
+const pmaBookletModules = import.meta.glob('/src/content/mutual-assistance/booklet/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+
+const pmaManuscriptModules = import.meta.glob('/src/content/mutual-assistance/manuscript/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+
 // Helper to sort by filename
 function sortByFilename(a, b) {
   const nameA = a.path.split('/').pop();
@@ -138,4 +151,51 @@ export function getHandbookSections() {
     .sort((a, b) => a.filename.localeCompare(b.filename));
 
   return sections;
+}
+
+// Shared section extraction for the Mutual Assistance booklet and manuscript.
+function extractSections(modules) {
+  return Object.entries(modules)
+    .map(([path, content]) => {
+      const filename = path.split('/').pop().replace('.md', '');
+      const lines = content.split('\n');
+      let title = filename;
+      let subtitle = '';
+
+      for (const line of lines) {
+        if (line.startsWith('## ')) {
+          title = line.replace('## ', '').trim();
+          break;
+        }
+        if (line.startsWith('# ')) {
+          title = line.replace('# ', '').trim();
+          break;
+        }
+      }
+
+      let foundTitle = false;
+      for (const line of lines) {
+        if (line.startsWith('## ') || line.startsWith('# ')) {
+          foundTitle = true;
+          continue;
+        }
+        if (foundTitle && line.startsWith('*') && line.endsWith('*') && !line.startsWith('**')) {
+          subtitle = line.replace(/^\*|\*$/g, '').trim();
+          break;
+        }
+      }
+
+      return { path, content, filename, title, subtitle };
+    })
+    .sort((a, b) => a.filename.localeCompare(b.filename));
+}
+
+// PMA Booklet sections (Presence)
+export function getPmaBookletSections() {
+  return extractSections(pmaBookletModules);
+}
+
+// PMA Full Manuscript sections (Movement)
+export function getPmaManuscriptSections() {
+  return extractSections(pmaManuscriptModules);
 }

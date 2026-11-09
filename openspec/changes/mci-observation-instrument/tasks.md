@@ -1,6 +1,6 @@
 ## 1. Guardrails (do not rebuild v0.1)
 
-- [ ] 1.1 Read `proposal.md`, `design.md`, and the five specs in this change before editing product code. Incoming James email/PDFs after this snapshot are out of scope.
+- [ ] 1.1 Read `proposal.md`, `design.md`, and the five specs in this change before editing product code. The public Mutual Assistance section (Booklet, Manuscript, Quick Start, nav) lives in sibling change `mutual-assistance-section`; Mutual House lives in `c:\src\mutualhouse`.
 - [ ] 1.2 Confirm v0.1 baseline is present (`src/content/instrument/v0.1.js`, `api/_instrument.js`, observe pages, Neon tables per `.arch-docs/database.md`). Do not mutate frozen `v0.1.js`. Do not rewrite James’s orientation except one factual skip/pause sentence. Do not write to `observations`. Do not add Clerk or email for participants. Do not show lens names.
 
 ## 2. Serif sizing

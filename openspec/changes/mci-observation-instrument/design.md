@@ -35,8 +35,8 @@ Shipped files: `src/content/instrument/v0.1.js`, `api/_instrument.js` plus thin 
 
 **Non-Goals:**
 
-- Ingesting the new James email/PDFs that arrived after this snapshot.
-- PMA booklet PDF (stub stays until a file is supplied).
+- Public Mutual Assistance top-nav section, Booklet reader, Full Manuscript reader, and MCI Quick Start page — these are now tracked in sibling change `mutual-assistance-section`.
+- The Mutual House multi-inhabitant application — tracked in `c:\src\mutualhouse` (`mutual-house-first-test`).
 - Pattern Field, Across Scales, Clerk-for-participants, email gate, Observatory mixing, server LLM, radar/percentiles/lens names in UI.
 - Site-wide serif audit outside observe sitting/record/return.
 - Rewriting orientation except one factual sentence if skip/pause require it.
@@ -132,4 +132,4 @@ API: either `POST /api/instrument/session` with `{ partial: true, responses }` o
 - Exact stems for the 1–2 new positive-space items (draft now; expected to change when later James PDFs are ingested).
 - Whether existing v0.1 return tokens should ever be offered a one-time “sit the revised bank” — not in v0.1.1.
 - Whether the “take this to an AI” sentence is removed the same day the epilogue ships or after James inhabits it (spec: hold until epilogue exists, then remove or rewrite).
-- PMA booklet file still absent; stub remains.
+- PMA booklet, full manuscript, and public Mutual Assistance doorway are handled in sibling change `mutual-assistance-section`.

@@ -3,6 +3,12 @@
     <div class="page-container">
       <div class="content-container observe-page">
         <div v-if="step === 'orientation'" class="page-content">
+          <RouterLink class="back-link" to="/mutual-assistance">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Back to Mutual Assistance
+          </RouterLink>
           <header class="page-header">
             <h1>Before You Begin</h1>
           </header>
@@ -39,9 +45,10 @@
             <p>This instrument grew from The Practice of Mutual Assistance, an exploration of how differentiated participants can become useful to one another while preserving sovereignty, discernment, and responsibility.</p>
             <p>You do not need to know or practice Mutual Assistance to use this instrument.</p>
             <p>
-              If you would like more context, a short PMA booklet is available
-              <RouterLink class="text-link" to="/observe/pma-booklet">here</RouterLink>.
-              The complete manuscript is also available through the booklet for those who want to explore the practice more deeply.
+              If you would like more context, a brief invitation is available in
+              <RouterLink class="text-link" to="/mutual-assistance/booklet">The Practice of Mutual Assistance (Booklet)</RouterLink>,
+              and the full manuscript is available as
+              <RouterLink class="text-link" to="/mutual-assistance/manuscript">The Practice of Mutual Assistance</RouterLink>.
             </p>
           </section>
 
@@ -49,6 +56,7 @@
             <button type="button" class="quiet-btn quiet-btn--primary" @click="step = 'sitting'">
               Begin Observation
             </button>
+            <RouterLink class="quick-start-link text-link" to="/mutual-assistance/mci/quick-start">MCI Quick Start</RouterLink>
           </p>
         </div>
 
@@ -164,6 +172,27 @@ function onDownload() {
 <style lang="scss" scoped>
 .observe-page {
   max-width: 40rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: var(--spacing-lg);
+  transition: color var(--transition-speed) ease;
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.quick-start-link {
+  margin-left: var(--spacing-lg);
+  font-size: 0.875rem;
 }
 
 .page-content p {

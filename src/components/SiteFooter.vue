@@ -10,6 +10,10 @@
           <span class="system-arrow">→</span>
           <span class="system-desc">generates signals</span>
 
+          <RouterLink to="/mutual-assistance" class="system-link"><strong>Mutual Assistance</strong></RouterLink>
+          <span class="system-arrow">→</span>
+          <span class="system-desc">makes participation observable</span>
+
           <RouterLink to="/observatory" class="system-link"><strong>Observatory</strong></RouterLink>
           <span class="system-arrow">→</span>
           <span class="system-desc">makes patterns visible</span>
@@ -39,6 +43,7 @@
           <RouterLink to="/mirror-across-scales">Mirror Across Scales</RouterLink>
           <RouterLink to="/tcp-executive-brief">TCP Executive Brief</RouterLink>
           <RouterLink to="/updates">Updates</RouterLink>
+          <a href="https://www.youtube.com/@CoherenceAcrossScales" target="_blank" rel="noopener noreferrer" aria-label="Coherence Across Scales on YouTube">YouTube</a>
         </nav>
       </div>
 
