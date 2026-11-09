@@ -25,6 +25,46 @@ const routes = [
     component: () => import('@/pages/SimpleTermsPage.vue'),
   },
   {
+    path: '/observe',
+    name: 'observe',
+    component: () => import('@/pages/observe/ObservePage.vue'),
+  },
+  {
+    path: '/observe/pma-booklet',
+    name: 'observe-pma-booklet',
+    redirect: '/mutual-assistance/booklet',
+  },
+  {
+    path: '/observe/r/:token',
+    name: 'observe-return',
+    component: () => import('@/pages/observe/ObserveReturnPage.vue'),
+  },
+  {
+    path: '/mutual-assistance',
+    name: 'mutual-assistance',
+    component: () => import('@/pages/mutual-assistance/MutualAssistancePage.vue'),
+  },
+  {
+    path: '/mutual-assistance/booklet',
+    name: 'mutual-assistance-booklet',
+    component: () => import('@/pages/mutual-assistance/PmaBookletPage.vue'),
+  },
+  {
+    path: '/mutual-assistance/manuscript',
+    name: 'mutual-assistance-manuscript',
+    component: () => import('@/pages/mutual-assistance/PmaManuscriptPage.vue'),
+  },
+  {
+    path: '/mutual-assistance/mci',
+    name: 'mutual-assistance-mci',
+    component: () => import('@/pages/observe/ObservePage.vue'),
+  },
+  {
+    path: '/mutual-assistance/mci/quick-start',
+    name: 'mutual-assistance-mci-quick-start',
+    component: () => import('@/pages/mutual-assistance/MciQuickStartPage.vue'),
+  },
+  {
     path: '/observatory',
     name: 'observatory',
     component: () => import('@/pages/ObservatoryPage.vue'),

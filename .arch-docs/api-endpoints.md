@@ -139,6 +139,62 @@ Open participatory submission from the *This Field Remains Open* page (Seven Mov
 
 ---
 
+### Observation instrument
+
+Unlisted participant sitting. No Clerk. Return token is shown once and stored only as a SHA-256 hash. Lens tags are never in the payload. No LLM.
+
+#### `POST /api/instrument/session`
+
+Creates a participant, first sitting, item-level responses, and a `private_storage` consent event.
+
+**Body (JSON):**
+```json
+{
+  "responses": [
+    { "itemId": "p5-permeability-would-harm", "choiceId": "named-limit-remained", "otherText": null }
+  ],
+  "website": ""
+}
+```
+
+New sittings use item bank `v0.1.1`. `website` is a honeypot. `complete: false` saves a partial sitting (`completed_at` null) and still returns a token only after the writes succeed. Omit `complete` or send `true` to require every item in the active bank, including skip (`choice_id: "skip"`, no `otherText`) or another movement.
+
+**Returns:** `{ token, instrumentVersion, sessions, whatFollowed }`  
+**Writes to:** `instrument_participants`, `instrument_sessions`, `instrument_responses`, `instrument_consent_events`  
+**Auth:** None (public)
+
+#### `GET /api/instrument/session/:token`
+
+Loads all sittings for a return code.
+
+**Reads from:** instrument tables  
+**Auth:** None (possession of the token)
+
+#### `POST /api/instrument/session/:token`
+
+Adds another sitting, or updates the participant's incomplete sitting. The bank is the version already stored for that return token (`v0.1` tokens stay on v0.1; new participants are `v0.1.1`). `complete: false` replaces responses on the open session and leaves `completed_at` null. A complete submit of an open session finishes that session instead of creating a new `session_index`. A complete submit with no open session appends a sitting. The client juxtaposes only after a second completed sitting.
+
+**Body:** same `responses` shape as create, plus optional `complete`.  
+**Auth:** None (possession of the token)
+
+#### `POST /api/instrument/session/:token/followed`
+
+Optional look-back on a prior sitting. Free-text notes stay on the private record.
+
+**Body (JSON):**
+```json
+{
+  "entries": [
+    { "priorSessionId": 1, "itemId": "p5-permeability-would-harm", "choiceId": "could-not-tell", "note": null }
+  ]
+}
+```
+
+**Writes to:** `instrument_what_followed`  
+**Auth:** None (possession of the token)
+
+---
+
 ## Admin-only endpoints
 
 All admin endpoints call `verifyAdminAuth(req, res)` from `api/_clerk-auth.js`. Requests must include a valid Clerk session token as `Authorization: Bearer <token>`. See [auth.md](./auth.md).

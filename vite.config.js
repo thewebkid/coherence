@@ -762,6 +762,37 @@ export default defineConfig({
               res.setHeader('Content-Type', 'application/json');
               res.end(JSON.stringify({ error: 'Failed to store submission.' }));
             }
+          } else if (req.url?.startsWith('/api/instrument')) {
+            const { handleInstrumentRequest } = await import('./api/_instrument.js');
+            const send = async () => {
+              try {
+                await handleInstrumentRequest(req, res);
+              } catch (error) {
+                console.error('instrument API dev error:', error);
+                if (!res.headersSent) {
+                  res.statusCode = 500;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify({ error: 'Something went wrong. Please try again.' }));
+                }
+              }
+            };
+            if (req.method === 'GET' || req.method === 'HEAD') {
+              await send();
+            } else {
+              let body = '';
+              req.on('data', (chunk) => { body += chunk; });
+              req.on('end', async () => {
+                try {
+                  req.body = body ? JSON.parse(body) : {};
+                } catch {
+                  res.statusCode = 400;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify({ error: 'Invalid JSON.' }));
+                  return;
+                }
+                await send();
+              });
+            }
           } else {
             next();
           }

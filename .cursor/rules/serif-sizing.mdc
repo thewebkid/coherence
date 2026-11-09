@@ -1,0 +1,11 @@
+---
+description: Readable serif is sized against the surrounding sans
+globs: "**/*.{vue,scss}"
+alwaysApply: true
+---
+
+Body text and UI chrome stay sans.
+
+When serif is used for readable text — stems, choice labels, record lines, text-like buttons — set its size to 1.2 × the surrounding sans size, and never below `1rem`. Headings may be larger serif; the floor still applies.
+
+Example: a radio label beside 1rem sans chrome is `font-family: var(--font-serif); font-size: 1.2rem;`.
