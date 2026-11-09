@@ -2,21 +2,18 @@ import { createHash, randomBytes } from 'crypto';
 import { neon } from '@neondatabase/serverless';
 import { limiters, checkRateLimit } from './_rate-limit.js';
 import { validateHoneypot } from './_honeypot.js';
-import {
-  INSTRUMENT_VERSION,
-  INSTRUMENT_LIFECYCLE,
-  ANOTHER_CHOICE_ID,
-  OTHER_TEXT_MAX,
-  items,
-  getItem,
-  getChoice,
-  getWhatFollowedChoice,
-  choiceIdsForItem,
-  WHAT_FOLLOWED_CHOICES,
-} from '../src/content/instrument/v0.1.js';
+import * as v01 from '../src/content/instrument/v0.1.js';
+import * as v011 from '../src/content/instrument/v0.1.1.js';
 
-const ITEM_IDS = new Set(items.map((item) => item.id));
-const FOLLOWED_IDS = new Set(WHAT_FOLLOWED_CHOICES.map((choice) => choice.id));
+const BANKS = {
+  [v01.INSTRUMENT_VERSION]: v01,
+  [v011.INSTRUMENT_VERSION]: v011,
+};
+const NEW_SITTING_VERSION = v011.INSTRUMENT_VERSION;
+
+function bankFor(version) {
+  return BANKS[version] || null;
+}
 
 function hashToken(token) {
   return createHash('sha256').update(String(token).trim().toUpperCase()).digest('hex');
@@ -57,62 +54,81 @@ function getSql() {
   return neon(POSTGRES_URL);
 }
 
-function normalizeOtherText(value) {
+function normalizeOtherText(value, max) {
   if (value == null) return null;
   const trimmed = String(value).trim();
-  return trimmed ? trimmed.slice(0, OTHER_TEXT_MAX) : null;
+  return trimmed ? trimmed.slice(0, max) : null;
 }
 
-function validateResponses(responses) {
-  if (!Array.isArray(responses) || responses.length !== items.length) {
-    return 'All observations in this sitting are required.';
+export function validateResponses(responses, bank, { partial = false } = {}) {
+  if (!Array.isArray(responses) || (!partial && responses.length !== bank.items.length)) {
+    return partial ? 'Nothing to save yet.' : 'All observations in this sitting are required.';
   }
+  if (partial && responses.length === 0) {
+    return 'Nothing to save yet.';
+  }
+  const itemIds = new Set(bank.items.map((item) => item.id));
   const seen = new Set();
   const cleaned = [];
   for (const row of responses) {
     const itemId = row?.itemId;
     const choiceId = row?.choiceId;
-    if (!itemId || !ITEM_IDS.has(itemId)) {
+    if (!itemId || !itemIds.has(itemId)) {
       return 'Unrecognized observation.';
     }
     if (seen.has(itemId)) {
       return 'Duplicate observation.';
     }
     seen.add(itemId);
-    const item = getItem(itemId);
-    const allowed = new Set(choiceIdsForItem(item));
+    const item = bank.getItem(itemId);
+    const allowed = new Set(bank.choiceIdsForItem(item));
     if (!choiceId || !allowed.has(choiceId)) {
       return 'Unrecognized movement.';
     }
-    const otherText = normalizeOtherText(row?.otherText);
-    if (choiceId === ANOTHER_CHOICE_ID && !otherText) {
+    const isAnother = choiceId === bank.ANOTHER_CHOICE_ID;
+    const isSkip = bank.SKIP_CHOICE_ID && choiceId === bank.SKIP_CHOICE_ID;
+    const otherText = isAnother ? normalizeOtherText(row?.otherText, bank.OTHER_TEXT_MAX) : null;
+    if (isAnother && !otherText) {
       return 'Please describe the other movement.';
     }
     cleaned.push({
       itemId,
       choiceId,
-      otherText: choiceId === ANOTHER_CHOICE_ID ? otherText : otherText,
+      otherText: isSkip ? null : otherText,
     });
   }
-  if (seen.size !== items.length) {
-    return 'All observations in this sitting are required.';
+  if (!partial) {
+    for (const item of bank.items) {
+      if (!seen.has(item.id)) {
+        return 'All observations in this sitting are required.';
+      }
+    }
   }
   return { ok: true, cleaned };
 }
 
-function publicResponse(row) {
-  const item = getItem(row.item_id);
-  const choice = getChoice(item, row.choice_id);
+function publicResponse(row, bank) {
+  const item = bank.getItem(row.item_id);
+  const choice = bank.getChoice(item, row.choice_id);
+  const isAnother = row.choice_id === bank.ANOTHER_CHOICE_ID;
+  const isSkip = bank.SKIP_CHOICE_ID && row.choice_id === bank.SKIP_CHOICE_ID;
   return {
     itemId: row.item_id,
     title: item?.title || row.item_id,
     stem: item?.stem || '',
     choiceId: row.choice_id,
-    choiceLabel: row.choice_id === ANOTHER_CHOICE_ID
-      ? (row.other_text || 'Another movement')
-      : (choice?.label || row.choice_id),
-    otherText: row.other_text || null,
+    choiceLabel: isSkip
+      ? bank.SKIP_CHOICE.label
+      : isAnother
+        ? (row.other_text || 'Another movement')
+        : (choice?.label || row.choice_id),
+    otherText: isSkip ? null : (row.other_text || null),
   };
+}
+
+function sortResponses(responses, bank) {
+  const index = new Map(bank.items.map((item, i) => [item.id, i]));
+  return [...responses].sort((a, b) => (index.get(a.itemId) ?? 0) - (index.get(b.itemId) ?? 0));
 }
 
 async function loadParticipantRecord(sql, tokenHash) {
@@ -139,10 +155,12 @@ async function loadParticipantRecord(sql, tokenHash) {
     ORDER BY r.id ASC
   `;
 
+  const versionBySession = new Map(sessions.map((session) => [session.id, session.instrument_version]));
   const bySession = new Map();
   for (const row of responseRows) {
+    const bank = bankFor(versionBySession.get(row.session_id)) || v011;
     if (!bySession.has(row.session_id)) bySession.set(row.session_id, []);
-    bySession.get(row.session_id).push(publicResponse(row));
+    bySession.get(row.session_id).push(publicResponse(row, bank));
   }
 
   const followedRows = await sql`
@@ -154,23 +172,29 @@ async function loadParticipantRecord(sql, tokenHash) {
   `;
 
   return {
-    instrumentVersion: INSTRUMENT_VERSION,
+    instrumentVersion: sessions[0]?.instrument_version || NEW_SITTING_VERSION,
     participantCreatedAt: participant.created_at,
-    sessions: sessions.map((session) => ({
-      id: session.id,
-      sessionIndex: session.session_index,
-      completedAt: session.completed_at,
-      responses: bySession.get(session.id) || [],
-    })),
+    sessions: sessions.map((session) => {
+      const bank = bankFor(session.instrument_version) || v011;
+      return {
+        id: session.id,
+        sessionIndex: session.session_index,
+        instrumentVersion: session.instrument_version,
+        completedAt: session.completed_at,
+        responses: sortResponses(bySession.get(session.id) || [], bank),
+      };
+    }),
     whatFollowed: followedRows.map((row) => {
-      const item = getItem(row.item_id);
-      const followed = getWhatFollowedChoice(row.choice_id);
+      const bank = bankFor(versionBySession.get(row.prior_session_id)) || v011;
+      const item = bank.getItem(row.item_id);
+      const followed = bank.getWhatFollowedChoice(row.choice_id);
+      const isAnother = row.choice_id === bank.ANOTHER_CHOICE_ID;
       return {
         priorSessionId: row.prior_session_id,
         itemId: row.item_id,
         title: item?.title || row.item_id,
         choiceId: row.choice_id,
-        choiceLabel: row.choice_id === ANOTHER_CHOICE_ID
+        choiceLabel: isAnother
           ? (row.note || 'Something else followed')
           : (followed?.label || row.choice_id),
         note: row.note || null,
@@ -179,16 +203,26 @@ async function loadParticipantRecord(sql, tokenHash) {
   };
 }
 
-async function ensureVersion(sql) {
+async function ensureVersion(sql, bank) {
   await sql`
     INSERT INTO instrument_versions (label, lifecycle)
-    VALUES (${INSTRUMENT_VERSION}, ${INSTRUMENT_LIFECYCLE})
+    VALUES (${bank.INSTRUMENT_VERSION}, ${bank.INSTRUMENT_LIFECYCLE})
     ON CONFLICT (label) DO NOTHING
   `;
 }
 
-async function createFirstSitting(sql, cleaned) {
-  await ensureVersion(sql);
+async function insertResponses(sql, sessionId, cleaned) {
+  for (const row of cleaned) {
+    await sql`
+      INSERT INTO instrument_responses (session_id, item_id, choice_id, other_text)
+      VALUES (${sessionId}, ${row.itemId}, ${row.choiceId}, ${row.otherText})
+    `;
+  }
+}
+
+async function createFirstSitting(sql, cleaned, { complete }) {
+  const bank = v011;
+  await ensureVersion(sql, bank);
   let token = generateReturnToken();
   let tokenHash = hashToken(token);
   for (let attempt = 0; attempt < 5; attempt += 1) {
@@ -206,73 +240,119 @@ async function createFirstSitting(sql, cleaned) {
     RETURNING id
   `;
 
-  const [session] = await sql`
-    INSERT INTO instrument_sessions (
-      participant_id, instrument_version, observational_position, scale, session_index, completed_at
-    )
-    VALUES (
-      ${participant.id},
-      ${INSTRUMENT_VERSION},
-      'interior',
-      'sovereign_participant',
-      1,
-      NOW()
-    )
-    RETURNING id, session_index, completed_at
-  `;
-
-  for (const row of cleaned) {
-    await sql`
-      INSERT INTO instrument_responses (session_id, item_id, choice_id, other_text)
-      VALUES (${session.id}, ${row.itemId}, ${row.choiceId}, ${row.otherText})
+  const [session] = complete
+    ? await sql`
+      INSERT INTO instrument_sessions (
+        participant_id, instrument_version, observational_position, scale, session_index, completed_at
+      )
+      VALUES (
+        ${participant.id}, ${bank.INSTRUMENT_VERSION}, 'interior', 'sovereign_participant', 1, NOW()
+      )
+      RETURNING id
+    `
+    : await sql`
+      INSERT INTO instrument_sessions (
+        participant_id, instrument_version, observational_position, scale, session_index, completed_at
+      )
+      VALUES (
+        ${participant.id}, ${bank.INSTRUMENT_VERSION}, 'interior', 'sovereign_participant', 1, NULL
+      )
+      RETURNING id
     `;
-  }
+
+  await insertResponses(sql, session.id, cleaned);
 
   await sql`
     INSERT INTO instrument_consent_events (participant_id, consent_type, text_version, granted)
-    VALUES (${participant.id}, 'private_storage', ${INSTRUMENT_VERSION}, true)
+    VALUES (${participant.id}, 'private_storage', ${bank.INSTRUMENT_VERSION}, true)
   `;
 
   const record = await loadParticipantRecord(sql, tokenHash);
+  if (!record) {
+    const err = new Error('The observation could not be stored.');
+    err.status = 500;
+    throw err;
+  }
   return { token, record };
 }
 
-async function addReturnSitting(sql, tokenHash, cleaned) {
+async function saveOnToken(sql, tokenHash, cleaned, { complete, bank }) {
   const [participant] = await sql`
     SELECT id FROM instrument_participants WHERE return_token_hash = ${tokenHash}
   `;
   if (!participant) return null;
 
-  const [last] = await sql`
-    SELECT COALESCE(MAX(session_index), 0) AS max_index
+  const sessions = await sql`
+    SELECT id, session_index, instrument_version, completed_at
     FROM instrument_sessions
     WHERE participant_id = ${participant.id}
+    ORDER BY session_index ASC
   `;
-  const nextIndex = Number(last?.max_index || 0) + 1;
+  const open = [...sessions].reverse().find((session) => !session.completed_at);
 
-  const [session] = await sql`
-    INSERT INTO instrument_sessions (
-      participant_id, instrument_version, observational_position, scale, session_index, completed_at
-    )
-    VALUES (
-      ${participant.id},
-      ${INSTRUMENT_VERSION},
-      'interior',
-      'sovereign_participant',
-      ${nextIndex},
-      NOW()
-    )
-    RETURNING id
-  `;
-
-  for (const row of cleaned) {
-    await sql`
-      INSERT INTO instrument_responses (session_id, item_id, choice_id, other_text)
-      VALUES (${session.id}, ${row.itemId}, ${row.choiceId}, ${row.otherText})
-    `;
+  if (open) {
+    if (open.instrument_version !== bank.INSTRUMENT_VERSION) {
+      const err = new Error('Unrecognized observation.');
+      err.status = 400;
+      throw err;
+    }
+    await sql`DELETE FROM instrument_responses WHERE session_id = ${open.id}`;
+    await insertResponses(sql, open.id, cleaned);
+    if (complete) {
+      await sql`UPDATE instrument_sessions SET completed_at = NOW() WHERE id = ${open.id}`;
+    }
+    const record = await loadParticipantRecord(sql, tokenHash);
+    if (!record) {
+      const err = new Error('The observation could not be stored.');
+      err.status = 500;
+      throw err;
+    }
+    return record;
   }
 
-  return loadParticipantRecord(sql, tokenHash);
+  await ensureVersion(sql, bank);
+  const nextIndex = Number(sessions[sessions.length - 1]?.session_index || 0) + 1;
+  const [session] = complete
+    ? await sql`
+      INSERT INTO instrument_sessions (
+        participant_id, instrument_version, observational_position, scale, session_index, completed_at
+      )
+      VALUES (
+        ${participant.id}, ${bank.INSTRUMENT_VERSION}, 'interior', 'sovereign_participant', ${nextIndex}, NOW()
+      )
+      RETURNING id
+    `
+    : await sql`
+      INSERT INTO instrument_sessions (
+        participant_id, instrument_version, observational_position, scale, session_index, completed_at
+      )
+      VALUES (
+        ${participant.id}, ${bank.INSTRUMENT_VERSION}, 'interior', 'sovereign_participant', ${nextIndex}, NULL
+      )
+      RETURNING id
+    `;
+
+  await insertResponses(sql, session.id, cleaned);
+  const record = await loadParticipantRecord(sql, tokenHash);
+  if (!record) {
+    const err = new Error('The observation could not be stored.');
+    err.status = 500;
+    throw err;
+  }
+  return record;
+}
+
+async function continuityBank(sql, tokenHash) {
+  const [row] = await sql`
+    SELECT s.instrument_version
+    FROM instrument_sessions s
+    JOIN instrument_participants p ON p.id = s.participant_id
+    WHERE p.return_token_hash = ${tokenHash}
+    ORDER BY s.session_index ASC
+    LIMIT 1
+  `;
+  if (!row) return null;
+  return bankFor(row.instrument_version);
 }
 
 async function saveWhatFollowed(sql, tokenHash, entries) {
@@ -282,33 +362,37 @@ async function saveWhatFollowed(sql, tokenHash, entries) {
   if (!participant) return null;
 
   const sessions = await sql`
-    SELECT id FROM instrument_sessions
+    SELECT id, instrument_version FROM instrument_sessions
     WHERE participant_id = ${participant.id}
     ORDER BY session_index ASC
   `;
-  const allowedSessions = new Set(sessions.map((s) => s.id));
+  const allowedSessions = new Map(sessions.map((session) => [session.id, session.instrument_version]));
 
   for (const entry of entries) {
     const priorSessionId = Number(entry.priorSessionId);
-    const itemId = entry.itemId;
-    const choiceId = entry.choiceId;
-    if (!allowedSessions.has(priorSessionId)) {
+    const version = allowedSessions.get(priorSessionId);
+    const bank = version ? bankFor(version) : null;
+    if (!bank) {
       const err = new Error('Unrecognized sitting.');
       err.status = 400;
       throw err;
     }
-    if (!ITEM_IDS.has(itemId)) {
+    const itemIds = new Set(bank.items.map((item) => item.id));
+    const followedIds = new Set(bank.WHAT_FOLLOWED_CHOICES.map((choice) => choice.id));
+    if (!itemIds.has(entry.itemId)) {
       const err = new Error('Unrecognized observation.');
       err.status = 400;
       throw err;
     }
-    if (!FOLLOWED_IDS.has(choiceId)) {
+    if (!followedIds.has(entry.choiceId)) {
       const err = new Error('Unrecognized movement.');
       err.status = 400;
       throw err;
     }
-    const note = normalizeOtherText(entry.note);
-    if (choiceId === ANOTHER_CHOICE_ID && !note) {
+    const note = entry.choiceId === bank.ANOTHER_CHOICE_ID
+      ? normalizeOtherText(entry.note, bank.OTHER_TEXT_MAX)
+      : normalizeOtherText(entry.note, bank.OTHER_TEXT_MAX);
+    if (entry.choiceId === bank.ANOTHER_CHOICE_ID && !note) {
       const err = new Error('Please describe what followed.');
       err.status = 400;
       throw err;
@@ -316,7 +400,7 @@ async function saveWhatFollowed(sql, tokenHash, entries) {
 
     await sql`
       INSERT INTO instrument_what_followed (prior_session_id, item_id, choice_id, note)
-      VALUES (${priorSessionId}, ${itemId}, ${choiceId}, ${choiceId === ANOTHER_CHOICE_ID ? note : note})
+      VALUES (${priorSessionId}, ${entry.itemId}, ${entry.choiceId}, ${note})
     `;
   }
 
@@ -345,12 +429,13 @@ export async function handleInstrumentRequest(req, res) {
       try { validateHoneypot(body.website); } catch (e) {
         return json(res, e.status || 400, { error: e.message });
       }
-      const validated = validateResponses(body.responses);
+      const partial = body.complete === false;
+      const validated = validateResponses(body.responses, v011, { partial });
       if (typeof validated === 'string') {
         return json(res, 400, { error: validated });
       }
       const sql = getSql();
-      const { token, record } = await createFirstSitting(sql, validated.cleaned);
+      const { token, record } = await createFirstSitting(sql, validated.cleaned, { complete: !partial });
       return json(res, 200, { token, ...record });
     }
 
@@ -379,16 +464,23 @@ export async function handleInstrumentRequest(req, res) {
     }
 
     if (path.startsWith('/api/instrument/session/') && token && method === 'POST') {
+      if (!token) return json(res, 400, { error: 'Missing return code.' });
       const body = req.body || {};
       try { validateHoneypot(body.website); } catch (e) {
         return json(res, e.status || 400, { error: e.message });
       }
-      const validated = validateResponses(body.responses);
+      const sql = getSql();
+      const bank = await continuityBank(sql, hashToken(token));
+      if (!bank) return json(res, 404, { error: 'Return code not found.' });
+      const partial = body.complete === false;
+      const validated = validateResponses(body.responses, bank, { partial });
       if (typeof validated === 'string') {
         return json(res, 400, { error: validated });
       }
-      const sql = getSql();
-      const record = await addReturnSitting(sql, hashToken(token), validated.cleaned);
+      const record = await saveOnToken(sql, hashToken(token), validated.cleaned, {
+        complete: !partial,
+        bank,
+      });
       if (!record) return json(res, 404, { error: 'Return code not found.' });
       return json(res, 200, record);
     }

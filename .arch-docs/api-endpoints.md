@@ -157,7 +157,7 @@ Creates a participant, first sitting, item-level responses, and a `private_stora
 }
 ```
 
-All v0.1 items are required. `website` is a honeypot.
+New sittings use item bank `v0.1.1`. `website` is a honeypot. `complete: false` saves a partial sitting (`completed_at` null) and still returns a token only after the writes succeed. Omit `complete` or send `true` to require every item in the active bank, including skip (`choice_id: "skip"`, no `otherText`) or another movement.
 
 **Returns:** `{ token, instrumentVersion, sessions, whatFollowed }`  
 **Writes to:** `instrument_participants`, `instrument_sessions`, `instrument_responses`, `instrument_consent_events`  
@@ -172,9 +172,9 @@ Loads all sittings for a return code.
 
 #### `POST /api/instrument/session/:token`
 
-Adds another sitting (same frozen version). Complete the sitting blind; the client juxtaposes afterward.
+Adds another sitting, or updates the participant's incomplete sitting. The bank is the version already stored for that return token (`v0.1` tokens stay on v0.1; new participants are `v0.1.1`). `complete: false` replaces responses on the open session and leaves `completed_at` null. A complete submit of an open session finishes that session instead of creating a new `session_index`. A complete submit with no open session appends a sitting. The client juxtaposes only after a second completed sitting.
 
-**Body:** same `responses` shape as create.  
+**Body:** same `responses` shape as create, plus optional `complete`.  
 **Auth:** None (possession of the token)
 
 #### `POST /api/instrument/session/:token/followed`

@@ -98,7 +98,7 @@ File uploads are stored in Vercel Blob; only the URL and pathname are stored her
 
 ---
 
-### Observation instrument (v0.1)
+### Observation instrument (v0.1 / v0.1.1)
 
 Private “My Continuity” sitting at `/observe`. Separate from `observations`. Do not mix these tables with the Observatory word field.
 
@@ -135,7 +135,8 @@ CREATE TABLE instrument_responses (
   item_id     text NOT NULL,
   choice_id   text NOT NULL,
   other_text  text,
-  created_at  timestamptz NOT NULL DEFAULT now()
+  created_at  timestamptz NOT NULL DEFAULT now(),
+  UNIQUE (session_id, item_id)
 );
 
 CREATE TABLE instrument_consent_events (
@@ -157,7 +158,7 @@ CREATE TABLE instrument_what_followed (
 );
 ```
 
-The frozen item bank lives in [`src/content/instrument/v0.1.js`](../src/content/instrument/v0.1.js), not as derived scores. Lens tags are metadata only and are not returned by the public API.
+The frozen v0.1 bank lives in [`src/content/instrument/v0.1.js`](../src/content/instrument/v0.1.js). New sittings use [`src/content/instrument/v0.1.1.js`](../src/content/instrument/v0.1.1.js). `instrument_versions.label` holds either label with lifecycle `prototype`. Skip is stored as `choice_id = 'skip'` with null `other_text`. A pause leaves `instrument_sessions.completed_at` null and stores only the responses so far; finishing that same session sets `completed_at`. Existing v0.1 return tokens keep sitting v0.1. Lens tags are metadata only and are not returned by the public API. There is no score column and no write to `observations`.
 
 Migration: `node -r dotenv/config scripts/migrate-instrument-v01.js dotenv_config_path=.env.local`
 

@@ -83,11 +83,15 @@ async function migrate() {
 
     await sql`CREATE INDEX IF NOT EXISTS instrument_sessions_participant_idx ON instrument_sessions (participant_id)`;
     await sql`CREATE INDEX IF NOT EXISTS instrument_responses_session_idx ON instrument_responses (session_id)`;
+    await sql`
+      CREATE UNIQUE INDEX IF NOT EXISTS instrument_responses_session_item_uidx
+      ON instrument_responses (session_id, item_id)
+    `;
     await sql`CREATE INDEX IF NOT EXISTS instrument_what_followed_session_idx ON instrument_what_followed (prior_session_id)`;
 
     await sql`
       INSERT INTO instrument_versions (label, lifecycle)
-      VALUES ('v0.1', 'prototype')
+      VALUES ('v0.1', 'prototype'), ('v0.1.1', 'prototype')
       ON CONFLICT (label) DO NOTHING
     `;
 

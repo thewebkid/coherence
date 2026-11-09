@@ -36,6 +36,8 @@
 
           <p>If none of the choices fits, you can record another movement.</p>
 
+          <p>If you cannot recall a recent situation like one of these, you can pass over that question, and after the ninth question you may pause and continue later with your return code.</p>
+
           <p>Your observation is private. At the end you will receive a return code. Keep it if you want to return. Returning does not enroll you in research.</p>
 
           <p>This sitting itself may affect what you notice afterward. That is part of observation, not a result that CAS interprets for you.</p>
@@ -64,43 +66,31 @@
           <p v-if="submitError" class="submit-error">{{ submitError }}</p>
           <ObserveSitting
             :submitting="submitting"
+            version="v0.1.1"
+            draft-scope="new"
             @complete="onComplete"
+            @pause="onPause"
             @cancel="step = 'orientation'"
           />
         </div>
 
-        <div v-else-if="step === 'record'" class="page-content">
+        <div v-else-if="step === 'paused'" class="page-content">
           <header class="page-header">
-            <h1>A record of recognized movement</h1>
+            <h1>Your place is saved</h1>
           </header>
-          <p class="not-a-measure">This is not a measure of coherence.</p>
-
-          <div
-            v-for="response in latestResponses"
-            :key="response.itemId"
-            class="record-block"
-          >
-            <h2>{{ response.title }}</h2>
-            <p>You recognized: <em>{{ response.choiceLabel }}</em></p>
-          </div>
-
-          <p class="return-code">
-            Return code: <strong>{{ token }}</strong>
-          </p>
-          <p>Keep this if you want to return. We will not email it to you.</p>
-
+          <p>Questions through 9 are kept. You can continue from question 10.</p>
+          <p class="return-code">Return code: <strong>{{ token }}</strong></p>
           <p>
-            <RouterLink class="text-link" :to="'/observe/r/' + token">Return to these conditions later</RouterLink>
-          </p>
-
-          <p>
-            <button type="button" class="quiet-btn" @click="onDownload">Download your observation</button>
-          </p>
-
-          <p class="outside-note">
-            Taking this record into a conversation — with a person, or with an AI — is yours. It is not part of this instrument.
+            <RouterLink class="text-link" :to="'/observe/r/' + token">Continue this sitting</RouterLink>
           </p>
         </div>
+
+        <ObserveRecord
+          v-else-if="step === 'record' && focusSession"
+          :token="token"
+          :record="record"
+          :session="focusSession"
+        />
       </div>
     </div>
   </div>
@@ -110,9 +100,10 @@
 import { computed, onMounted, ref } from 'vue';
 import { useHead } from '@unhead/vue';
 import ObserveSitting from '@/components/observe/ObserveSitting.vue';
+import ObserveRecord from '@/components/observe/ObserveRecord.vue';
 import {
   TOKEN_STORAGE_KEY,
-  downloadObservation,
+  clearDraft,
   postSession,
 } from '@/utils/instrument.js';
 
@@ -131,9 +122,9 @@ const token = ref('');
 const record = ref(null);
 const storedToken = ref('');
 
-const latestResponses = computed(() => {
+const focusSession = computed(() => {
   const sessions = record.value?.sessions || [];
-  return sessions[sessions.length - 1]?.responses || [];
+  return [...sessions].reverse().find((session) => session.completedAt) || sessions[sessions.length - 1] || null;
 });
 
 onMounted(() => {
@@ -144,18 +135,23 @@ onMounted(() => {
   }
 });
 
+function rememberToken(value) {
+  token.value = value;
+  try {
+    localStorage.setItem(TOKEN_STORAGE_KEY, value);
+  } catch {
+    /* ignore */
+  }
+  clearDraft('new');
+}
+
 async function onComplete(responses) {
   submitting.value = true;
   submitError.value = '';
   try {
-    const data = await postSession('/api/instrument/session', { responses });
-    token.value = data.token;
+    const data = await postSession('/api/instrument/session', { responses, complete: true });
     record.value = data;
-    try {
-      localStorage.setItem(TOKEN_STORAGE_KEY, data.token);
-    } catch {
-      /* ignore */
-    }
+    rememberToken(data.token);
     step.value = 'record';
   } catch (err) {
     submitError.value = err.message;
@@ -164,8 +160,19 @@ async function onComplete(responses) {
   }
 }
 
-function onDownload() {
-  downloadObservation(token.value, record.value);
+async function onPause(responses) {
+  submitting.value = true;
+  submitError.value = '';
+  try {
+    const data = await postSession('/api/instrument/session', { responses, complete: false });
+    record.value = data;
+    rememberToken(data.token);
+    step.value = 'paused';
+  } catch (err) {
+    submitError.value = err.message;
+  } finally {
+    submitting.value = false;
+  }
 }
 </script>
 
@@ -260,7 +267,7 @@ function onDownload() {
   padding: 0;
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   cursor: pointer;
 

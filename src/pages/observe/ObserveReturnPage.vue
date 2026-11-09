@@ -7,36 +7,45 @@
         <p v-else-if="loading" class="text-meta">Loading…</p>
 
         <div v-else-if="step === 'sitting'">
-          <p class="return-lead">The same conditions. Recognize what is familiar now.</p>
+          <p v-if="!resuming" class="return-lead">The same conditions. Recognize what is familiar now.</p>
           <p v-if="submitError" class="error-message">{{ submitError }}</p>
           <ObserveSitting
+            :key="sittingKey"
             :submitting="submitting"
+            :version="sittingVersion"
+            :initial-answers="resumeAnswers"
+            :start-index="resumeIndex"
+            :draft-scope="token"
             @complete="onComplete"
+            @pause="onPause"
             @cancel="goHome"
           />
         </div>
 
-        <div v-else-if="step === 'compare'" class="page-content">
+        <div v-else-if="step === 'paused'" class="page-content">
           <header class="page-header">
-            <h1>Same conditions. Recognized movement at two sittings.</h1>
+            <h1>Your place is saved</h1>
           </header>
-          <p class="not-a-measure">
-            This is not better or worse. Same is not stuck. Different is not improvement.
-          </p>
-
-          <div
-            v-for="row in comparisonRows"
-            :key="row.itemId"
-            class="compare-block"
-          >
-            <h2>{{ row.title }}</h2>
-            <p><span class="text-meta">Earlier sitting</span><br>{{ row.earlier }}</p>
-            <p><span class="text-meta">This sitting</span><br>{{ row.latest }}</p>
-          </div>
-
+          <p>Questions through 9 are kept. You can continue from question 10.</p>
           <p>
-            <button type="button" class="quiet-btn" @click="onDownload">Download your observation</button>
+            <button type="button" class="quiet-btn quiet-btn--primary" @click="prepareSitting(record)">Continue this sitting</button>
           </p>
+        </div>
+
+        <ObserveRecord
+          v-else-if="step === 'record' && focusSession"
+          :token="token"
+          :record="record"
+          :session="focusSession"
+        />
+
+        <div v-else-if="step === 'compare' && focusSession && priorSession">
+          <ObserveRecord
+            :token="token"
+            :record="record"
+            :session="focusSession"
+            :prior-session="priorSession"
+          />
           <p>
             <button type="button" class="quiet-btn quiet-btn--primary" @click="step = 'followed'">
               Optionally look back
@@ -107,21 +116,19 @@ import { computed, onMounted, reactive, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useHead } from '@unhead/vue';
 import ObserveSitting from '@/components/observe/ObserveSitting.vue';
-import {
-  ANOTHER_CHOICE_ID,
-  WHAT_FOLLOWED_CHOICES,
-  items,
-} from '@/content/instrument/v0.1.js';
+import ObserveRecord from '@/components/observe/ObserveRecord.vue';
 import {
   TOKEN_STORAGE_KEY,
-  downloadObservation,
+  answersFromResponses,
+  bankFor,
+  clearDraft,
+  firstUnansweredIndex,
   postSession,
 } from '@/utils/instrument.js';
 
 const route = useRoute();
 const router = useRouter();
-const anotherId = ANOTHER_CHOICE_ID;
-const followedChoices = WHAT_FOLLOWED_CHOICES;
+const anotherId = 'another';
 
 useHead({
   title: 'Observation — Coherence Across Scales',
@@ -137,6 +144,11 @@ const followError = ref('');
 const step = ref('sitting');
 const record = ref(null);
 const token = computed(() => String(route.params.token || ''));
+const sittingVersion = ref('v0.1.1');
+const resumeAnswers = ref(null);
+const resumeIndex = ref(0);
+const resuming = ref(false);
+const sittingKey = ref(0);
 
 const followed = reactive({});
 
@@ -147,32 +159,21 @@ function resetFollowed(priorSession) {
   }
 }
 
-const priorSession = computed(() => {
-  const sessions = record.value?.sessions || [];
-  if (sessions.length < 2) return sessions[0] || null;
-  return sessions[sessions.length - 2];
-});
+const completedSessions = computed(() => (record.value?.sessions || []).filter((session) => session.completedAt));
 
-const latestSession = computed(() => {
-  const sessions = record.value?.sessions || [];
-  return sessions[sessions.length - 1] || null;
+const focusSession = computed(() => completedSessions.value[completedSessions.value.length - 1] || null);
+
+const priorSession = computed(() => {
+  const sessions = completedSessions.value;
+  if (sessions.length < 2) return null;
+  return sessions[sessions.length - 2];
 });
 
 const priorResponses = computed(() => priorSession.value?.responses || []);
 
-const comparisonRows = computed(() => {
-  const earlier = priorSession.value?.responses || [];
-  const latest = latestSession.value?.responses || [];
-  return items.map((item) => {
-    const a = earlier.find((r) => r.itemId === item.id);
-    const b = latest.find((r) => r.itemId === item.id);
-    return {
-      itemId: item.id,
-      title: item.title,
-      earlier: a?.choiceLabel || '—',
-      latest: b?.choiceLabel || '—',
-    };
-  });
+const followedChoices = computed(() => {
+  const version = priorSession.value?.instrumentVersion || record.value?.instrumentVersion;
+  return bankFor(version).WHAT_FOLLOWED_CHOICES;
 });
 
 watch(priorSession, (session) => {
@@ -195,6 +196,7 @@ async function loadRecord() {
     } catch {
       /* ignore */
     }
+    prepareSitting(data);
   } catch {
     loadError.value = 'This return code could not be loaded.';
   } finally {
@@ -208,16 +210,37 @@ function goHome() {
   router.push('/observe');
 }
 
+function prepareSitting(data) {
+  const sessions = data?.sessions || [];
+  const open = [...sessions].reverse().find((session) => !session.completedAt);
+  const version = open?.instrumentVersion || data?.instrumentVersion || 'v0.1.1';
+  sittingVersion.value = version;
+  if (open) {
+    const bank = bankFor(version);
+    resumeAnswers.value = answersFromResponses(bank.items, open.responses);
+    resumeIndex.value = firstUnansweredIndex(bank.items, resumeAnswers.value);
+    resuming.value = true;
+  } else {
+    resumeAnswers.value = null;
+    resumeIndex.value = 0;
+    resuming.value = false;
+  }
+  sittingKey.value += 1;
+  step.value = 'sitting';
+}
+
 async function onComplete(responses) {
   submitting.value = true;
   submitError.value = '';
   try {
     const data = await postSession(
       `/api/instrument/session/${encodeURIComponent(token.value)}`,
-      { responses }
+      { responses, complete: true }
     );
     record.value = data;
-    step.value = 'compare';
+    clearDraft(token.value);
+    const finished = (data.sessions || []).filter((session) => session.completedAt);
+    step.value = finished.length >= 2 ? 'compare' : 'record';
   } catch (err) {
     submitError.value = err.message;
   } finally {
@@ -225,8 +248,22 @@ async function onComplete(responses) {
   }
 }
 
-function onDownload() {
-  downloadObservation(token.value, record.value);
+async function onPause(responses) {
+  submitting.value = true;
+  submitError.value = '';
+  try {
+    const data = await postSession(
+      `/api/instrument/session/${encodeURIComponent(token.value)}`,
+      { responses, complete: false }
+    );
+    record.value = data;
+    clearDraft(token.value);
+    step.value = 'paused';
+  } catch (err) {
+    submitError.value = err.message;
+  } finally {
+    submitting.value = false;
+  }
 }
 
 function skipFollowed() {
@@ -253,7 +290,7 @@ async function saveFollowed() {
     return;
   }
   for (const entry of entries) {
-    if (entry.choiceId === ANOTHER_CHOICE_ID && !String(entry.note || '').trim()) {
+    if (entry.choiceId === anotherId && !String(entry.note || '').trim()) {
       followError.value = 'Please describe what followed, or skip.';
       return;
     }
@@ -295,7 +332,7 @@ async function saveFollowed() {
   h2 {
     font-family: var(--font-serif);
     font-weight: 400;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -316,12 +353,14 @@ async function saveFollowed() {
   padding: 0.45rem 0;
   cursor: pointer;
   font-family: var(--font-serif);
+  font-size: 1.2rem;
 }
 
 textarea {
   width: 100%;
   padding: var(--spacing-sm);
   font-family: var(--font-serif);
+  font-size: 1.2rem;
   border: 1px solid var(--border);
   background: var(--bg);
   color: var(--text);
@@ -346,7 +385,7 @@ textarea {
   padding: 0;
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   cursor: pointer;
 
