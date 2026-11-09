@@ -72,7 +72,6 @@ const apertures = [
   {
     eyebrow: 'Trace',
     title: 'Movement Continuity Instrument (MCI)',
-    subtitle: 'MCI v0.1',
     to: '/mutual-assistance/mci',
     thumbnail: '/img/mci/Movement-Continuity-Instrument.jpg',
     description: 'An observational instrument for noticing movements that become recognizable in you under different relational conditions. MCI does not score coherence or prescribe better responses. It makes participation observable and, through Return, allows observation to acquire continuity.',
