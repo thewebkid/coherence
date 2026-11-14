@@ -1,15 +1,15 @@
 <template>
-  <div ref="root" class="observe-sitting">
-    <p class="question-label">Question {{ currentIndex + 1 }}/{{ items.length }}</p>
-    <p class="sitting-stem">{{ current.stem }}</p>
-    <p class="sitting-prompt">{{ current.prompt }}</p>
+  <div ref="root" class="scroll-start">
+    <p class="text-label text-label--sm">Question {{ currentIndex + 1 }}/{{ items.length }}</p>
+    <p class="text-serif">{{ current.stem }}</p>
+    <p class="text-caption">{{ current.prompt }}</p>
 
-    <fieldset class="choice-set">
+    <fieldset class="option-list">
       <legend class="visually-hidden">{{ current.prompt }}</legend>
       <label
         v-for="choice in displayedChoices"
         :key="choice.id"
-        class="choice-row"
+        class="option"
         :class="{ selected: answers[current.id].choiceId === choice.id }"
       >
         <input
@@ -22,9 +22,10 @@
       </label>
     </fieldset>
 
-    <div v-if="answers[current.id].choiceId === anotherId" class="other-field">
-      <label :for="'other-' + current.id">The movement you recognize</label>
+    <div v-if="answers[current.id].choiceId === anotherId" class="field">
+      <label class="field-label" :for="'other-' + current.id">The movement you recognize</label>
       <textarea
+        class="field-control"
         :id="'other-' + current.id"
         v-model="answers[current.id].otherText"
         rows="3"
@@ -32,21 +33,21 @@
       ></textarea>
     </div>
 
-    <p v-if="itemError" class="error-message">{{ itemError }}</p>
+    <p v-if="itemError" class="text-note">{{ itemError }}</p>
 
-    <div v-if="offeringPause" class="pause-offer">
-      <p>You can continue now, or pause here and return later.</p>
-      <div class="sitting-nav">
+    <div v-if="offeringPause">
+      <p class="text-caption">You can continue now, or pause here and return later.</p>
+      <div class="action-row">
         <button type="button" class="quiet-btn" :disabled="submitting" @click="pauseHere">
           {{ submitting ? 'Saving…' : 'Pause here' }}
         </button>
-        <button type="button" class="quiet-btn quiet-btn--primary" :disabled="submitting" @click="continueNow">
+        <button type="button" class="quiet-btn" :disabled="submitting" @click="continueNow">
           Continue now
         </button>
       </div>
     </div>
 
-    <div v-else class="sitting-nav">
+    <div v-else class="action-row">
       <button
         v-if="currentIndex > 0"
         type="button"
@@ -65,7 +66,7 @@
       </button>
       <button
         type="button"
-        class="quiet-btn quiet-btn--primary"
+        class="quiet-btn"
         :disabled="submitting"
         @click="next"
       >
@@ -76,7 +77,7 @@
 </template>
 
 <script setup>
-import { computed, nextTick, reactive, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue';
 import {
   answersToResponses,
   bankFor,
@@ -141,10 +142,16 @@ watch(
   { immediate: true }
 );
 
-watch(currentIndex, async (index, previous) => {
-  if (previous == null || index === previous) return;
+async function revealQuestion() {
   await nextTick();
   root.value?.scrollIntoView({ block: 'start' });
+}
+
+onMounted(revealQuestion);
+
+watch(currentIndex, async (index, previous) => {
+  if (previous == null || index === previous) return;
+  await revealQuestion();
 });
 
 watch(answers, () => {
@@ -204,140 +211,3 @@ function pauseHere() {
   emit('pause', answersToResponses(items.value, answers, { partial: true }));
 }
 </script>
-
-<style lang="scss" scoped>
-.observe-sitting {
-  max-width: 40rem;
-}
-
-.question-label {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-md);
-}
-
-.sitting-stem {
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: var(--text);
-}
-
-.sitting-prompt {
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  font-style: italic;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: var(--spacing-lg);
-}
-
-.choice-set {
-  border: 0;
-  padding: 0;
-  margin: 0 0 var(--spacing-lg);
-}
-
-.choice-row {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
-  padding: 0.7rem 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  line-height: 1.5;
-
-  input {
-    margin-top: 0.35rem;
-    accent-color: var(--accent);
-  }
-}
-
-.other-field {
-  margin-bottom: var(--spacing-lg);
-
-  label {
-    display: block;
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    margin-bottom: var(--spacing-xs);
-  }
-
-  textarea {
-    width: 100%;
-    padding: var(--spacing-sm);
-    font-family: var(--font-serif);
-    font-size: 1.2rem;
-    color: var(--text);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    resize: vertical;
-
-    &:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-  }
-}
-
-.pause-offer p {
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  font-style: italic;
-  color: var(--text-muted);
-}
-
-.error-message {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  font-style: italic;
-  margin-bottom: var(--spacing-md);
-}
-
-.sitting-nav {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
-}
-
-.quiet-btn {
-  background: none;
-  border: 0;
-  padding: 0;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.2rem;
-  color: var(--text-muted);
-  cursor: pointer;
-
-  &:hover:not(:disabled) {
-    color: var(--text);
-  }
-
-  &:disabled {
-    cursor: wait;
-    opacity: 0.6;
-  }
-
-  &--primary {
-    color: var(--accent);
-  }
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-}
-</style>

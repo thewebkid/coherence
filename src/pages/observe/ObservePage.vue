@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrapper fade-in">
     <div class="page-container">
-      <div class="content-container observe-page">
+      <div class="content-container">
         <div v-if="step === 'orientation'" class="page-content">
           <RouterLink class="back-link" to="/mutual-assistance">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -13,7 +13,7 @@
             <h1>Before You Begin</h1>
           </header>
 
-          <p v-if="storedToken" class="return-hint">
+          <p v-if="storedToken" class="text-caption">
             A return code is saved on this device.
             <RouterLink class="text-link" :to="'/observe/r/' + storedToken">Continue from that sitting</RouterLink>
           </p>
@@ -42,8 +42,8 @@
 
           <p>This sitting itself may affect what you notice afterward. That is part of observation, not a result that CAS interprets for you.</p>
 
-          <section class="pma-section">
-            <h2>About the Practice of Mutual Assistance</h2>
+          <section>
+            <h2 class="text-serif">About the Practice of Mutual Assistance</h2>
             <p>This instrument grew from The Practice of Mutual Assistance, an exploration of how differentiated participants can become useful to one another while preserving sovereignty, discernment, and responsibility.</p>
             <p>You do not need to know or practice Mutual Assistance to use this instrument.</p>
             <p>
@@ -54,16 +54,16 @@
             </p>
           </section>
 
-          <p class="begin-wrap">
-            <button type="button" class="quiet-btn quiet-btn--primary" @click="step = 'sitting'">
+          <p class="stack-xl cluster">
+            <button type="button" class="quiet-btn quiet-btn--invite" @click="step = 'sitting'">
               Begin Observation
             </button>
-            <RouterLink class="quick-start-link text-link" to="/mutual-assistance/mci/quick-start">MCI Quick Start</RouterLink>
+            <RouterLink class="quiet-link" to="/mutual-assistance/mci/quick-start">MCI Quick Start</RouterLink>
           </p>
         </div>
 
         <div v-else-if="step === 'sitting'">
-          <p v-if="submitError" class="submit-error">{{ submitError }}</p>
+          <p v-if="submitError" class="text-note">{{ submitError }}</p>
           <ObserveSitting
             :submitting="submitting"
             version="v0.1.1"
@@ -79,7 +79,7 @@
             <h1>Your place is saved</h1>
           </header>
           <p>Questions through 9 are kept. You can continue from question 10.</p>
-          <p class="return-code">Return code: <strong>{{ token }}</strong></p>
+          <p class="code">Return code: <strong>{{ token }}</strong></p>
           <p>
             <RouterLink class="text-link" :to="'/observe/r/' + token">Continue this sitting</RouterLink>
           </p>
@@ -175,108 +175,3 @@ async function onPause(responses) {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.observe-page {
-  max-width: 40rem;
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  margin-bottom: var(--spacing-lg);
-  transition: color var(--transition-speed) ease;
-
-  &:hover {
-    color: var(--accent);
-  }
-}
-
-.quick-start-link {
-  margin-left: var(--spacing-lg);
-  font-size: 0.875rem;
-}
-
-.page-content p {
-  line-height: 1.8;
-}
-
-.pma-section {
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--border);
-
-  h2 {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: 1.25rem;
-  }
-}
-
-.submit-error {
-  font-style: italic;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-md);
-}
-
-.begin-wrap {
-  margin-top: var(--spacing-xl);
-}
-
-.return-hint {
-  font-style: italic;
-  color: var(--text-muted);
-}
-
-.not-a-measure,
-.outside-note {
-  font-style: italic;
-  color: var(--text-muted);
-}
-
-.record-block {
-  margin: var(--spacing-lg) 0;
-  padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid var(--border);
-
-  h2 {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: 1.15rem;
-    margin-bottom: var(--spacing-xs);
-  }
-}
-
-.return-code {
-  margin-top: var(--spacing-xl);
-  font-family: var(--font-sans);
-
-  strong {
-    letter-spacing: 0.04em;
-  }
-}
-
-.quiet-btn {
-  background: none;
-  border: 0;
-  padding: 0;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.2rem;
-  color: var(--text-muted);
-  cursor: pointer;
-
-  &:hover {
-    color: var(--text);
-  }
-
-  &--primary {
-    color: var(--accent);
-  }
-}
-</style>

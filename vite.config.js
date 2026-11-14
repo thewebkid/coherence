@@ -833,10 +833,18 @@ export default defineConfig({
         ...v3Slugs.map((slug) => `/inversion-dialogs/3/${slug}`),
         ...v4Slugs.map((slug) => `/inversion-dialogs/4/${slug}`),
       ];
+      // Slugs mirror src/content/mutual-assistance/{booklet,manuscript}/index.js.
+      const bookletSlugs = ['intro', 'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x'];
+      const manuscriptSlugs = ['preface', '1', '2', '3', '4', '5', '6'];
+      const mutualAssistancePaths = [
+        ...bookletSlugs.map((slug) => `/mutual-assistance/booklet/${slug}`),
+        ...manuscriptSlugs.map((slug) => `/mutual-assistance/manuscript/${slug}`),
+      ];
       return [
         ...paths.filter((p) => !p.startsWith('/admin') && !p.includes(':')),
         ...workPaths,
         ...inversionPaths,
+        ...mutualAssistancePaths,
       ];
     },
   },

@@ -18,19 +18,19 @@
           <article
             v-for="aperture in apertures"
             :key="aperture.title"
-            class="aperture-entry"
+            class="media-row"
           >
-            <div class="aperture-text">
-              <p class="aperture-eyebrow">{{ aperture.eyebrow }}</p>
-              <h2 class="aperture-title">
-                <RouterLink :to="aperture.to" class="aperture-link">{{ aperture.title }}</RouterLink>
+            <div class="media-copy">
+              <p class="text-label text-label--sm">{{ aperture.eyebrow }}</p>
+              <h2 class="title-lg">
+                <RouterLink :to="aperture.to">{{ aperture.title }}</RouterLink>
               </h2>
-              <p v-if="aperture.subtitle" class="aperture-subtitle">{{ aperture.subtitle }}</p>
-              <RouterLink :to="aperture.to" class="aperture-thumb-link" :aria-label="aperture.title">
-                <img :src="aperture.thumbnail" :alt="aperture.title" class="aperture-thumb" />
+              <p v-if="aperture.subtitle" class="text-caption">{{ aperture.subtitle }}</p>
+              <RouterLink :to="aperture.to" class="media-thumb" :aria-label="aperture.title">
+                <img :src="aperture.thumbnail" :alt="aperture.title" />
               </RouterLink>
-              <p class="aperture-desc">{{ aperture.description }}</p>
-              <RouterLink :to="aperture.to" class="aperture-link-text">
+              <p>{{ aperture.description }}</p>
+              <RouterLink :to="aperture.to" class="quiet-link">
                 {{ aperture.linkLabel }} →
               </RouterLink>
             </div>
@@ -119,7 +119,7 @@ useHead({
   gap: var(--spacing-xl);
 }
 
-.aperture-entry {
+.media-row {
   display: flow-root;
 
   @media (min-width: 768px) {
@@ -130,7 +130,7 @@ useHead({
   }
 }
 
-.aperture-text {
+.media-copy {
   min-width: 0;
 
   @media (min-width: 768px) {
@@ -138,75 +138,24 @@ useHead({
   }
 }
 
-.aperture-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 0 0 var(--spacing-xs);
-}
-
-.aperture-title {
-  font-family: var(--font-sans);
-  font-size: clamp(1.4rem, 3vw, 1.85rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  margin: 0 0 var(--spacing-xs);
-}
-
-.aperture-link {
-  color: var(--text);
-  text-decoration: none;
-
-  &:hover {
-    color: var(--accent);
-  }
-}
-
-.aperture-subtitle {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.2rem;
-  line-height: 1.5;
-  color: var(--text-muted);
-  margin: 0 0 var(--spacing-md);
-}
-
-.aperture-desc {
-  line-height: 1.8;
-  color: var(--text);
-  margin: 0 0 var(--spacing-md);
-}
-
-.aperture-link-text {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color var(--transition-speed) ease;
-
-  &:hover {
-    color: var(--text);
-  }
-}
-
-.aperture-eyebrow,
-.aperture-title,
-.aperture-subtitle,
-.aperture-desc,
-.aperture-link-text {
+.media-copy > :not(.media-thumb) {
   @media (min-width: 768px) {
     grid-column: 1;
   }
 }
 
-.aperture-thumb-link {
+.media-thumb {
   float: right;
   line-height: 0;
   width: 4.75rem;
   margin: 0.2rem 0 0.35rem 0.85rem;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
 
   @media (min-width: 768px) {
     float: none;
@@ -217,7 +166,7 @@ useHead({
   }
 }
 
-.aperture-entry:nth-child(even) .aperture-thumb-link {
+.media-row:nth-child(even) .media-thumb {
   float: left;
   margin: 0.2rem 0.85rem 0.35rem 0;
 
@@ -225,12 +174,5 @@ useHead({
     float: none;
     margin: 0;
   }
-}
-
-.aperture-thumb {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius-md);
 }
 </style>

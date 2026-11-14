@@ -30,6 +30,7 @@ A few choices you will notice, so they are not surprises:
 - On a desktop screen the whale portraits show at full height. On a phone they are small thumbs floated into the paragraph, alternating sides, so the text wraps and the heads are not cropped.
 - The manuscript and the Quick Start do not repeat a cover above the text. The image that already lives in the writing is the one you see.
 - Each reader has a quiet way back, and a PDF download. The old booklet address still forwards to the new one.
+- The booklet and the manuscript read as a single column. Chapters opens the list; it does not stay beside the prose. Each part has its own address, and an old `?section=` link still arrives at that part.
 - Your words were not rewritten. We only repaired line breaks left by the PDF conversion.
 
 The Updates page, on the preview, now reads:

@@ -26,11 +26,13 @@ The site is not promotional, commercial, or personality-driven. It is **architec
 
 ## Typography rules
 
-- Body text: serif (`var(--font-serif)`)
-- Navigation, labels, UI chrome: sans-serif (`var(--font-sans)`)
+- Body text and UI chrome: sans-serif (`var(--font-sans)`)
+- Accent text: serif (`var(--font-serif)`). Cormorant draws at about 85% of Inter, so readable serif — especially italic — is `1.2rem` and not smaller
 - Generous `line-height` (1.8–1.85 for prose)
 - No decorative or display fonts
 - Italic is used for tone — titles on continuation pages, links that invite rather than direct
+
+How shared classes, navigation, and new pages are supposed to inherit this is in [`styles.md`](./styles.md).
 
 ---
 
@@ -50,6 +52,7 @@ The site is not promotional, commercial, or personality-driven. It is **architec
 - No carousels, accordions, or heavy UI patterns
 - Forms use underline-only inputs (no borders, no backgrounds) in the Interpretive Works section — matches the low-weight aesthetic
 - Buttons in the IW section are plain italic text links, not styled buttons
+- Step navigation (handbook, paper, slides, dialogues, Seven Apertures, Mutual Assistance readings) is one control, `.pager-btn`, defined in [`styles.md`](./styles.md)
 
 ---
 

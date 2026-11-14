@@ -1,14 +1,14 @@
 <template>
   <div class="page-wrapper fade-in">
     <div class="page-container">
-      <div class="content-container observe-page">
+      <div class="content-container">
         <p v-if="loadError" class="page-content">{{ loadError }}</p>
 
         <p v-else-if="loading" class="text-meta">Loading…</p>
 
         <div v-else-if="step === 'sitting'">
-          <p v-if="!resuming" class="return-lead">The same conditions. Recognize what is familiar now.</p>
-          <p v-if="submitError" class="error-message">{{ submitError }}</p>
+          <p v-if="!resuming" class="text-caption">The same conditions. Recognize what is familiar now.</p>
+          <p v-if="submitError" class="text-note">{{ submitError }}</p>
           <ObserveSitting
             :key="sittingKey"
             :submitting="submitting"
@@ -28,7 +28,7 @@
           </header>
           <p>Questions through 9 are kept. You can continue from question 10.</p>
           <p>
-            <button type="button" class="quiet-btn quiet-btn--primary" @click="prepareSitting(record)">Continue this sitting</button>
+            <button type="button" class="quiet-btn" @click="prepareSitting(record)">Continue this sitting</button>
           </p>
         </div>
 
@@ -47,7 +47,7 @@
             :prior-session="priorSession"
           />
           <p>
-            <button type="button" class="quiet-btn quiet-btn--primary" @click="step = 'followed'">
+            <button type="button" class="quiet-btn" @click="step = 'followed'">
               Optionally look back
             </button>
           </p>
@@ -68,15 +68,15 @@
           <div
             v-for="row in priorResponses"
             :key="row.itemId"
-            class="followed-block"
+            class="block"
           >
             <h2>{{ row.title }}</h2>
-            <p class="prior-move">You recognized then: <em>{{ row.choiceLabel }}</em></p>
-            <fieldset class="choice-set">
+            <p class="text-meta">You recognized then: <em>{{ row.choiceLabel }}</em></p>
+            <fieldset class="option-list">
               <label
                 v-for="choice in followedChoices"
                 :key="choice.id"
-                class="choice-row"
+                class="option"
               >
                 <input
                   type="radio"
@@ -88,6 +88,7 @@
               </label>
             </fieldset>
             <textarea
+              class="field-control"
               v-if="followed[row.itemId].choiceId === anotherId"
               v-model="followed[row.itemId].note"
               rows="2"
@@ -96,12 +97,12 @@
             ></textarea>
           </div>
 
-          <p v-if="followError" class="error-message">{{ followError }}</p>
+          <p v-if="followError" class="text-note">{{ followError }}</p>
 
-          <div class="sitting-nav">
+          <div class="action-row">
             <button type="button" class="quiet-btn" @click="step = 'compare'">Back</button>
             <button type="button" class="quiet-btn" @click="skipFollowed">Skip</button>
-            <button type="button" class="quiet-btn quiet-btn--primary" :disabled="savingFollowed" @click="saveFollowed">
+            <button type="button" class="quiet-btn" :disabled="savingFollowed" @click="saveFollowed">
               {{ savingFollowed ? 'Saving…' : 'Save look-back' }}
             </button>
           </div>
@@ -310,91 +311,3 @@ async function saveFollowed() {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.observe-page {
-  max-width: 40rem;
-}
-
-.return-lead,
-.not-a-measure {
-  font-style: italic;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-lg);
-}
-
-.compare-block,
-.followed-block {
-  margin: var(--spacing-lg) 0;
-  padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid var(--border);
-
-  h2 {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: 1.2rem;
-  }
-}
-
-.prior-move {
-  color: var(--text-muted);
-}
-
-.choice-set {
-  border: 0;
-  padding: 0;
-  margin: var(--spacing-sm) 0;
-}
-
-.choice-row {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
-  padding: 0.45rem 0;
-  cursor: pointer;
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-}
-
-textarea {
-  width: 100%;
-  padding: var(--spacing-sm);
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  color: var(--text);
-  resize: vertical;
-}
-
-.sitting-nav {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
-}
-
-.error-message {
-  font-style: italic;
-  color: var(--text-muted);
-}
-
-.quiet-btn {
-  background: none;
-  border: 0;
-  padding: 0;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.2rem;
-  color: var(--text-muted);
-  cursor: pointer;
-
-  &:hover:not(:disabled) {
-    color: var(--text);
-  }
-
-  &--primary {
-    color: var(--accent);
-  }
-}
-</style>

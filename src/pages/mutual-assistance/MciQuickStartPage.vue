@@ -14,14 +14,14 @@
         </header>
 
         <div class="page-content">
-          <p class="qs-note">
+          <p class="text-caption">
             The Quick Start provides context about what kind of instrument MCI is, what happens during a sitting, why continuity matters, and how MCI relates to the larger Mutual Assistance ecology. Reading the Quick Start is not required before participating. The primary action remains
             <RouterLink class="text-link" to="/mutual-assistance/mci">Begin Observation</RouterLink>.
           </p>
 
           <MarkdownContent :source="markdownSource" />
 
-          <div class="qs-download">
+          <div class="section-foot">
             <DownloadButton
               href="/pdf/Movement Continuity Instrument (MCI) (1).pdf"
               filename="Movement-Continuity-Instrument-Quick-Start.pdf"
@@ -52,44 +52,3 @@ useHead({
   ],
 });
 </script>
-
-<style lang="scss" scoped>
-.quick-start-page {
-  max-width: 40rem;
-}
-
-.page-content {
-  line-height: 1.8;
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  margin-bottom: var(--spacing-md);
-  transition: color var(--transition-speed) ease;
-
-  &:hover {
-    color: var(--accent);
-  }
-}
-
-.qs-note {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  line-height: 1.7;
-  margin-bottom: var(--spacing-lg);
-}
-
-.qs-download {
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--border);
-}
-</style>

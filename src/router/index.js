@@ -1,3 +1,5 @@
+import { booklet, manuscript } from '@/content/mutual-assistance/index.js';
+
 const routes = [
   {
     path: '/',
@@ -47,12 +49,34 @@ const routes = [
   {
     path: '/mutual-assistance/booklet',
     name: 'mutual-assistance-booklet',
-    component: () => import('@/pages/mutual-assistance/PmaBookletPage.vue'),
+    redirect: (to) => {
+      const slug = to.query.section !== undefined
+        ? booklet.slugForLegacy(to.query.section)
+        : booklet.defaultSlug;
+      return { path: `/mutual-assistance/booklet/${slug}`, query: {} };
+    },
+  },
+  {
+    path: '/mutual-assistance/booklet/:section',
+    name: 'mutual-assistance-booklet-section',
+    component: () => import('@/pages/mutual-assistance/PmaReaderPage.vue'),
+    meta: { reader: 'booklet' },
   },
   {
     path: '/mutual-assistance/manuscript',
     name: 'mutual-assistance-manuscript',
-    component: () => import('@/pages/mutual-assistance/PmaManuscriptPage.vue'),
+    redirect: (to) => {
+      const slug = to.query.section !== undefined
+        ? manuscript.slugForLegacy(to.query.section)
+        : manuscript.defaultSlug;
+      return { path: `/mutual-assistance/manuscript/${slug}`, query: {} };
+    },
+  },
+  {
+    path: '/mutual-assistance/manuscript/:section',
+    name: 'mutual-assistance-manuscript-section',
+    component: () => import('@/pages/mutual-assistance/PmaReaderPage.vue'),
+    meta: { reader: 'manuscript' },
   },
   {
     path: '/mutual-assistance/mci',

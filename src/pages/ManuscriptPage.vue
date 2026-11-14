@@ -12,7 +12,7 @@
 
         <!-- Main content -->
         <main class="manuscript-content">
-          <header class="manuscript-header">
+          <header class="page-header">
             <RouterLink to="/work" class="back-link">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="15 18 9 12 15 6"/>
@@ -28,10 +28,10 @@
           </article>
 
           <!-- Section navigation -->
-          <nav class="section-nav">
+          <nav class="pager">
             <button
               v-if="activeIndex > 0"
-              class="section-nav-btn section-nav-prev"
+              class="pager-btn"
               @click="prevSection"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -42,7 +42,7 @@
             <div v-else />
             <button
               v-if="activeIndex < sections.length - 1"
-              class="section-nav-btn section-nav-next"
+              class="pager-btn pager-end"
               @click="nextSection"
             >
               <span>{{ sections[activeIndex + 1]?.title }}</span>
@@ -53,7 +53,7 @@
           </nav>
 
           <!-- Download -->
-          <div class="manuscript-download">
+          <div class="section-foot">
             <DownloadButton
               href="/pdf/Coherence Across Scales v1.9.pdf"
               label="Download Full Manuscript (PDF)"
@@ -165,89 +165,7 @@ useHead({
   min-width: 0;
 }
 
-.manuscript-header {
-  margin-bottom: var(--spacing-xl);
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  margin-bottom: var(--spacing-md);
-  transition: color var(--transition-speed) ease;
-
-  &:hover {
-    color: var(--accent);
-  }
-}
-
-.manuscript-header h1 {
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  margin-bottom: var(--spacing-xs);
-}
-
 .manuscript-article {
   max-width: var(--content-width);
-}
-
-.section-nav {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--border);
-}
-
-.section-nav-btn {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--text);
-  cursor: pointer;
-  transition: background var(--transition-speed) ease,
-              border-color var(--transition-speed) ease;
-  max-width: 45%;
-
-  span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  &:hover {
-    background: var(--bg-secondary);
-    border-color: var(--accent);
-  }
-
-  svg {
-    flex-shrink: 0;
-    color: var(--text-muted);
-  }
-}
-
-.section-nav-prev {
-  text-align: left;
-}
-
-.section-nav-next {
-  text-align: right;
-  margin-left: auto;
-}
-
-.manuscript-download {
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--border);
 }
 </style>

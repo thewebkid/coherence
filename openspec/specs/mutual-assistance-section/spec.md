@@ -29,7 +29,8 @@ For each offering, BOTH the image and the title SHALL be clickable links to its 
 The Booklet destination page at `/mutual-assistance/booklet` SHALL include:
 - An unobtrusive return link near the top: **← Back to Mutual Assistance** (linking to `/mutual-assistance`)
 - The Booklet cover image and full online text (Before We Begin intro + Sections I through X from the converted booklet markdown, with PDF line-wrap artifacts cleaned up and no wording changes)
-- Section navigation (`ContentSidebar` and prev/next controls) matching the site's handbook reader pattern
+- A single reading column. The chapter list opens from a Chapters control; it does not sit beside the prose
+- Each part at its own address (`/mutual-assistance/booklet/intro`, `/mutual-assistance/booklet/i` … `/mutual-assistance/booklet/x`), with prev/next links between them. `/mutual-assistance/booklet` and a legacy `?section=` index redirect to the matching part
 - An option to download the PDF (`/pdf/The Practice of Mutual Assistance (Booklet).pdf`)
 
 The legacy route `/observe/pma-booklet` SHALL redirect to `/mutual-assistance/booklet`.
@@ -42,7 +43,8 @@ The legacy route `/observe/pma-booklet` SHALL redirect to `/mutual-assistance/bo
 The Full Manuscript destination page at `/mutual-assistance/manuscript` SHALL include:
 - An unobtrusive return link near the top: **← Back to Mutual Assistance** (linking to `/mutual-assistance`)
 - The Manuscript cover image and full online text (Preface + Chapters One through Six from the converted manuscript markdown, with PDF line-wrap artifacts cleaned up and no wording changes)
-- Section navigation (`ContentSidebar` and prev/next controls) matching the site's handbook reader pattern
+- A single reading column. The chapter list opens from a Chapters control; it does not sit beside the prose
+- Each part at its own address (`/mutual-assistance/manuscript/preface`, `/mutual-assistance/manuscript/1` … `/mutual-assistance/manuscript/6`), with prev/next links between them. `/mutual-assistance/manuscript` and a legacy `?section=` index redirect to the matching part
 - An option to download the PDF (`/pdf/The Practice of Mutual Assistance.pdf`)
 
 #### Scenario: Reading and downloading the Full Manuscript

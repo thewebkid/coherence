@@ -45,6 +45,38 @@
   &:hover { color: var(--iw-accent); }
 }
 
+// Text-level action. Same voice as .quiet-link, for buttons that direct
+// (Back, Continue, downloads) rather than invite.
+.quiet-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--transition-speed) ease;
+
+  &:hover:not(:disabled) { color: var(--iw-accent); }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+}
+
+// The one invitation. Directing actions stay .quiet-btn.
+.quiet-btn--invite {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--accent);
+
+  &:hover:not(:disabled) { color: var(--accent-hover); }
+}
+
 // ── Footer for prose pages (essay-footer pattern) ───────────────────────────
 .essay-footer {
   margin-top: var(--spacing-xl);

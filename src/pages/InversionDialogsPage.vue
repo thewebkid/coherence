@@ -9,7 +9,7 @@
               The Inversion Dialogues
               <span class="manuscript-header-volume">{{ currentVolume.title }}</span>
             </h1>
-            <button class="manuscript-chapters-toggle" @click="isNavOpen = true" aria-label="Open chapter list">
+            <button class="drawer-toggle" @click="isNavOpen = true" aria-label="Open chapter list">
               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
                 <line x1="3" y1="6" x2="21" y2="6"/>
                 <line x1="3" y1="12" x2="21" y2="12"/>
@@ -39,10 +39,10 @@
           <MarkdownContent :source="currentChapter.content" />
         </article>
 
-        <nav class="manuscript-chapter-nav">
+        <nav class="pager">
           <button
             v-if="prevTarget"
-            class="manuscript-chapter-nav-btn"
+            class="pager-btn"
             @click="goTo(prevTarget)"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -53,7 +53,7 @@
           <div v-else />
           <button
             v-if="nextTarget"
-            class="manuscript-chapter-nav-btn manuscript-chapter-nav-next"
+            class="pager-btn pager-end"
             @click="goTo(nextTarget)"
           >
             <span>{{ nextTarget.label }}</span>
@@ -68,41 +68,41 @@
 
     <!-- Chapters flyout -->
     <Teleport to="body">
-    <Transition name="manuscript-flyout">
-      <div v-if="isNavOpen" class="manuscript-chapters-flyout">
-        <aside class="manuscript-chapters-panel">
-          <div class="manuscript-chapters-panel-header">
-          <div class="manuscript-chapters-panel-titles">
+    <Transition name="drawer">
+      <div v-if="isNavOpen" class="drawer">
+        <aside class="drawer-panel">
+          <div class="drawer-header">
+          <div class="drawer-titles">
             <RouterLink
               to="/inversion-dialogs"
-              class="manuscript-chapters-panel-title manuscript-chapters-panel-home"
+              class="drawer-title drawer-title-link"
               aria-label="All volumes"
               @click="isNavOpen = false"
             >The Inversion Dialogues</RouterLink>
             <RouterLink
               to="/inversion-dialogs/about"
-              class="manuscript-chapters-panel-about"
+              class="drawer-aside"
               @click="isNavOpen = false"
             >About the Dialogues</RouterLink>
           </div>
-          <button class="manuscript-chapters-close" @click="isNavOpen = false" aria-label="Close chapters">&#x2715;</button>
+          <button class="drawer-close" @click="isNavOpen = false" aria-label="Close chapters">&#x2715;</button>
         </div>
 
-          <ul class="manuscript-chapters-list">
+          <ul class="drawer-list">
             <li v-for="(chapter, i) in currentVolume.chapters" :key="chapter.slug">
               <button
-                class="manuscript-chapter-item"
+                class="drawer-item"
                 :class="{ 'is-active': i === activeIndex }"
                 @click="selectFromNav(i)"
               >
-                <span v-if="chapter.layout === 'title'" class="manuscript-chapter-item-volume">{{ currentVolume.title }}</span>
-                <span class="manuscript-chapter-item-title">{{ chapter.title }}</span>
-                <span v-if="chapter.subtitle" class="manuscript-chapter-item-subtitle">{{ chapter.subtitle }}</span>
+                <span v-if="chapter.layout === 'title'" class="drawer-item-kicker">{{ currentVolume.title }}</span>
+                <span class="drawer-item-title">{{ chapter.title }}</span>
+                <span v-if="chapter.subtitle" class="drawer-item-meta">{{ chapter.subtitle }}</span>
               </button>
             </li>
           </ul>
         </aside>
-        <div class="manuscript-chapters-backdrop" @click="isNavOpen = false" />
+        <div class="drawer-backdrop" @click="isNavOpen = false" />
       </div>
     </Transition>
   </Teleport>
