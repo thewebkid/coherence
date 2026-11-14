@@ -12,7 +12,7 @@
     <!-- Navigation -->
     <div class="slide-nav">
       <button
-        class="slide-nav-btn"
+        class="pager-btn"
         :disabled="currentIndex === 0"
         @click="prev"
         aria-label="Previous slide"
@@ -30,7 +30,7 @@
       </div>
 
       <button
-        class="slide-nav-btn"
+        class="pager-btn"
         :disabled="currentIndex === slides.length - 1"
         @click="next"
         aria-label="Next slide"
@@ -154,36 +154,6 @@ onMounted(() => {
   gap: var(--spacing-lg);
   padding: var(--spacing-md) 0;
   border-top: 1px solid var(--border);
-}
-
-.slide-nav-btn {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--text);
-  cursor: pointer;
-  transition: background var(--transition-speed) ease,
-              border-color var(--transition-speed) ease;
-
-  &:hover:not(:disabled) {
-    background: var(--bg-secondary);
-    border-color: var(--text-muted);
-  }
-
-  &:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-
-  svg {
-    color: var(--text-muted);
-  }
 }
 
 .slide-nav-label {

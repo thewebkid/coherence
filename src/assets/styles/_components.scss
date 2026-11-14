@@ -17,6 +17,12 @@
   @include text-label(0.875rem);
 }
 
+.text-label--sm {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
 // Small muted sans-serif — dates, secondary metadata.
 // Replaces .weekly-signal__date.
 .text-meta {
@@ -26,11 +32,22 @@
 }
 
 // Serif italic descriptor — section sub-labels, contextual captions.
-// Replaces .section-label, .page-intro (when used as a caption).
+// Cormorant draws at about 85% of Inter, so readable serif sits at 1.2rem.
 .text-caption {
   @include text-serif-italic(1.2rem);
   margin-bottom: var(--spacing-sm);
 }
+
+// Roman serif at the same floor. Stems, record lines, section titles in a reading.
+.text-serif {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.is-italic { font-style: italic; }
 
 // ── Surface panels ─────────────────────────────────────────────────────────────
 

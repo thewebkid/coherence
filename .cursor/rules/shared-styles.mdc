@@ -1,0 +1,13 @@
+---
+description: Reuse shared classes from src/assets/styles; no page-private copies
+globs: "**/*.{vue,scss}"
+alwaysApply: true
+---
+
+Before adding or changing any UI in a `.vue` or `.scss` file, read `.arch-docs/styles.md`.
+
+- Find the nearest existing page or component and use its classes. If those classes live in a `.vue` file, lift them into `src/assets/styles/` and point both at them.
+- Name classes for structure (`row`, `card`, `label`, `cluster`), never for the subject or essay (`aperture-title`, `movements-video-link`).
+- Do not redeclare shared classes (`.back-link`, `.pager-btn`, `.quiet-link`, `.section-foot`, ...) in a page's `<style>`.
+- A page `<style>` block is only for structure that does not exist anywhere else yet, and a one-off may keep a short structural name (e.g. `video-link`).
+- Serif sizing follows `serif-sizing.mdc`; do not set a new serif size in a page.

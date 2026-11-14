@@ -10,9 +10,16 @@
           <section class="updates-section">
             <h2 class="updates-label">new</h2>
             <div class="updates-list">
-              <div v-for="entry in updates.new" :key="entry.to" class="update-entry">
+              <div v-for="entry in updates.new" :key="entry.to || entry.href" class="update-entry">
                 <span class="update-date">{{ entry.date }}</span>
-                <RouterLink :to="entry.to" class="update-title">{{ entry.title }}</RouterLink>
+                <a
+                  v-if="entry.href"
+                  :href="entry.href"
+                  class="update-title"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >{{ entry.title }}</a>
+                <RouterLink v-else :to="entry.to" class="update-title">{{ entry.title }}</RouterLink>
               </div>
             </div>
           </section>

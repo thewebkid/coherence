@@ -42,6 +42,23 @@ h2 {
   margin-top: var(--spacing-xl);
 }
 
+.title-lg {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0 0 var(--spacing-xs);
+
+  a {
+    color: var(--text);
+    text-decoration: none;
+
+    &:hover { color: var(--accent); }
+  }
+}
+
 h3 {
   font-size: clamp(1.125rem, 2.5vw, 1.25rem);
   font-weight: 500;

@@ -1,0 +1,109 @@
+// Structural pieces for a quiet form.
+// The observation instrument is the first form of this kind on the site.
+// Names describe structure (option, field, block), not the subject of the question.
+
+.option-list {
+  border: 0;
+  padding: 0;
+  margin: 0 0 var(--spacing-lg);
+}
+
+.option {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+
+  input {
+    margin-top: 0.35rem;
+    accent-color: var(--accent);
+  }
+}
+
+.field {
+  margin-bottom: var(--spacing-lg);
+}
+
+.field-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-xs);
+}
+
+.field-control {
+  width: 100%;
+  padding: var(--spacing-sm);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+
+  &:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+}
+
+.input {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.5rem;
+}
+
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.block {
+  margin: var(--spacing-lg) 0;
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border);
+
+  h2 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: var(--spacing-xs);
+  }
+}
+
+.code {
+  margin-top: var(--spacing-xl);
+  font-family: var(--font-sans);
+
+  strong { letter-spacing: 0.04em; }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

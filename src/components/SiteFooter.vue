@@ -10,6 +10,10 @@
           <span class="system-arrow">→</span>
           <span class="system-desc">generates signals</span>
 
+          <RouterLink to="/mutual-assistance" class="system-link"><strong>Mutual Assistance</strong></RouterLink>
+          <span class="system-arrow">→</span>
+          <span class="system-desc">makes participation observable</span>
+
           <RouterLink to="/observatory" class="system-link"><strong>Observatory</strong></RouterLink>
           <span class="system-arrow">→</span>
           <span class="system-desc">makes patterns visible</span>

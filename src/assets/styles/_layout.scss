@@ -11,6 +11,22 @@
   padding: var(--spacing-section) 0;
 }
 
+.reading {
+  padding: var(--spacing-lg) 0 var(--spacing-section);
+}
+
+.stack-lg { margin-top: var(--spacing-lg); }
+.stack-xl { margin-top: var(--spacing-xl); }
+
+.split {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.scroll-start { scroll-margin-top: 6rem; }
+
 // ── Page header ───────────────────────────────────────────────────────────────
 
 .page-header {

@@ -96,6 +96,7 @@ const isDark = computed(() => themeStore.resolvedIsDark());
 
 const navLinks = [
   { to: '/practice', label: 'Practice' },
+  { to: '/mutual-assistance', label: 'Mutual Assistance' },
   { to: '/observatory', label: 'Observatory' },
   { to: '/interpretive-works', label: 'Interpretive' },
   { to: '/work', label: 'The Work' },

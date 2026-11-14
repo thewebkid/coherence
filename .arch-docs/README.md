@@ -18,6 +18,7 @@ For design decisions, tone, and visual principles, see [`/creative-brief.md`](/c
 | [redis.md](./redis.md) | Upstash Redis — geo signals for the globe |
 | [email.md](./email.md) | Resend — admin notification emails |
 | [design-principles.md](./design-principles.md) | Technical expression of the creative brief |
+| [styles.md](./styles.md) | Shared styles, navigation, type, and when a page may keep its own CSS |
 
 ---
 

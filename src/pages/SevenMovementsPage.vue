@@ -544,16 +544,24 @@
         </article>
 
         <div class="movements-ending">
-          <RouterLink to="/interpretive-works/continuation" class="continuation-link">
+          <RouterLink to="/interpretive-works/continuation" class="quiet-link quiet-link--serif">
             →  If something remains open…
           </RouterLink>
         </div>
 
-        <div class="movements-download">
+        <div class="section-foot cluster">
           <DownloadButton
             href="/pdf/Seven_Movements.pdf"
             label="Download PDF"
           />
+          <a
+            :href="VIDEO_URL"
+            class="quiet-link quiet-link--serif"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            YouTube interpretation ↗
+          </a>
         </div>
 
       </div>
@@ -570,6 +578,8 @@ import AudioPlayer from '@/components/AudioPlayer.vue';
 import DownloadButton from '@/components/DownloadButton.vue';
 
 const route = useRoute();
+
+const VIDEO_URL = 'https://www.youtube.com/watch?v=tnMltlh6poo';
 
 useHead({
   title: 'Seven Movements — Interpretive Works — Coherence Across Scales',
@@ -700,22 +710,5 @@ section.stillpoint {
 .movements-ending {
   padding-top: calc(var(--spacing-section) * 1.5);
   padding-bottom: var(--spacing-xl);
-}
-
-.continuation-link {
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  font-style: italic;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color var(--transition-speed) ease;
-
-  &:hover { color: var(--iw-accent); }
-}
-
-.movements-download {
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--border);
 }
 </style>

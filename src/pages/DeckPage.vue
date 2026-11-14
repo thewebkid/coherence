@@ -63,22 +63,6 @@ useHead({
   margin-bottom: var(--spacing-lg);
 }
 
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  margin-bottom: var(--spacing-md);
-  transition: color var(--transition-speed) ease;
-
-  &:hover {
-    color: var(--accent);
-  }
-}
-
 .deck-header h1 {
   font-size: clamp(1.5rem, 4vw, 2rem);
   margin-bottom: var(--spacing-xs);

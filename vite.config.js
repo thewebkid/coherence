@@ -762,6 +762,37 @@ export default defineConfig({
               res.setHeader('Content-Type', 'application/json');
               res.end(JSON.stringify({ error: 'Failed to store submission.' }));
             }
+          } else if (req.url?.startsWith('/api/instrument')) {
+            const { handleInstrumentRequest } = await import('./api/_instrument.js');
+            const send = async () => {
+              try {
+                await handleInstrumentRequest(req, res);
+              } catch (error) {
+                console.error('instrument API dev error:', error);
+                if (!res.headersSent) {
+                  res.statusCode = 500;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify({ error: 'Something went wrong. Please try again.' }));
+                }
+              }
+            };
+            if (req.method === 'GET' || req.method === 'HEAD') {
+              await send();
+            } else {
+              let body = '';
+              req.on('data', (chunk) => { body += chunk; });
+              req.on('end', async () => {
+                try {
+                  req.body = body ? JSON.parse(body) : {};
+                } catch {
+                  res.statusCode = 400;
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify({ error: 'Invalid JSON.' }));
+                  return;
+                }
+                await send();
+              });
+            }
           } else {
             next();
           }
@@ -802,10 +833,18 @@ export default defineConfig({
         ...v3Slugs.map((slug) => `/inversion-dialogs/3/${slug}`),
         ...v4Slugs.map((slug) => `/inversion-dialogs/4/${slug}`),
       ];
+      // Slugs mirror src/content/mutual-assistance/{booklet,manuscript}/index.js.
+      const bookletSlugs = ['intro', 'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x'];
+      const manuscriptSlugs = ['preface', '1', '2', '3', '4', '5', '6'];
+      const mutualAssistancePaths = [
+        ...bookletSlugs.map((slug) => `/mutual-assistance/booklet/${slug}`),
+        ...manuscriptSlugs.map((slug) => `/mutual-assistance/manuscript/${slug}`),
+      ];
       return [
         ...paths.filter((p) => !p.startsWith('/admin') && !p.includes(':')),
         ...workPaths,
         ...inversionPaths,
+        ...mutualAssistancePaths,
       ];
     },
   },

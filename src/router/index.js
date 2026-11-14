@@ -1,3 +1,5 @@
+import { booklet, manuscript } from '@/content/mutual-assistance/index.js';
+
 const routes = [
   {
     path: '/',
@@ -23,6 +25,68 @@ const routes = [
     path: '/simple-terms',
     name: 'simple-terms',
     component: () => import('@/pages/SimpleTermsPage.vue'),
+  },
+  {
+    path: '/observe',
+    name: 'observe',
+    component: () => import('@/pages/observe/ObservePage.vue'),
+  },
+  {
+    path: '/observe/pma-booklet',
+    name: 'observe-pma-booklet',
+    redirect: '/mutual-assistance/booklet',
+  },
+  {
+    path: '/observe/r/:token',
+    name: 'observe-return',
+    component: () => import('@/pages/observe/ObserveReturnPage.vue'),
+  },
+  {
+    path: '/mutual-assistance',
+    name: 'mutual-assistance',
+    component: () => import('@/pages/mutual-assistance/MutualAssistancePage.vue'),
+  },
+  {
+    path: '/mutual-assistance/booklet',
+    name: 'mutual-assistance-booklet',
+    redirect: (to) => {
+      const slug = to.query.section !== undefined
+        ? booklet.slugForLegacy(to.query.section)
+        : booklet.defaultSlug;
+      return { path: `/mutual-assistance/booklet/${slug}`, query: {} };
+    },
+  },
+  {
+    path: '/mutual-assistance/booklet/:section',
+    name: 'mutual-assistance-booklet-section',
+    component: () => import('@/pages/mutual-assistance/PmaReaderPage.vue'),
+    meta: { reader: 'booklet' },
+  },
+  {
+    path: '/mutual-assistance/manuscript',
+    name: 'mutual-assistance-manuscript',
+    redirect: (to) => {
+      const slug = to.query.section !== undefined
+        ? manuscript.slugForLegacy(to.query.section)
+        : manuscript.defaultSlug;
+      return { path: `/mutual-assistance/manuscript/${slug}`, query: {} };
+    },
+  },
+  {
+    path: '/mutual-assistance/manuscript/:section',
+    name: 'mutual-assistance-manuscript-section',
+    component: () => import('@/pages/mutual-assistance/PmaReaderPage.vue'),
+    meta: { reader: 'manuscript' },
+  },
+  {
+    path: '/mutual-assistance/mci',
+    name: 'mutual-assistance-mci',
+    component: () => import('@/pages/observe/ObservePage.vue'),
+  },
+  {
+    path: '/mutual-assistance/mci/quick-start',
+    name: 'mutual-assistance-mci-quick-start',
+    component: () => import('@/pages/mutual-assistance/MciQuickStartPage.vue'),
   },
   {
     path: '/observatory',
