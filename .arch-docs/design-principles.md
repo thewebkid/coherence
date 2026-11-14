@@ -32,7 +32,7 @@ The site is not promotional, commercial, or personality-driven. It is **architec
 - No decorative or display fonts
 - Italic is used for tone — titles on continuation pages, links that invite rather than direct
 
-How shared classes, navigation, and new pages are supposed to inherit this is in [`styles.md`](./styles.md).
+**Before writing or changing any UI, read [`styles.md`](./styles.md).** It covers how shared classes, navigation, and new pages inherit all of this, and which classes already exist.
 
 ---
 

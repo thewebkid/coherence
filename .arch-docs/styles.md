@@ -12,9 +12,9 @@ The short version: find the page that already feels like the one you are making,
 |---|---|
 | `_typography.scss` | Body, headings, `.title-lg` |
 | `_components.scss` | Type utilities: `.text-label`, `.text-meta`, `.text-caption`, `.text-serif` |
-| `_links.scss` | `.back-link`, `.quiet-link`, `.quiet-btn`, `.text-link` |
+| `_links.scss` | `.back-link`, `.quiet-link` (`--serif`), `.quiet-btn`, `.text-link` |
 | `_pager.scss` | `.pager`, `.pager-btn`, `.drawer*`, `.section-foot` |
-| `_form.scss` | `.option`, `.field`, `.field-control`, `.action-row`, `.block` |
+| `_form.scss` | `.option`, `.field`, `.field-control`, `.action-row`, `.cluster`, `.block` |
 | `_layout.scss` | `.page-wrapper`, `.reading`, `.split`, `.stack-lg`, `.stack-xl` |
 | `_manuscript-reader.scss` | Interpretive Works prose only: the reading color, serif headings, line height |
 | `_interpretive.scss`, `_aperture.scss` | The Interpretive Works tone |

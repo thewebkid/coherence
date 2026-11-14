@@ -43,6 +43,14 @@
   transition: color var(--transition-speed) ease;
 
   &:hover { color: var(--iw-accent); }
+
+  // Italic serif at the 1.2rem floor, for a line that closes a reading
+  // ("If something remains open…", a link out to a recording).
+  &--serif {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-style: italic;
+  }
 }
 
 // Text-level action. Same voice as .quiet-link, for buttons that direct
